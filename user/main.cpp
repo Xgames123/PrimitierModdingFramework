@@ -24,12 +24,13 @@ void Run()
 
     //PMF::WiatForSceneToLoad("Mian");
 
-    auto gameScene = app::SceneManager_GetSceneAt(1, nullptr);
+    Scene__Boxed* gameScene = nullptr;
+
+  
+    SceneManager_GetSceneAt_Injected(1, (Scene*)gameScene, nullptr);
    
-    auto* GameScene = &gameScene;
 
-
-    if (Scene_get_isLoaded(((Scene__Boxed*)GameScene), nullptr)) {
+    if (Scene_get_isLoaded(gameScene, nullptr)) {
         PMF::LogToConsole("Game Loaded");
     }
     
