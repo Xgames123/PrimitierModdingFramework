@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoMod", "DemoMod\DemoMod.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimitierModdingFramework", "PrimitierModdingFramework\PrimitierModdingFramework.csproj", "{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMFInstaller", "PMFInstaller\PMFInstaller.csproj", "{732120AE-DAE9-4395-A07A-7D2C340F3838}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}.Release|Any CPU.Build.0 = Release|Any CPU
+		{732120AE-DAE9-4395-A07A-7D2C340F3838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{732120AE-DAE9-4395-A07A-7D2C340F3838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{732120AE-DAE9-4395-A07A-7D2C340F3838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{732120AE-DAE9-4395-A07A-7D2C340F3838}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
