@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DemoMod
 {
@@ -16,7 +17,8 @@ namespace DemoMod
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
 			
-			for (int i = 0; i < 200; i++)
+			
+			for (int i = 0; i < 500; i++)
 			{
 				SpawnCube();
 			}
@@ -30,8 +32,15 @@ namespace DemoMod
 			cube.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 			
 			cube.GetComponent<MeshRenderer>().material.color = UnityEngine.Random.ColorHSV(0, 1, 0, 1, 0, 1);
+			cube.AddComponent<Leaf>();
+			var cubeBase = cube.AddComponent<CubeBase>();
+			var rb = cube.AddComponent<Rigidbody>();
 
-			cube.AddComponent<Rigidbody>();
+			cubeBase.substance = Substance.Leaf;
+			cubeBase.rb = rb;
+
+
+
 		}
 
 
