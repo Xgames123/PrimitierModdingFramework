@@ -1,0 +1,18 @@
+﻿/*
+ * Generated code file by Il2CppInspector - http://www.djkaty.com - https://github.com/djkaty
+ */
+
+using System;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+
+// Image 37: UniGLTF.dll - Assembly: UniGLTF, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null - Types 5565-5923
+
+namespace UniGLTF.Zip
+{
+	internal class ZipParseException : Exception // TypeDefIndex: 5913
+	{
+		// Constructors
+		public ZipParseException(string msg); // 0x0000000180D5B9C0-0x0000000180D5BA30
+	}
+}
