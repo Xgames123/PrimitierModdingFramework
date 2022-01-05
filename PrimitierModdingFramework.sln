@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrimitierModdingFramework", "PrimitierModdingFramework.vcxproj", "{A9B33438-F888-4501-9162-3906BC706DC6}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrimitierModdingFrameworkCppRuntime", "CppRuntime/PrimitierModdingFramework.vcxproj", "{A9B33438-F888-4501-9162-3906BC706DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
