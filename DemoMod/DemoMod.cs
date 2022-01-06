@@ -16,19 +16,32 @@ namespace DemoMod
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
-			
-			
-			for (int i = 0; i < 500; i++)
+			UnhollowerBaseLib.Il2CppArrayBase<CubeBase> list = GameObject.FindObjectsOfType<CubeBase>();
+			for (int i = 0; i < list.Count; i++)
 			{
-				SpawnCube();
-			}
+				LoggerInstance.Msg("cubeBase");
+				LoggerInstance.Msg("name:"+list[i].name);
+				LoggerInstance.Msg("parent:" + list[i].transform.parent.name);
+			} 
+			
+			//for (int i = 0; i < 500; i++)
+			//{
+			//	SpawnCube();
+			//}
 			
 		}
+		public override void OnApplicationStart()
+		{
+			base.OnApplicationStart();
+			LoggerInstance.Msg("logging test");
+			
+		}
+
 
 		private static void SpawnCube()
 		{
 			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			cube.transform.position = new Vector3(0, 5, 0);
+			cube.transform.position = new Vector3(0, 50, 0);
 			cube.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 			
 			cube.GetComponent<MeshRenderer>().material.color = UnityEngine.Random.ColorHSV(0, 1, 0, 1, 0, 1);
