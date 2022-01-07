@@ -16,7 +16,7 @@ namespace DemoMod
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
-			UnhollowerBaseLib.Il2CppArrayBase<CubeBase> list = GameObject.FindObjectsOfType<CubeBase>();
+			var list = GameObject.FindObjectsOfType<CubeBase>();
 			for (int i = 0; i < list.Count; i++)
 			{
 				LoggerInstance.Msg("cubeBase");
