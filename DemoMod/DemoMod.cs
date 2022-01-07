@@ -1,4 +1,5 @@
 ﻿using PrimitierModdingFramework;
+using PrimitierModdingFramework.Debug;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,7 @@ namespace DemoMod
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
-			var list = GameObject.FindObjectsOfType<CubeBase>();
-			for (int i = 0; i < list.Count; i++)
-			{
-				LoggerInstance.Msg("cubeBase");
-				LoggerInstance.Msg("name:"+list[i].name);
-				LoggerInstance.Msg("parent:" + list[i].transform.parent.name);
-			} 
+		
 			
 			//for (int i = 0; i < 500; i++)
 			//{
@@ -33,8 +28,17 @@ namespace DemoMod
 		public override void OnApplicationStart()
 		{
 			base.OnApplicationStart();
-			LoggerInstance.Msg("logging test");
 			
+		}
+		public override void OnUpdate()
+		{
+			base.OnUpdate();
+
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				HierarchyXmlDumper.DumpCurrentScene();
+			}
+
 		}
 
 

@@ -45,11 +45,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnhollowerBaseLib, Version=0.4.16.2, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debug\HierarchyXmlDumper.cs" />
     <Compile Include="PrimitierMod.cs" />
     <Compile Include="PMFHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,7 +1,13 @@
-$PRIMITIER_PATH = "D:\Program Files (x86)\Steam\steamapps\common\Primitier"
+$PRIMITIER_PATH = 'D:\Program Files (x86)\Steam\steamapps\common\Primitier';
+$DEBUG_BIN_PATH = 'bin\Debug';
 
-$ModBinPath = "bin/Debug"
+$ModsFolder =  $PRIMITIER_PATH+"\Mods"
 
-Copy-Item -Path "$($ModBinPath)\*" -Destination $PRIMITIER_PATH -Recurse
+Write-Output 'Clearing mods folder';
+Remove-Item ($ModsFolder+"\*") -Recurse -Force;
 
-Start-Process "$($PRIMITIER_PATH)\Primitier.exe" -ArgumentList "--melonloader.debug"
+Write-Output 'Copying debug folder';
+Copy-Item -Path ($DEBUG_BIN_PATH+"\*") -Destination $ModsFolder -Recurse;
+
+Write-Output 'Starting Primitier';
+Start-Process ($PRIMITIER_PATH+"\Primitier.exe") -ArgumentList '--melonloader.debug';

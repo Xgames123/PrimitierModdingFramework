@@ -57,6 +57,14 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
