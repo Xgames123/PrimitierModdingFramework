@@ -18,6 +18,7 @@ WARNING: PMF is in development and likely the latest commit doesn't work
 * (PMF) Helper class to create cubes.
 * (PMF installer) install mods form a custom file format. (.pmfm)
 * (PMF installer) enable and disable mods.
+* (PMF installer) view installed mods.
 
 ## If you want to help
 If you want to help make PMF you can send me a message on Discord (X Games#6869)
