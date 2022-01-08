@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Valve.VR;
 
 namespace DemoMod
 {
@@ -31,7 +32,12 @@ namespace DemoMod
 			base.OnUpdate();
 
 			DebugTools.Update(LoggerInstance);
-			
+
+			if (PlayerHelper.PlayerMovement.click.state)
+			{
+				LoggerInstance.Msg("click is true");
+			}
+
 			if (Input.GetKeyUp(KeyCode.A))
 			{
 				CubeGenerator.GenerateCube(PlayerHelper.CameraRig.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf);

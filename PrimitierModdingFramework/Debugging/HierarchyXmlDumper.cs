@@ -13,7 +13,7 @@ namespace PrimitierModdingFramework.Debugging
 	public static class HierarchyXmlDumper
 	{
 
-		public static string FilePath = "F:/Source/Repos/PrimitierModdingFramework/Dumps";
+		public static string FilePath = "HierarchyDump.xml";
 
 		public static void DumpScene(Scene scene, ComponentDumperList dumperList)
 		{
