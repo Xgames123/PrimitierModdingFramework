@@ -51,7 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Debug\HierarchyXmlDumper.cs" />
+    <Compile Include="Debugging\ComponentDumper.cs" />
+    <Compile Include="Debugging\ComponentDumperList.cs" />
+    <Compile Include="Debugging\ComponentDumpers\RectTransformDumper.cs" />
+    <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
+    <Compile Include="Debugging\HierarchyXmlDumper.cs" />
+    <Compile Include="PlayerHelper.cs" />
     <Compile Include="PrimitierMod.cs" />
     <Compile Include="PMFHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

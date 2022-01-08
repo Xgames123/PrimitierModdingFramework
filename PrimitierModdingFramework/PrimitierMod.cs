@@ -9,6 +9,15 @@ namespace PrimitierModdingFramework
 
 	public abstract class PrimitierMod : MelonMod
 	{
+		/// <summary>
+		/// Runs when a Scene has Loaded and is passed the Scene's Build Index and Name.
+		/// When overwriting call base.OnSceneWasLoaded() before you do anything
+		/// </summary>
+		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+		{
+			PlayerHelper.OnSceneLoad();
+			
+		}
 
 		/// <summary>
 		/// Overwrite this method and put ClassInjector.RegisterTypeInIl2Cpp<MyCustomComponent>(); in it for all your custom MonoBehaviors
@@ -18,9 +27,15 @@ namespace PrimitierModdingFramework
 
 		}
 
+		/// <summary>
+		/// Runs after game Initialization
+		/// When overwriting call base.OnApplicationStart() before you do anything
+		/// </summary>
 		public override void OnApplicationStart()
 		{
+
 			OnRegisterCustomTypes();
+			
 		}
 
 	}

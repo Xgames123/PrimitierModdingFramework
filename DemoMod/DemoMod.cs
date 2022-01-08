@@ -1,5 +1,6 @@
 ﻿using PrimitierModdingFramework;
-using PrimitierModdingFramework.Debug;
+using PrimitierModdingFramework.Debugging;
+using PrimitierModdingFramework.Debugging.ComponentDumpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,6 @@ namespace DemoMod
 
 		
 			
-			//for (int i = 0; i < 500; i++)
-			//{
-			//	SpawnCube();
-			//}
-			
 		}
 		public override void OnApplicationStart()
 		{
@@ -34,31 +30,16 @@ namespace DemoMod
 		{
 			base.OnUpdate();
 
-			if (Input.GetKeyDown(KeyCode.Space))
+			DebugTools.Update(LoggerInstance);
+			
+			if (Input.GetKeyUp(KeyCode.A))
 			{
-				HierarchyXmlDumper.DumpCurrentScene();
+				CubeGenerator.GenerateCube(PlayerHelper.CameraRig.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf);
 			}
 
-		}
-
-
-		private static void SpawnCube()
-		{
-			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			cube.transform.position = new Vector3(0, 50, 0);
-			cube.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 			
-			cube.GetComponent<MeshRenderer>().material.color = UnityEngine.Random.ColorHSV(0, 1, 0, 1, 0, 1);
-			cube.AddComponent<Leaf>();
-			var cubeBase = cube.AddComponent<CubeBase>();
-			var rb = cube.AddComponent<Rigidbody>();
-
-			cubeBase.substance = Substance.Leaf;
-			cubeBase.rb = rb;
-
-
-
 		}
+
 
 
 	}
