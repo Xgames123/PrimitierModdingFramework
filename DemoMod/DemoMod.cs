@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnhollowerRuntimeLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Valve.VR;
@@ -14,14 +15,23 @@ namespace DemoMod
 {
     public class DemoMod : PrimitierMod
     {
+		private InGameDebugTool _InGameDebugTool;
 
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
+			_InGameDebugTool = null;
 
-		
-			
+
 		}
+
+		public override void OnRegisterCustomTypes()
+		{
+			base.OnRegisterCustomTypes();
+			ClassInjector.RegisterTypeInIl2Cpp<InGameDebugTool>();
+		}
+
+
 		public override void OnApplicationStart()
 		{
 			base.OnApplicationStart();
@@ -32,18 +42,19 @@ namespace DemoMod
 			base.OnUpdate();
 
 			DebugTools.Update(LoggerInstance);
-
-			if (PlayerHelper.PlayerMovement.click.state)
-			{
-				LoggerInstance.Msg("click is true");
-			}
-
-			if (Input.GetKeyUp(KeyCode.A))
-			{
-				CubeGenerator.GenerateCube(PlayerHelper.CameraRig.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf);
-			}
-
 			
+		}
+
+		public override void OnFixedUpdate()
+		{
+			base.OnFixedUpdate();
+			if (PlayerHelper.CameraRig != null && _InGameDebugTool == null)
+			{
+				_InGameDebugTool = InGameDebugTool.Spawn(PlayerHelper.CameraRig.position);
+			}
+
+
+
 		}
 
 

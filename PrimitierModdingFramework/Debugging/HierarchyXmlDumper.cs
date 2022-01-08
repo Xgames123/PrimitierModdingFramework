@@ -69,6 +69,10 @@ namespace PrimitierModdingFramework.Debugging
 			currentNode.AppendChild(nameNode);
 			parentNode.AppendChild(currentNode);
 
+			var activeNode = document.CreateElement("Active");
+			activeNode.InnerText = gameObject.active.ToString();
+			currentNode.AppendChild(activeNode);
+
 			for (int i = 0; i < components.Count; i++)
 			{
 				var component = components[i];
@@ -90,6 +94,7 @@ namespace PrimitierModdingFramework.Debugging
 				dumperList = ComponentDumperList.Empty;
 			}
 
+
 			for (int i = 0; i < dumperList.Count; i++)
 			{
 				var dumper = dumperList.Get(i);
@@ -98,15 +103,6 @@ namespace PrimitierModdingFramework.Debugging
 					dumper.OnDump(component, currentNode, document, dumperList);
 				}
 
-			}
-
-			if (name == "UnityEngine.Transform")
-			{
-				
-			}
-			else
-			{
-				
 			}
 
 			parentNode.AppendChild(currentNode);

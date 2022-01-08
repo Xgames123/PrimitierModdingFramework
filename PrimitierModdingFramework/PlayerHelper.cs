@@ -20,7 +20,7 @@ namespace PrimitierModdingFramework
 			LHand = GameObject.Find("LeftHand").transform;
 			RHand = GameObject.Find("RightHand").transform;
 
-			PlayerMovement = 
+			PlayerMovement = CameraRig.GetComponent<PlayerMovement>();
 
 		}
 
