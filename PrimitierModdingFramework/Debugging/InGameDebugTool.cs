@@ -26,7 +26,7 @@ namespace PrimitierModdingFramework.Debugging
 			text.alignment = TextAlignmentOptions.Center;
 			textGameObject.transform.localPosition = new Vector3(0, 0.4f, -0.6f);
 
-			var buttonGameObject = CubeGenerator.GenerateCube(position+new Vector3(0, 0, -0.6f), new Vector3(0.1f, 0.1f, 0.02f), Substance.AncientPlastic);
+			var buttonGameObject = CubeGenerator.GenerateCube(position+new Vector3(0, -0.02f, 0), new Vector3(0.1f, 0.1f, 0.02f), Substance.AncientPlastic);
 			buttonGameObject.GetComponent<CubeAppearance>().TintColor(Color.red, 1);
 			buttonGameObject.GetComponent<CubeConnector>().Connect(gameObject.GetComponent<CubeConnector>());
 
