@@ -50,7 +50,7 @@ namespace DemoMod
 			base.OnFixedUpdate();
 			if (PlayerHelper.CameraRig != null && _InGameDebugTool == null)
 			{
-				_InGameDebugTool = InGameDebugTool.Spawn(PlayerHelper.CameraRig.position);
+				_InGameDebugTool = InGameDebugTool.Spawn(new Vector3(0, 1, 1));
 			}
 
 
