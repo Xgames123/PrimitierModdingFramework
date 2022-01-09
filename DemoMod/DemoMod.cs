@@ -15,13 +15,11 @@ namespace DemoMod
 {
     public class DemoMod : PrimitierMod
     {
-		private InGameDebugTool _InGameDebugTool;
+		
 
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
-			_InGameDebugTool = null;
-
 
 		}
 
@@ -42,29 +40,17 @@ namespace DemoMod
 			base.OnUpdate();
 
 			DebugTools.Update(LoggerInstance);
-			
+
 		}
 
 		public override void OnFixedUpdate()
 		{
 			base.OnFixedUpdate();
-			if (PlayerHelper.CameraRig != null && _InGameDebugTool == null)
-			{
-				_InGameDebugTool = InGameDebugTool.Spawn(PlayerHelper.CameraRig.transform.position);
-			}
 
 
 
-			if (Input.GetKeyDown(KeyCode.A))
-			{
-				if (_InGameDebugTool != null)
-				{
-					GameObject.Destroy(_InGameDebugTool.transform.parent.gameObject);
-				}
 
-				_InGameDebugTool = InGameDebugTool.Spawn(PlayerHelper.CameraRig.transform.position);
-
-			}
+			
 
 
 		}

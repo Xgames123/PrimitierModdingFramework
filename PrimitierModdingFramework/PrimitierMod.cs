@@ -15,6 +15,7 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
+			PMFHelper.OnSceneLoad();
 			PlayerHelper.OnSceneLoad();
 			
 		}

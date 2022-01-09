@@ -19,6 +19,9 @@ namespace PrimitierModdingFramework.Debugging
 		{
 			XmlDocument document = new XmlDocument();
 			var sceneElement = document.CreateElement("Scene");
+			var primitierVersionAtribute = document.CreateAttribute("PrimitierVersion");
+			primitierVersionAtribute.Value = Application.version;
+			sceneElement.Attributes.Append(primitierVersionAtribute);
 			document.AppendChild(sceneElement);
 
 			var rootGameobjects = scene.GetRootGameObjects();

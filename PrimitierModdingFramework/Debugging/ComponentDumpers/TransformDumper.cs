@@ -24,6 +24,10 @@ namespace PrimitierModdingFramework.Debugging.ComponentDumpers
 			rotationNode.InnerText = transfromComp.rotation.ToString();
 			xmlElement.AppendChild(rotationNode);
 
+			var scaleNode = document.CreateElement("Scale");
+			scaleNode.InnerText = transfromComp.localScale.ToString();
+			xmlElement.AppendChild(scaleNode);
+
 			var childrenNode = document.CreateElement("Children");
 			for (int i = 0; i < transfromComp.childCount; i++)
 			{
