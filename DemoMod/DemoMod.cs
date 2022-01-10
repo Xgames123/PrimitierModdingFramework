@@ -23,11 +23,6 @@ namespace DemoMod
 
 		}
 
-		public override void OnRegisterCustomTypes()
-		{
-			base.OnRegisterCustomTypes();
-			ClassInjector.RegisterTypeInIl2Cpp<InGameDebugTool>();
-		}
 
 
 		public override void OnApplicationStart()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MelonLoader;
+using PrimitierModdingFramework.Internals;
 namespace PrimitierModdingFramework
 {
 
@@ -11,32 +12,34 @@ namespace PrimitierModdingFramework
 	{
 		/// <summary>
 		/// Runs when a Scene has Loaded and is passed the Scene's Build Index and Name.
-		/// When overwriting call base.OnSceneWasLoaded() before you do anything
+		/// When overriding call base.OnSceneWasLoaded() before you do anything
 		/// </summary>
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
-			PMFHelper.OnSceneLoad();
-			PlayerHelper.OnSceneLoad();
+			PMFSystem.FireEventOnRegisterd(PMFEventType.SceneLoad);
 			
-		}
-
-		/// <summary>
-		/// Overwrite this method and put ClassInjector.RegisterTypeInIl2Cpp<MyCustomComponent>(); in it for all your custom MonoBehaviors
-		/// </summary>
-		public virtual void OnRegisterCustomTypes()
-		{
-
 		}
 
 		/// <summary>
 		/// Runs after game Initialization
-		/// When overwriting call base.OnApplicationStart() before you do anything
+		/// When overriding call base.OnApplicationStart() before you do anything
 		/// </summary>
 		public override void OnApplicationStart()
 		{
-
-			OnRegisterCustomTypes();
+			PMFSystem.RegisterSystem(new PMFTypeInjector());
+			PMFSystem.RegisterSystem(new PMFHelper());
 			
+
+			PMFSystem.FireEventOnRegisterd(PMFEventType.ApplicationStart);
+		}
+
+		/// <summary>
+		/// Runs after OnApplicationStart.
+		/// When overriding call base.OnApplicationLateStart() before you do anything
+		/// </summary>
+		public override void OnApplicationLateStart()
+		{
+			PMFSystem.FireEventOnRegisterd(PMFEventType.ApplicationLateStart);
 		}
 
 	}

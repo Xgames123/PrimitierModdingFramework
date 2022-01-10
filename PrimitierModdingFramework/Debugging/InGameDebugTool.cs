@@ -13,10 +13,24 @@ namespace PrimitierModdingFramework.Debugging
 		public InGameDebugTool(IntPtr ptr) : base(ptr){ }
 
 		public GameObject Button;
+		public CameraGrip Grip;
+		
+		private void Start()
+		{
+			Button = transform.Find("Button").gameObject;
+			Grip = gameObject.AddComponent<CameraGrip>();
+		}
+
+		private void FixedUpdate()
+		{
+			//Sometimes the camera grip changes the objects scale
+			gameObject.transform.localScale = new Vector3(0.4f, 0.3f, 0.02f);
+		}
+
 
 		public static InGameDebugTool Spawn(Vector3 position)
 		{
-			
+
 			var gameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			gameObject.transform.parent = PMFHelper.SystemTransform;
 			gameObject.name = "DebugTool";
@@ -40,27 +54,12 @@ namespace PrimitierModdingFramework.Debugging
 			buttonGameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.02f);
 			buttonGameObject.transform.localPosition = new Vector3(0, -0.02f, 0);
 			buttonGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-
-			var grip = gameObject.AddComponent<CameraGrip>();
+			buttonGameObject.AddComponent<PhysicsButton>();
 
 			return gameObject.AddComponent<InGameDebugTool>();
 
-			
-		}
-
-		private void Start()
-		{
-			Button = transform.Find("Button").gameObject;
-			
-		}
-
-		private void FixedUpdate()
-		{
-			//Sometimes the camera grip changes the objects scale
-			gameObject.transform.localScale = new Vector3(0.4f, 0.3f, 0.02f);
 
 		}
-
 
 	}
 }

@@ -43,10 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnhollowerBaseLib, Version=0.4.16.2, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -69,9 +67,11 @@
     <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
     <Compile Include="Debugging\InGameDebugTool.cs" />
     <Compile Include="Debugging\HierarchyXmlDumper.cs" />
-    <Compile Include="PlayerHelper.cs" />
-    <Compile Include="PrimitierMod.cs" />
+    <Compile Include="PhysicsButton.cs" />
     <Compile Include="PMFHelper.cs" />
+    <Compile Include="Internals\PMFSystem.cs" />
+    <Compile Include="Internals\PMFTypeInjector.cs" />
+    <Compile Include="PrimitierMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
