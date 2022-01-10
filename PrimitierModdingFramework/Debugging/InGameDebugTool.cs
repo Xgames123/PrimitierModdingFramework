@@ -24,42 +24,61 @@ namespace PrimitierModdingFramework.Debugging
 		private void FixedUpdate()
 		{
 			//Sometimes the camera grip changes the objects scale
-			gameObject.transform.localScale = new Vector3(0.4f, 0.3f, 0.02f);
+			gameObject.transform.localScale = new Vector3(1, 1, 1);
 		}
 
 
 		public static InGameDebugTool Spawn(Vector3 position)
 		{
-
-			var gameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			var gameObject = new GameObject();
 			gameObject.transform.parent = PMFHelper.SystemTransform;
-			gameObject.name = "DebugTool";
-			gameObject.transform.localScale = new Vector3(0.4f, 0.3f, 0.02f);
+			gameObject.name = "InGameDebugTool";
 			gameObject.transform.position = position;
-			gameObject.GetComponent<MeshRenderer>().material.color = Color.black;
+			gameObject.transform.localScale = new Vector3(1, 1, 1);
 			gameObject.AddComponent<Rigidbody>();
 
-			GameObject textGameObject = new GameObject("Text");
-			textGameObject.transform.parent = gameObject.transform;
-			var text = textGameObject.AddComponent<TextMeshPro>();
-			text.text = "DEBUG TOOL";
-			text.fontSize = 0.4f;
-			text.color = Color.white;
-			text.alignment = TextAlignmentOptions.Center;
-			textGameObject.transform.localPosition = new Vector3(0, 0.4f, -0.6f);
+			var pannel = CreatePannel(gameObject.transform);
 
-			var buttonGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			buttonGameObject.name = "Button";
-			buttonGameObject.transform.parent = gameObject.transform;
-			buttonGameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.02f);
-			buttonGameObject.transform.localPosition = new Vector3(0, -0.02f, 0);
-			buttonGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-			buttonGameObject.AddComponent<PhysicsButton>();
+			var button = CreateButton(gameObject.transform, new Vector2(0, 0));
+
 
 			return gameObject.AddComponent<InGameDebugTool>();
 
 
 		}
 
+		private static GameObject CreatePannel(Transform parent)
+		{
+			var Pannel = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			Pannel.transform.parent = parent;
+			Pannel.transform.localScale = new Vector3(0.4f, 0.3f, 0.02f);
+			Pannel.transform.localPosition = new Vector3(0, 0, 0);
+			Pannel.GetComponent<MeshRenderer>().material.color = Color.black;
+
+
+			GameObject textGameObject = new GameObject("Text");
+			textGameObject.transform.parent = Pannel.transform;
+			var text = textGameObject.AddComponent<TextMeshPro>();
+			text.text = "DEBUG TOOL";
+			text.fontSize = 1f;
+			text.color = Color.white;
+			text.alignment = TextAlignmentOptions.Center;
+			textGameObject.transform.localScale = new Vector3(1, 1, 1);
+			textGameObject.transform.localPosition = new Vector3(0, 0.4f, -0.6f);
+
+			return Pannel;
+		}
+
+		private static GameObject CreateButton(Transform parent, Vector2 pos)
+		{
+			var buttonGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			buttonGameObject.transform.parent = parent;
+			buttonGameObject.name = "Button";
+			buttonGameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.02f);
+			buttonGameObject.transform.localPosition = new Vector3(pos.x, pos.y, -0.02f);
+			buttonGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+			buttonGameObject.AddComponent<ToggleButton>();
+			return buttonGameObject;
+		}
 	}
 }

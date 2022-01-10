@@ -9,11 +9,10 @@ using UnityEngine.Events;
 namespace PrimitierModdingFramework
 {
 
-	public class PhysicsButton : MonoBehaviour
+	public class PMFButton : MonoBehaviour
 	{
-		public PhysicsButton(IntPtr ptr) : base(ptr) { }
+		public PMFButton(IntPtr ptr) : base(ptr) { }
 
-		public event Action OnPress;
 
 		public Vector3 PressDirection;
 
@@ -30,7 +29,7 @@ namespace PrimitierModdingFramework
 		private void Start()
 		{
 			_StartScale = transform.localScale;
-
+			
 		}
 
 		private void FixedUpdate()
@@ -38,7 +37,7 @@ namespace PrimitierModdingFramework
 			if (transform.localScale.magnitude < _StartScale.magnitude)
 			{
 				transform.localScale += PressDirection * 0.001f;
-				_PushAmount += 0.001f;
+				_PushAmount -= 0.001f;
 			}
 
 		}
@@ -46,10 +45,11 @@ namespace PrimitierModdingFramework
 
 		private void OnCollisionEnter(Collision collision)
 		{
+			PMFLog.Message("Collision ", collision.rigidbody.name);
 
 			if (_PushAmount > 0.1f)
 			{
-				_PushAmount -= 0.01f;
+				_PushAmount += 0.01f;
 				transform.localScale -= PressDirection * 0.01f;
 			}
 

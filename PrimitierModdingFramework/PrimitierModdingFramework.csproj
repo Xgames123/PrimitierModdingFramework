@@ -67,7 +67,8 @@
     <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
     <Compile Include="Debugging\InGameDebugTool.cs" />
     <Compile Include="Debugging\HierarchyXmlDumper.cs" />
-    <Compile Include="PhysicsButton.cs" />
+    <Compile Include="PMFLog.cs" />
+    <Compile Include="PMFButton.cs" />
     <Compile Include="PMFHelper.cs" />
     <Compile Include="Internals\PMFSystem.cs" />
     <Compile Include="Internals\PMFTypeInjector.cs" />

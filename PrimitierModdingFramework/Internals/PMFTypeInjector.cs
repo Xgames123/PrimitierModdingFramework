@@ -16,7 +16,7 @@ namespace PrimitierModdingFramework.Internals
 			base.OnApplicationStart();
 
 
-			ClassInjector.RegisterTypeInIl2Cpp<PhysicsButton>();
+			ClassInjector.RegisterTypeInIl2Cpp<PMFButton>();
 			ClassInjector.RegisterTypeInIl2Cpp<InGameDebugTool>();
 			
 

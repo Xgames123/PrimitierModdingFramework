@@ -31,6 +31,7 @@ namespace PrimitierModdingFramework
 			
 
 			PMFSystem.FireEventOnRegisterd(PMFEventType.ApplicationStart);
+			PMFLog.MelonLogger = LoggerInstance;
 		}
 
 		/// <summary>
@@ -41,6 +42,7 @@ namespace PrimitierModdingFramework
 		{
 			PMFSystem.FireEventOnRegisterd(PMFEventType.ApplicationLateStart);
 		}
+
 
 	}
 }

@@ -31,7 +31,7 @@ namespace PrimitierModdingFramework
 
 			PlayerMovement = CameraRig.GetComponent<PlayerMovement>();
 			
-
+			
 		}
 
 	}
