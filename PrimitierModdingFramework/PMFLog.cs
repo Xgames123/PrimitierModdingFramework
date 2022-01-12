@@ -1,4 +1,5 @@
 ﻿using MelonLoader;
+using PrimitierModdingFramework.Internals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace PrimitierModdingFramework
 {
-	public static class PMFLog
+	public class PMFLog : PMFSystem
 	{
 		public static MelonLogger.Instance MelonLogger;
+
+		public override void OnApplicationStart()
+		{
+			MelonLogger = Mod.LoggerInstance;
+		}
+
 
 		public static void Message(string message, ConsoleColor color = ConsoleColor.White)
 		{

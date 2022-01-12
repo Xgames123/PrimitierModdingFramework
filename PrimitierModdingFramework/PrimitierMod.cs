@@ -16,7 +16,7 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
-			PMFSystem.FireEventOnRegisterd(PMFEventType.SceneLoad);
+			PMFSystem.FireEventOnSystems(PMFEventType.SceneLoad);
 			
 		}
 
@@ -26,12 +26,13 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnApplicationStart()
 		{
+			PMFSystem.Startup(this);
+			PMFSystem.RegisterSystem(new PMFLog());
 			PMFSystem.RegisterSystem(new PMFTypeInjector());
 			PMFSystem.RegisterSystem(new PMFHelper());
 			
 
-			PMFSystem.FireEventOnRegisterd(PMFEventType.ApplicationStart);
-			PMFLog.MelonLogger = LoggerInstance;
+			PMFSystem.FireEventOnSystems(PMFEventType.ApplicationStart);
 		}
 
 		/// <summary>
@@ -40,7 +41,7 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnApplicationLateStart()
 		{
-			PMFSystem.FireEventOnRegisterd(PMFEventType.ApplicationLateStart);
+			PMFSystem.FireEventOnSystems(PMFEventType.ApplicationLateStart);
 		}
 
 

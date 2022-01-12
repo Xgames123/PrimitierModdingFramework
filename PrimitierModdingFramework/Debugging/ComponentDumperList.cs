@@ -46,6 +46,20 @@ namespace PrimitierModdingFramework.Debugging
 			return _InternalList[index];
 		}
 
+		public ComponentDumper GetByTargetComponent(string fullComponentName)
+		{
+			for (int i = 0; i < Count; i++)
+			{
+				var dumper = _InternalList[i];
+				if (fullComponentName == dumper.TargetComponentFullName)
+				{
+					return dumper;
+				}
+
+			}
+			return null;
+		}
+
 
 	}
 }

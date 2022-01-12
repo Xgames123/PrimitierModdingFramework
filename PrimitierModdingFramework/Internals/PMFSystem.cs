@@ -19,8 +19,15 @@ namespace PrimitierModdingFramework.Internals
 	{
 		public static List<PMFSystem> RegisterdSystems = new List<PMFSystem>();
 
+		public static PrimitierMod Mod { get; private set; }
 
-		public static void FireEventOnRegisterd(PMFEventType type)
+		public static void Startup(PrimitierMod mod)
+		{
+			Mod = mod;
+		}
+
+
+		public static void FireEventOnSystems(PMFEventType type)
 		{
 			foreach (var system in RegisterdSystems)
 			{

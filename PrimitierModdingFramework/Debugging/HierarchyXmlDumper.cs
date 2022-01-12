@@ -1,4 +1,5 @@
-﻿using MelonLoader;
+﻿using Il2CppSystem.Reflection;
+using MelonLoader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,9 +53,9 @@ namespace PrimitierModdingFramework.Debugging
 			if (gameObject.name != null)
 			{
 				fullName = gameObject.name;
-				fullName = fullName.Replace("<", "[");
-				fullName = fullName.Replace(">", "]");
+				fullName = fullName.Replace("\"", " ");
 			}
+
 			StringBuilder nameBuilder = new StringBuilder();
 			for (int i = 0; i < fullName.Length; i++)
 			{
@@ -67,14 +68,9 @@ namespace PrimitierModdingFramework.Debugging
 
 
 			var currentNode = document.CreateElement(nameBuilder.ToString());
-			var nameNode = document.CreateElement("FullName");
-			nameNode.InnerText = fullName;
-			currentNode.AppendChild(nameNode);
+			currentNode.SetAttribute("FullName", fullName);
+			currentNode.SetAttribute("Active", gameObject.active.ToString());
 			parentNode.AppendChild(currentNode);
-
-			var activeNode = document.CreateElement("Active");
-			activeNode.InnerText = gameObject.active.ToString();
-			currentNode.AppendChild(activeNode);
 
 			for (int i = 0; i < components.Count; i++)
 			{
@@ -88,6 +84,7 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static void DumpComponent(Component component, XmlNode parentNode, XmlDocument document, ComponentDumperList dumperList)
 		{
+
 			var name = component.GetIl2CppType().FullName;
 
 			var currentNode = document.CreateElement(name);
@@ -98,12 +95,29 @@ namespace PrimitierModdingFramework.Debugging
 			}
 
 
-			for (int i = 0; i < dumperList.Count; i++)
+
+			var dumper = dumperList.GetByTargetComponent(name);
+			if (dumper != null)
 			{
-				var dumper = dumperList.Get(i);
-				if (name == dumper.TargetComponentFullName)
+				dumper.OnDump(component, currentNode, document, dumperList);
+			}
+			else
+			{
+
+				var fields = component.GetIl2CppType().GetFields();
+
+				for (int i = 0; i < fields.Length; i++)
 				{
-					dumper.OnDump(component, currentNode, document, dumperList);
+					var field = fields[i];
+					if (field == null)
+					{
+						continue;
+					}
+
+					var node = document.CreateElement(field.Name);
+					node.InnerText = field.GetValue(component).ToString();
+					currentNode.AppendChild(node);
+
 				}
 
 			}
