@@ -70,6 +70,7 @@
     <Compile Include="Debugging\InGameDebugTool.cs" />
     <Compile Include="Debugging\HierarchyXmlDumper.cs" />
     <Compile Include="Debugging\XmlHelper.cs" />
+    <Compile Include="PMFButtonPusher.cs" />
     <Compile Include="PMFLog.cs" />
     <Compile Include="PMFButton.cs" />
     <Compile Include="PMFHelper.cs" />

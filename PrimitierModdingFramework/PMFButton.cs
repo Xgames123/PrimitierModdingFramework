@@ -17,18 +17,10 @@ namespace PrimitierModdingFramework
 
 		private bool _IsPressed = false;
 
-		private void Start()
+
+		public void Press()
 		{
-
-		}
-
-		private void FixedUpdate()
-		{
-
-		}
-
-		private void Press()
-		{
+			PMFLog.Message("Press");
 			if (_IsPressed)
 			{
 				return;
@@ -39,7 +31,7 @@ namespace PrimitierModdingFramework
 			transform.localPosition += new Vector3(0, 0, 0.02f);
 		}
 
-		private void Release()
+		public void Release()
 		{
 			
 			if (!_IsPressed)
@@ -52,15 +44,6 @@ namespace PrimitierModdingFramework
 			transform.localPosition -= new Vector3(0, 0, 0.02f);
 		}
 
-		private void OnCollisionEnter(Collision collision)
-		{
-			PMFLog.Message("Press");
-			Press();
-		}
 
-		private void OnCollisionExit(Collision other)
-		{
-			Release();
-		}
 	}
 }

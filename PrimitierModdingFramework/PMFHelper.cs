@@ -31,7 +31,12 @@ namespace PrimitierModdingFramework
 
 			PlayerMovement = CameraRig.GetComponent<PlayerMovement>();
 
+
+			LHand.gameObject.AddComponent<PMFButtonPusher>();
+			RHand.gameObject.AddComponent<PMFButtonPusher>();
+
 		}
+
 
 	}
 }
