@@ -18,6 +18,10 @@ namespace PrimitierModdingFramework
 		private bool _IsPressed = false;
 
 
+		public Transform CubeTransform;
+
+
+
 		public void Press()
 		{
 			PMFLog.Message("Press");
@@ -27,8 +31,9 @@ namespace PrimitierModdingFramework
 			}
 
 			_IsPressed = true;
-			transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 0.01f);
-			transform.localPosition += new Vector3(0, 0, 0.02f);
+			CubeTransform.localScale = new Vector3(CubeTransform.localScale.x, CubeTransform.localScale.y, 0.01f);
+
+			CubeTransform.localPosition += new Vector3(0, 0, 0.02f);
 		}
 
 		public void Release()
@@ -40,8 +45,8 @@ namespace PrimitierModdingFramework
 			}
 
 			_IsPressed = false;
-			transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 0.03f);
-			transform.localPosition -= new Vector3(0, 0, 0.02f);
+			CubeTransform.localScale = new Vector3(CubeTransform.localScale.x, CubeTransform.localScale.y, 0.03f);
+			CubeTransform.localPosition -= new Vector3(0, 0, 0.02f);
 		}
 
 

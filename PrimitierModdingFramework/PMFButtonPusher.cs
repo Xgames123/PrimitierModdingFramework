@@ -11,8 +11,10 @@ namespace PrimitierModdingFramework
 
 		private void Start()
 		{
+			var collider = gameObject.AddComponent<SphereCollider>();
+			collider.radius = 0.01f;
 
-
+			
 		}
 
 

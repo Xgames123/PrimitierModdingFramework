@@ -71,13 +71,25 @@ namespace PrimitierModdingFramework.Debugging
 
 		private static GameObject CreateButton(Transform parent, Vector2 pos)
 		{
+
 			var buttonGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			buttonGameObject.transform.parent = parent;
 			buttonGameObject.name = "Button";
 			buttonGameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.02f);
 			buttonGameObject.transform.localPosition = new Vector3(pos.x, pos.y, -0.03f);
 			buttonGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-			buttonGameObject.AddComponent<PMFButton>();
+			buttonGameObject.AddComponent<BoxCollider>();
+			var button = buttonGameObject.AddComponent<PMFButton>();
+
+
+			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			cube.transform.parent = buttonGameObject.transform;
+			cube.transform.localPosition = Vector3.zero;
+			cube.transform.localScale = new Vector3(1, 1, 1);
+			Destroy(cube.GetComponent<BoxCollider>());
+
+			button.CubeTransform = cube.transform;
+
 			return buttonGameObject;
 		}
 	}
