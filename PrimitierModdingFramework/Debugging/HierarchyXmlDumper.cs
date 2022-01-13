@@ -1,10 +1,8 @@
-﻿using Il2CppSystem.Reflection;
+﻿using Il2CppSystem;
+using Il2CppSystem.Reflection;
 using MelonLoader;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using PrimitierModdingFramework.Debugging.ComponentDumpers;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,9 +14,28 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static string FilePath = "HierarchyDump.xml";
 
-		public static void DumpScene(Scene scene, ComponentDumperList dumperList)
+		public static ComponentDumperList DefaultDumperList = new ComponentDumperList(
+			new TransformDumper(), 
+			new RectTransformDumper(),
+			new MeshRendererDumper(),
+			new MeshFilterDumper());
+
+
+		public static void DumpSceneToFile(Scene scene, ComponentDumperList dumperList)
 		{
 			XmlDocument document = new XmlDocument();
+			DumpScene(scene, document, dumperList);
+
+			document.Save(FilePath);
+		}
+
+		public static void DumpCurrentSceneToFile(ComponentDumperList dumperList)
+		{
+			DumpSceneToFile(SceneManager.GetActiveScene(), dumperList);
+		}
+
+		public static void DumpScene(Scene scene, XmlDocument document, ComponentDumperList dumperList)
+		{
 			var sceneElement = document.CreateElement("Scene");
 			var primitierVersionAtribute = document.CreateAttribute("PrimitierVersion");
 			primitierVersionAtribute.Value = Application.version;
@@ -31,12 +48,6 @@ namespace PrimitierModdingFramework.Debugging
 				DumpGameObject(rootGameobjects[i], sceneElement, document, dumperList);
 			}
 
-			document.Save(FilePath);
-		}
-
-		public static void DumpCurrentScene(ComponentDumperList dumperList)
-		{
-			DumpScene(SceneManager.GetActiveScene(), dumperList);
 		}
 
 
@@ -56,18 +67,8 @@ namespace PrimitierModdingFramework.Debugging
 				fullName = fullName.Replace("\"", " ");
 			}
 
-			StringBuilder nameBuilder = new StringBuilder();
-			for (int i = 0; i < fullName.Length; i++)
-			{
-				if (char.IsLetterOrDigit(fullName[i]))
-				{
-					nameBuilder.Append(fullName[i]);
-				}
 
-			}
-
-
-			var currentNode = document.CreateElement(nameBuilder.ToString());
+			var currentNode = document.CreateElement("GameObject");
 			currentNode.SetAttribute("FullName", fullName);
 			currentNode.SetAttribute("Active", gameObject.active.ToString());
 			parentNode.AppendChild(currentNode);
@@ -94,8 +95,13 @@ namespace PrimitierModdingFramework.Debugging
 				dumperList = ComponentDumperList.Empty;
 			}
 
-
-
+			var behaviour = component.TryCast<Behaviour>();
+			if (behaviour != null)
+			{
+				currentNode.SetAttribute("Enabled", behaviour.enabled.ToString());
+			}
+			
+	
 			var dumper = dumperList.GetByTargetComponent(name);
 			if (dumper != null)
 			{
@@ -103,26 +109,42 @@ namespace PrimitierModdingFramework.Debugging
 			}
 			else
 			{
-
-				var fields = component.GetIl2CppType().GetFields();
-
-				for (int i = 0; i < fields.Length; i++)
-				{
-					var field = fields[i];
-					if (field == null)
-					{
-						continue;
-					}
-
-					var node = document.CreateElement(field.Name);
-					node.InnerText = field.GetValue(component).ToString();
-					currentNode.AppendChild(node);
-
-				}
-
+				DumpFields(component, currentNode, document);
 			}
 
 			parentNode.AppendChild(currentNode);
+		}
+
+		
+
+
+		private static void DumpFields(Component component, XmlElement xmlElement, XmlDocument document)
+		{
+
+			var fields = component.GetIl2CppType().GetFields();
+
+			for (int i = 0; i < fields.Length; i++)
+			{
+				var field = fields[i];
+				if (field == null)
+				{
+					continue;
+				}
+
+				var node = document.CreateElement(field.Name);
+				var value = field.GetValue(component);
+				if (value == null)
+				{
+					node.InnerText = "null";
+				}
+				else
+				{
+					node.InnerText = value.ToString();
+				}
+
+				xmlElement.AppendChild(node);
+
+			}
 		}
 
 

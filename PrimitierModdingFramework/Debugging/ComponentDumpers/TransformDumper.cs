@@ -10,28 +10,21 @@ namespace PrimitierModdingFramework.Debugging.ComponentDumpers
 {
 	public class TransformDumper : ComponentDumper
 	{
-		public override string TargetComponentFullName => "UnityEngine.Transform";
+		public override string TargetComponentFullName => nameof(Transform);
 
 		public override void OnDump(Component component, XmlElement xmlElement, XmlDocument document, ComponentDumperList dumperList)
 		{
-			var transfromComp = component.TryCast<Transform>();
+			var TransformComponent = component.Cast<Transform>();
 
-			var positionNode = document.CreateElement("Position");
-			positionNode.InnerText = transfromComp.position.ToString();
-			xmlElement.AppendChild(positionNode);
+			xmlElement.SetXmlElement("Position", TransformComponent.localPosition.ToString());
+			xmlElement.SetXmlElement("Rotation", TransformComponent.localRotation.ToString());
+			xmlElement.SetXmlElement("Scale", TransformComponent.localScale.ToString());
 
-			var rotationNode = document.CreateElement("Rotation");
-			rotationNode.InnerText = transfromComp.rotation.ToString();
-			xmlElement.AppendChild(rotationNode);
-
-			var scaleNode = document.CreateElement("Scale");
-			scaleNode.InnerText = transfromComp.localScale.ToString();
-			xmlElement.AppendChild(scaleNode);
 
 			var childrenNode = document.CreateElement("Children");
-			for (int i = 0; i < transfromComp.childCount; i++)
+			for (int i = 0; i < TransformComponent.childCount; i++)
 			{
-				var child = transfromComp.GetChild(i);
+				var child = TransformComponent.GetChild(i);
 
 				HierarchyXmlDumper.DumpGameObject(child.gameObject, childrenNode, document, dumperList);
 			}

@@ -63,10 +63,13 @@
   <ItemGroup>
     <Compile Include="Debugging\ComponentDumper.cs" />
     <Compile Include="Debugging\ComponentDumperList.cs" />
+    <Compile Include="Debugging\ComponentDumpers\MeshFilterDumper.cs" />
+    <Compile Include="Debugging\ComponentDumpers\MeshRendererDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\RectTransformDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
     <Compile Include="Debugging\InGameDebugTool.cs" />
     <Compile Include="Debugging\HierarchyXmlDumper.cs" />
+    <Compile Include="Debugging\XmlHelper.cs" />
     <Compile Include="PMFLog.cs" />
     <Compile Include="PMFButton.cs" />
     <Compile Include="PMFHelper.cs" />

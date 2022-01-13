@@ -21,7 +21,7 @@ namespace DemoMod
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				logger.Msg("Starting Dump");
-				HierarchyXmlDumper.DumpCurrentScene(new ComponentDumperList(new TransformDumper(), new RectTransformDumper()));
+				HierarchyXmlDumper.DumpCurrentSceneToFile(HierarchyXmlDumper.DefaultDumperList);
 				logger.Msg($"Dump complete saved at '{Path.Combine(Environment.CurrentDirectory, HierarchyXmlDumper.FilePath)}'");
 
 			}
