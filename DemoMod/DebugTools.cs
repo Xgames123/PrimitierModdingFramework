@@ -33,13 +33,12 @@ namespace DemoMod
 					GameObject.Destroy(_InGameDebugTool.gameObject);
 				}
 
-				_InGameDebugTool = InGameDebugTool.Spawn(PMFHelper.RHand.position);
-
+				_InGameDebugTool = InGameDebugTool.Spawn(new Vector3(0, 1, 1));
 			}
 
 			if (PMFHelper.RHand != null && _InGameDebugTool == null)
 			{
-				_InGameDebugTool = InGameDebugTool.Spawn(PMFHelper.RHand.position);
+				_InGameDebugTool = InGameDebugTool.Spawn(new Vector3(0, 1, 1));
 			}
 
 		}

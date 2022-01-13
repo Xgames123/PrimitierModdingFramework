@@ -10,7 +10,7 @@ namespace PrimitierModdingFramework.Debugging.ComponentDumpers
 {
 	public class MeshRendererDumper : ComponentDumper
 	{
-		public override string TargetComponentFullName => nameof(MeshRenderer);
+		public override string TargetComponentFullName => "UnityEngine.MeshRenderer";
 
 		public override void OnDump(Component component, XmlElement xmlElement, XmlDocument document, ComponentDumperList dumperList)
 		{

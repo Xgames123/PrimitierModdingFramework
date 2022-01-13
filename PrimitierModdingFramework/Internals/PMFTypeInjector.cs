@@ -8,7 +8,7 @@ using UnhollowerRuntimeLib;
 
 namespace PrimitierModdingFramework.Internals
 {
-	public class PMFTypeInjector : PMFSystem
+	internal class PMFTypeInjector : PMFSystem
 	{
 
 		public override void OnApplicationStart()

@@ -10,57 +10,53 @@ namespace PrimitierModdingFramework
 {
 	public class PMFLog : PMFSystem
 	{
-		public static MelonLogger.Instance MelonLogger;
+		public static MelonLogger.Instance Logger { get { return Mod.LoggerInstance; } }
 
-		public override void OnApplicationStart()
-		{
-			MelonLogger = Mod.LoggerInstance;
-		}
 
 
 		public static void Message(string message, ConsoleColor color = ConsoleColor.White)
 		{
-			MelonLogger.Msg(color, message);
+			Logger.Msg(color, message);
 		}
 		public static void Message(object obj, ConsoleColor color = ConsoleColor.White)
 		{
-			MelonLogger.Msg(color, obj);
+			Logger.Msg(color, obj);
 		}
 		public static void Message(string message, ConsoleColor color = ConsoleColor.White, params object[] args)
 		{
-			MelonLogger.Msg(color, message, args);
+			Logger.Msg(color, message, args);
 		}
 		public static void Message(string message, params object[] args)
 		{
-			MelonLogger.Msg(message, args);
+			Logger.Msg(message, args);
 		}
 
 
 		public static void Warning(string message)
 		{
-			MelonLogger.Warning(message);
+			Logger.Warning(message);
 		}
 		public static void Warning(object obj)
 		{
-			MelonLogger.Warning(obj);
+			Logger.Warning(obj);
 		}
 		public static void Warning(string message, params object[] args)
 		{
-			MelonLogger.Warning(message, args);
+			Logger.Warning(message, args);
 		}
 
 		
 		public static void Error(string message)
 		{
-			MelonLogger.Error(message);
+			Logger.Error(message);
 		}
 		public static void Error(object obj)
 		{
-			MelonLogger.Warning(obj);
+			Logger.Warning(obj);
 		}
 		public static void Error(string message, params object[] args)
 		{
-			MelonLogger.Error(message, args);
+			Logger.Error(message, args);
 		}
 
 	}

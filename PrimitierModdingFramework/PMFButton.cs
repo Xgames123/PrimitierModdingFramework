@@ -14,47 +14,53 @@ namespace PrimitierModdingFramework
 		public PMFButton(IntPtr ptr) : base(ptr) { }
 
 
-		public Vector3 PressDirection;
 
-		private Vector3 _StartScale;
-		private float _PushAmount = 0f;
-
-		public void ChangeScale(Vector3 newScale)
-		{
-			_StartScale = newScale;
-			transform.localScale = newScale;
-			_PushAmount = 0f;
-		}
+		private bool _IsPressed = false;
 
 		private void Start()
 		{
-			_StartScale = transform.localScale;
-			
+
 		}
 
 		private void FixedUpdate()
 		{
-			if (transform.localScale.magnitude < _StartScale.magnitude)
-			{
-				transform.localScale += PressDirection * 0.001f;
-				_PushAmount -= 0.001f;
-			}
 
 		}
 
+		private void Press()
+		{
+			if (_IsPressed)
+			{
+				return;
+			}
+
+			_IsPressed = true;
+			transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 0.01f);
+			transform.localPosition += new Vector3(0, 0, 0.02f);
+		}
+
+		private void Release()
+		{
+			
+			if (!_IsPressed)
+			{
+				return;
+			}
+
+			_IsPressed = false;
+			transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 0.03f);
+			transform.localPosition -= new Vector3(0, 0, 0.02f);
+		}
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			PMFLog.Message("Collision ", collision.rigidbody.name);
-
-			if (_PushAmount > 0.1f)
-			{
-				_PushAmount += 0.01f;
-				transform.localScale -= PressDirection * 0.01f;
-			}
-
+			PMFLog.Message("Press");
+			Press();
 		}
 
-
+		private void OnCollisionExit(Collision other)
+		{
+			Release();
+		}
 	}
 }

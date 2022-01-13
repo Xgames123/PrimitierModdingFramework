@@ -17,17 +17,17 @@ namespace PrimitierModdingFramework.Internals
 
 	public abstract class PMFSystem
 	{
-		public static List<PMFSystem> RegisterdSystems = new List<PMFSystem>();
+		internal static List<PMFSystem> RegisterdSystems = new List<PMFSystem>();
 
-		public static PrimitierMod Mod { get; private set; }
+		internal static PrimitierMod Mod { get; private set; }
 
-		public static void Startup(PrimitierMod mod)
+		internal static void Startup(PrimitierMod mod)
 		{
 			Mod = mod;
 		}
 
 
-		public static void FireEventOnSystems(PMFEventType type)
+		internal static void FireEventOnSystems(PMFEventType type)
 		{
 			foreach (var system in RegisterdSystems)
 			{
@@ -36,17 +36,17 @@ namespace PrimitierModdingFramework.Internals
 
 		}
 
-		public static void RegisterSystem(PMFSystem system)
+		internal static void RegisterSystem(PMFSystem system)
 		{
 			RegisterdSystems.Add(system);
 		}
 
-		public static void RegisterSystems(params PMFSystem[] systems)
+		internal static void RegisterSystems(params PMFSystem[] systems)
 		{
 			RegisterdSystems.AddRange(systems);
 		}
 
-		public void FireEvent(PMFEventType type)
+		internal void FireEvent(PMFEventType type)
 		{
 			switch (type)
 			{

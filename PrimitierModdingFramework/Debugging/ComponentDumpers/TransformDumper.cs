@@ -10,7 +10,7 @@ namespace PrimitierModdingFramework.Debugging.ComponentDumpers
 {
 	public class TransformDumper : ComponentDumper
 	{
-		public override string TargetComponentFullName => nameof(Transform);
+		public override string TargetComponentFullName => "UnityEngine.Transform";
 
 		public override void OnDump(Component component, XmlElement xmlElement, XmlDocument document, ComponentDumperList dumperList)
 		{

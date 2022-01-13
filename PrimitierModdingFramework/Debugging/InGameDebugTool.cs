@@ -75,7 +75,7 @@ namespace PrimitierModdingFramework.Debugging
 			buttonGameObject.transform.parent = parent;
 			buttonGameObject.name = "Button";
 			buttonGameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.02f);
-			buttonGameObject.transform.localPosition = new Vector3(pos.x, pos.y, -0.02f);
+			buttonGameObject.transform.localPosition = new Vector3(pos.x, pos.y, -0.03f);
 			buttonGameObject.GetComponent<MeshRenderer>().material.color = Color.red;
 			buttonGameObject.AddComponent<PMFButton>();
 			return buttonGameObject;
