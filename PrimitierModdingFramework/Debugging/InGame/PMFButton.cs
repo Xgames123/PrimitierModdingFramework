@@ -31,9 +31,9 @@ namespace PrimitierModdingFramework
 			}
 
 			_IsPressed = true;
-			CubeTransform.localScale = new Vector3(CubeTransform.localScale.x, CubeTransform.localScale.y, 0.01f);
-
-			CubeTransform.localPosition += new Vector3(0, 0, 0.02f);
+			CubeTransform.localScale = new Vector3(1, 1, 0.3f);
+			CubeTransform.localPosition = new Vector3(0, 0, 0.3f);
+			
 		}
 
 		public void Release()
@@ -45,8 +45,9 @@ namespace PrimitierModdingFramework
 			}
 
 			_IsPressed = false;
-			CubeTransform.localScale = new Vector3(CubeTransform.localScale.x, CubeTransform.localScale.y, 0.03f);
-			CubeTransform.localPosition -= new Vector3(0, 0, 0.02f);
+			CubeTransform.localScale = new Vector3(1, 1, 1);
+			CubeTransform.localPosition = new Vector3(0, 0, 0);
+
 		}
 
 

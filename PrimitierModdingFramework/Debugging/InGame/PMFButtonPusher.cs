@@ -12,15 +12,17 @@ namespace PrimitierModdingFramework
 		private void Start()
 		{
 			var collider = gameObject.AddComponent<SphereCollider>();
-			collider.radius = 0.01f;
+			collider.isTrigger = true;
+			collider.center = new Vector3(0.05f, 0, 0);
+			collider.radius = 0.02f;
 
 			
 		}
 
 
-		private void OnCollisionEnter(Collision collision)
+		private void OnTriggerEnter(Collider other)
 		{
-			PMFButton button = collision.collider.GetComponent<PMFButton>();
+			PMFButton button = other.GetComponent<PMFButton>();
 
 			if (button == null)
 			{
@@ -31,9 +33,9 @@ namespace PrimitierModdingFramework
 			button.Press();
 		}
 
-		private void OnCollisionExit(Collision collision)
+		private void OnTriggerExit(Collider other)
 		{
-			PMFButton button = collision.collider.GetComponent<PMFButton>();
+			PMFButton button = other.GetComponent<PMFButton>();
 
 			if (button == null)
 			{
