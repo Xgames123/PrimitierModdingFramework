@@ -54,6 +54,13 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
@@ -67,14 +74,15 @@
     <Compile Include="Debugging\ComponentDumpers\MeshRendererDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\RectTransformDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
-    <Compile Include="Debugging\InGameDebugTool.cs" />
+    <Compile Include="Debugging\InGame\InGameDebuggingSystem.cs" />
+    <Compile Include="Debugging\InGame\InGameDebugTool.cs" />
     <Compile Include="Debugging\HierarchyXmlDumper.cs" />
     <Compile Include="Debugging\XmlHelper.cs" />
-    <Compile Include="PMFButtonPusher.cs" />
+    <Compile Include="Debugging\InGame\PMFButtonPusher.cs" />
     <Compile Include="PMFLog.cs" />
-    <Compile Include="PMFButton.cs" />
+    <Compile Include="Debugging\InGame\PMFButton.cs" />
     <Compile Include="PMFHelper.cs" />
-    <Compile Include="Internals\PMFSystem.cs" />
+    <Compile Include="PMFSystem.cs" />
     <Compile Include="Internals\PMFTypeInjector.cs" />
     <Compile Include="PrimitierMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

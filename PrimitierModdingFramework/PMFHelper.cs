@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using PrimitierModdingFramework.Internals;
 
 namespace PrimitierModdingFramework
 {
@@ -20,6 +19,12 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public static Transform SystemTransform;
 
+		public override void OnStart()
+		{
+			base.OnStart();
+			EnableSystem<PMFLog>();
+			
+		}
 
 		public override void OnSceneLoad()
 		{
@@ -31,9 +36,6 @@ namespace PrimitierModdingFramework
 
 			PlayerMovement = CameraRig.GetComponent<PlayerMovement>();
 
-			
-			LHand.gameObject.AddComponent<PMFButtonPusher>();
-			RHand.gameObject.AddComponent<PMFButtonPusher>();
 
 		}
 

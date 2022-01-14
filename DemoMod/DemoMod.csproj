@@ -71,7 +71,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DebugTools.cs" />
     <Compile Include="DemoMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

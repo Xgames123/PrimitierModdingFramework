@@ -10,6 +10,8 @@ namespace PrimitierModdingFramework.Debugging
 {
 	public class InGameDebugTool : MonoBehaviour
 	{
+		public static InGameDebugTool DebugTool = null;
+
 		public InGameDebugTool(IntPtr ptr) : base(ptr){ }
 
 		public GameObject Button;
@@ -28,8 +30,13 @@ namespace PrimitierModdingFramework.Debugging
 		}
 
 
-		public static InGameDebugTool Spawn(Vector3 position)
+		public static InGameDebugTool Respawn(Vector3 position)
 		{
+			if (DebugTool != null)
+			{
+				GameObject.Destroy(DebugTool.gameObject);
+			}
+
 			var gameObject = new GameObject();
 			gameObject.transform.parent = PMFHelper.SystemTransform;
 			gameObject.name = "InGameDebugTool";
@@ -41,10 +48,9 @@ namespace PrimitierModdingFramework.Debugging
 
 			var button = CreateButton(gameObject.transform, new Vector2(0, 0));
 
+			DebugTool = gameObject.AddComponent<InGameDebugTool>();
 
-			return gameObject.AddComponent<InGameDebugTool>();
-
-
+			return DebugTool;
 		}
 
 		private static GameObject CreatePannel(Transform parent)
