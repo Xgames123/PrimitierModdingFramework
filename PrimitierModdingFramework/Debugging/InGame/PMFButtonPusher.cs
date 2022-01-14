@@ -1,6 +1,7 @@
 ﻿using Il2CppSystem.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace PrimitierModdingFramework
 {
@@ -9,12 +10,13 @@ namespace PrimitierModdingFramework
 		public PMFButtonPusher(IntPtr ptr) : base(ptr) { }
 
 
+
 		private void Start()
 		{
+
 			var collider = gameObject.AddComponent<SphereCollider>();
 			collider.isTrigger = true;
-			collider.center = new Vector3(0.05f, 0, 0);
-			collider.radius = 0.02f;
+			collider.radius = 0.05f;
 
 			
 		}

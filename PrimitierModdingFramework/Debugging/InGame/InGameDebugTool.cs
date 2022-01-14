@@ -14,21 +14,22 @@ namespace PrimitierModdingFramework.Debugging
 
 		public InGameDebugTool(IntPtr ptr) : base(ptr){ }
 
-		public GameObject Button;
-		public CameraGrip Grip;
-		
-		private void Start()
+
+
+		public void OnGrab(Grabber grabber)
 		{
-			Button = transform.Find("Button").gameObject;
-			Grip = gameObject.AddComponent<CameraGrip>();
+			PMFLog.Message("grab");
+		}
+		public void OnRelease(Grabber grabber)
+		{
+
 		}
 
-		private void FixedUpdate()
-		{
-			//Sometimes the camera grip changes the objects scale
-			gameObject.transform.localScale = new Vector3(1, 1, 1);
-		}
 
+		public static InGameDebugTool Respawn()
+		{
+			return Respawn(PMFHelper.RHand.position);
+		}
 
 		public static InGameDebugTool Respawn(Vector3 position)
 		{

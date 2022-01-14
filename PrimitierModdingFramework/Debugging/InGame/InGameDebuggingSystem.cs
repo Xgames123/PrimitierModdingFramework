@@ -18,7 +18,7 @@ namespace PrimitierModdingFramework.Debugging
 
 			ClassInjector.RegisterTypeInIl2Cpp<PMFButton>();
 			ClassInjector.RegisterTypeInIl2Cpp<PMFButtonPusher>();
-			ClassInjector.RegisterTypeInIl2Cpp<InGameDebugTool>();
+			ClassInjector.RegisterTypeInIl2CppWithInterfaces<InGameDebugTool>(typeof(IGrabbable));
 
 		}
 
@@ -36,13 +36,14 @@ namespace PrimitierModdingFramework.Debugging
 				PMFHelper.RHand.gameObject.AddComponent<PMFButtonPusher>();
 			}
 
+			InGameDebugTool.Respawn();
 		}
 
 		public override void OnUpdate()
 		{
 			if (Input.GetKeyUp(KeyCode.Space))
 			{
-				InGameDebugTool.Respawn(PMFHelper.RHand.position);
+				InGameDebugTool.Respawn();
 			}
 
 			base.OnUpdate();

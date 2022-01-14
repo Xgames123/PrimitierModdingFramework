@@ -19,12 +19,17 @@ namespace PrimitierModdingFramework
 
 
 		public Transform CubeTransform;
+	
 
 
+		private void Start()
+		{
+			
+		}
 
 		public void Press()
 		{
-			PMFLog.Message("Press");
+
 			if (_IsPressed)
 			{
 				return;
@@ -33,7 +38,7 @@ namespace PrimitierModdingFramework
 			_IsPressed = true;
 			CubeTransform.localScale = new Vector3(1, 1, 0.3f);
 			CubeTransform.localPosition = new Vector3(0, 0, 0.3f);
-			
+			CubeTransform.GetComponent<MeshRenderer>().material.color = new Color(0, 0.8f, 1);
 		}
 
 		public void Release()
@@ -47,7 +52,9 @@ namespace PrimitierModdingFramework
 			_IsPressed = false;
 			CubeTransform.localScale = new Vector3(1, 1, 1);
 			CubeTransform.localPosition = new Vector3(0, 0, 0);
+			CubeTransform.GetComponent<MeshRenderer>().material.color = Color.grey;
 
+			
 		}
 
 
