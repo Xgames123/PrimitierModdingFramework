@@ -16,38 +16,19 @@ namespace PrimitierModdingFramework.Debugging
 		{
 			EnableSystem<PMFHelper>();
 
-			ClassInjector.RegisterTypeInIl2Cpp<PMFButton>();
-			ClassInjector.RegisterTypeInIl2Cpp<PMFButtonPusher>();
-			ClassInjector.RegisterTypeInIl2CppWithInterfaces<InGameDebugTool>(typeof(IGrabbable));
-
+			ClassInjector.RegisterTypeInIl2Cpp<InGameDebugMenu>();
+			ClassInjector.RegisterTypeInIl2Cpp<InGameDebugTool>();
+			ClassInjector.RegisterTypeInIl2CppWithInterfaces<InGameDebugToolButton>(typeof(IButton));
+			ClassInjector.RegisterTypeInIl2CppWithInterfaces<InGameDebugToolShowButton>(typeof(IButton));
+			
 		}
 
 		public override void OnSceneLoad()
 		{
-			var LButtonPusher = PMFHelper.LHand.GetComponent<PMFButtonPusher>();
-			var RButtonPusher = PMFHelper.RHand.GetComponent<PMFButtonPusher>();
-
-			if (LButtonPusher == null)
-			{
-				PMFHelper.LHand.gameObject.AddComponent<PMFButtonPusher>();
-			}
-			if (RButtonPusher == null)
-			{
-				PMFHelper.RHand.gameObject.AddComponent<PMFButtonPusher>();
-			}
-
-			InGameDebugTool.Respawn();
+			InGameDebugTool.Create();
+			InGameDebugToolShowButton.Create();
 		}
 
-		public override void OnUpdate()
-		{
-			if (Input.GetKeyUp(KeyCode.Space))
-			{
-				InGameDebugTool.Respawn();
-			}
-
-			base.OnUpdate();
-		}
 
 
 	}

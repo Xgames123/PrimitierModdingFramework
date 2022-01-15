@@ -14,6 +14,8 @@ namespace PrimitierModdingFramework
 		public static Transform CameraRig;
 		public static PlayerMovement PlayerMovement;
 
+		public static Transform MenuWindowL;
+
 		/// <summary>
 		/// The system transform is used to store gameobjects that don't require saving (Custom objects that are not Cubes)
 		/// </summary>
@@ -36,6 +38,7 @@ namespace PrimitierModdingFramework
 
 			PlayerMovement = CameraRig.GetComponent<PlayerMovement>();
 
+			MenuWindowL = GameObject.Find("MenuWindowL/Window").transform;
 
 		}
 

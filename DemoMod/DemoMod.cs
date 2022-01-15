@@ -22,6 +22,18 @@ namespace DemoMod
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
+			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
+
+			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");
+			spawnMenu.CreateButton("Tree", new System.Action(() =>
+			{
+				CubeGenerator.GenerateTree(spawnMenu.transform.position, 0.1f, CubeGenerator.TreeType.Conifer);
+			}));
+
+			spawnMenu.CreateButton("Leaf", new System.Action(() =>
+			{
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf, temperature:999);
+			}));
 		}
 
 
@@ -37,13 +49,11 @@ namespace DemoMod
 		{
 			base.OnUpdate();
 
-			if (Input.GetKeyDown(KeyCode.A))
-			{
-				PMFLog.Message("Starting Dump");
-				HierarchyXmlDumper.DumpCurrentSceneToFile(HierarchyXmlDumper.DefaultDumperList);
-				PMFLog.Message($"Dump complete saved at '{Path.Combine(Environment.CurrentDirectory, HierarchyXmlDumper.FilePath)}'");
 
-			}
+		}
+
+		public override void OnFixedUpdate()
+		{
 
 		}
 

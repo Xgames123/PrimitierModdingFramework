@@ -75,12 +75,13 @@
     <Compile Include="Debugging\ComponentDumpers\RectTransformDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
     <Compile Include="Debugging\InGame\InGameDebuggingSystem.cs" />
+    <Compile Include="Debugging\InGame\InGameDebugMenu.cs" />
     <Compile Include="Debugging\InGame\InGameDebugTool.cs" />
     <Compile Include="Debugging\HierarchyXmlDumper.cs" />
+    <Compile Include="Debugging\InGame\InGameDebugToolButton.cs" />
+    <Compile Include="Debugging\InGame\InGameDebugToolShowButton.cs" />
     <Compile Include="Debugging\XmlHelper.cs" />
-    <Compile Include="Debugging\InGame\PMFButtonPusher.cs" />
     <Compile Include="PMFLog.cs" />
-    <Compile Include="Debugging\InGame\PMFButton.cs" />
     <Compile Include="PMFHelper.cs" />
     <Compile Include="PMFSystem.cs" />
     <Compile Include="Internals\PMFTypeInjector.cs" />

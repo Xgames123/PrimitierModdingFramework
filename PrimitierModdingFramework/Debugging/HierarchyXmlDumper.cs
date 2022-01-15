@@ -2,6 +2,7 @@
 using Il2CppSystem.Reflection;
 using MelonLoader;
 using PrimitierModdingFramework.Debugging.ComponentDumpers;
+using System.IO;
 using System.Text;
 using System.Xml;
 using UnityEngine;
@@ -23,15 +24,18 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static void DumpSceneToFile(Scene scene, ComponentDumperList dumperList)
 		{
+			PMFLog.Message("Starting Dump");
 			XmlDocument document = new XmlDocument();
 			DumpScene(scene, document, dumperList);
 
 			document.Save(FilePath);
+			PMFLog.Message($"Dump complete saved at '{Path.Combine(Environment.CurrentDirectory, FilePath)}'");
 		}
 
 		public static void DumpCurrentSceneToFile(ComponentDumperList dumperList)
 		{
 			DumpSceneToFile(SceneManager.GetActiveScene(), dumperList);
+			
 		}
 
 		public static void DumpScene(Scene scene, XmlDocument document, ComponentDumperList dumperList)
