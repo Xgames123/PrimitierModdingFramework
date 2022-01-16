@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using UnhollowerRuntimeLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Valve.VR;
 
 namespace DemoMod
 {

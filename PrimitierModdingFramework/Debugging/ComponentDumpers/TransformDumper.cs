@@ -20,16 +20,6 @@ namespace PrimitierModdingFramework.Debugging.ComponentDumpers
 			xmlElement.SetXmlElement("Rotation", TransformComponent.localRotation.ToString());
 			xmlElement.SetXmlElement("Scale", TransformComponent.localScale.ToString());
 
-
-			var childrenNode = document.CreateElement("Children");
-			for (int i = 0; i < TransformComponent.childCount; i++)
-			{
-				var child = TransformComponent.GetChild(i);
-
-				HierarchyXmlDumper.DumpGameObject(child.gameObject, childrenNode, document, dumperList);
-			}
-
-			xmlElement.AppendChild(childrenNode);
 		}
 	}
 }

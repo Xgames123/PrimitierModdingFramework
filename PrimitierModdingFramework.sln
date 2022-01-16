@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoMod", "DemoMod\DemoMod.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimitierModdingFramework", "PrimitierModdingFramework\PrimitierModdingFramework.csproj", "{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMFInstaller", "PMFInstaller\PMFInstaller.csproj", "{732120AE-DAE9-4395-A07A-7D2C340F3838}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PMFInstaller", "PMFInstaller\PMFInstaller.csproj", "{732120AE-DAE9-4395-A07A-7D2C340F3838}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

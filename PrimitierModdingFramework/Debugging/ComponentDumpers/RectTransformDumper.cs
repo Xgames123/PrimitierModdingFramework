@@ -21,16 +21,6 @@ namespace PrimitierModdingFramework.Debugging.ComponentDumpers
 			xmlElement.SetXmlElement("Scale", rectTransformComponent.localScale.ToString());
 
 
-			var childrenNode = document.CreateElement("Children");
-
-			for (int i = 0; i < rectTransformComponent.childCount; i++)
-			{
-				var child = rectTransformComponent.GetChild(i);
-
-				HierarchyXmlDumper.DumpGameObject(child.gameObject, childrenNode, document, dumperList);
-			}
-
-			xmlElement.AppendChild(childrenNode);
 		}
 	}
 }

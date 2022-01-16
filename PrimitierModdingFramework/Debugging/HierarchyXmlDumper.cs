@@ -37,6 +37,11 @@ namespace PrimitierModdingFramework.Debugging
 			DumpSceneToFile(SceneManager.GetActiveScene(), dumperList);
 			
 		}
+		public static void DumpCurrentSceneToFile()
+		{
+			DumpSceneToFile(SceneManager.GetActiveScene(), DefaultDumperList);
+
+		}
 
 		public static void DumpScene(Scene scene, XmlDocument document, ComponentDumperList dumperList)
 		{
@@ -85,6 +90,15 @@ namespace PrimitierModdingFramework.Debugging
 
 			}
 
+			var childrenNode = document.CreateElement("Children");
+			for (int i = 0; i < gameObject.transform.childCount; i++)
+			{
+				var child = gameObject.transform.GetChild(i);
+
+				DumpGameObject(child.gameObject, childrenNode, document, dumperList);
+			}
+
+			currentNode.AppendChild(childrenNode);
 		}
 
 		public static void DumpComponent(Component component, XmlNode parentNode, XmlDocument document, ComponentDumperList dumperList)
