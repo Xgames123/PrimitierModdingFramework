@@ -24,7 +24,7 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static void DumpSceneToFile(Scene scene, ComponentDumperList dumperList)
 		{
-			PMFLog.Message("Starting Dump");
+			PMFLog.Message("Starting HierarchyDump Dump");
 			XmlDocument document = new XmlDocument();
 			DumpScene(scene, document, dumperList);
 

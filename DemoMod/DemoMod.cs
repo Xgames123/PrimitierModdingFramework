@@ -1,6 +1,7 @@
 ﻿using PrimitierModdingFramework;
 using PrimitierModdingFramework.Debugging;
 using PrimitierModdingFramework.Debugging.ComponentDumpers;
+using PrimitierModdingFramework.SubstanceModding;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +34,17 @@ namespace DemoMod
 			{
 				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf, temperature:999);
 			}));
+
+
+			var customSubstance = new SubstanceParameters.Param();
+			customSubstance.displayNameKey = "customMat";
+			customSubstance.material = "AncientAlloy";
+			customSubstance.sectionMaterialH = "AncientAlloy";
+			customSubstance.sectionMaterialV = "AncientAlloy";
+			customSubstance.collisionSound = "";
+
+			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
+
 		}
 
 
@@ -42,6 +54,8 @@ namespace DemoMod
 			base.OnApplicationStart();
 			PMFSystem.EnableSystem<PMFHelper>();
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
+			PMFSystem.EnableSystem<CustomSubstanceSystem>();
+			
 
 		}
 		public override void OnUpdate()
@@ -53,6 +67,16 @@ namespace DemoMod
 
 		public override void OnFixedUpdate()
 		{
+		
+
+			if (Input.GetKeyUp(KeyCode.A))
+			{
+				ResourceXmlDumper.DumpAllToFile();
+				//PMFLog.Message("spawn");
+				//CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), (Substance)22);
+			}
+
+			
 
 		}
 

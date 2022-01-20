@@ -58,7 +58,11 @@ namespace PrimitierModdingFramework.Debugging
 			{
 				HierarchyXmlDumper.DumpCurrentSceneToFile(HierarchyXmlDumper.DefaultDumperList);
 			}));
-			DebugMenu.CreateButton("Heal to max", new System.Action(() =>
+			DebugMenu.CreateButton("Dump Resources", new System.Action(() =>
+			{
+				ResourceXmlDumper.DumpAllToFile();
+			}));
+			DebugMenu.CreateButton("Heal max", new System.Action(() =>
 			{
 				PMFHelper.CameraRig.GetComponent<PlayerLife>().Recover(1000000);
 
