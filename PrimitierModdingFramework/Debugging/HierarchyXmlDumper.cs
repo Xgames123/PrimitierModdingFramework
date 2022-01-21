@@ -127,43 +127,13 @@ namespace PrimitierModdingFramework.Debugging
 			}
 			else
 			{
-				DumpFields(component, currentNode, document);
+				XmlHelper.DeserializeFieldsToXml(component, currentNode);
 			}
 
 			parentNode.AppendChild(currentNode);
 		}
 
 		
-
-
-		private static void DumpFields(Component component, XmlElement xmlElement, XmlDocument document)
-		{
-
-			var fields = component.GetIl2CppType().GetFields();
-
-			for (int i = 0; i < fields.Length; i++)
-			{
-				var field = fields[i];
-				if (field == null)
-				{
-					continue;
-				}
-
-				var node = document.CreateElement(field.Name);
-				var value = field.GetValue(component);
-				if (value == null)
-				{
-					node.InnerText = "null";
-				}
-				else
-				{
-					node.InnerText = value.ToString();
-				}
-
-				xmlElement.AppendChild(node);
-
-			}
-		}
 
 
 

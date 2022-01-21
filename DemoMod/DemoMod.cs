@@ -37,10 +37,10 @@ namespace DemoMod
 
 
 			var customSubstance = new SubstanceParameters.Param();
-			customSubstance.displayNameKey = "customMat";
-			customSubstance.material = "AncientAlloy";
-			customSubstance.sectionMaterialH = "AncientAlloy";
-			customSubstance.sectionMaterialV = "AncientAlloy";
+			customSubstance.displayNameKey = "SUB_CUSTOM_MAT";
+			customSubstance.material = "Slime";
+			customSubstance.sectionMaterialH = "";
+			customSubstance.sectionMaterialV = "";
 			customSubstance.collisionSound = "";
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
@@ -71,8 +71,9 @@ namespace DemoMod
 
 			if (Input.GetKeyUp(KeyCode.A))
 			{
-				ResourceXmlDumper.DumpAllToFile();
-				//PMFLog.Message("spawn");
+				//CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), (Substance)21);
+				//ResourceXmlDumper.DumpAllToFile();
+				PMFLog.Message(ResourceXmlDumper.DumpSubstance(SubstanceManager.GetParameter((Substance)22)));
 				//CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), (Substance)22);
 			}
 

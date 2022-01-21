@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Serialization;
 using UnityEngine;
 
 namespace PrimitierModdingFramework.Debugging
@@ -18,8 +19,8 @@ namespace PrimitierModdingFramework.Debugging
 			PMFLog.Message("Starting ResourceDump Dump");
 			XmlDocument document = new XmlDocument();
 			var rootElement = document.CreateElement("Resources");
-			DumpMaterials(rootElement, document);
-			DumpSubstances(rootElement, document);
+			DumpMaterials(rootElement);
+			DumpSubstances(rootElement);
 
 			document.AppendChild(rootElement);
 
@@ -28,31 +29,49 @@ namespace PrimitierModdingFramework.Debugging
 
 		}
 
-
-		public static void DumpSubstances(XmlNode parentNode, XmlDocument document)
+		public static string DumpSubstance(SubstanceParameters.Param substance)
 		{
+			XmlDocument document = new XmlDocument();
+			DumpSubstance(substance, document);
+			return document.OuterXml;
+		}
+
+		public static void DumpSubstance(SubstanceParameters.Param substance, XmlNode parentNode)
+		{
+			var document = parentNode.OwnerDocument;
+
+			if (substance == null)
+			{
+				var nullNode = document.CreateElement("Null");
+
+				parentNode.AppendChild(nullNode);
+				return;
+			}
+
+			var substanceNode = document.CreateElement("Substance");
+			substanceNode.SetAttribute("Name", substance.displayNameKey);
+
+			XmlHelper.DeserializeFieldsToXml(substance, substanceNode);
+
+			parentNode.AppendChild(substanceNode);
+		}
+
+
+		public static void DumpSubstances(XmlNode parentNode)
+		{
+			var document = parentNode.OwnerDocument;
 			var substancesNode = document.CreateElement("Substances");
 
-			var instance = SubstanceManager.instance;
-			PMFLog.Message("instance " + instance == null);
-			PMFLog.Message("instance param " + instance.param == null);
-
-			for (int i = 0; i < instance.param.Count; i++)
+			if (SubstanceManager.instance == null)
 			{
-				var substance = instance.param[i];
-
-				var substanceNode = document.CreateElement("Substance");
-				substanceNode.SetAttribute("Name", substance.displayNameKey);
-				substanceNode.SetAttribute("CollisionSound", substance.collisionSound);
-				substanceNode.SetAttribute("Material", substance.material);
-				substanceNode.SetAttribute("SectionMaterialH", substance.sectionMaterialH);
-				substanceNode.SetAttribute("SectionMaterialV", substance.sectionMaterialV);
-
-				substancesNode.AppendChild(substanceNode);
+				SubstanceManager.instance = Resources.Load<SubstanceParameters>(SubstanceManager.scriptableObjectPath);
 			}
-		
 
+			for (int i = 0; i < SubstanceManager.instance.param.Count; i++)
+			{
+				DumpSubstance(SubstanceManager.instance.param[i], substancesNode);
 
+			}
 		
 
 			parentNode.AppendChild(substancesNode);
@@ -60,8 +79,9 @@ namespace PrimitierModdingFramework.Debugging
 		}
 
 
-		public static void DumpMaterials(XmlNode parentNode, XmlDocument document)
+		public static void DumpMaterials(XmlNode parentNode)
 		{
+			var document = parentNode.OwnerDocument;
 			var materialsNode = document.CreateElement("Materials");
 
 
