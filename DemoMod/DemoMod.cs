@@ -71,10 +71,8 @@ namespace DemoMod
 
 			if (Input.GetKeyUp(KeyCode.A))
 			{
-				//CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), (Substance)21);
-				//ResourceXmlDumper.DumpAllToFile();
-				PMFLog.Message(ResourceXmlDumper.DumpSubstance(SubstanceManager.GetParameter((Substance)22)));
-				//CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), (Substance)22);
+
+				CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), (Substance)22);
 			}
 
 			

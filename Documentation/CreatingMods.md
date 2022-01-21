@@ -1,4 +1,5 @@
 # Creating mods
+Note: A helpful resource for making mods is the [MelonLoaderDocs](https://melonwiki.xyz/#/)
 
 ## Try building the Demo mod
 * Clone the repo.

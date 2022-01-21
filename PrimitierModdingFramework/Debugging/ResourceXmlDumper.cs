@@ -45,6 +45,10 @@ namespace PrimitierModdingFramework.Debugging
 		public static void DumpSubstance(SubstanceParameters.Param substance, XmlNode parentNode)
 		{
 			var document = parentNode.OwnerDocument;
+			if (document == null)
+			{
+				document = (XmlDocument)parentNode;
+			}
 
 			if (substance == null)
 			{
