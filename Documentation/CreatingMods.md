@@ -7,6 +7,7 @@
 * Open 'RunInDebug.ps1' and change $PRIMITIER_PATH= to the [install directory of Primitier](#get-the-install-directory-of-primitier.)
 * Than run 'RunInDebug.ps1' or copy the files form the bin/Debug folder to the mods folder in the [install directory of Primitier](#get-the-install-directory-of-primitier.)
 * Run Primitier
+* If you need help feel free to start a issue on GitHub
 
 
 ## Creating a custom mod
@@ -21,6 +22,7 @@
 
 * Copy 'RunInDebug.ps1' from the demo mod or copy the files form the bin/Debug folder to the mods folder in the [install directory of Primitier](#get-the-install-directory-of-primitier.)
 
+* If you need help feel free to start a issue on GitHub
 
 ### Get the install directory of Primitier.
 * Go to steam and click the gear icon on the Primitier page

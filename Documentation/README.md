@@ -4,15 +4,7 @@ Primitier Modding Framework (PMF) is a modding system that uses [MelonLoader](ht
 It adds helper classes to make mods for Primitier.
 
 
-## Setup
-**Will be automated by the installer in the future**
 
-* Clone the repo
-* Install latest version of MelonLoader on Primitier. (You can use automated install)
-* Run Primitier so that MelonLoader can generate the files.
-* Close Primitier. **WARNING: always close the game window. else your computer freezes.**
-* Install the mods you want [Downloading mods](./DownloadingMods.md)
-* Run Primitier again.
 
 ## Downloading a mod
 [Downloading mods](./DownloadingMods.md)
