@@ -8,10 +8,13 @@ using UnityEngine;
 
 namespace PrimitierModdingFramework.Debugging
 {
+	/// <summary>
+	/// used to modify generated xml tag of the TargetComponent
+	/// </summary>
 	public abstract class ComponentDumper
 	{
 		public abstract string TargetComponentFullName { get; }
 
-		public abstract void OnDump(Component component, XmlElement xmlElement, XmlDocument document, ComponentDumperList dumperList);
+		public abstract void OnDump(Component component, XmlElement xmlElement, ComponentDumperList dumperList);
 	}
 }

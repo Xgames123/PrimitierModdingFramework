@@ -12,8 +12,10 @@ namespace PrimitierModdingFramework.Debugging.ComponentDumpers
 	{
 		public override string TargetComponentFullName => "UnityEngine.MeshRenderer";
 
-		public override void OnDump(Component component, XmlElement xmlElement, XmlDocument document, ComponentDumperList dumperList)
+		public override void OnDump(Component component, XmlElement xmlElement, ComponentDumperList dumperList)
 		{
+			var document = xmlElement.OwnerDocument;
+
 			var meshRendererComponent = component.Cast<MeshRenderer>();
 
 			var matArray = meshRendererComponent.GetMaterialArray();

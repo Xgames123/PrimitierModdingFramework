@@ -56,11 +56,11 @@ namespace PrimitierModdingFramework.Debugging
 			DebugMenu = CreateMenu("Debug", "MainMenu");
 			DebugMenu.CreateButton("Dump Scene", new System.Action(() =>
 			{
-				HierarchyXmlDumper.DumpCurrentSceneToFile(HierarchyXmlDumper.DefaultDumperList);
+				HierarchyXmlDumper.DumpSceneToFile(HierarchyXmlDumper.DefaultDumperList);
 			}));
 			DebugMenu.CreateButton("Dump Resources", new System.Action(() =>
 			{
-				ResourceXmlDumper.DumpAllToFile();
+				ResourceXmlDumper.DumpAll();
 			}));
 			DebugMenu.CreateButton("Heal max", new System.Action(() =>
 			{

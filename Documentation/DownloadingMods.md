@@ -18,5 +18,5 @@ find a mod you want to download and extract the zip file in the mods directory l
 * Click on properties and than on local files and than on browse.
 
 ## Step 3
-Run Primitier and you are done. If you need help feel free to start a issue on GitHub
+Run Primitier and you are done. If you need help feel free to start a issue on GitHub.
 

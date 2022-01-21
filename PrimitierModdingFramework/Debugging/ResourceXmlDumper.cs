@@ -10,11 +10,17 @@ using UnityEngine;
 
 namespace PrimitierModdingFramework.Debugging
 {
+	/// <summary>
+	/// Used for dumping the resources used by Primitier
+	/// </summary>
 	public static class ResourceXmlDumper
 	{
 		public static string FilePath = "ResourceDump.xml";
 
-		public static void DumpAllToFile()
+		/// <summary>
+		/// Dumps all resources to ResourceXmlDumper.FilePath
+		/// </summary>
+		public static void DumpAll()
 		{
 			PMFLog.Message("Starting ResourceDump Dump");
 			XmlDocument document = new XmlDocument();

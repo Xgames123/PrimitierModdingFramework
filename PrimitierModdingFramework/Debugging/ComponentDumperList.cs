@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace PrimitierModdingFramework.Debugging
 {
+	/// <summary>
+	/// A list of component dumpers
+	/// </summary>
 	public class ComponentDumperList
 	{
 		private List<ComponentDumper> _InternalList = new List<ComponentDumper>();

@@ -22,10 +22,17 @@
 
 * Copy 'RunInDebug.ps1' from the demo mod or copy the files form the bin/Debug folder to the mods folder in the [install directory of Primitier](#get-the-install-directory-of-primitier.)
 
-* If you need help feel free to start a issue on GitHub
+* If you need help feel free to start a issue on GitHub.
+
 
 ### Get the install directory of Primitier.
 * Go to steam and click the gear icon on the Primitier page
 ![Gear](GearIcon.png)
 
 * Click on properties and than on local files and than on browse.
+
+## Creating custom substances
+[Custom substances](./CustomSubstances.md)
+
+## Dumping the state of the game
+[Duming](./Dumping)

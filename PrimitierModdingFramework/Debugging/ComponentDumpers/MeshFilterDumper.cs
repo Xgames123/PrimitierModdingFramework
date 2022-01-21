@@ -13,7 +13,7 @@ namespace PrimitierModdingFramework.Debugging.ComponentDumpers
 		public override string TargetComponentFullName => "UnityEngine.MeshFilter";
 
 
-		public override void OnDump(Component component, XmlElement xmlElement, XmlDocument document, ComponentDumperList dumperList)
+		public override void OnDump(Component component, XmlElement xmlElement, ComponentDumperList dumperList)
 		{
 			var meshFitlerComponent = component.Cast<MeshFilter>();
 

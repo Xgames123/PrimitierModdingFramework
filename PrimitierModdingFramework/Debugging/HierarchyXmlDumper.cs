@@ -21,7 +21,12 @@ namespace PrimitierModdingFramework.Debugging
 			new MeshRendererDumper(),
 			new MeshFilterDumper());
 
-
+		/// <summary>
+		/// Dumps the provided scene to HierarchyXmlDumper.FilePath using a provided ComponentDumperList.
+		/// Note: there is only 1 scene in Primitier
+		/// </summary>
+		/// <param name="scene"></param>
+		/// <param name="dumperList"></param>
 		public static void DumpSceneToFile(Scene scene, ComponentDumperList dumperList)
 		{
 			PMFLog.Message("Starting HierarchyDump Dump");
@@ -32,12 +37,19 @@ namespace PrimitierModdingFramework.Debugging
 			PMFLog.Message($"Dump complete saved at '{Path.Combine(Environment.CurrentDirectory, FilePath)}'");
 		}
 
-		public static void DumpCurrentSceneToFile(ComponentDumperList dumperList)
+		/// <summary>
+		/// Dumps the scene to HierarchyXmlDumper.FilePath using a provided ComponentDumperList
+		/// </summary>
+		/// <param name="dumperList"></param>
+		public static void DumpSceneToFile(ComponentDumperList dumperList)
 		{
 			DumpSceneToFile(SceneManager.GetActiveScene(), dumperList);
 			
 		}
-		public static void DumpCurrentSceneToFile()
+		/// <summary>
+		/// Dumps the scene to HierarchyXmlDumper.FilePath using the default ComponentDumperList
+		/// </summary>
+		public static void DumpSceneToFile()
 		{
 			DumpSceneToFile(SceneManager.GetActiveScene(), DefaultDumperList);
 
@@ -54,14 +66,15 @@ namespace PrimitierModdingFramework.Debugging
 			var rootGameobjects = scene.GetRootGameObjects();
 			for (int i = 0; i < rootGameobjects.Count; i++)
 			{
-				DumpGameObject(rootGameobjects[i], sceneElement, document, dumperList);
+				DumpGameObject(rootGameobjects[i], sceneElement, dumperList);
 			}
 
 		}
 
 
-		public static void DumpGameObject(GameObject gameObject, XmlNode parentNode, XmlDocument document, ComponentDumperList dumperList)
+		public static void DumpGameObject(GameObject gameObject, XmlNode parentNode, ComponentDumperList dumperList)
 		{
+			var document = parentNode.OwnerDocument;
 			if (gameObject == null)
 			{
 				return;
@@ -86,7 +99,7 @@ namespace PrimitierModdingFramework.Debugging
 			{
 				var component = components[i];
 
-				DumpComponent(component, currentNode, document, dumperList);
+				DumpComponent(component, currentNode, dumperList);
 
 			}
 
@@ -95,14 +108,15 @@ namespace PrimitierModdingFramework.Debugging
 			{
 				var child = gameObject.transform.GetChild(i);
 
-				DumpGameObject(child.gameObject, childrenNode, document, dumperList);
+				DumpGameObject(child.gameObject, childrenNode, dumperList);
 			}
 
 			currentNode.AppendChild(childrenNode);
 		}
 
-		public static void DumpComponent(Component component, XmlNode parentNode, XmlDocument document, ComponentDumperList dumperList)
+		public static void DumpComponent(Component component, XmlNode parentNode, ComponentDumperList dumperList)
 		{
+			var document = parentNode.OwnerDocument;
 
 			var name = component.GetIl2CppType().FullName;
 
@@ -123,7 +137,7 @@ namespace PrimitierModdingFramework.Debugging
 			var dumper = dumperList.GetByTargetComponent(name);
 			if (dumper != null)
 			{
-				dumper.OnDump(component, currentNode, document, dumperList);
+				dumper.OnDump(component, currentNode, dumperList);
 			}
 			else
 			{
