@@ -1,4 +1,6 @@
-﻿using System.Xml;
+﻿using Il2CppSystem;
+using Il2CppSystem.Reflection;
+using System.Xml;
 
 namespace PrimitierModdingFramework.Debugging
 {
@@ -31,10 +33,12 @@ namespace PrimitierModdingFramework.Debugging
 				}
 
 				var node = document.CreateElement(field.Name);
+
 				var value = field.GetValue(obj);
+				
 				if (value == null)
 				{
-					node.InnerText = "null";
+					node.InnerText = "Null";
 				}
 				else
 				{

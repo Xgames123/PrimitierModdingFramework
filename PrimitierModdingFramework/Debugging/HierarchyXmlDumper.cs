@@ -55,7 +55,7 @@ namespace PrimitierModdingFramework.Debugging
 
 		}
 
-		public static void DumpScene(Scene scene, XmlDocument document, ComponentDumperList dumperList)
+		private static void DumpScene(Scene scene, XmlDocument document, ComponentDumperList dumperList)
 		{
 			var sceneElement = document.CreateElement("Scene");
 			var primitierVersionAtribute = document.CreateAttribute("PrimitierVersion");
@@ -72,7 +72,7 @@ namespace PrimitierModdingFramework.Debugging
 		}
 
 
-		public static void DumpGameObject(GameObject gameObject, XmlNode parentNode, ComponentDumperList dumperList)
+		private static void DumpGameObject(GameObject gameObject, XmlNode parentNode, ComponentDumperList dumperList)
 		{
 			var document = parentNode.OwnerDocument;
 			if (gameObject == null)
@@ -114,7 +114,7 @@ namespace PrimitierModdingFramework.Debugging
 			currentNode.AppendChild(childrenNode);
 		}
 
-		public static void DumpComponent(Component component, XmlNode parentNode, ComponentDumperList dumperList)
+		private static void DumpComponent(Component component, XmlNode parentNode, ComponentDumperList dumperList)
 		{
 			var document = parentNode.OwnerDocument;
 

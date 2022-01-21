@@ -35,14 +35,14 @@ namespace PrimitierModdingFramework.Debugging
 
 		}
 
-		public static string DumpSubstance(SubstanceParameters.Param substance)
+		private static string DumpSubstance(SubstanceParameters.Param substance)
 		{
 			XmlDocument document = new XmlDocument();
 			DumpSubstance(substance, document);
 			return document.OuterXml;
 		}
 
-		public static void DumpSubstance(SubstanceParameters.Param substance, XmlNode parentNode)
+		private static void DumpSubstance(SubstanceParameters.Param substance, XmlNode parentNode)
 		{
 			var document = parentNode.OwnerDocument;
 			if (document == null)
@@ -67,7 +67,7 @@ namespace PrimitierModdingFramework.Debugging
 		}
 
 
-		public static void DumpSubstances(XmlNode parentNode)
+		private static void DumpSubstances(XmlNode parentNode)
 		{
 			var document = parentNode.OwnerDocument;
 			var substancesNode = document.CreateElement("Substances");
@@ -89,7 +89,7 @@ namespace PrimitierModdingFramework.Debugging
 		}
 
 
-		public static void DumpMaterials(XmlNode parentNode)
+		private static void DumpMaterials(XmlNode parentNode)
 		{
 			var document = parentNode.OwnerDocument;
 			var materialsNode = document.CreateElement("Materials");
@@ -105,7 +105,7 @@ namespace PrimitierModdingFramework.Debugging
 			parentNode.AppendChild(materialsNode);
 		}
 
-		public static void DumpMat(UnityEngine.Material mat, XmlNode parentNode, XmlDocument document)
+		private static void DumpMat(UnityEngine.Material mat, XmlNode parentNode, XmlDocument document)
 		{
 			var matNode = document.CreateElement("Material");
 			matNode.SetAttribute("Name", mat.name);
