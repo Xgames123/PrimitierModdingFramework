@@ -15,6 +15,42 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Primitier modding framework installer" Height="450" Width="800">
 
+    <Window.Resources>
+        <DataTemplate DataType = "{x:Type local:Mod}">
+
+            <materialDesign:Card Width="250" Margin="5 5 5 5">
+                <Grid Margin="5 5 5 5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="20px" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="50px" />
+                    </Grid.RowDefinitions>
+
+
+
+                    <Image Grid.Row="0" Height="100" Source="{Binding Image}" />
+
+                    <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="16" Text="{Binding DisplayName}"></TextBlock>
+
+
+                    <TextBlock
+                    Grid.Row="2"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Center"
+                    Text="{Binding Description}" />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="3">
+                        <Button Margin="2 2 2 2" Content="Enable" Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                    </StackPanel>
+
+                    
+                </Grid>
+            </materialDesign:Card>
+
+        </DataTemplate>
+    </Window.Resources>
+
     <StackPanel>
         <materialDesign:ColorZone
         Mode="SecondaryMid"
@@ -29,35 +65,20 @@
         </materialDesign:ColorZone>
 
 
-        <StackPanel Orientation="Horizontal">
-            <materialDesign:Card Width="250" Margin="5 5 5 5">
-                <Grid Margin="5 5 5 5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="15px" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
+        
+        <ItemsControl x:Name="ModList" ItemsSource="{Binding}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
 
+                    <WrapPanel Orientation="Vertical" />
 
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
 
-                    <Image Grid.Row="0" Height="100" />
-
-                    <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="15">A mod</TextBlock>
-
-
-                    <TextBlock
-                    Grid.Row="2"
-                    TextWrapping="Wrap"
-                    VerticalAlignment="Center"
-                    Text="A mod description" />
-
-                </Grid>
-            </materialDesign:Card>
-
+        <StackPanel>
+            
         </StackPanel>
-        
-        
-        
-        
+
     </StackPanel>
 </Window>

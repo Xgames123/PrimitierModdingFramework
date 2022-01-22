@@ -20,9 +20,16 @@ namespace PMFInstaller
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		public List<Mod> Mods = new List<Mod>();
+
 		public MainWindow()
 		{
 			InitializeComponent();
+	
+
+			ModList.DataContext = Mods;
 		}
+
+
 	}
 }
