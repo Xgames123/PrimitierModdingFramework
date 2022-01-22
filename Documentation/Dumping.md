@@ -1,6 +1,7 @@
 # Dumping the state of the game
 PMF has some tools to dump the state of the game. located in the namespace PrimitierModdingFramework.Debugging
 In the repo is a folder called Dumps that has some demo dumps
+WARNING: ValueTypes (float's, bool's, int's) are broken in dumps.
 
 ## HierarchyXmlDumper
 HierarchyXmlDumper is a class for dumping the hierarchy of the game.
