@@ -11,7 +11,7 @@ Note: A helpful resource for making mods is the [MelonLoaderDocs](https://melonw
 * If you need help feel free to start a issue on GitHub
 
 
-## Creating a custom mod
+## Setup a project
 * Creating a .NET Framework 4.7.2. or lower project.
 * Add PrimtierModdingFramework.dll as a reference.
 

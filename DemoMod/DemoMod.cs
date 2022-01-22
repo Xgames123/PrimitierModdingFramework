@@ -35,12 +35,17 @@ namespace DemoMod
 				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf, temperature:999);
 			}));
 
+			spawnMenu.CreateButton("Custom", new System.Action(() =>
+			{
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"), temperature: 999);
+			}));
+
 
 			var customSubstance = CustomSubstanceSystem.CreateCustomSubstance(Substance.Iron);
-			customSubstance.displayNameKey = "SUB_CUSTOM_MAT";
+			customSubstance.displayNameKey = "SUB_CUSTOM";
 			customSubstance.isEdible = true;
 			customSubstance.material = "Slime";
-			customSubstance.stiffness = 9999999;
+			customSubstance.hardness = 0;
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 
@@ -67,19 +72,6 @@ namespace DemoMod
 		public override void OnFixedUpdate()
 		{
 		
-
-			if (Input.GetKey(KeyCode.A))
-			{
-
-				CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM_MAT"));
-			}
-
-			if (Input.GetKeyUp(KeyCode.B))
-			{
-				HierarchyXmlDumper.DumpSceneToFile();
-				ResourceXmlDumper.DumpAllToFile();
-			}
-			
 
 		}
 

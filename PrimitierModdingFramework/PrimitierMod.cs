@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MelonLoader;
-using PrimitierModdingFramework.Internals;
 namespace PrimitierModdingFramework
 {
 
+	/// <summary>
+	/// Main entry point for a PrimitierMod
+	/// </summary>
 	public abstract class PrimitierMod : MelonMod
 	{
 		internal bool IsApplicationStarted { get; private set; } = false;
