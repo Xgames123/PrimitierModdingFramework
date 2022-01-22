@@ -60,7 +60,7 @@ namespace PrimitierModdingFramework.Debugging
 			}));
 			DebugMenu.CreateButton("Dump Resources", new System.Action(() =>
 			{
-				ResourceXmlDumper.DumpAll();
+				ResourceXmlDumper.DumpAllToFile();
 			}));
 			DebugMenu.CreateButton("Heal max", new System.Action(() =>
 			{

@@ -20,7 +20,7 @@ namespace PrimitierModdingFramework.Debugging
 		/// <summary>
 		/// Dumps all resources to ResourceXmlDumper.FilePath
 		/// </summary>
-		public static void DumpAll()
+		public static void DumpAllToFile()
 		{
 			PMFLog.Message("Starting ResourceDump Dump");
 			XmlDocument document = new XmlDocument();
@@ -35,7 +35,7 @@ namespace PrimitierModdingFramework.Debugging
 
 		}
 
-		private static string DumpSubstance(SubstanceParameters.Param substance)
+		public static string DumpSubstanceToString(SubstanceParameters.Param substance)
 		{
 			XmlDocument document = new XmlDocument();
 			DumpSubstance(substance, document);

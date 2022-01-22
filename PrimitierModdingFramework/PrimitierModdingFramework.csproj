@@ -87,6 +87,7 @@
     <Compile Include="Debugging\InGame\InGameDebugToolShowButton.cs" />
     <Compile Include="Debugging\ResourceXmlDumper.cs" />
     <Compile Include="Debugging\XmlHelper.cs" />
+    <Compile Include="PMFIL2CPPHelpers.cs" />
     <Compile Include="PMFLog.cs" />
     <Compile Include="PMFHelper.cs" />
     <Compile Include="PMFSystem.cs" />

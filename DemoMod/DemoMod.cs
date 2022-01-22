@@ -36,10 +36,11 @@ namespace DemoMod
 			}));
 
 
-			var customSubstance = new SubstanceParameters.Param();
+			var customSubstance = CustomSubstanceSystem.CreateCustomSubstance(Substance.Iron);
 			customSubstance.displayNameKey = "SUB_CUSTOM_MAT";
-			customSubstance.material = "Iron";
-			customSubstance.collisionSound = "metal1";
+			customSubstance.isEdible = true;
+			customSubstance.material = "Slime";
+			customSubstance.stiffness = 9999999;
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 
@@ -67,16 +68,16 @@ namespace DemoMod
 		{
 		
 
-			if (Input.GetKeyUp(KeyCode.A))
+			if (Input.GetKey(KeyCode.A))
 			{
-				CubeGenerator.GenerateCube(new Vector3(0, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), (Substance)21);
-				CubeGenerator.GenerateCube(new Vector3(0, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), (Substance)22);
+
+				CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM_MAT"));
 			}
 
 			if (Input.GetKeyUp(KeyCode.B))
 			{
 				HierarchyXmlDumper.DumpSceneToFile();
-				ResourceXmlDumper.DumpAll();
+				ResourceXmlDumper.DumpAllToFile();
 			}
 			
 
