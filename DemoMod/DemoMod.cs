@@ -45,7 +45,7 @@ namespace DemoMod
 			customSubstance.displayNameKey = "SUB_CUSTOM";
 			customSubstance.isEdible = true;
 			customSubstance.material = "Slime";
-			customSubstance.hardness = 0;
+			customSubstance.stiffness = 99999999;
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 
@@ -72,6 +72,14 @@ namespace DemoMod
 		public override void OnFixedUpdate()
 		{
 		
+
+			if (Input.GetKey(KeyCode.A))
+			{
+
+				CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+			}
+
+			
 
 		}
 
