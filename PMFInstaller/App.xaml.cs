@@ -14,12 +14,15 @@ namespace PMFInstaller
 	public partial class App : Application
 	{
 		public static MainWindow MainWindow = null;
+		
 
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
+			
 			MainWindow = new MainWindow();
 
 			MainWindow.Show();
+			ConfigFile.Load();
 		}
 
 		private void Application_Exit(object sender, ExitEventArgs e)

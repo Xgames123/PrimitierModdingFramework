@@ -55,6 +55,7 @@ namespace PMFInstaller
 			}catch(Exception e)
 			{
 				Config = null;
+				App.MainWindow.SwitchMenu(new ConfigureMenu());
 			}
 			
 		}

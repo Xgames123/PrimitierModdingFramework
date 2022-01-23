@@ -20,31 +20,30 @@ namespace PMFInstaller
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		
+
+		public UserControl ActiveMenu { get; private set; }
+
+		public void SwitchMenu(UserControl newMenu)
+		{
+			if (ActiveMenu != null)
+			{
+				Grid.Children.Remove(ActiveMenu);
+			}
+			ActiveMenu = newMenu;
+			if (ActiveMenu != null)
+			{
+				Grid.Children.Add(ActiveMenu);
+			}
+			
+		}
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			ModManager.OnModsReloaded += OnModsReloaded;
-			
+			SwitchMenu(new MainMenu());
 		}
 
-		private void OnModsReloaded()
-		{
-			ModList.ItemsSource = null;
-			ModList.ItemsSource = ModManager.LoadedMods;
-		}
-
-		private void ReloadModsButton_Click(object sender, RoutedEventArgs e)
-		{
-			ModManager.ReloadMods();
-		}
-
-		private void LaunchPrimitierButton_Click(object sender, RoutedEventArgs e)
-		{
-			PrimitierLauncher.LaunchAndExit();
-		}
 
 
 
