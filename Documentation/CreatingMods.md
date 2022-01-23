@@ -36,4 +36,4 @@ Note: A helpful resource for making mods is the [MelonLoaderDocs](https://melonw
 [Custom substances](./CustomSubstances.md)
 
 ## Dumping the state of the game
-[Duming](./Dumping)
+[Duming](./Dumping.md)
