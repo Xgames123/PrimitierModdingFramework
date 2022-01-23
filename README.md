@@ -6,10 +6,10 @@ It adds helper classes to make mods for Primitier.
 
 
 ## Downloading a mod
-[Downloading mods](./DownloadingMods.md)
+[Downloading mods](Documentation/DownloadingMods.md)
 
 ## Creating a mod
-[Creating mods](./CreatingMods.md)
+[Creating mods](Documentation/CreatingMods.md)
 
 
 ## Common issues
