@@ -39,7 +39,8 @@ namespace PMFInstaller
 				return null;
 			}
 
-			ZipArchive zip = new ZipArchive(File.OpenRead(pmfmFile), ZipArchiveMode.Read, false);
+			var zipStream = File.OpenRead(pmfmFile);
+			ZipArchive zip = new ZipArchive(zipStream, ZipArchiveMode.Read, true);
 
 			var modjsonEntry = FindEntryZip("Mod.json", zip);
 			if (modjsonEntry == null)
@@ -66,7 +67,7 @@ namespace PMFInstaller
 				throw new NotImplementedException();
 			}
 
-
+			zipStream.Close();
 			return mod;
 		}
 
