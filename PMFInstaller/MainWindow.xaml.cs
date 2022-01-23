@@ -32,6 +32,7 @@ namespace PMFInstaller
 
 		private void OnModsReloaded()
 		{
+			ModList.ItemsSource = null;
 			ModList.ItemsSource = ModManager.LoadedMods;
 		}
 
@@ -42,7 +43,7 @@ namespace PMFInstaller
 
 		private void LaunchPrimitierButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			PrimitierLauncher.LaunchAndExit();
 		}
 
 

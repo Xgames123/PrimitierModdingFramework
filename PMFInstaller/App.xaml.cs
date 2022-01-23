@@ -22,5 +22,10 @@ namespace PMFInstaller
 			MainWindow.Show();
 		}
 
+		private void Application_Exit(object sender, ExitEventArgs e)
+		{
+			ConfigFile.Save();
+
+		}
 	}
 }

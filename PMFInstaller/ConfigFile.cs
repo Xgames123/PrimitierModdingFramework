@@ -60,6 +60,11 @@ namespace PMFInstaller
 		}
 		public static void Save()
 		{
+			if (Config == null)
+			{
+				return;
+			}
+
 			File.WriteAllText(ConfigFilePath, JsonConvert.SerializeObject(Config));
 
 		}
