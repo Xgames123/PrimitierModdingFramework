@@ -20,16 +20,36 @@ namespace PMFInstaller
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public List<Mod> Mods = new List<Mod>();
+		
 
 		public MainWindow()
 		{
 			InitializeComponent();
-	
 
-			ModList.DataContext = Mods;
+			ModManager.OnModsReloaded += OnModsReloaded;
+			
+		}
+
+		private void OnModsReloaded()
+		{
+			ModList.ItemsSource = ModManager.LoadedMods;
+		}
+
+		private void ReloadModsButton_Click(object sender, RoutedEventArgs e)
+		{
+			ModManager.ReloadMods();
+		}
+
+		private void LaunchPrimitierButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 
 
+
+		private void ErrorPopupOk(object sender, RoutedEventArgs e)
+		{
+			ErrorPopup.IsActive = false;
+		}
 	}
 }
