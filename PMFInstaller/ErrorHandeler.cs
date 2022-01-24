@@ -11,6 +11,11 @@ namespace PMFInstaller
 
 		public static void ShowError(string error)
 		{
+			if (App.MainWindow == null)
+			{
+				return;
+			}
+
 			var errorPopup = App.MainWindow.ErrorPopup;
 			errorPopup.Message.Content ="Error:"+error;
 			errorPopup.IsActive = true;

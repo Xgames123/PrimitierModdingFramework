@@ -35,8 +35,10 @@ namespace PMFInstaller
 			}
 			ConfigFile.Config.PrimitierInstallPath = Path.GetDirectoryName(primitierExeFilePath);
 
-			//Feels cooler if it isn't instantly done
-			Thread.Sleep(2000);
+
+			InstallMelonLoader(primitierExeFilePath);
+
+			
 			SetupPrimitierExeError = "";
 		}
 

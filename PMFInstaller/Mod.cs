@@ -16,7 +16,7 @@ namespace PMFInstaller
 		[JsonProperty(Required = Required.Always)]
 		public string DisplayName { get; set; }
 		[JsonProperty(Required = Required.DisallowNull)]
-		public string Author { get; set; } = "";
+		public string Authors { get; set; } = "";
 		[JsonProperty(Required = Required.DisallowNull)]
 		public string Description { get; set; } = "";
 		[JsonProperty(Required = Required.DisallowNull)]

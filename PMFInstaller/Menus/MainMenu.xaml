@@ -26,21 +26,71 @@
             </StackPanel>
         </materialDesign:ColorZone>
 
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10">
+                <TextBlock Text="All mods" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                <ScrollViewer Grid.Column="0"  VerticalScrollBarVisibility="Auto">
+                    <ItemsControl
+                x:Name="ModList"
+                ItemsSource="{Binding Items2}"
+                Grid.IsSharedSizeScope="True">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="/Assets/Images/FindPrimitierInstallPath.png"/>
+                                        <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                                            <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
+                                            <TextBlock Text="{Binding Description}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <ItemsControl x:Name="ModList" >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
+            <StackPanel Grid.Column="1" Margin="10">
+                <TextBlock Text="Selected mods" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl
+                    x:Name="ActiveModList"
+                    ItemsSource="{Binding Items2}"
+                    Grid.IsSharedSizeScope="True">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border x:Name="Border" Padding="8" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="/Assets/Images/FindPrimitierInstallPath.png"/>
+                                        <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                                            <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" />
+                                            <TextBlock Text="{Binding Description}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
 
-                        <WrapPanel Orientation="Vertical" />
+               
+        </Grid>
 
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-
-            </ItemsControl>
-        </ScrollViewer>
-
-
+   
         <Grid Grid.Row="2" Margin="10 10 10 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>

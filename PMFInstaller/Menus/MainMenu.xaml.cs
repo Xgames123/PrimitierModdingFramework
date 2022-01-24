@@ -24,6 +24,8 @@ namespace PMFInstaller
 		{
 			InitializeComponent();
 			ModManager.OnModsReloaded += OnModsReloaded;
+
+			ModManager.ReloadMods();
 		}
 
 		private void OnModsReloaded()
