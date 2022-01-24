@@ -18,10 +18,9 @@ namespace PMFInstaller
 		public static string ModsDirPath = null;
 		public static string ConfigFilePath = null;
 
-		[JsonProperty(Required =Required.Always)]
-		public string ModsDirectory;
+
 		[JsonProperty(Required = Required.Always)]
-		public string PrimitierPath;
+		public string PrimitierInstallPath;
 
 
 		public static void RebuildDirectorySturcture()
@@ -55,7 +54,7 @@ namespace PMFInstaller
 			}catch(Exception e)
 			{
 				Config = null;
-				App.MainWindow.SwitchMenu(new ConfigureMenu());
+				App.MainWindow.SwitchMenu(1);
 			}
 			
 		}

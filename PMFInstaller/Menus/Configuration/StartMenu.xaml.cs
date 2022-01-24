@@ -13,34 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PMFInstaller
+namespace PMFInstaller.Menus.Configuration
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for StartMenu.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class StartMenu : UserControl
 	{
-
-		public void SwitchMenu(int menuIndex)
-		{
-			Transitioner.SelectedIndex = menuIndex;
-
-			
-		}
-
-		public MainWindow()
+		public StartMenu()
 		{
 			InitializeComponent();
-
-			SwitchMenu(0);
-		}
-
-
-
-
-		private void ErrorPopupOk(object sender, RoutedEventArgs e)
-		{
-			ErrorPopup.IsActive = false;
 		}
 	}
 }

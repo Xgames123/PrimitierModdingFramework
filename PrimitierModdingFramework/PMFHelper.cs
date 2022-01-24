@@ -12,6 +12,7 @@ namespace PrimitierModdingFramework
 		public static Transform RHand;
 		public static Transform CameraRig;
 		public static PlayerMovement PlayerMovement;
+		public static PlayerLife PlayerLife;
 
 		public static Transform MenuWindowL;
 
@@ -22,6 +23,7 @@ namespace PrimitierModdingFramework
 
 		public override void OnStart()
 		{
+
 			base.OnStart();
 			EnableSystem<PMFLog>();
 			

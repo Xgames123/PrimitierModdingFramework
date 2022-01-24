@@ -4,29 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PMFInstaller"
+             xmlns:ConfigurationMenus="clr-namespace:PMFInstaller.Menus.Configuration"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-
-        
-
-        <TextBox
-            x:Name="PrimitierFilePath"
-            materialDesign:HintAssist.Hint="Primitier executeble"
-            materialDesign:HintAssist.HelperText="The path of the primitier executeble">
-            <TextBox.Text>
-                <Binding
-                    Path="Name"
-                    UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <domain:NotEmptyValidationRule ValidatesOnTargetUpdated="True" xmlns:domain="clr-namespace:MaterialDesignDemo.Domain" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-
-        <Button Content="Browse" Style="{StaticResource MaterialDesignRaisedDarkButton}"/>
-
-    </Grid>
+    <materialDesign:Transitioner
+        x:Name="Transitioner"
+        SelectedIndex="0"
+        AutoApplyTransitionOrigins="True">
+        <!-- you can use a slide for each page, let's add a touch of fade for our first page  -->
+        <materialDesign:TransitionerSlide
+                OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+            <ConfigurationMenus:StartMenu/>
+        </materialDesign:TransitionerSlide>
+        <materialDesign:TransitionerSlide
+                OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+            <ConfigurationMenus:SetupPrimitierPathMenu/>
+        </materialDesign:TransitionerSlide>
+    </materialDesign:Transitioner>
+    
 </UserControl>

@@ -19,7 +19,7 @@ namespace PMFInstaller
 				return;
 			}
 
-			Process.Start(Path.Combine(ConfigFile.Config.PrimitierPath, "Primitier.exe"));
+			Process.Start(Path.Combine(ConfigFile.Config.PrimitierInstallPath, "Primitier.exe"));
 
 			App.MainWindow.Close();
 		}

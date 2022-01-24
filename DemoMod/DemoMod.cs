@@ -22,6 +22,8 @@ namespace DemoMod
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
+			
+
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
 
 			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");
@@ -40,6 +42,7 @@ namespace DemoMod
 				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"), temperature: 999);
 			}));
 
+			
 
 			var customSubstance = CustomSubstanceSystem.CreateCustomSubstance(Substance.Iron);
 			customSubstance.displayNameKey = "SUB_CUSTOM";

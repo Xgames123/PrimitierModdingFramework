@@ -51,11 +51,34 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid x:Name="Grid">
-        
-        
-        
-        
+   
+    <Grid>
+
+        <materialDesign:Transitioner
+        x:Name="Transitioner"
+        SelectedIndex="0"
+        AutoApplyTransitionOrigins="True">
+            <materialDesign:Transitioner.InputBindings>
+                <KeyBinding
+      Key="Left"
+      Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" />
+                <KeyBinding
+      Key="Right"
+      Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" />
+            </materialDesign:Transitioner.InputBindings>
+            <!-- you can use a slide for each page, let's add a touch of fade for our first page  -->
+            <materialDesign:TransitionerSlide
+                OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                <local:MainMenu/>
+            </materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide
+                OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                <local:ConfigureMenu/>
+            </materialDesign:TransitionerSlide>
+
+        </materialDesign:Transitioner>
+
+
         <materialDesign:Snackbar
             Grid.Row="2"
             x:Name="ErrorPopup"
