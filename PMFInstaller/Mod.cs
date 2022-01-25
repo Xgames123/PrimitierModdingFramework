@@ -90,7 +90,7 @@ namespace PMFInstaller
 		{
 			var stream = entry.Open();
 
-			byte[] bytes = new byte[stream.Length];
+			byte[] bytes = new byte[entry.Length];
 			stream.Read(bytes, 0, bytes.Length);
 
 			stream.Close();

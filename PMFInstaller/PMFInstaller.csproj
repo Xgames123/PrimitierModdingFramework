@@ -5,6 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\Images\PMFIcon.ico</ApplicationIcon>
 	 
   </PropertyGroup>
 
@@ -17,6 +18,10 @@
     <Resource Include="Assets\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Images\PMFIcon.ico" />
   </ItemGroup>
 
 	

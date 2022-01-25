@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,8 +45,10 @@ namespace PMFInstaller
 			PrimitierLauncher.LaunchAndExit();
 		}
 
+		private void OnModEnableDisable(object sender, RoutedEventArgs e)
+		{
+			var button = sender as Button;
 
-
-		
+		}
 	}
 }
