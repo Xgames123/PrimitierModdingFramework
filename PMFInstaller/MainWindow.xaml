@@ -52,7 +52,13 @@
                 ActionContent="Ok"
                 ActionClick="ErrorPopupOk"/>
         </materialDesign:Snackbar>
+
+        <materialDesign:DialogHost>
+
+
+        </materialDesign:DialogHost>
     </Grid>
-   
+    
+  
 
 </Window>

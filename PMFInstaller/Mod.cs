@@ -1,101 +1,100 @@
-﻿using Newtonsoft.Json;
+﻿using MaterialDesignThemes.Wpf;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace PMFInstaller
 {
+
+
+
 	[Serializable]
-	public class Mod
+	public class Mod : IEquatable<Mod>
 	{
-		[JsonProperty(Required = Required.Always)]
-		public string DisplayName { get; set; }
-		[JsonProperty(Required = Required.DisallowNull)]
-		public string Authors { get; set; } = "";
-		[JsonProperty(Required = Required.DisallowNull)]
-		public string Description { get; set; } = "";
-		[JsonProperty(Required = Required.DisallowNull)]
-		public string Version { get; set; } = "v1.0";
+		[JsonProperty(Required = Required.Always)] public string DisplayName { get; set; }
+		[JsonProperty(Required = Required.DisallowNull)] public string Authors { get; set; } = "";
+		[JsonProperty(Required = Required.DisallowNull)] public string Description { get; set; } = "";
+		[JsonProperty(Required = Required.DisallowNull)] public string Version { get; set; } = "v1.0";
 
-		[JsonIgnore]
-		public BitmapImage Image { get; private set; }
+		[JsonIgnore] public int ModHash { get { if (_ModHash == -1) RegenerateHash(); return _ModHash; } }
+		[JsonIgnore] public ICommand OnDisableCommand { get; set; }
+		[JsonIgnore] public ICommand OnEnableCommand { get; set; }
+		[JsonIgnore] public ICommand OnDeleteCommand { get; set; }
+		[JsonIgnore] public string FileName;
+
+		[JsonIgnore] private int _ModHash = -1;
+
+		[JsonIgnore] public BitmapImage Image { get; private set; }
 
 
-		public Mod()
+		private void OnEnable(object? param)
 		{
+			ModManager.EnableMod(this);
 
 		}
-
-		public static Mod? FromFile(string pmfmFile)
+		private void OnDisable(object? param)
 		{
-			if (!File.Exists(pmfmFile))
-			{
-				ErrorHandeler.ShowError($"Can not find mod '{pmfmFile}'");
-				return null;
-			}
+			ModManager.DisableMod(this);
+		}
+		private void OnDelete(object? param)
+		{
 
-			var zipStream = File.OpenRead(pmfmFile);
-			ZipArchive zip = new ZipArchive(zipStream, ZipArchiveMode.Read, true);
+			ModManager.DeleteMod(this);
+		}
 
-			var modjsonEntry = FindEntryZip("Mod.json", zip);
-			if (modjsonEntry == null)
-			{
-				ErrorHandeler.ShowError($"Can not load mod '{pmfmFile}' can not find Mod.json");
-				return null;
-			}
-
-			Mod mod = null;
-			var bytes = ReadEntryZipBytes(modjsonEntry);
-			try
-			{
-				mod = JsonConvert.DeserializeObject<Mod>(Encoding.ASCII.GetString(bytes));
-			}
-			catch (Exception e)
-			{
-				ErrorHandeler.ShowError($"Can not load mod '{pmfmFile}' invalid Mod.json");
-				return null;
-			}
-
-			var headerEntry = FindEntryZip("Header.png", zip);
-			if (headerEntry != null)
-			{
-				throw new NotImplementedException();
-			}
-
-			zipStream.Close();
-			return mod;
+		public void InitUI()
+		{
+			OnEnableCommand = new ActionCommand(OnEnable);
+			OnDisableCommand = new ActionCommand(OnDisable);
+			OnDeleteCommand = new ActionCommand(OnDelete);
 		}
 
 
-		private static ZipArchiveEntry? FindEntryZip(string filePath, ZipArchive zip)
+		public void RegenerateHash()
 		{
-			foreach (var entry in zip.Entries)
-			{
-				if (entry.FullName == filePath)
-				{
-					return entry;
-				}
+			
+			_ModHash = HashCode.Combine(
+				Authors.GetHashCode(StringComparison.Ordinal),
+				DisplayName.GetHashCode(StringComparison.Ordinal),
+				Version.GetHashCode(StringComparison.Ordinal));
+		}
 
+		public bool Equals(Mod? other)
+		{
+			if (other == null)
+			{
+				return false;
 			}
 
-			return null;
+			if (other.ModHash == ModHash)
+			{
+				return true;
+			}
+
+			return false;
 		}
 
-		private static byte[] ReadEntryZipBytes(ZipArchiveEntry entry)
+		public override bool Equals(object? obj)
 		{
-			var stream = entry.Open();
+			if (obj == null)
+				return false;
 
-			byte[] bytes = new byte[entry.Length];
-			stream.Read(bytes, 0, bytes.Length);
-
-			stream.Close();
-			return bytes;
+			Mod objAsMod = obj as Mod;
+			if (objAsMod == null)
+				return false;
+			else
+				return Equals(objAsMod);
 		}
+
+		public override int GetHashCode()
+		{
+			return ModHash;
+		}
+
+
+		
 
 
 	}

@@ -11,17 +11,14 @@ namespace PMFInstaller
 	[Serializable]
 	public class ConfigFile
 	{
-		[JsonIgnore]
-		public static ConfigFile Config;
-		[JsonIgnore]
-		public static string PMFDirPath  = null;
-		public static string ModsDirPath = null;
-		public static string ConfigFilePath = null;
-
+		[JsonIgnore] public static ConfigFile Config;
+		[JsonIgnore] public static string PMFDirPath  = null;
+		[JsonIgnore] public static string PMFModsDirPath = null;
+		[JsonIgnore] public static string ConfigFilePath = null;
 
 		[JsonProperty(Required = Required.Always)]
 		public string PrimitierInstallPath;
-
+		
 
 		public static void RebuildDirectorySturcture()
 		{
@@ -30,8 +27,8 @@ namespace PMFInstaller
 				PMFDirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal, Environment.SpecialFolderOption.Create), "PrimitierModdingFramework");
 				Directory.CreateDirectory(PMFDirPath);
 
-				ModsDirPath = Path.Combine(PMFDirPath, "Mods");
-				Directory.CreateDirectory(ModsDirPath);
+				PMFModsDirPath = Path.Combine(PMFDirPath, "Mods");
+				Directory.CreateDirectory(PMFModsDirPath);
 
 				ConfigFilePath = Path.Combine(PMFDirPath, "PMFInstallerConfig.json");
 			}

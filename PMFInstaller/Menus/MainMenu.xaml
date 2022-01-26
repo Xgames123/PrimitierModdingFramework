@@ -6,10 +6,12 @@
              xmlns:local="clr-namespace:PMFInstaller"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             AllowDrop="True" Drop="OnFileDrop"
+             Background="Transparent">
 
     <UserControl.Resources>
-        <DataTemplate DataType = "{x:Type local:Mod}">
+        <DataTemplate x:Key="ModListItemTemplate">
             <Border BorderThickness="0 0 0 1"  BorderBrush="{DynamicResource MaterialDesignDivider}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -22,24 +24,24 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Border Grid.Column="0" Grid.Row="1" Margin="5">
-                        <Image Width="100" Source="/Assets/Images/PMFIcon.png"/>
+                    <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="5">
+                        <Image Width="70" Source="/Assets/Images/PMFIcon.png"/>
                     </Border>
                     
 
                     <TextBlock Margin="2" Grid.Column="1" Grid.Row="0" Text="{Binding DisplayName}" FontWeight="Bold" FontSize="15" />
                     <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Version}" HorizontalAlignment="Right" FontSize="15"/>
-                    
-                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding Description}" TextWrapping="Wrap" />
+
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="70" TextTrimming="WordEllipsis" />
 
                     <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Authors}" VerticalAlignment="Top" HorizontalAlignment="Right" TextWrapping="Wrap" Style="{StaticResource MaterialDesignHelperTextBlock}" />
 
                     <StackPanel Grid.Column="2" Grid.Row="1" Margin="10 0 0 0"  Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                        <Button Style="{StaticResource MaterialDesignFlatLightButton}">
+                        <Button Style="{StaticResource MaterialDesignFlatLightButton}" Command="{Binding OnDeleteCommand}">
                             <materialDesign:PackIcon
                                 Kind="TrashCan"/>
                         </Button>
-                        <Button Style="{StaticResource MaterialDesignFlatLightButton}" Click="OnModEnableDisable">
+                        <Button Style="{StaticResource MaterialDesignFlatLightButton}" Command="{Binding OnEnableCommand}">
                             <materialDesign:PackIcon
                                 Kind="ArrowRightBox"/>
                         </Button>
@@ -52,7 +54,45 @@
             </Border>
 
         </DataTemplate>
+        <DataTemplate x:Key="ActiveModListItemTemplate">
+            <Border BorderThickness="0 0 0 1"  BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
+                    <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="5">
+                        <Image Width="70" Source="/Assets/Images/PMFIcon.png"/>
+                    </Border>
+
+
+                    <TextBlock Margin="2" Grid.Column="1" Grid.Row="0" Text="{Binding DisplayName}" FontWeight="Bold" FontSize="15" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Version}" HorizontalAlignment="Right" FontSize="15"/>
+
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="70" TextTrimming="WordEllipsis" />
+
+                    <TextBlock Grid.Column="2" Grid.Row="0" Margin="5" Text="{Binding Authors}" VerticalAlignment="Top" HorizontalAlignment="Right" TextWrapping="Wrap" Style="{StaticResource MaterialDesignHelperTextBlock}" />
+
+                    <StackPanel Grid.Column="2" Grid.Row="1" Margin="10 0 0 0"  Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Button Style="{StaticResource MaterialDesignFlatLightButton}" Command="{Binding OnDisableCommand}">
+                            <materialDesign:PackIcon
+                                Kind="ArrowLeftBox"/>
+                        </Button>
+
+
+                    </StackPanel>
+
+
+                </Grid>
+            </Border>
+
+        </DataTemplate>
     </UserControl.Resources>
     
     
@@ -88,27 +128,31 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="All mods" Margin="5" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+
+            <TextBlock Text="All mods" Grid.Column="0" Grid.Row="0" Margin="5" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
             <ItemsControl
                 Grid.Column="0"
                 Grid.Row="1"
                 x:Name="ModList"
+                ItemTemplate="{StaticResource ModListItemTemplate}"
                 ItemsSource="{Binding Items2}"
                 Grid.IsSharedSizeScope="True"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
             </ItemsControl>
 
-            <TextBlock Text="Selected mods" Grid.Column="1" Grid.Row="0" Margin="5" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+            <TextBlock Text="Selected mods" Grid.Column="2" Grid.Row="0" Margin="5" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
             <ItemsControl
-                Grid.Column="1"
+                Grid.Column="2"
                 Grid.Row="1"
                 x:Name="ActiveModList"
+                 ItemTemplate="{StaticResource ActiveModListItemTemplate}"
                 ItemsSource="{Binding Items2}"
                 Grid.IsSharedSizeScope="True"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -125,7 +169,17 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Click="ReloadModsButton_Click" Margin="2 2 2 2" Content="Reload mods" ToolTip="Reload all mods from disk" Style="{StaticResource MaterialDesignRaisedDarkButton}" />
-            <Button Grid.Column="2" Click="LaunchPrimitierButton_Click" Margin="2 2 2 2" Content="Launch Primitier" ToolTip="Launch Primitier with the selected mods" Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+            <Button 
+                Content="Launch Primitier"
+                x:Name="LaunchPrimitierButton"
+                Click="LaunchPrimitierButton_Click"
+                ToolTip="Launch Primitier with the selected mods"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}" 
+                Grid.Column="2"
+                Margin="2 2 2 2"
+                materialDesign:ButtonProgressAssist.Value="-1"
+                materialDesign:ButtonProgressAssist.IsIndicatorVisible="False"
+                materialDesign:ButtonProgressAssist.IsIndeterminate="True"/>
         </Grid>
 
 

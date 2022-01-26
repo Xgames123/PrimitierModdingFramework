@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,15 +25,17 @@ namespace PMFInstaller
 		public MainMenu()
 		{
 			InitializeComponent();
-			ModManager.OnModsReloaded += OnModsReloaded;
+			ModManager.OnModListsUpdate += OnModListsUpdate;
 
 			ModManager.ReloadMods();
 		}
 
-		private void OnModsReloaded()
+		private void OnModListsUpdate()
 		{
 			ModList.ItemsSource = null;
 			ModList.ItemsSource = ModManager.LoadedMods;
+			ActiveModList.ItemsSource = null;
+			ActiveModList.ItemsSource = ModManager.ActiveMods;
 		}
 
 		private void ReloadModsButton_Click(object sender, RoutedEventArgs e)
@@ -42,12 +45,51 @@ namespace PMFInstaller
 
 		private void LaunchPrimitierButton_Click(object sender, RoutedEventArgs e)
 		{
-			PrimitierLauncher.LaunchAndExit();
+			ButtonProgressAssist.SetIsIndicatorVisible(LaunchPrimitierButton, true);
+
+			ButtonProgressAssist.SetIsIndicatorVisible(LaunchPrimitierButton, true);
+			Task.Factory.StartNew(() => PrimitierLauncher.LaunchWithSelectedMods())
+			.ContinueWith(t =>
+			{
+				Dispatcher.BeginInvoke((Action)delegate ()
+				{
+					ButtonProgressAssist.SetIsIndicatorVisible(LaunchPrimitierButton, false);
+					Thread.Sleep(1000);
+					App.MainWindow.Close();
+
+				});
+			});
+
+
+
 		}
 
-		private void OnModEnableDisable(object sender, RoutedEventArgs e)
+		private void OnFileDrop(object sender, DragEventArgs e)
 		{
-			var button = sender as Button;
+			if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+				return;
+
+			var fileDropData = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+			if (fileDropData == null)
+			{
+				return;
+			}
+			for (int i = 0; i < fileDropData.Length; i++)
+			{
+				string filePath = fileDropData[i];
+				if(filePath == null)
+				{
+					continue;
+				}
+
+				ModManager.AddMod(filePath);
+
+			}
+
+
+		
+
 
 		}
 	}
