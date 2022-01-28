@@ -11,20 +11,19 @@ namespace PMFInstaller
 
 
 	[Serializable]
-	public class Mod : IEquatable<Mod>
+	public class Mod
 	{
 		[JsonProperty(Required = Required.Always)] public string DisplayName { get; set; }
 		[JsonProperty(Required = Required.DisallowNull)] public string Authors { get; set; } = "";
 		[JsonProperty(Required = Required.DisallowNull)] public string Description { get; set; } = "";
 		[JsonProperty(Required = Required.DisallowNull)] public string Version { get; set; } = "v1.0";
+		[JsonProperty(Required = Required.DisallowNull)] public bool IsGenerated { get; set; } = false;
 
-		[JsonIgnore] public int ModHash { get { if (_ModHash == -1) RegenerateHash(); return _ModHash; } }
 		[JsonIgnore] public ICommand OnDisableCommand { get; set; }
 		[JsonIgnore] public ICommand OnEnableCommand { get; set; }
 		[JsonIgnore] public ICommand OnDeleteCommand { get; set; }
 		[JsonIgnore] public string FileName;
-
-		[JsonIgnore] private int _ModHash = -1;
+		[JsonIgnore] public string Name;
 
 		[JsonIgnore] public BitmapImage Image { get; private set; }
 
@@ -51,50 +50,6 @@ namespace PMFInstaller
 			OnDeleteCommand = new ActionCommand(OnDelete);
 		}
 
-
-		public void RegenerateHash()
-		{
-			
-			_ModHash = HashCode.Combine(
-				Authors.GetHashCode(StringComparison.Ordinal),
-				DisplayName.GetHashCode(StringComparison.Ordinal),
-				Version.GetHashCode(StringComparison.Ordinal));
-		}
-
-		public bool Equals(Mod? other)
-		{
-			if (other == null)
-			{
-				return false;
-			}
-
-			if (other.ModHash == ModHash)
-			{
-				return true;
-			}
-
-			return false;
-		}
-
-		public override bool Equals(object? obj)
-		{
-			if (obj == null)
-				return false;
-
-			Mod objAsMod = obj as Mod;
-			if (objAsMod == null)
-				return false;
-			else
-				return Equals(objAsMod);
-		}
-
-		public override int GetHashCode()
-		{
-			return ModHash;
-		}
-
-
-		
 
 
 	}

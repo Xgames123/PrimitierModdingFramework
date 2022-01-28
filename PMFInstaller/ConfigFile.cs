@@ -18,7 +18,9 @@ namespace PMFInstaller
 
 		[JsonProperty(Required = Required.Always)]
 		public string PrimitierInstallPath;
-		
+
+		[JsonProperty(Required = Required.DisallowNull)]
+		public string[] ActiveMods = new string[0];
 
 		public static void RebuildDirectorySturcture()
 		{
@@ -44,6 +46,11 @@ namespace PMFInstaller
 
 		public static void Load()
 		{
+			if (Config != null)
+			{
+				return;
+			}
+
 			RebuildDirectorySturcture();
 			try
 			{

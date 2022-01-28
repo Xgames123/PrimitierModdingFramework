@@ -31,10 +31,18 @@ namespace PMFInstaller
 			}
 
 			LoadedMods.Remove(mod);
+			
 			ActiveMods.Add(mod);
+			AddToActiveModsConfig(mod.Name);
 
-			OnModListsUpdate?.Invoke();
+
+
+		   OnModListsUpdate?.Invoke();
+
 		}
+
+
+
 		public static void DisableMod(Mod mod)
 		{
 			if (!ActiveMods.Contains(mod))
@@ -43,37 +51,79 @@ namespace PMFInstaller
 			}
 
 			ActiveMods.Remove(mod);
+			RemoveFromActiveModsConfig(mod.Name);
+
 			if (!LoadedMods.Contains(mod))
 			{
 				LoadedMods.Add(mod);
 			}
-			
+
 
 			OnModListsUpdate?.Invoke();
 		}
-		
+
+		private static void AddToActiveModsConfig(string name)
+		{
+			var sourceArray = ConfigFile.Config.ActiveMods;
+			string[] newActiveModHashArray = new string[sourceArray.Length + 1];
+			Array.Copy(sourceArray, newActiveModHashArray, sourceArray.Length);
+			newActiveModHashArray[sourceArray.Length] = name;
+			ConfigFile.Config.ActiveMods = newActiveModHashArray;
+
+		}
+		private static void RemoveFromActiveModsConfig(string name)
+		{
+
+			string[] newActiveModHashArray = new string[ConfigFile.Config.ActiveMods.Length - 1];
+			int ii = 0;
+			for (int i = 0; i < ConfigFile.Config.ActiveMods.Length; i++)
+			{
+				var file = ConfigFile.Config.ActiveMods[i];
+				if (file == name)
+				{
+					continue;
+				}
+				newActiveModHashArray[ii] = file;
+
+				ii++;
+			}
+			ConfigFile.Config.ActiveMods = newActiveModHashArray;
+		}
 
 
 		public static void ReloadMods()
 		{
-			
+
 			LoadedMods.Clear();
+			ActiveMods.Clear();
 
-			ConfigFile.RebuildDirectorySturcture();
-
-			foreach (var modPath in Directory.GetFiles(ConfigFile.PMFModsDirPath))
+			if (ConfigFile.Config == null)
+			{
+				ConfigFile.Load();
+			}
+			
+			var modDirFiles = Directory.GetFiles(ConfigFile.PMFModsDirPath);
+			List<string> ActiveModsNames = new List<string>(modDirFiles.Length);
+			foreach (var modPath in modDirFiles)
 			{
 				var mod = LoadModFromFile(modPath);
 				if (mod != null)
 				{
-					if (LoadedMods.Contains(mod))
+					if (LoadedMods.Contains(mod) || ActiveMods.Contains(mod))
 					{
 						ErrorHandeler.ShowError("Found 2 or more mods with the same Hash");
 						continue;
 					}
-
 					
-					if (!ActiveMods.Contains(mod))
+
+
+					if (ConfigFile.Config.ActiveMods.Contains(mod.Name))
+					{
+						ActiveMods.Add(mod);
+						ActiveModsNames.Add(mod.Name);
+						
+					}
+					else
 					{
 						LoadedMods.Add(mod);
 					}
@@ -81,11 +131,47 @@ namespace PMFInstaller
 				}
 
 			}
-
-
+			ConfigFile.Config.ActiveMods = ActiveModsNames.ToArray();
+			ConfigFile.Save();
 
 			OnModListsUpdate?.Invoke();
 		}
+
+		public static ZipArchiveEntry GenerateModJsonFile(ZipArchive zip, string zipFilePath)
+		{
+			
+			var modJsonEntry = zip.CreateEntry("Mod.json");
+			var modJsonStream = modJsonEntry.Open();
+
+			var mod = new Mod();
+			mod.Name = Path.GetFileNameWithoutExtension(zipFilePath);
+			mod.DisplayName = mod.Name;
+			mod.Description = "Generated from a melon mod";
+			mod.FileName = zipFilePath;
+			mod.IsGenerated = true;
+			mod.InitUI();
+
+
+			var stringMod = JsonConvert.SerializeObject(mod);
+
+			modJsonStream.Write(Encoding.ASCII.GetBytes(stringMod));
+
+			modJsonStream.Close();
+
+			return modJsonEntry;
+		}
+
+		public static void GenerateModJsonFile(string filePath)
+		{
+			var zipStream = File.Open(filePath, FileMode.Open, FileAccess.ReadWrite);
+
+			var zip = new ZipArchive(zipStream, ZipArchiveMode.Update);
+			GenerateModJsonFile(zip, filePath);
+
+			zip.Dispose();
+			zipStream.Close();
+		}
+
 
 
 		public static void DeleteMod(Mod mod)
@@ -102,7 +188,7 @@ namespace PMFInstaller
 		}
 		public static void AddMod(string file)
 		{
-			if (!ValidateModFile(file, true))
+			if (!ValidateModFile(file, true, tryFix:true))
 			{
 				return;
 			}
@@ -122,16 +208,13 @@ namespace PMFInstaller
 
 		public static Mod? LoadModFromFile(string file)
 		{
-			
-			var zipStream = File.OpenRead(file);
-			ZipArchive zip = new ZipArchive(zipStream, ZipArchiveMode.Read, true);
+			var zipStream = File.Open(file, FileMode.Open, FileAccess.ReadWrite);
+			var zip = new ZipArchive(zipStream, ZipArchiveMode.Update);
 
 			var modjsonEntry = FindEntryZip("Mod.json", zip);
 			if (modjsonEntry == null)
 			{
-				//TODO create a Mod.json file in the zip file
-				ErrorHandeler.ShowError($"Can not load mod '{file}' can not find Mod.json");
-				return null;
+				modjsonEntry = GenerateModJsonFile(zip, file);
 			}
 
 			Mod mod = null;
@@ -146,19 +229,23 @@ namespace PMFInstaller
 				return null;
 			}
 
-			var headerEntry = FindEntryZip("Header.png", zip);
-			if (headerEntry != null)
+			var iconEntry = FindEntryZip("Icon.png", zip);
+			if (iconEntry != null)
 			{
 				throw new NotImplementedException();
 			}
 
+			zip.Dispose();
 			zipStream.Close();
-			mod.InitUI();
+
+
+			mod.Name = Path.GetFileNameWithoutExtension(file);
 			mod.FileName = file;
+			mod.InitUI();
 			return mod;
 		}
 
-		private static bool ValidateModFile(string file, bool displayErrors=false)
+		private static bool ValidateModFile(string file, bool displayErrors=false, bool tryFix=false)
 		{
 			if (!File.Exists(file))
 			{
@@ -187,6 +274,22 @@ namespace PMFInstaller
 				return false;
 			}
 			
+			if (FindEntryZip("Mod.json", zip) == null)
+			{
+				if (tryFix)
+				{
+					GenerateModJsonFile(file);
+				}
+				else
+				{
+					ErrorHandeler.ShowError($"Mod '{file}' doesn't contain a Mod.json file");
+					return false;
+				}
+
+				
+			}
+
+
 
 			zipStream?.Close();
 			return true;
@@ -210,8 +313,8 @@ namespace PMFInstaller
 		private static byte[] ReadEntryZipBytes(ZipArchiveEntry entry)
 		{
 			var stream = entry.Open();
-
-			byte[] bytes = new byte[entry.Length];
+			
+			byte[] bytes = new byte[stream.Length];
 			stream.Read(bytes, 0, bytes.Length);
 
 			stream.Close();

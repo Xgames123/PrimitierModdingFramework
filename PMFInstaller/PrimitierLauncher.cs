@@ -19,12 +19,11 @@ namespace PMFInstaller
 
 			if (ConfigFile.Config == null)
 			{
-				ErrorHandeler.ShowError("Config.json not loaded");
-				return;
+				ConfigFile.Load();
 			}
 
 			CleanMelonModsDirectory();
-
+			CopyProxyDllsList();
 
 			foreach (var mod in ModManager.ActiveMods)
 			{
@@ -36,7 +35,7 @@ namespace PMFInstaller
 			
 		}
 
-		public static void CleanMelonModsDirectory()
+		private static void CleanMelonModsDirectory()
 		{
 			string melonModsDir = Path.Combine(ConfigFile.Config.PrimitierInstallPath, "Mods");
 
@@ -63,7 +62,28 @@ namespace PMFInstaller
 		}
 
 
-		public static void ExtractModFiles(Mod mod)
+		private static void CopyProxyDllsList()
+		{
+			var proxyDllsPath = Path.Combine(ConfigFile.Config.PrimitierInstallPath, "MelonLoader", "Managed");
+			var melonModsDir = Path.Combine(ConfigFile.Config.PrimitierInstallPath, "Mods");
+
+			foreach (var proxyDll in Directory.GetFiles(proxyDllsPath))
+			{
+				try
+				{
+					File.Copy(proxyDll, Path.Combine(melonModsDir, Path.GetFileName(proxyDll)));
+				}catch(Exception e)
+				{
+					continue;
+				}
+
+			}
+
+
+		}
+
+
+		private static void ExtractModFiles(Mod mod)
 		{
 			var zip = ZipFile.OpenRead(mod.FileName);
 

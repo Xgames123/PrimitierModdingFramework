@@ -109,14 +109,6 @@
             Mode="SecondaryMid"
             Padding="10">
             <DockPanel>
-                <materialDesign:PopupBox
-                    DockPanel.Dock="Right"
-                    PlacementMode="BottomAndAlignRightEdges">
-
-                    <ListBox>
-                        <ListBoxItem Content="Settings"/>
-                    </ListBox>
-                </materialDesign:PopupBox>
                 <TextBlock
                     FontSize="15px"
                     VerticalAlignment="Center"
