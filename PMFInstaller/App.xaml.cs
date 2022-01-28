@@ -20,7 +20,6 @@ namespace PMFInstaller
 		{
 			
 			MainWindow = new MainWindow();
-
 			MainWindow.Show();
 			ConfigFile.Load();
 		}
