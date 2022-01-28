@@ -101,6 +101,10 @@ namespace PMFInstaller
 			{
 				ConfigFile.Load();
 			}
+			if (ConfigFile.Config == null)
+			{
+				return;
+			}
 			
 			var modDirFiles = Directory.GetFiles(ConfigFile.PMFModsDirPath);
 			List<string> ActiveModsNames = new List<string>(modDirFiles.Length);
@@ -265,8 +269,8 @@ namespace PMFInstaller
 			FileStream zipStream=null;
 			try
 			{
-				zipStream = File.OpenRead(file);
-				zip = new ZipArchive(zipStream, ZipArchiveMode.Read, true);
+				zipStream = File.Open(file, FileMode.Open, FileAccess.ReadWrite);
+				zip = new ZipArchive(zipStream, ZipArchiveMode.Update, true);
 			}catch(Exception e)
 			{
 				if (displayErrors)
@@ -278,7 +282,7 @@ namespace PMFInstaller
 			{
 				if (tryFix)
 				{
-					GenerateModJsonFile(file);
+					GenerateModJsonFile(zip, file);
 				}
 				else
 				{

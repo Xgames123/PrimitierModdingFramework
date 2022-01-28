@@ -19,7 +19,7 @@ namespace PMFInstaller
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
 			
-			MainWindow = new MainWindow();
+			new MainWindow();
 			MainWindow.Show();
 			ConfigFile.Load();
 		}

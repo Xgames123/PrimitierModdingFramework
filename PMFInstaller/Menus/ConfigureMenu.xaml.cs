@@ -18,7 +18,7 @@ namespace PMFInstaller
 	/// <summary>
 	/// Interaction logic for ConfigureMenu.xaml
 	/// </summary>
-	public partial class ConfigureMenu : UserControl
+	public partial class ConfigureMenu : UserControl, IMenu
 	{
 		public ConfigureMenu()
 		{

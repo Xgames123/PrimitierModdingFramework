@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf.Transitions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,19 +24,21 @@ namespace PMFInstaller
 
 		public void SwitchMenu(int menuIndex)
 		{
+			var oldMenu = (IMenu)((TransitionerSlide)Transitioner.SelectedItem).Content;
+			oldMenu?.OnClose();
 			Transitioner.SelectedIndex = menuIndex;
+			var newMenu = (IMenu)((TransitionerSlide)Transitioner.SelectedItem).Content;
+			newMenu?.OnOpen();
 
-			
 		}
 
 		public MainWindow()
 		{
+			App.MainWindow = this;
 			InitializeComponent();
 
 			SwitchMenu(0);
 		}
-
-
 
 
 		private void ErrorPopupOk(object sender, RoutedEventArgs e)

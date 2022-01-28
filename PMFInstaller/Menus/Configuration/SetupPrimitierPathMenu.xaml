@@ -15,7 +15,7 @@
 
         <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5">
             <TextBlock Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5">
-               Setting up the Path to the Primitier.exe executable
+               Setting up the path to the Primitier.exe executable
             </TextBlock>
             <TextBlock Style="{StaticResource MaterialDesignTextBlock}">
                Go to steam and click the gear icon on the Primitier page.

@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using PMFInstaller.Menus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,23 @@ namespace PMFInstaller
 	/// <summary>
 	/// Interaction logic for MainMenu.xaml
 	/// </summary>
-	public partial class MainMenu : UserControl
+	public partial class MainMenu : UserControl, IMenu
 	{
 		public MainMenu()
 		{
 			InitializeComponent();
 			ModManager.OnModListsUpdate += OnModListsUpdate;
+		}
 
+		void IMenu.OnOpen()
+		{
 			ModManager.ReloadMods();
 		}
+		void IMenu.OnClose()
+		{
+			
+		}
+
 
 		private void OnModListsUpdate()
 		{
