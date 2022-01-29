@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+	<String Id="ProductName">Primitier modding framework Installer</String>
+	<String Id="ProductDescription">A tool to easily install mods for Primitier that are made using PMF</String>
+	<String Id="DowngradeErrorMessage">A newer version of PMF installer is already installed.</String>
+</WixLocalization>

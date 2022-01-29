@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="PMFInstaller.Setup" Language="1033" Version="1.0.0.0" Manufacturer="XGames105" UpgradeCode="b397ea95-5954-4a68-adb5-4991e684405a">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+	
+	<?define BuildVersion = 1.1.0 ?>
+	<?define BuildVersionId = "{B086A6C5-6A06-4813-AD20-C13BB03C2E91}" ?>
+	
+	<Product
+		Version="$(var.BuildVersion)"
+		Manufacturer="XGames105"
+		Name="!(loc.ProductName)"
+		Id="$(var.BuildVersionId)"
+		Language="1033"
+		UpgradeCode="b397ea95-5954-4a68-adb5-4991e684405a">
+		
+		<Package
+			InstallerVersion="200"
+			Compressed="yes"
+			InstallScope="perMachine"
+			Manufacturer="XGames105"
+			Description="!(loc.ProductDescription)"
+			Languages="1033"/>
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate />
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
+		<MediaTemplate
+			EmbedCab="yes"/>
 
+		
+		<Icon Id="Icon.ico" SourceFile="$(var.PMFInstaller.ProjectDir)\Assets\Images\PMFIcon.ico"/>
+		<Property Id="APPPRODUCTICON">Icon.ico</Property>
+
+		<UIRef Id="WixUI_Minimal"/>
+		<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\Background.bmp"/>
+		<WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Assets\Banner.bmp"/>
+		<WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\Assets\License.rtf"/>
+			
+		
 		<Feature Id="ProductFeature" Title="PMFInstaller.Setup" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 	</Product>
 
-	<Fragment>
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="PMFInstaller.Setup" />
-			</Directory>
-		</Directory>
-	</Fragment>
-
-	<Fragment>
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
-		</ComponentGroup>
-	</Fragment>
+	
 </Wix>
