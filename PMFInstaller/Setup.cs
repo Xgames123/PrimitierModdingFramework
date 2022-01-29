@@ -37,8 +37,8 @@ namespace PMFInstaller
 
 
 			InstallMelonLoader(primitierExeFilePath);
+			Thread.Sleep(2000);
 
-			
 			SetupPrimitierExeError = "";
 		}
 
@@ -47,6 +47,7 @@ namespace PMFInstaller
 
 
 		}
+
 
 	}
 }

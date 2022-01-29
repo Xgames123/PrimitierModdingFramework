@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using MaterialDesignThemes.Wpf.Transitions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -58,13 +59,13 @@ namespace PMFInstaller.Menus.Configuration
 			DropTarget.AllowDrop = false;
 			DropTargetText.Text = "Loading";
 			ButtonProgressAssist.SetIsIndicatorVisible(DropTarget, true);
+			
 			Task.Factory.StartNew(() => Setup.SetupPrimitierExe(filePath))
 			.ContinueWith(t =>
 			{
-				Dispatcher.BeginInvoke((Action)delegate ()
+				Dispatcher.Invoke(() =>
 				{
-
-					if(Setup.SetupPrimitierExeError != "")
+					if (Setup.SetupPrimitierExeError != "")
 					{
 						ResetDragDrop();
 						ErrorHandeler.ShowError(Setup.SetupPrimitierExeError);
@@ -75,8 +76,10 @@ namespace PMFInstaller.Menus.Configuration
 						DropTargetText.Text = "Done";
 						ButtonProgressAssist.SetIsIndicatorVisible(DropTarget, false);
 					}
-					
+
 				});
+			
+	
 			});
 
 
@@ -87,5 +90,6 @@ namespace PMFInstaller.Menus.Configuration
 			App.MainWindow.SwitchMenu(0);
 
 		}
+
 	}
 }

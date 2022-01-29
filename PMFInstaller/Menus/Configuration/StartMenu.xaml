@@ -35,7 +35,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="Next" Grid.Column="2" Content="Next" Style="{StaticResource MaterialDesignRaisedDarkButton}" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}"/>
+            <Button x:Name="Next" Grid.Column="2" Content="Next" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="NextButtonClick"/>
 
         </Grid>
 

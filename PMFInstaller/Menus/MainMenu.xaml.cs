@@ -60,13 +60,12 @@ namespace PMFInstaller
 			Task.Factory.StartNew(() => PrimitierLauncher.LaunchWithSelectedMods())
 			.ContinueWith(t =>
 			{
-				Dispatcher.BeginInvoke((Action)delegate ()
+				Dispatcher.Invoke(()=>
 				{
 					ButtonProgressAssist.SetIsIndicatorVisible(LaunchPrimitierButton, false);
-					Thread.Sleep(1000);
-					App.MainWindow.Close();
-
 				});
+				Thread.Sleep(500);
+				App.MainWindow.Close();
 			});
 
 
