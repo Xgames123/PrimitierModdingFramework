@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+	 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<ComponentRef Id="CoreComponent"/>
@@ -20,8 +21,10 @@
 				<File Name="MaterialDesignThemes.Wpf.dll"/>
 				<File Name="MaterialDesignColors.dll"/>
 
+				
+				
 				<!--Remove the config directory created by PMF installer-->
-				<RemoveFolder Id="RemoveConfigFolder" Directory="PMFINSTALLERCONFIGDIR" On="uninstall"/>
+				<util:RemoveFolderEx Id="RemoveConfigFolder" Property="PMFINSTALLERCONFIGDIR" On="uninstall"/>
 			</Component>
 
 			<Component Id="DesktopShortcutComponent" Guid="{7156019E-5B7F-4EB3-BE6A-EA0630684C07}">

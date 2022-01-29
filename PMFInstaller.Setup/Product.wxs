@@ -25,6 +25,11 @@
 		<MediaTemplate
 			EmbedCab="yes"/>
 
+
+		<!--Config files directory-->
+		<PropertyRef Id="WIX_SUITE_PERSONAL"/>
+		<Property Id="PMFINSTALLERCONFIGDIR"></Property>
+		
 		
 		<Icon Id="Icon.ico" SourceFile="$(var.PMFInstaller.ProjectDir)\Assets\Images\PMFIcon.ico"/>
 		<Property Id="ARPPRODUCTICON">Icon.ico</Property>
@@ -41,7 +46,15 @@
 		<Feature Id="ProductFeature" Title="PMFInstaller.Setup" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
-	</Product>
 
-	
+		<CustomAction Id="SetPMFINSTALLERCONFIGDIRProp" Property="PMFINSTALLERCONFIGDIR" Value="[WIX_SUITE_PERSONAL]\PrimitierModdingFramework"></CustomAction>
+		<InstallExecuteSequence>
+			<Custom Action="QtExec" After="SetPMFINSTALLERCONFIGDIRProp"/>
+		</InstallExecuteSequence>
+	</Product>
+ 
+
+
+
+
 </Wix>
