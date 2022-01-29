@@ -3,8 +3,8 @@
 	
 	<?define BuildVersion = 1.1.0 ?>
 	<?define BuildVersionId = "{B086A6C5-6A06-4813-AD20-C13BB03C2E91}" ?>
-	<?define SourceFiles = "..\PMFInstaller\bin\publish\net5.0\Windows"?>
 	
+
 	<Product
 		Version="$(var.BuildVersion)"
 		Manufacturer="XGames105"
@@ -28,13 +28,16 @@
 		
 		<Icon Id="Icon.ico" SourceFile="$(var.PMFInstaller.ProjectDir)\Assets\Images\PMFIcon.ico"/>
 		<Property Id="ARPPRODUCTICON">Icon.ico</Property>
-
-		<UIRef Id="WixUI_Minimal"/>
+		
+		
+		<UIRef Id="WixUI_InstallDir" />
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+		
 		<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\Background.bmp"/>
 		<WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Assets\Banner.bmp"/>
 		<WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\Assets\License.rtf"/>
-			
-		
+
+
 		<Feature Id="ProductFeature" Title="PMFInstaller.Setup" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>

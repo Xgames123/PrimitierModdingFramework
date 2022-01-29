@@ -13,6 +13,9 @@
 				</Directory>
 			</Directory>
 
+			<Directory Id="PersonalFolder">
+				<Directory Id="PMFINSTALLERCONFIGDIR" Name="PrimitierModdingFramework"/>
+			</Directory>
 			
 
 		</Directory>

@@ -7,7 +7,7 @@
 		</ComponentGroup>
 
 
-		<DirectoryRef Id="INSTALLFOLDER" FileSource="$(var.SourceFiles)">
+		<DirectoryRef Id="INSTALLFOLDER" FileSource="!(loc.SourceFiles)">
 
 			<Component Id="CoreComponent" Guid="{88F9CE73-303D-45E6-A2DD-4C6506EBE733}">
 				<File Name="PMFInstaller.exe"/>
@@ -19,6 +19,9 @@
 				<File Name="Newtonsoft.Json.dll"/>
 				<File Name="MaterialDesignThemes.Wpf.dll"/>
 				<File Name="MaterialDesignColors.dll"/>
+
+				<!--Remove the config directory created by PMF installer-->
+				<RemoveFolder Id="RemoveConfigFolder" Directory="PMFINSTALLERCONFIGDIR" On="uninstall"/>
 			</Component>
 
 			<Component Id="DesktopShortcutComponent" Guid="{7156019E-5B7F-4EB3-BE6A-EA0630684C07}">
@@ -31,7 +34,6 @@
 				
 				<!-- Unique key for this component/shortcut -->
 				<RegistryValue Id="DesktopShortcutRegistry" Root="HKCU" Key="SOFTWARE\!(loc.Author)\!(loc.UnfriendlyProductName)" Name="Shortcut" Value="1" Type="integer" KeyPath="yes" />
-				
 			
 				<RemoveFolder Id="RemoveStartMenuFolder" Directory="STARTMENUFOLDER" On="uninstall"/>
 			</Component>

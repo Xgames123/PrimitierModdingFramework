@@ -8,4 +8,5 @@
 	
 	
 	<String Id="UnfriendlyProductName">PMFInstaller</String>
+	<String Id="SourceFiles">..\PMFInstaller\bin\publish\net5.0\Windows</String>
 </WixLocalization>
