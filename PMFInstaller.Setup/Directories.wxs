@@ -2,9 +2,19 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="PMFInstaller.Setup" />
+
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="STARTMENUFOLDER" Name="!(loc.ProductName)"/>
 			</Directory>
+
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="CompanyDirectory" Name="!(loc.Author)">
+					<Directory Id="INSTALLFOLDER" Name="!(loc.UnfriendlyProductName)" />
+				</Directory>
+			</Directory>
+
+			
+
 		</Directory>
 	</Fragment>
 

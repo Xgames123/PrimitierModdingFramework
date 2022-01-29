@@ -3,6 +3,7 @@
 	
 	<?define BuildVersion = 1.1.0 ?>
 	<?define BuildVersionId = "{B086A6C5-6A06-4813-AD20-C13BB03C2E91}" ?>
+	<?define SourceFiles = "..\PMFInstaller\bin\publish\net5.0\Windows"?>
 	
 	<Product
 		Version="$(var.BuildVersion)"
@@ -26,7 +27,7 @@
 
 		
 		<Icon Id="Icon.ico" SourceFile="$(var.PMFInstaller.ProjectDir)\Assets\Images\PMFIcon.ico"/>
-		<Property Id="APPPRODUCTICON">Icon.ico</Property>
+		<Property Id="ARPPRODUCTICON">Icon.ico</Property>
 
 		<UIRef Id="WixUI_Minimal"/>
 		<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Assets\Background.bmp"/>
