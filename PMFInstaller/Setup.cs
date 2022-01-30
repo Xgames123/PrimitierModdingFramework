@@ -10,6 +10,7 @@ namespace PMFInstaller
 {
 	public static class Setup
 	{
+		public static string UninstallError = "";
 
 		public static string SetupPrimitierExeError = "";
 
@@ -47,6 +48,44 @@ namespace PMFInstaller
 
 
 		}
+
+		private static void UninstallMelonLoader(string PrimitierExePath)
+		{
+			
+
+
+
+		}
+
+		public static void Uninstall()
+		{
+			UninstallError = "";
+
+			if (ConfigFile.Config == null)
+			{
+				ConfigFile.Load();
+			}
+			if (ConfigFile.Config == null)
+			{
+				UninstallError = "No config file found";
+				return;
+			}
+
+			UninstallMelonLoader(Path.Combine(ConfigFile.Config.PrimitierInstallPath, "Primitier.exe"));
+
+			try
+			{
+				Directory.Delete(ConfigFile.PMFDirPath, true);
+			}catch (Exception e)
+			{
+				UninstallError = "Can delete mods folder";
+				return;
+			}
+
+
+		}
+
+		
 
 
 	}

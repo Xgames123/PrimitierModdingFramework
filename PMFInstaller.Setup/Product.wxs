@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	
-	<?define BuildVersion = 1.1.0 ?>
+	<?define BuildVersion = 0.2.0 ?>
 	<?define BuildVersionId = "{B086A6C5-6A06-4813-AD20-C13BB03C2E91}" ?>
 	
 
@@ -28,8 +28,6 @@
 
 		<!--Config files directory-->
 		<PropertyRef Id="WIX_SUITE_PERSONAL"/>
-		<Property Id="PMFINSTALLERCONFIGDIR"></Property>
-		
 		
 		<Icon Id="Icon.ico" SourceFile="$(var.PMFInstaller.ProjectDir)\Assets\Images\PMFIcon.ico"/>
 		<Property Id="ARPPRODUCTICON">Icon.ico</Property>
@@ -47,10 +45,13 @@
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 
-		<CustomAction Id="SetPMFINSTALLERCONFIGDIRProp" Property="PMFINSTALLERCONFIGDIR" Value="[WIX_SUITE_PERSONAL]\PrimitierModdingFramework"></CustomAction>
+
+		<CustomAction Id="RunPMFInstallerUninstall" ExeCommand="PMFInstaller.exe Uninstall" Directory="INSTALLFOLDER" Return='check' />
+
 		<InstallExecuteSequence>
-			<Custom Action="QtExec" After="SetPMFINSTALLERCONFIGDIRProp"/>
+			<Custom Action='RunPMFInstallerUninstall' After='InstallInitialize'>Installed AND NOT UPGRADINGPRODUCTCODE</Custom>
 		</InstallExecuteSequence>
+		
 	</Product>
  
 

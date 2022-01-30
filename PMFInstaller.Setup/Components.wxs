@@ -24,7 +24,6 @@
 				
 				
 				<!--Remove the config directory created by PMF installer-->
-				<util:RemoveFolderEx Id="RemoveConfigFolder" Property="PMFINSTALLERCONFIGDIR" On="uninstall"/>
 			</Component>
 
 			<Component Id="DesktopShortcutComponent" Guid="{7156019E-5B7F-4EB3-BE6A-EA0630684C07}">

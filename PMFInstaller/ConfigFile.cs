@@ -58,7 +58,11 @@ namespace PMFInstaller
 			}catch(Exception e)
 			{
 				Config = null;
-				App.MainWindow.SwitchMenu(1);
+				if (App.MainWindow != null)
+				{
+					App.MainWindow.SwitchMenu(1);
+				}
+				
 			}
 			
 		}

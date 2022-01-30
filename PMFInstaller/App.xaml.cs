@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BetterConsole;
+using PMFInstaller.Commands;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,12 +17,28 @@ namespace PMFInstaller
 	{
 		public static MainWindow MainWindow = null;
 		
+		private void ParseCommandLine()
+		{
+			var commandLine = Environment.GetCommandLineArgs();
+
+			if (commandLine.Length == 0)
+			{
+				new DefaultCommand().Execute(null);
+				return;
+			}
+
+			var args = new string[commandLine.Length - 1];
+			Array.Copy(commandLine, 1, args, 0, args.Length);
+
+			Command.RunCommand(args, new DefaultCommand(), new UninstallCommand());
+		}
+
 
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
-			
-			new MainWindow();
-			MainWindow.Show();
+			ParseCommandLine();
+
+
 			ConfigFile.Load();
 		}
 
