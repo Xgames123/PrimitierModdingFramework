@@ -38,13 +38,15 @@ namespace PMFInstaller
 		{
 			ParseCommandLine();
 
-
-			ConfigFile.Load();
 		}
 
 		private void Application_Exit(object sender, ExitEventArgs e)
 		{
-			ConfigFile.Save();
+			if (ConfigFile.Config != null)
+			{
+				ConfigFile.Save();
+			}
+
 
 		}
 	}

@@ -19,7 +19,8 @@ namespace PMFInstaller.Commands
 		{
 			new MainWindow();
 			App.MainWindow.Show();
-			
+
+			ConfigFile.Load();
 		}
 	}
 }

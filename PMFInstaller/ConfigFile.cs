@@ -11,7 +11,7 @@ namespace PMFInstaller
 	[Serializable]
 	public class ConfigFile
 	{
-		[JsonIgnore] public static ConfigFile Config;
+		[JsonIgnore] public static ConfigFile? Config;
 		[JsonIgnore] public static string PMFDirPath  = null;
 		[JsonIgnore] public static string PMFModsDirPath = null;
 		[JsonIgnore] public static string ConfigFilePath = null;

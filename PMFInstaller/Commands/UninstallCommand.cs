@@ -18,9 +18,13 @@ namespace PMFInstaller.Commands
 
 		protected override void OnExecute(Argument[] args)
 		{
-			App.Current.Shutdown();
-
+			ConfigFile.Load();
+			
 			Setup.Uninstall();
+
+			ConfigFile.Config = null;
+
+			App.Current.Shutdown();
 
 		}
 	}

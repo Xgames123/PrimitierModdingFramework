@@ -4,30 +4,29 @@
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<ComponentRef Id="CoreComponent"/>
-			<ComponentRef Id="DesktopShortcutComponent"/>
+			<ComponentRef Id="StartMenuShortcutComponent"/>
 		</ComponentGroup>
 
 
 		<DirectoryRef Id="INSTALLFOLDER" FileSource="!(loc.SourceFiles)">
 
 			<Component Id="CoreComponent" Guid="{88F9CE73-303D-45E6-A2DD-4C6506EBE733}">
-				<File Name="PMFInstaller.exe"/>
+				<File Name="PMFInstaller.exe" Id="PMFEXE"/>
 				<File Name="PMFInstaller.deps.json"/>
 				<File Name="PMFInstaller.runtimeconfig.json"/>
 				<File Name="PMFInstaller.dll"/>
-				
-				
+
+
+				<File Name="BetterConsole.dll"/>
 				<File Name="Newtonsoft.Json.dll"/>
 				<File Name="MaterialDesignThemes.Wpf.dll"/>
 				<File Name="MaterialDesignColors.dll"/>
 
 				
-				
-				<!--Remove the config directory created by PMF installer-->
 			</Component>
 
-			<Component Id="DesktopShortcutComponent" Guid="{7156019E-5B7F-4EB3-BE6A-EA0630684C07}">
-				<Shortcut Id="DesktopShortcut"
+			<Component Id="StartMenuShortcutComponent" Guid="{7156019E-5B7F-4EB3-BE6A-EA0630684C07}">
+				<Shortcut Id="StartMenuShortcut"
 					Name="!(loc.ProductName)"
 					Target="[INSTALLFOLDER]PMFInstaller.exe"
 					Directory="STARTMENUFOLDER"
