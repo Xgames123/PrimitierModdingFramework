@@ -7,7 +7,7 @@
 
 	<Product
 		Version="$(var.BuildVersion)"
-		Manufacturer="XGames105"
+		Manufacturer="!(loc.Author)"
 		Name="!(loc.ProductName)"
 		Id="$(var.BuildVersionId)"
 		Language="1033"
@@ -17,7 +17,7 @@
 			InstallerVersion="200"
 			Compressed="yes"
 			InstallScope="perMachine"
-			Manufacturer="XGames105"
+			Manufacturer="!(loc.Author)"
 			Description="!(loc.ProductDescription)"
 			Languages="1033"/>
 

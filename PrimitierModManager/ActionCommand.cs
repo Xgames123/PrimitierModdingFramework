@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PMFInstaller
+namespace PrimitierModManager
 {
 	public class ActionCommand : ICommand
 	{

@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
-namespace PMFInstaller
+namespace PrimitierModManager
 {
 
 

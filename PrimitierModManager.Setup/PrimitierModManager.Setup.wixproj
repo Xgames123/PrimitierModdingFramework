@@ -8,6 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>PMFInstaller</OutputName>
     <OutputType>Package</OutputType>
+    <Name>PrimitierModManager.Setup</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -24,16 +25,6 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PMFInstaller\PMFInstaller.csproj">
-      <Name>PMFInstaller</Name>
-      <Project>{732120ae-dae9-4395-a07a-7d2c340f3838}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Common.wxl" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +39,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PMFInstaller\PrimitierModManager.csproj">
+      <Name>PrimitierModManager</Name>
+      <Project>{732120ae-dae9-4395-a07a-7d2c340f3838}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />

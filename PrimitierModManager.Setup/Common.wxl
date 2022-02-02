@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+
+	<String Id="Author">XGames105</String>
+	<String Id="ProductName">Primitier mod manager</String>
+	<String Id="ProductDescription">A tool to easily install mods for Primitier that are made using PMF or melonloader</String>
+	<String Id="DowngradeErrorMessage">A newer version of PMF installer is already installed.</String>
+	
+	
+	<String Id="UnfriendlyProductName">PrimitierModManager</String>
+	<String Id="SourceFiles">..\PrimitierModManager\bin\publish\net5.0\Windows</String>
+</WixLocalization>

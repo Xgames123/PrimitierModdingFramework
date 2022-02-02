@@ -19,7 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace PMFInstaller.Menus.Configuration
+namespace PrimitierModManager.Menus.Configuration
 {
 	/// <summary>
 	/// Interaction logic for SetupPrimitierPathMenu.xaml

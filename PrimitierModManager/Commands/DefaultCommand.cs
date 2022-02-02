@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PMFInstaller.Commands
+namespace PrimitierModManager.Commands
 {
 	public class DefaultCommand : Command
 	{

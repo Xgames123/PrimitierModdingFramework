@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PMFInstaller
+namespace PrimitierModManager
 {
 	/// <summary>
 	/// Interaction logic for ConfigureMenu.xaml

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PMFInstaller
+namespace PrimitierModManager
 {
 	public static class ErrorHandeler
 	{

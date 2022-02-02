@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PMFInstaller
+namespace PrimitierModManager
 {
 	public static class ModManager
 	{

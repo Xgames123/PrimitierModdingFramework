@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PMFInstaller
+namespace PrimitierModManager
 {
 	public static class Setup
 	{
@@ -28,8 +28,9 @@ namespace PMFInstaller
 			{
 				SetupPrimitierExeError = "The file was not Primitier.exe";
 				return;
-
 			}
+
+
 			if (ConfigFile.Config == null)
 			{
 				ConfigFile.Config = new ConfigFile();

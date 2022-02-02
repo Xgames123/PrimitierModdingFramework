@@ -1,5 +1,5 @@
 ﻿using BetterConsole;
-using PMFInstaller.Commands;
+using PrimitierModManager.Commands;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PMFInstaller
+namespace PrimitierModManager
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
