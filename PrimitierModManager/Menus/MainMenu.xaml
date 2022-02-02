@@ -129,26 +129,28 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="All mods" Grid.Column="0" Grid.Row="0" Margin="5" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
-            <ItemsControl
-                Grid.Column="0"
-                Grid.Row="1"
-                x:Name="ModList"
-                ItemTemplate="{StaticResource ModListItemTemplate}"
-                ItemsSource="{Binding Items2}"
-                Grid.IsSharedSizeScope="True"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
-            </ItemsControl>
+
+
+            <ScrollViewer Grid.IsSharedSizeScope="True" Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ItemsControl
+                    x:Name="ModList"
+                    ItemTemplate="{StaticResource ModListItemTemplate}"
+                    ItemsSource="{Binding Items2}"
+                    Grid.IsSharedSizeScope="True">
+                </ItemsControl>
+            </ScrollViewer>
 
             <TextBlock Text="Selected mods" Grid.Column="2" Grid.Row="0" Margin="5" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
-            <ItemsControl
-                Grid.Column="2"
-                Grid.Row="1"
-                x:Name="ActiveModList"
-                 ItemTemplate="{StaticResource ActiveModListItemTemplate}"
-                ItemsSource="{Binding Items2}"
-                Grid.IsSharedSizeScope="True"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
-            </ItemsControl>
+
+            <ScrollViewer Grid.IsSharedSizeScope="True" Grid.Column="2" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ItemsControl
+                    x:Name="ActiveModList"
+                    ItemTemplate="{StaticResource ActiveModListItemTemplate}"
+                    ItemsSource="{Binding Items2}"
+                    Grid.IsSharedSizeScope="True">
+                </ItemsControl>
+            </ScrollViewer>
+          
 
         </Grid>
 
