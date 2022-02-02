@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace PrimitierModManager
 {
@@ -18,6 +19,7 @@ namespace PrimitierModManager
 
 		public static event Action OnModListsUpdate;
 
+		public static BitmapImage DefaultIcon;
 
 		public static void EnableMod(Mod mod)
 		{
@@ -215,14 +217,14 @@ namespace PrimitierModManager
 			var zipStream = File.Open(file, FileMode.Open, FileAccess.ReadWrite);
 			var zip = new ZipArchive(zipStream, ZipArchiveMode.Update);
 
-			var modjsonEntry = FindEntryZip("Mod.json", zip);
+			var modjsonEntry = ZipHelper.FindEntryZip("Mod.json", zip);
 			if (modjsonEntry == null)
 			{
 				modjsonEntry = GenerateModJsonFile(zip, file);
 			}
 
 			Mod mod = null;
-			var bytes = ReadEntryZipBytes(modjsonEntry);
+			var bytes = ZipHelper.ReadEntryZipBytes(modjsonEntry);
 			try
 			{
 				mod = JsonConvert.DeserializeObject<Mod>(Encoding.ASCII.GetString(bytes));
@@ -233,12 +235,24 @@ namespace PrimitierModManager
 				return null;
 			}
 
-			var iconEntry = FindEntryZip("Icon.png", zip);
+			var iconEntry = ZipHelper.FindEntryZip("Icon.png", zip);
 			if (iconEntry != null)
 			{
-				throw new NotImplementedException();
-			}
+				var stream = iconEntry.Open();
+				mod.Image = LoadFromStream(stream);
 
+				stream.Close();
+			}
+			else
+			{
+				if (DefaultIcon == null)
+				{
+					DefaultIcon = new BitmapImage(new Uri("/Assets/Images/PMFIcon.png", UriKind.Relative));
+				}
+				mod.Image = DefaultIcon;
+				
+			}
+			
 			zip.Dispose();
 			zipStream.Close();
 
@@ -248,6 +262,25 @@ namespace PrimitierModManager
 			mod.InitUI();
 			return mod;
 		}
+
+
+
+		private static BitmapImage LoadFromStream(Stream stream)
+		{
+			var image = new BitmapImage();
+
+			image.BeginInit();
+			image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+			image.CacheOption = BitmapCacheOption.OnLoad;
+			image.UriSource = null;
+			image.StreamSource = stream;
+			image.EndInit();
+
+			image.Freeze();
+			return image;
+		}
+
+
 
 		private static bool ValidateModFile(string file, bool displayErrors=false, bool tryFix=false)
 		{
@@ -278,7 +311,7 @@ namespace PrimitierModManager
 				return false;
 			}
 			
-			if (FindEntryZip("Mod.json", zip) == null)
+			if (ZipHelper.FindEntryZip("Mod.json", zip) == null)
 			{
 				if (tryFix)
 				{
@@ -300,30 +333,6 @@ namespace PrimitierModManager
 		}
 
 
-		private static ZipArchiveEntry? FindEntryZip(string filePath, ZipArchive zip)
-		{
-			foreach (var entry in zip.Entries)
-			{
-				if (entry.FullName == filePath)
-				{
-					return entry;
-				}
-
-			}
-
-			return null;
-		}
-
-		private static byte[] ReadEntryZipBytes(ZipArchiveEntry entry)
-		{
-			var stream = entry.Open();
-			
-			byte[] bytes = new byte[stream.Length];
-			stream.Read(bytes, 0, bytes.Length);
-
-			stream.Close();
-			return bytes;
-		}
-
+		
 	}
 }

@@ -25,7 +25,7 @@ namespace PrimitierModManager
 		[JsonIgnore] public string FileName;
 		[JsonIgnore] public string Name;
 
-		[JsonIgnore] public BitmapImage Image { get; private set; }
+		[JsonIgnore] public BitmapImage Image { get; set; }
 
 
 		private void OnEnable(object? param)
