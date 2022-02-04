@@ -41,7 +41,7 @@
     <Folder Include="Assets" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PMFInstaller\PrimitierModManager.csproj">
+    <ProjectReference Include="..\PrimitierModManager\PrimitierModManager.csproj">
       <Name>PrimitierModManager</Name>
       <Project>{732120ae-dae9-4395-a07a-7d2c340f3838}</Project>
       <Private>True</Private>

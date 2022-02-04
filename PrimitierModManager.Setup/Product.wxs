@@ -29,7 +29,7 @@
 		<!--Config files directory-->
 		<PropertyRef Id="WIX_SUITE_PERSONAL"/>
 		
-		<Icon Id="Icon.ico" SourceFile="$(var.PMFInstaller.ProjectDir)\Assets\Images\PMFIcon.ico"/>
+		<Icon Id="Icon.ico" SourceFile="$(var.PrimitierModManager.ProjectDir)\Assets\Images\PMFIcon.ico"/>
 		<Property Id="ARPPRODUCTICON">Icon.ico</Property>
 		
 		
