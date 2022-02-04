@@ -11,10 +11,10 @@
 		<DirectoryRef Id="INSTALLFOLDER" FileSource="!(loc.SourceFiles)">
 
 			<Component Id="CoreComponent" Guid="{88F9CE73-303D-45E6-A2DD-4C6506EBE733}">
-				<File Name="PMFInstaller.exe" Id="PMFEXE"/>
-				<File Name="PMFInstaller.deps.json"/>
-				<File Name="PMFInstaller.runtimeconfig.json"/>
-				<File Name="PMFInstaller.dll"/>
+				<File Name="PrimitierModManager.exe" Id="PMFEXE"/>
+				<File Name="PrimitierModManager.deps.json"/>
+				<File Name="PrimitierModManager.runtimeconfig.json"/>
+				<File Name="PrimitierModManager.dll"/>
 
 
 				<File Name="BetterConsole.dll"/>
