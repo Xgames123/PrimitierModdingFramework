@@ -47,6 +47,7 @@ namespace PrimitierModManager
 			if (MelonInstallUninstallError != "")
 			{
 				SetupPrimitierExeError = "Can not install MelonLoader";
+				return;
 			}
 
 			Thread.Sleep(2000);
@@ -144,6 +145,7 @@ namespace PrimitierModManager
 			if (MelonInstallUninstallError != "")
 			{
 				UninstallError = "Can not uninstall MelonLoader";
+				return;
 			}
 
 			try
