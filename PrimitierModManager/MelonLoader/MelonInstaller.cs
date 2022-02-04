@@ -91,6 +91,22 @@ namespace PrimitierModManager.MelonLoader
                 });
 
                 ExtraCleanupCheck(destination);
+
+				//Remove Mods/Plugins folder
+
+				try
+				{
+                    Directory.Delete(Path.Combine(destination, "Mods"), true);
+                    Directory.Delete(Path.Combine(destination, "Plugins"), true);
+                    Directory.Delete(Path.Combine(destination, "UserData"), true);
+                    Directory.Delete(Path.Combine(destination, "UserLibs"), true);
+                }
+                catch (Exception ex)
+				{
+
+				}
+
+
             }
             catch (Exception ex)
             {
