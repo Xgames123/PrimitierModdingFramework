@@ -5,6 +5,7 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<ComponentRef Id="CoreComponent"/>
 			<ComponentRef Id="StartMenuShortcutComponent"/>
+			<ComponentRef Id="PmfmFileOpening"/>
 		</ComponentGroup>
 
 
@@ -39,7 +40,20 @@
 				<RemoveFolder Id="RemoveStartMenuFolder" Directory="STARTMENUFOLDER" On="uninstall"/>
 			</Component>
 
+			
+			
+			<Component Id="PmfmFileOpening" Guid="{239CC1E0-BA59-43C0-A226-41C533E453D1}">
 
+				<ProgId Id="PrimitierModManagerPmfm" Description="Add mod to Primitier mod manager">
+					<Extension Id="pmfm">
+						<Verb Id="open" TargetFile="MAINEXE" Argument="&quot;%1&quot;" />
+					</Extension>
+				</ProgId>
+				
+			</Component>
+			
+			
+			
 		</DirectoryRef>
 		
 	</Fragment>
