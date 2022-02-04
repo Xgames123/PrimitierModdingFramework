@@ -101,6 +101,9 @@ namespace PrimitierModManager.MelonLoader
 
         public static void Install(string destination, string selected_version, bool is_x86, bool legacy_version)
         {
+            Error = "Errosljf slfslh jflsdjhfl ssdfs";
+            return;
+
             Status = "";
             Error = "";
 

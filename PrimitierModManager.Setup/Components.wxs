@@ -11,7 +11,7 @@
 		<DirectoryRef Id="INSTALLFOLDER" FileSource="!(loc.SourceFiles)">
 
 			<Component Id="CoreComponent" Guid="{88F9CE73-303D-45E6-A2DD-4C6506EBE733}">
-				<File Name="PrimitierModManager.exe" Id="PMFEXE"/>
+				<File Name="PrimitierModManager.exe" Id="MAINEXE"/>
 				<File Name="PrimitierModManager.deps.json"/>
 				<File Name="PrimitierModManager.runtimeconfig.json"/>
 				<File Name="PrimitierModManager.dll"/>
@@ -28,7 +28,7 @@
 			<Component Id="StartMenuShortcutComponent" Guid="{7156019E-5B7F-4EB3-BE6A-EA0630684C07}">
 				<Shortcut Id="StartMenuShortcut"
 					Name="!(loc.ProductName)"
-					Target="[INSTALLFOLDER]PMFInstaller.exe"
+					Target="[INSTALLFOLDER]PrimitierModManager.exe"
 					Directory="STARTMENUFOLDER"
 					WorkingDirectory="INSTALLFOLDER"/>
 				

@@ -46,7 +46,7 @@
 		</Feature>
 
 
-		<CustomAction Id="RunPMFInstallerUninstall" ExeCommand="Uninstall" FileKey="PMFEXE" Return='check' />
+		<CustomAction Id="RunPMFInstallerUninstall" ExeCommand="Uninstall" FileKey="MAINEXE" Return='check' />
 
 		<InstallExecuteSequence>
 			<Custom Action='RunPMFInstallerUninstall' After='InstallInitialize'>Installed AND NOT UPGRADINGPRODUCTCODE</Custom>
