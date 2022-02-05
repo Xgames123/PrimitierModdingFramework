@@ -42,7 +42,7 @@
 
 			
 			
-			<Component Id="PmfmFileOpening" Guid="{239CC1E0-BA59-43C0-A226-41C533E453D1}">
+			<Component Id="PmfmFileOpening" Guid="{239CC1E0-BA59-43C0-A226-41C533E453D1}" KeyPath="yes">
 
 				<ProgId Id="PrimitierModManagerPmfm" Description="Add mod to Primitier mod manager">
 					<Extension Id="pmfm">
