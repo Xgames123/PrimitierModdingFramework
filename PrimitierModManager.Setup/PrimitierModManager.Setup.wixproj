@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>eed1bc29-87e6-48b3-8c17-d0ba3c3f3ea2</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>PMFInstaller</OutputName>
+    <OutputName>PrimitierModManager</OutputName>
     <OutputType>Package</OutputType>
     <Name>PrimitierModManager.Setup</Name>
   </PropertyGroup>

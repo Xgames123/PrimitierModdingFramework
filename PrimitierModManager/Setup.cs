@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -157,6 +158,39 @@ namespace PrimitierModManager
 				return;
 			}
 
+
+		}
+
+		public static void CheckForUpdates()
+		{
+
+			Task.Factory.StartNew(async () =>
+			{
+				var currentVersion = Assembly.GetEntryAssembly().GetName().Version;
+				var latestRelease = await Updater.GetLatestRelease();
+				var latestReleaseVersion = new Version(latestRelease.TagName.Substring(1));
+
+				if (currentVersion < latestReleaseVersion)
+				{
+					var downloadLink = "";
+					foreach (var asset in latestRelease.Assets)
+					{
+						if (asset.Name == "PrimitierModManager.msi")
+						{
+							downloadLink = asset.BrowserDownloadUrl;
+							break;
+						}
+
+					}
+
+					Dispatcher.CurrentDispatcher.Invoke(() =>
+					{
+						PopupManager.ShowUpdatePopup(downloadLink);
+
+					});
+
+				}
+			});
 
 		}
 

@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace PrimitierModManager
 {
-	public static class ErrorHandeler
+	public static class PopupManager
 	{
+		public static void ShowUpdatePopup(string link)
+		{
+			throw new NotImplementedException("Update popup is not implemented");
+
+		}
+
 
 		public static void ShowError(string error)
 		{

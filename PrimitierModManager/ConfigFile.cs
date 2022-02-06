@@ -36,7 +36,7 @@ namespace PrimitierModManager
 			}
 			catch (Exception e)
 			{
-				ErrorHandeler.ShowError("Can not rebuild directory structure");
+				PopupManager.ShowError("Can not rebuild directory structure");
 			}
 		
 

@@ -25,9 +25,9 @@ namespace PrimitierModManager.MelonLoader
 
 	public static class MelonInstaller
 	{
-        private static string DownloadMelonLoaderUri = "https://github.com/LavaGang/MelonLoader/releases/download";
-        private static string[] ProxyNames = { "version", "winmm", "winhttp" };
-        private static WebClient WebClient;
+        public static string MelonLoaderUpdateSourceUri = "https://github.com/LavaGang/MelonLoader/releases/download";
+        private static string[] s_proxyNames = { "version", "winmm", "winhttp" };
+        private static WebClient s_webClient;
 
         public static string Status;
         public static string Error;
@@ -125,24 +125,24 @@ namespace PrimitierModManager.MelonLoader
             Error = "";
 
             Status = "Downloading MelonLoader...";
-            string downloadurl = DownloadMelonLoaderUri + "/" + selected_version + "/MelonLoader." + ((!legacy_version && is_x86) ? "x86" : "x64") + ".zip";
+            string downloadurl = MelonLoaderUpdateSourceUri + "/" + selected_version + "/MelonLoader." + ((!legacy_version && is_x86) ? "x86" : "x64") + ".zip";
             string temp_path = TempFileCache.CreateFile();
            
-            if (WebClient == null)
+            if (s_webClient == null)
 			{
-                WebClient = new WebClient();
+                s_webClient = new WebClient();
             }
             
-            try { WebClient.DownloadFileAsync(new Uri(downloadurl), temp_path); while (WebClient.IsBusy) { } }
+            try { s_webClient.DownloadFileAsync(new Uri(downloadurl), temp_path); while (s_webClient.IsBusy) { } }
             catch (Exception ex)
             {
                 Error = ex.ToString();
                 return;
             }
 
-            string repo_hash_url = DownloadMelonLoaderUri + "/" + selected_version + "/MelonLoader." + ((!legacy_version && is_x86) ? "x86" : "x64") + ".sha512";
+            string repo_hash_url = MelonLoaderUpdateSourceUri + "/" + selected_version + "/MelonLoader." + ((!legacy_version && is_x86) ? "x86" : "x64") + ".sha512";
             string repo_hash = null;
-            try { repo_hash = WebClient.DownloadString(repo_hash_url); } catch { repo_hash = null; }
+            try { repo_hash = s_webClient.DownloadString(repo_hash_url); } catch { repo_hash = null; }
             if (string.IsNullOrEmpty(repo_hash))
             {
                 Error = "Failed to get SHA512 Hash from Repo!";
@@ -219,7 +219,7 @@ namespace PrimitierModManager.MelonLoader
                     {
                         if (!legacy_version && filename.Equals("version.dll"))
                         {
-                            foreach (string proxyname in ProxyNames)
+                            foreach (string proxyname in s_proxyNames)
                             {
                                 string new_proxy_path = Path.Combine(destination, (proxyname + ".dll"));
                                 if (File.Exists(new_proxy_path))
@@ -282,7 +282,7 @@ namespace PrimitierModManager.MelonLoader
         private static bool GetExistingProxyPath(string destination, out string proxy_path)
         {
             proxy_path = null;
-            foreach (string proxy in ProxyNames)
+            foreach (string proxy in s_proxyNames)
             {
                 string new_proxy_path = Path.Combine(destination, (proxy + ".dll"));
                 if (!File.Exists(new_proxy_path))

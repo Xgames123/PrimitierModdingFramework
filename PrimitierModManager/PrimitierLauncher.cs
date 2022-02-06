@@ -53,7 +53,7 @@ namespace PrimitierModManager
 					}
 				}catch(Exception e)
 				{
-					ErrorHandeler.ShowError($"Can not delete '{fileSystemEntry}'");
+					PopupManager.ShowError($"Can not delete '{fileSystemEntry}'");
 				}
 
 			}

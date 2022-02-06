@@ -14,6 +14,7 @@
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Octokit" Version="0.50.0" />
     <PackageReference Include="XGames.BetterConsole.Net" Version="1.0.0" />
   </ItemGroup>
 
@@ -21,6 +22,10 @@
     <Resource Include="Assets\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="UpdateChecker.cs~RF842dde2.TMP" />
   </ItemGroup>
 
   <ItemGroup>

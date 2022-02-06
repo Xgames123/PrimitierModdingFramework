@@ -117,7 +117,7 @@ namespace PrimitierModManager
 				{
 					if (LoadedMods.Contains(mod) || ActiveMods.Contains(mod))
 					{
-						ErrorHandeler.ShowError("Found 2 or more mods with the same Hash");
+						PopupManager.ShowError("Found 2 or more mods with the same Hash");
 						continue;
 					}
 					
@@ -204,7 +204,7 @@ namespace PrimitierModManager
 				File.Copy(file, Path.Combine(ConfigFile.PMFModsDirPath, Path.GetFileName(file)), true);
 			}catch (Exception e)
 			{
-				ErrorHandeler.ShowError("Can not copy mod files");
+				PopupManager.ShowError("Can not copy mod files");
 
 			}
 
@@ -231,7 +231,7 @@ namespace PrimitierModManager
 			}
 			catch (Exception e)
 			{
-				ErrorHandeler.ShowError($"Can not load mod '{file}' invalid Mod.json");
+				PopupManager.ShowError($"Can not load mod '{file}' invalid Mod.json");
 				return null;
 			}
 
@@ -287,14 +287,14 @@ namespace PrimitierModManager
 			if (!File.Exists(file))
 			{
 				if (displayErrors)
-					ErrorHandeler.ShowError($"Can not find mod '{file}'");
+					PopupManager.ShowError($"Can not find mod '{file}'");
 				return false;
 			}
 
 			if (Path.GetExtension(file) != ".pmfm" && Path.GetExtension(file) != ".zip")
 			{
 				if (displayErrors)
-					ErrorHandeler.ShowError($"Mod '{file}' is not the right file type");
+					PopupManager.ShowError($"Mod '{file}' is not the right file type");
 				return false;
 			}
 
@@ -307,7 +307,7 @@ namespace PrimitierModManager
 			}catch(Exception e)
 			{
 				if (displayErrors)
-					ErrorHandeler.ShowError($"Can't read '{file}'");
+					PopupManager.ShowError($"Can't read '{file}'");
 				return false;
 			}
 			
@@ -319,7 +319,7 @@ namespace PrimitierModManager
 				}
 				else
 				{
-					ErrorHandeler.ShowError($"Mod '{file}' doesn't contain a Mod.json file");
+					PopupManager.ShowError($"Mod '{file}' doesn't contain a Mod.json file");
 					return false;
 				}
 
