@@ -29,7 +29,7 @@
 		<!--Config files directory-->
 		<PropertyRef Id="WIX_SUITE_PERSONAL"/>
 		
-		<Icon Id="Icon.ico" SourceFile="$(var.PrimitierModManager.ProjectDir)\Assets\Images\PMFIcon.ico"/>
+		<Icon Id="Icon.ico" SourceFile="$(var.PrimitierModManager.ProjectDir)\Assets\Images\Icon.ico"/>
 		<Property Id="ARPPRODUCTICON">Icon.ico</Property>
 		
 		
@@ -41,15 +41,15 @@
 		<WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\Assets\License.rtf"/>
 
 
-		<Feature Id="ProductFeature" Title="PMFInstaller.Setup" Level="1">
+		<Feature Id="ProductFeature" Title="PrimitierModManager.Setup" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 
 
-		<CustomAction Id="RunPMFInstallerUninstall" ExeCommand="Uninstall" FileKey="MAINEXE" Return='check' />
+		<CustomAction Id="RunPrimiterModManagerUninstall" ExeCommand="Uninstall" FileKey="MAINEXE" Return='check' />
 
 		<InstallExecuteSequence>
-			<Custom Action='RunPMFInstallerUninstall' After='InstallInitialize'>Installed AND NOT UPGRADINGPRODUCTCODE</Custom>
+			<Custom Action='RunPrimiterModManagerUninstall' After='InstallInitialize'>Installed AND NOT UPGRADINGPRODUCTCODE</Custom>
 		</InstallExecuteSequence>
 		
 	</Product>

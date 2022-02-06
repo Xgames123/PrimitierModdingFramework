@@ -4,7 +4,7 @@
 	<String Id="Author">XGames105</String>
 	<String Id="ProductName">Primitier mod manager</String>
 	<String Id="ProductDescription">A tool to easily install mods for Primitier that are made using PMF or melonloader</String>
-	<String Id="DowngradeErrorMessage">A newer version of PMF installer is already installed.</String>
+	<String Id="DowngradeErrorMessage">A newer version of Primitier mod manager is already installed.</String>
 	
 	
 	<String Id="UnfriendlyProductName">PrimitierModManager</String>

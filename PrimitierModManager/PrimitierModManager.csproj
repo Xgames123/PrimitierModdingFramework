@@ -5,7 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Assets\Images\PMFIcon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\Images\Icon.ico</ApplicationIcon>
     <AssemblyVersion>0.1</AssemblyVersion>
     <FileVersion>0.1</FileVersion>
 	 
@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Images\PMFIcon.ico" />
+    <Content Include="Assets\Images\Icon.ico" />
   </ItemGroup>
 
 	
