@@ -55,7 +55,7 @@
 
         
 
-        <materialDesign:DialogHost>
+        <materialDesign:DialogHost x:Name="DialogHost">
 
 
         </materialDesign:DialogHost>

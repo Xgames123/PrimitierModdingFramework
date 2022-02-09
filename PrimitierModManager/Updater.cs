@@ -39,11 +39,18 @@ namespace PrimitierModManager
 
 			foreach (var release in releases)
 			{
+#if DEBUG
+				s_LatestRelease = release;
+				return release;
+				
+#else
 				if (release.Draft != true)
 				{
 					s_LatestRelease = release;
 					return release;
 				}
+#endif
+
 			}
 			return null;
 		}

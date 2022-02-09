@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,16 @@ namespace PrimitierModManager
 {
 	public static class PopupManager
 	{
-		public static void ShowUpdatePopup(string link)
-		{
-			throw new NotImplementedException("Update popup is not implemented");
+		private static UpdateDialog UpdateDialog = null;
 
+
+		public static void ShowUpdatePopup(Uri link)
+		{
+			UpdateDialog = new UpdateDialog(link);
+			DialogHost.Show(UpdateDialog);
+			
 		}
+
 
 
 		public static void ShowError(string error)

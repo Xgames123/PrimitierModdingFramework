@@ -185,7 +185,7 @@ namespace PrimitierModManager
 
 					Dispatcher.CurrentDispatcher.Invoke(() =>
 					{
-						PopupManager.ShowUpdatePopup(downloadLink);
+						PopupManager.ShowUpdatePopup(new Uri(downloadLink));
 
 					});
 

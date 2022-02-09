@@ -31,7 +31,10 @@ namespace PrimitierModManager.Commands
 			if (IsAlreadyRunning)
 			{
 				App.Current.Shutdown();
+				return;
 			}
+
+			Setup.CheckForUpdates();
 
 		}
 
