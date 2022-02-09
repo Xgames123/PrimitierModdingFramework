@@ -35,7 +35,7 @@ namespace PrimitierModManager
 
 			CreateGitHubClient();
 
-			var releases = await s_gitHubClient.Repository.Release.GetAll("XGames123", "PrimitierModManager");
+			var releases = await s_gitHubClient.Repository.Release.GetAll("Xgames123", "PrimitierModManager");
 
 			foreach (var release in releases)
 			{
