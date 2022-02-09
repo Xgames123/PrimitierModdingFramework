@@ -19,7 +19,8 @@ namespace PrimitierModManager
 
 		public static event Action OnModListsUpdate;
 
-		public static BitmapImage DefaultIcon;
+		public static BitmapImage DefaultPMFIcon;
+		public static BitmapImage DefaultMelonIcon;
 
 		public static void EnableMod(Mod mod)
 		{
@@ -152,7 +153,10 @@ namespace PrimitierModManager
 			var mod = new Mod();
 			mod.Name = Path.GetFileNameWithoutExtension(zipFilePath);
 			mod.DisplayName = mod.Name;
-			mod.Description = "Generated from a melon mod";
+
+			mod.Description = "Generated from a .zip mod";
+			
+			
 			mod.FileName = zipFilePath;
 			mod.IsGenerated = true;
 			mod.InitUI();
@@ -217,7 +221,7 @@ namespace PrimitierModManager
 			var zipStream = File.Open(file, FileMode.Open, FileAccess.ReadWrite);
 			var zip = new ZipArchive(zipStream, ZipArchiveMode.Update);
 
-			var modjsonEntry = ZipHelper.FindEntryZip("Mod.json", zip);
+			var modjsonEntry = zip.GetEntry("Mod.json");
 			if (modjsonEntry == null)
 			{
 				modjsonEntry = GenerateModJsonFile(zip, file);
@@ -235,7 +239,8 @@ namespace PrimitierModManager
 				return null;
 			}
 
-			var iconEntry = ZipHelper.FindEntryZip("Icon.png", zip);
+			
+			var iconEntry = zip.GetEntry("Icon.png");
 			if (iconEntry != null)
 			{
 				var stream = iconEntry.Open();
@@ -245,11 +250,27 @@ namespace PrimitierModManager
 			}
 			else
 			{
-				if (DefaultIcon == null)
+				if (ZipHelper.IsPMFMod(zip))
 				{
-					DefaultIcon = new BitmapImage(new Uri("/Assets/Images/PMFIcon.png", UriKind.Relative));
+					if (DefaultPMFIcon == null)
+					{
+						DefaultPMFIcon = new BitmapImage(new Uri("/Assets/Images/PMFIcon.png", UriKind.Relative));
+					}
+
+					mod.Image = DefaultPMFIcon;
 				}
-				mod.Image = DefaultIcon;
+				else
+				{
+					if (DefaultMelonIcon == null)
+					{
+						DefaultMelonIcon = new BitmapImage(new Uri("/Assets/Images/MelonLoaderIcon.png", UriKind.Relative));
+					}
+
+					mod.Image = DefaultMelonIcon;
+				}
+
+				
+				
 				
 			}
 			
@@ -311,7 +332,7 @@ namespace PrimitierModManager
 				return false;
 			}
 			
-			if (ZipHelper.FindEntryZip("Mod.json", zip) == null)
+			if (zip.GetEntry("Mod.json") == null)
 			{
 				if (tryFix)
 				{

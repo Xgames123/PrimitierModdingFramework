@@ -10,11 +10,11 @@ namespace PrimitierModManager
 	public static class ZipHelper
 	{
 
-		public static ZipArchiveEntry? FindEntryZip(string filePath, ZipArchive zip)
+		public static ZipArchiveEntry? FindZipEntryNameContaining(string containingName, ZipArchive zip)
 		{
 			foreach (var entry in zip.Entries)
 			{
-				if (entry.FullName == filePath)
+				if (entry.FullName.Contains(containingName))
 				{
 					return entry;
 				}
@@ -34,6 +34,17 @@ namespace PrimitierModManager
 			stream.Close();
 			return bytes;
 		}
+
+		public static bool IsPMFMod(ZipArchive zip)
+		{
+			if (FindZipEntryNameContaining("PrimitierModdingFramework", zip) != null)
+			{
+				return true;
+			}
+
+			return false;
+		}
+
 
 	}
 }

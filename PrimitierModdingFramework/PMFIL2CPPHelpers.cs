@@ -15,6 +15,9 @@ namespace PrimitierModdingFramework
 	{
 		private static List<System.Type> _AllValueTypes = new List<System.Type>();
 
+		/// <summary>
+		/// All the value types in the current AppDomain
+		/// </summary>
 		public static IReadOnlyList<System.Type> AllValueTypes { get { return _AllValueTypes; } }
 
 
