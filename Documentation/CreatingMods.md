@@ -1,5 +1,5 @@
 # Creating mods
-Note: A helpful resource for making mods is the [MelonLoaderDocs](https://melonwiki.xyz/#/)
+Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.xyz/#/)
 
 ## Try building the Demo mod
 * Clone the repo.
@@ -26,6 +26,13 @@ Note: A helpful resource for making mods is the [MelonLoaderDocs](https://melonw
 * If you need help feel free to start a issue on GitHub.
 
 
+## Package a mod for Primiter mod manager
+* Create a .zip file and add the files for your mod to it. NOTE: You don't have to add the generated dlls from MelonLoader because they will copied by Primiter mod manager
+* Add a Mod.json file to your .zip file. [see Mod.json](/Mod.json.md)
+* Add a Icon.png (This is optional)
+* Rename the .zip file to .pmfm (This is optional)
+
+
 ### Get the install directory of Primitier.
 * Go to steam and click the gear icon on the Primitier page
 ![Gear](GearIcon.png)
@@ -37,3 +44,6 @@ Note: A helpful resource for making mods is the [MelonLoaderDocs](https://melonw
 
 ## Dumping the state of the game
 [Duming](./Dumping.md)
+
+## PMFSystems
+[PMFSystems](./PMFSystems.md)

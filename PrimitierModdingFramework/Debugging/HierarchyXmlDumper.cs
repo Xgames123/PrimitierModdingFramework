@@ -10,11 +10,19 @@ using UnityEngine.SceneManagement;
 
 namespace PrimitierModdingFramework.Debugging
 {
+	/// <summary>
+	/// A class for dumping the current state of the scene to an xml file
+	/// </summary>
 	public static class HierarchyXmlDumper
 	{
-
+		/// <summary>
+		/// Name of the file to dump to
+		/// </summary>
 		public static string FilePath = "HierarchyDump.xml";
 
+		/// <summary>
+		/// A list with the default ComponentDumper
+		/// </summary>
 		public static ComponentDumperList DefaultDumperList = new ComponentDumperList(
 			new TransformDumper(), 
 			new RectTransformDumper(),

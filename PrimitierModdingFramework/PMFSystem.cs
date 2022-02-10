@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PrimitierModdingFramework
 {
+	/// <summary>
+	/// The event types for a PMFSystem
+	/// </summary>
 	public enum PMFEventType
 	{
 		ApplicationStart,
@@ -43,6 +46,10 @@ namespace PrimitierModdingFramework
 
 		}
 
+		/// <summary>
+		/// Enables a system.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
 		public static void EnableSystem<T>() where T : PMFSystem, new()
 		{
 			foreach (var system in EnabledSystems)
@@ -59,6 +66,10 @@ namespace PrimitierModdingFramework
 			EnabledSystems.Add(newSystem);
 		}
 
+		/// <summary>
+		/// Disables a system
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
 		public static void DisableSystem<T>() where T: PMFSystem, new()
 		{
 			foreach (var system in EnabledSystems)
