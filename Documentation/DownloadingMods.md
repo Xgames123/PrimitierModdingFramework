@@ -2,7 +2,7 @@
 
 
 ## Step 1
-Install the latest version of [Primitier mod manager](https://github.com/Xgames123/PrimitierModManager/releases). If you don't want to use Primitier mod manager. [Go to here](/DownloadingModsWithoutPrimitierModManager.md)
+Install the latest version of [Primitier mod manager](https://github.com/Xgames123/PrimitierModManager/releases). If you don't want to use Primitier mod manager. [Go to here](./DownloadingModsWithoutPrimitierModManager.md)
 
 ## Step 2
 find a mod you want to download and drag it into Primitier mod manager
