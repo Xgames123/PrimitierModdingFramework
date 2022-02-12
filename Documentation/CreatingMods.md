@@ -28,7 +28,7 @@ Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.
 
 ## Package a mod for Primiter mod manager
 * Create a .zip file and add the files for your mod to it. NOTE: You don't have to add the generated dlls from MelonLoader because they will copied by Primiter mod manager
-* Add a Mod.json file to your .zip file. [see Mod.json](/Mod.json.md)
+* Add a Mod.json file to your .zip file. [see Mod.json](./Mod.json.md)
 * Add a Icon.png (This is optional)
 * Rename the .zip file to .pmfm (This is optional)
 
