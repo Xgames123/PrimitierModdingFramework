@@ -40,6 +40,7 @@ namespace PrimitierModdingFramework.Debugging
 
 			GameObject textGameObject = new GameObject("Text");
 			textGameObject.transform.parent = transform;
+
 			var textMP = textGameObject.AddComponent<TextMeshPro>();
 			textMP.text = text;
 			textMP.fontSize = 0.2f;

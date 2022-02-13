@@ -34,46 +34,6 @@
     <DocumentationFile>bin\Release\PrimitierModdingFramework.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2Cppmscorlib">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="MelonLoader">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\MelonLoader.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnhollowerBaseLib, Version=0.4.16.2, Culture=neutral, PublicKeyToken=null" />
-    <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.InputModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Debugging\ComponentDumper.cs" />
     <Compile Include="Debugging\ComponentDumperList.cs" />
     <Compile Include="Debugging\ComponentDumpers\MeshFilterDumper.cs" />
@@ -95,6 +55,278 @@
     <Compile Include="PrimitierMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubstanceModding\CustomSubstanceSystem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProxyDlls\Accessibility.dll" />
+    <Content Include="ProxyDlls\Assembly-CSharp-firstpass.dll" />
+    <Content Include="ProxyDlls\Assembly-CSharp.dll" />
+    <Content Include="ProxyDlls\Boo.Lang.Compiler.dll" />
+    <Content Include="ProxyDlls\Boo.Lang.dll" />
+    <Content Include="ProxyDlls\Boo.Lang.Extensions.dll" />
+    <Content Include="ProxyDlls\Boo.Lang.Parser.dll" />
+    <Content Include="ProxyDlls\Boo.Lang.PatternMatching.dll" />
+    <Content Include="ProxyDlls\Boo.Lang.Useful.dll" />
+    <Content Include="ProxyDlls\com.unity.multiplayer-hlapi.Runtime.dll" />
+    <Content Include="ProxyDlls\Commons.Xml.Relaxng.dll" />
+    <Content Include="ProxyDlls\cscompmgd.dll" />
+    <Content Include="ProxyDlls\CustomMarshalers.dll" />
+    <Content Include="ProxyDlls\I18N.CJK.dll" />
+    <Content Include="ProxyDlls\I18N.dll" />
+    <Content Include="ProxyDlls\I18N.MidEast.dll" />
+    <Content Include="ProxyDlls\I18N.Other.dll" />
+    <Content Include="ProxyDlls\I18N.Rare.dll" />
+    <Content Include="ProxyDlls\I18N.West.dll" />
+    <Content Include="ProxyDlls\IBM.Data.DB2.dll" />
+    <Content Include="ProxyDlls\Iced.dll" />
+    <Content Include="ProxyDlls\Il2CppMono.Security.dll" />
+    <Content Include="ProxyDlls\Il2Cppmscorlib.dll" />
+    <Content Include="ProxyDlls\Il2CppNewtonsoft.Json.dll" />
+    <Content Include="ProxyDlls\Il2CppSystem.Configuration.dll" />
+    <Content Include="ProxyDlls\Il2CppSystem.Core.dll" />
+    <Content Include="ProxyDlls\Il2CppSystem.Data.dll" />
+    <Content Include="ProxyDlls\Il2CppSystem.dll" />
+    <Content Include="ProxyDlls\Il2CppSystem.Numerics.dll" />
+    <Content Include="ProxyDlls\Il2CppSystem.Runtime.Serialization.dll" />
+    <Content Include="ProxyDlls\Il2CppSystem.Xml.dll" />
+    <Content Include="ProxyDlls\Il2CppSystem.Xml.Linq.dll" />
+    <Content Include="ProxyDlls\Il2CppValve.Newtonsoft.Json.dll" />
+    <Content Include="ProxyDlls\Microsoft.CSharp.dll" />
+    <Content Include="ProxyDlls\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="ProxyDlls\Mono.CompilerServices.SymbolWriter.dll" />
+    <Content Include="ProxyDlls\Mono.CSharp.dll" />
+    <Content Include="ProxyDlls\Mono.Data.Sqlite.dll" />
+    <Content Include="ProxyDlls\Mono.Data.Tds.dll" />
+    <Content Include="ProxyDlls\Mono.Messaging.dll" />
+    <Content Include="ProxyDlls\Mono.Posix.dll" />
+    <Content Include="ProxyDlls\Mono.Security.dll" />
+    <Content Include="ProxyDlls\Mono.WebBrowser.dll" />
+    <Content Include="ProxyDlls\mscorlib.dll" />
+    <Content Include="ProxyDlls\MToon.dll" />
+    <Content Include="ProxyDlls\netstandard.dll" />
+    <Content Include="ProxyDlls\Newtonsoft.Json.dll" />
+    <Content Include="ProxyDlls\Newtonsoft.Json.xml" />
+    <Content Include="ProxyDlls\Novell.Directory.Ldap.dll" />
+    <Content Include="ProxyDlls\SMDiagnostics.dll" />
+    <Content Include="ProxyDlls\SteamVR.dll" />
+    <Content Include="ProxyDlls\SteamVR_Actions.dll" />
+    <Content Include="ProxyDlls\System.ComponentModel.Composition.dll" />
+    <Content Include="ProxyDlls\System.ComponentModel.DataAnnotations.dll" />
+    <Content Include="ProxyDlls\System.Configuration.dll" />
+    <Content Include="ProxyDlls\System.Configuration.Install.dll" />
+    <Content Include="ProxyDlls\System.Core.dll" />
+    <Content Include="ProxyDlls\System.Data.DataSetExtensions.dll" />
+    <Content Include="ProxyDlls\System.Data.dll" />
+    <Content Include="ProxyDlls\System.Data.Entity.dll" />
+    <Content Include="ProxyDlls\System.Data.Linq.dll" />
+    <Content Include="ProxyDlls\System.Data.OracleClient.dll" />
+    <Content Include="ProxyDlls\System.Data.Services.Client.dll" />
+    <Content Include="ProxyDlls\System.Data.Services.dll" />
+    <Content Include="ProxyDlls\System.Design.dll" />
+    <Content Include="ProxyDlls\System.DirectoryServices.dll" />
+    <Content Include="ProxyDlls\System.DirectoryServices.Protocols.dll" />
+    <Content Include="ProxyDlls\System.dll" />
+    <Content Include="ProxyDlls\System.Drawing.Design.dll" />
+    <Content Include="ProxyDlls\System.Drawing.dll" />
+    <Content Include="ProxyDlls\System.EnterpriseServices.dll" />
+    <Content Include="ProxyDlls\System.IdentityModel.dll" />
+    <Content Include="ProxyDlls\System.IdentityModel.Selectors.dll" />
+    <Content Include="ProxyDlls\System.IO.Compression.dll" />
+    <Content Include="ProxyDlls\System.IO.Compression.FileSystem.dll" />
+    <Content Include="ProxyDlls\System.Json.dll" />
+    <Content Include="ProxyDlls\System.Management.dll" />
+    <Content Include="ProxyDlls\System.Messaging.dll" />
+    <Content Include="ProxyDlls\System.Net.dll" />
+    <Content Include="ProxyDlls\System.Net.Http.dll" />
+    <Content Include="ProxyDlls\System.Net.Http.Formatting.dll" />
+    <Content Include="ProxyDlls\System.Net.Http.WebRequest.dll" />
+    <Content Include="ProxyDlls\System.Numerics.dll" />
+    <Content Include="ProxyDlls\System.Numerics.Vectors.dll" />
+    <Content Include="ProxyDlls\System.Reflection.Context.dll" />
+    <Content Include="ProxyDlls\System.Runtime.Caching.dll" />
+    <Content Include="ProxyDlls\System.Runtime.DurableInstancing.dll" />
+    <Content Include="ProxyDlls\System.Runtime.Remoting.dll" />
+    <Content Include="ProxyDlls\System.Runtime.Serialization.dll" />
+    <Content Include="ProxyDlls\System.Runtime.Serialization.Formatters.Soap.dll" />
+    <Content Include="ProxyDlls\System.Security.dll" />
+    <Content Include="ProxyDlls\System.ServiceModel.Activation.dll" />
+    <Content Include="ProxyDlls\System.ServiceModel.Discovery.dll" />
+    <Content Include="ProxyDlls\System.ServiceModel.dll" />
+    <Content Include="ProxyDlls\System.ServiceModel.Internals.dll" />
+    <Content Include="ProxyDlls\System.ServiceModel.Routing.dll" />
+    <Content Include="ProxyDlls\System.ServiceModel.Web.dll" />
+    <Content Include="ProxyDlls\System.ServiceProcess.dll" />
+    <Content Include="ProxyDlls\System.Transactions.dll" />
+    <Content Include="ProxyDlls\System.Web.Abstractions.dll" />
+    <Content Include="ProxyDlls\System.Web.ApplicationServices.dll" />
+    <Content Include="ProxyDlls\System.Web.dll" />
+    <Content Include="ProxyDlls\System.Web.DynamicData.dll" />
+    <Content Include="ProxyDlls\System.Web.Extensions.Design.dll" />
+    <Content Include="ProxyDlls\System.Web.Extensions.dll" />
+    <Content Include="ProxyDlls\System.Web.Http.dll" />
+    <Content Include="ProxyDlls\System.Web.Http.SelfHost.dll" />
+    <Content Include="ProxyDlls\System.Web.Http.WebHost.dll" />
+    <Content Include="ProxyDlls\System.Web.Mvc.dll" />
+    <Content Include="ProxyDlls\System.Web.Razor.dll" />
+    <Content Include="ProxyDlls\System.Web.RegularExpressions.dll" />
+    <Content Include="ProxyDlls\System.Web.Routing.dll" />
+    <Content Include="ProxyDlls\System.Web.Services.dll" />
+    <Content Include="ProxyDlls\System.Web.WebPages.Deployment.dll" />
+    <Content Include="ProxyDlls\System.Web.WebPages.dll" />
+    <Content Include="ProxyDlls\System.Web.WebPages.Razor.dll" />
+    <Content Include="ProxyDlls\System.Windows.Forms.DataVisualization.dll" />
+    <Content Include="ProxyDlls\System.Windows.Forms.dll" />
+    <Content Include="ProxyDlls\System.Xaml.dll" />
+    <Content Include="ProxyDlls\System.Xml.dll" />
+    <Content Include="ProxyDlls\System.Xml.Linq.dll" />
+    <Content Include="ProxyDlls\SystemWebTestShim.dll" />
+    <Content Include="ProxyDlls\UnhollowerBaseLib.dll" />
+    <Content Include="ProxyDlls\UnhollowerRuntimeLib.dll" />
+    <Content Include="ProxyDlls\UniGLTF.dll" />
+    <Content Include="ProxyDlls\UniHumanoid.dll" />
+    <Content Include="ProxyDlls\Unity.Addressables.dll" />
+    <Content Include="ProxyDlls\Unity.Localization.dll" />
+    <Content Include="ProxyDlls\Unity.Postprocessing.Runtime.dll" />
+    <Content Include="ProxyDlls\Unity.ResourceManager.dll" />
+    <Content Include="ProxyDlls\Unity.TextMeshPro.dll" />
+    <Content Include="ProxyDlls\Unity.XR.Management.dll" />
+    <Content Include="ProxyDlls\Unity.XR.OpenVR.dll" />
+    <Content Include="ProxyDlls\UnityEngine.AccessibilityModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.AIModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.AndroidJNIModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.AnimationModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.ARModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.AssetBundleModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.AudioModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.ClothModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.ClusterInputModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.ClusterRendererModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.CoreModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.CrashReportingModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.DirectorModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.dll" />
+    <Content Include="ProxyDlls\UnityEngine.DSPGraphModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.GameCenterModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.GIModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.GridModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.HotReloadModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.Il2CppAssetBundleManager.dll" />
+    <Content Include="ProxyDlls\UnityEngine.Il2CppImageConversionManager.dll" />
+    <Content Include="ProxyDlls\UnityEngine.ImageConversionModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.IMGUIModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.InputLegacyModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.InputModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.JSONSerializeModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.LocalizationModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.ParticleSystemModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.PerformanceReportingModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.Physics2DModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.PhysicsModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.ProfilerModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.ScreenCaptureModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.SharedInternalsModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.SpatialTracking.dll" />
+    <Content Include="ProxyDlls\UnityEngine.SpriteMaskModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.SpriteShapeModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.StreamingModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.SubstanceModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.SubsystemsModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.TerrainModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.TerrainPhysicsModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.TextCoreModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.TextRenderingModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.TilemapModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.TLSModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UI.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UIElementsModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UIElementsNativeModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UIModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UmbraModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UNETModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityAnalyticsModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityConnectModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityCurlModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityTestProtocolModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityWebRequestAssetBundleModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityWebRequestAudioModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityWebRequestModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityWebRequestTextureModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.UnityWebRequestWWWModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.VehiclesModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.VFXModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.VideoModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.VirtualTexturingModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.VRModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.WindModule.dll" />
+    <Content Include="ProxyDlls\UnityEngine.XRModule.dll" />
+    <Content Include="ProxyDlls\ValueTupleBridge.dll" />
+    <Content Include="ProxyDlls\VRM.dll" />
+    <Content Include="ProxyDlls\VRMShaders.GLTF.IO.Runtime.dll" />
+    <Content Include="ProxyDlls\VRMShaders.GLTF.UniUnlit.Runtime.dll" />
+    <Content Include="ProxyDlls\VRMShaders.VRM.IO.Runtime.dll" />
+    <Content Include="ProxyDlls\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ProxyDlls\MethodAddressToToken.db" />
+    <None Include="ProxyDlls\MethodXrefScanCache.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\Il2CppSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MelonLoader">
+      <HintPath>ProxyDlls\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="UnhollowerBaseLib, Version=0.4.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\UnhollowerBaseLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\UnhollowerRuntimeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ProxyDlls\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
