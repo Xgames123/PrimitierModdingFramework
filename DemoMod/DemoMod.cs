@@ -39,7 +39,7 @@ namespace DemoMod
 
 			spawnMenu.CreateButton("Custom", new System.Action(() =>
 			{
-				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"), temperature: 999);
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			}));
 
 			
