@@ -52,7 +52,7 @@ namespace DemoMod
 			var customSubstance = CustomSubstanceSystem.CreateCustomSubstance(Substance.Iron);
 			customSubstance.displayNameKey = "SUB_CUSTOM";
 			customSubstance.isEdible = true;
-			customSubstance.material = "CustomSubMat";
+			customSubstance.material = "CustomMat";
 			customSubstance.stiffness = 99999999;
 
 

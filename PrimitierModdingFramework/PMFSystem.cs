@@ -31,6 +31,8 @@ namespace PrimitierModdingFramework
 		
 		private bool _IsStarted = false;
 
+
+
 		internal static void Startup(PrimitierMod mod)
 		{
 			Mod = mod;

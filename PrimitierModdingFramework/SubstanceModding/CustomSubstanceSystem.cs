@@ -22,6 +22,7 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <returns></returns>
 		public static Material GetCustomMaterial(string name)
 		{
+
 			if(s_customMats.TryGetValue(name, out var outMat))
 			{
 				return outMat;
@@ -67,7 +68,11 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <returns></returns>
 		public static Material CreateCustomMaterial(string baseMaterial)
 		{
-			return SubstanceManager.GetMaterial(baseMaterial).MemberwiseClone().Cast<Material>();
+			var baseMat = SubstanceManager.GetMaterial(baseMaterial);
+
+			var outputMat = new Material(baseMat);
+
+			return outputMat;
 		}
 
 		/// <summary>
