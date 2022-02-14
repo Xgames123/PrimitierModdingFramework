@@ -50,7 +50,7 @@ namespace PrimitierModdingFramework.Debugging
 			textGameObject.transform.parent = transform;
 
 			var textMP = textGameObject.AddComponent<TextMeshPro>();
-			textMP.text = "<b>"+text+"</b>";
+			textMP.text = text;
 			textMP.fontSize = 0.1f;
 			textMP.color = Color.black;
 			textMP.alignment = TextAlignmentOptions.Center;

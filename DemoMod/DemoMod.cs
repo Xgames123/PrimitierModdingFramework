@@ -42,13 +42,19 @@ namespace DemoMod
 				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			}));
 
-			
+
+			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Slime");
+			customMat.name = "CustomMat";
+			customMat.color = Color.green;
+
+			CustomSubstanceSystem.LoadCustomMaterial(customMat);
 
 			var customSubstance = CustomSubstanceSystem.CreateCustomSubstance(Substance.Iron);
 			customSubstance.displayNameKey = "SUB_CUSTOM";
 			customSubstance.isEdible = true;
-			customSubstance.material = "Slime";
+			customSubstance.material = "CustomSubMat";
 			customSubstance.stiffness = 99999999;
+
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 

@@ -13,6 +13,24 @@ namespace PrimitierModdingFramework.SubstanceModding
 	public class CustomSubstanceSystem : PMFSystem
 	{
 
+		private static Dictionary<string, Material> s_customMats = new Dictionary<string, Material>();
+
+		/// <summary>
+		/// Gets the loaded custom material by name
+		/// </summary>
+		/// <param name="name">The name of the custom material</param>
+		/// <returns></returns>
+		public static Material GetCustomMaterial(string name)
+		{
+			if(s_customMats.TryGetValue(name, out var outMat))
+			{
+				return outMat;
+			}
+
+			return null;
+		}
+
+
 		/// <summary>
 		/// Loads the custom substance in the game.
 		/// </summary>
@@ -38,10 +56,40 @@ namespace PrimitierModdingFramework.SubstanceModding
 				SubstanceManager.instance = Resources.Load<SubstanceParameters>(SubstanceManager.scriptableObjectPath);
 			}
 
-
 			return SubstanceManager.GetParameter(baseSubstace).MemberwiseClone().Cast<SubstanceParameters.Param>();
 
 		}
+
+		/// <summary>
+		/// Creates a custom material from a base material.
+		/// </summary>
+		/// <param name="baseMaterial"></param>
+		/// <returns></returns>
+		public static Material CreateCustomMaterial(string baseMaterial)
+		{
+			return SubstanceManager.GetMaterial(baseMaterial).MemberwiseClone().Cast<Material>();
+		}
+
+		/// <summary>
+		/// Gets a loaded Material from its name
+		/// </summary>
+		/// <param name="materialName"></param>
+		/// <returns></returns>
+		public static Material GetMaterial(string materialName)
+		{
+			return SubstanceManager.GetMaterial(materialName);
+		}
+
+
+		/// <summary>
+		/// Loads the custom material in the game.
+		/// </summary>
+		public static void LoadCustomMaterial(Material material)
+		{
+			s_customMats.Add(material.name, material);
+		}
+
+
 
 		/// <summary>
 		/// Gets the Substance enum form the name of the substance.
