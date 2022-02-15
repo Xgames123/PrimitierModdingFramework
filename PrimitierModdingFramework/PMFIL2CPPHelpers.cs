@@ -52,6 +52,7 @@ namespace PrimitierModdingFramework
 		/// <returns></returns>
 		public static object AutoUnbox(Il2CppSystem.Object obj)
 		{
+			
 			throw new System.NotImplementedException();
 
 			var unboxed = IL2CPP.il2cpp_object_unbox(obj.Pointer);

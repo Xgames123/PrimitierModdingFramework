@@ -47,3 +47,7 @@ Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.
 
 ## PMFSystems
 [PMFSystems](./PMFSystems.md)
+
+
+## PMFSystems
+[ObjectCollectedException](./ObjectCollectedException.md)

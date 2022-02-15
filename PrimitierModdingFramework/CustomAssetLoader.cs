@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UnhollowerBaseLib;
 using UnityEngine;
 
 namespace PrimitierModdingFramework
@@ -16,6 +17,7 @@ namespace PrimitierModdingFramework
 	{
         public static bool IsEnabled { get; private set; } = false;
 
+        private static Il2CppReferenceArray<Texture2D> s_garbageCollectionBlock = new Il2CppReferenceArray<Texture2D>(1);
 
         public override void OnSystemEnabled()
         {
@@ -33,10 +35,12 @@ namespace PrimitierModdingFramework
         /// <returns></returns>
         public static Texture2D LoadImageFromBytes(byte[] bytes)
         {
+            
             if (!IsEnabled)
                 throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
 
-            var tex = PMFIL2CPPHelpers.AddCollectBlock(new Texture2D(0, 0));
+            s_garbageCollectionBlock[0] = new Texture2D(0, 0);
+            var tex = s_garbageCollectionBlock[0];
 
             tex.LoadRawTextureData(bytes);
 
