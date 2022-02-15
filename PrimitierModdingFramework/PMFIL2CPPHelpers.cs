@@ -43,42 +43,6 @@ namespace PrimitierModdingFramework
 		}
 
 
-		/// <summary>
-		/// Blocks the object from being garbage collected until RemoveCollectBlock is called
-		/// Used to prevent ObjectCollectedException
-		/// </summary>
-		public static T AddCollectBlock<T>(T obj) where T : Il2CppSystem.Object
-		{
-			s_GarbageCollectBlock.Add(obj);
-			return obj;
-		}
-
-		/// <summary>
-		/// Returns true if the object is being blocked from garbage collection
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="obj"></param>
-		/// <returns></returns>
-		public static bool HasCollectBlock<T>(T obj) where T : Il2CppSystem.Object
-		{
-			if (s_GarbageCollectBlock.Contains(obj))
-			{
-				return true;
-			}
-
-			return false;
-		}
-
-
-		/// <summary>
-		/// Unblocks the object from being garbage collected
-		/// </summary>
-		public static T RemoveCollectBlock<T>(T obj) where T : Il2CppSystem.Object
-		{
-			s_GarbageCollectBlock.Remove(obj);
-			return obj;
-		}
-
 
 
 		/// <summary>
