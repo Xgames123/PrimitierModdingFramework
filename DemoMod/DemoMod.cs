@@ -43,14 +43,22 @@ namespace DemoMod
 			}));
 
 
-			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Slime");
+			var texture = CustomAssetSystem.LoadImageFromEmbeddedResource("DemoMod.Assets.DemoImage.png");
+
+
+
+			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Wood");
 			customMat.name = "CustomMat";
-			customMat.color = Color.green;
+			customMat.color = new Color(0, 1, 1);
+			
+			
 
 			CustomSubstanceSystem.LoadCustomMaterial(customMat);
 
 			var customSubstance = CustomSubstanceSystem.CreateCustomSubstance(Substance.Iron);
+
 			customSubstance.displayNameKey = "SUB_CUSTOM";
+			customSubstance.collisionSound = "RespawnPoint";
 			customSubstance.isEdible = true;
 			customSubstance.material = "CustomMat";
 			customSubstance.stiffness = 99999999;
@@ -81,6 +89,11 @@ namespace DemoMod
 		public override void OnFixedUpdate()
 		{
 		
+			if (Input.GetKeyUp(KeyCode.W))
+			{
+				ResourceXmlDumper.DumpAllToFile();
+			}
+
 
 			if (Input.GetKey(KeyCode.A))
 			{

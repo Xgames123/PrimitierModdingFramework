@@ -27,6 +27,7 @@ namespace PrimitierModdingFramework.Debugging
 			var rootElement = document.CreateElement("Resources");
 			DumpMaterials(rootElement);
 			DumpSubstances(rootElement);
+			DumpSounds(rootElement);
 
 			document.AppendChild(rootElement);
 
@@ -35,6 +36,11 @@ namespace PrimitierModdingFramework.Debugging
 
 		}
 
+		/// <summary>
+		/// Dumps all the substances to a string
+		/// </summary>
+		/// <param name="substance"></param>
+		/// <returns></returns>
 		public static string DumpSubstanceToString(SubstanceParameters.Param substance)
 		{
 			XmlDocument document = new XmlDocument();
@@ -87,6 +93,29 @@ namespace PrimitierModdingFramework.Debugging
 			parentNode.AppendChild(substancesNode);
 
 		}
+
+		private static void DumpSounds(XmlNode parentNode)
+		{
+			var document = parentNode.OwnerDocument;
+			var soundsNode = document.CreateElement("Sounds");
+
+			var resources = Resources.LoadAll(SoundManager.soundPath);
+			for (int i = 0; i < resources.Count; i++)
+			{
+				DumpSound(resources[i].Cast<AudioClip>(), soundsNode, document);
+
+			}
+
+			parentNode.AppendChild(soundsNode);
+		}
+		private static void DumpSound(AudioClip sound, XmlNode parentNode, XmlDocument document)
+		{
+			var matNode = document.CreateElement("Sound");
+			matNode.SetAttribute("Name", sound.name);
+
+			parentNode.AppendChild(matNode);
+		}
+
 
 
 		private static void DumpMaterials(XmlNode parentNode)

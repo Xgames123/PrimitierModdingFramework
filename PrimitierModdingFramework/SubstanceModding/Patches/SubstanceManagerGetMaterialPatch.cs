@@ -11,15 +11,13 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 	/// <summary>
 	/// A patch for the SubstanceManager.GetMaterial method
 	/// </summary>
-	[HarmonyPatch(typeof(SubstanceManager), nameof(SubstanceManager.GetMaterial), new Type[] { typeof(string) })]
+	[HarmonyPatch(typeof(SubstanceManager), nameof(SubstanceManager.GetMaterial))]
 	public static class SubstanceManagerGetMaterialPatch
 	{
 
 		static bool Prefix(ref Material __result, string materialName)
 		{
 
-			//TODO fix
-			PMFLog.Message("patch");
 
 			var customMat = CustomSubstanceSystem.GetCustomMaterial(materialName);
 			if (customMat != null)
@@ -29,9 +27,7 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 			}
 
 
-
-			__result = null;
-			return false;
+			return true;
 		}
 
 

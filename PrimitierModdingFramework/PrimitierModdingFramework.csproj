@@ -34,6 +34,7 @@
     <DocumentationFile>bin\Release\PrimitierModdingFramework.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomAssetLoader.cs" />
     <Compile Include="Debugging\ComponentDumper.cs" />
     <Compile Include="Debugging\ComponentDumperList.cs" />
     <Compile Include="Debugging\ComponentDumpers\MeshFilterDumper.cs" />
@@ -86,9 +87,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ProxyDlls\UnhollowerBaseLib.dll</HintPath>
     </Reference>
-    <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ProxyDlls\UnhollowerRuntimeLib.dll</HintPath>
+    <Reference Include="UnhollowerRuntimeLib">
+      <HintPath>..\ProxyDlls\UnhollowerRuntimeLib.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -98,9 +98,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ProxyDlls\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ProxyDlls\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ProxyDlls\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ProxyDlls\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>..\ProxyDlls\UnityEngine.InputLegacyModule.dll</HintPath>

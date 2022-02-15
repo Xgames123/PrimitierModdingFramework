@@ -87,9 +87,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-	  <EmbeddedResource Include="Assets/**">
-		  
-	  </EmbeddedResource>
+    <EmbeddedResource Include="Assets\DemoImage.png" />
+	  
     <Content Include="Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -101,8 +100,6 @@
     <None Include="RunInDebug.ps1" />
     <None Include="RunInRelease.ps1" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
