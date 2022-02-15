@@ -45,13 +45,14 @@ namespace DemoMod
 
 			var texture = CustomAssetSystem.LoadImageFromEmbeddedResource("DemoMod.Assets.DemoImage.png");
 
-
+			
 
 			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Wood");
 			customMat.name = "CustomMat";
 			customMat.color = new Color(0, 1, 1);
-			
-			
+			customMat.mainTexture = texture;
+
+			PMFIL2CPPHelpers.RemoveCollectBlock(texture);
 
 			CustomSubstanceSystem.LoadCustomMaterial(customMat);
 

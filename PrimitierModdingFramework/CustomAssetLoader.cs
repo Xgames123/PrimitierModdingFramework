@@ -14,6 +14,7 @@ namespace PrimitierModdingFramework
 	/// </summary>
 	public class CustomAssetSystem : PMFSystem
 	{
+
         /// <summary>
         /// loads a image into Primitier from bytes
         /// </summary>
@@ -22,7 +23,8 @@ namespace PrimitierModdingFramework
         public static Texture2D LoadImageFromBytes(byte[] bytes)
         {
 
-            var tex = new Texture2D(0, 0);
+            var tex = PMFIL2CPPHelpers.AddCollectBlock(new Texture2D(0, 0));
+
             tex.LoadRawTextureData(bytes);
 
             return tex;
@@ -32,11 +34,21 @@ namespace PrimitierModdingFramework
         /// loads a image into Primitier from an EmbeddedResource
         /// </summary>
         /// <param name="assembly">The assembly were the image is located</param>
-        /// <param name="resourceName">The full name of the resource (including default namespace)</param>
+        /// <param name="resourceName">The full name of the resource (AssemblyName.fileStructure)</param>
         /// <returns></returns>
         public static Texture2D LoadImageFromEmbeddedResource(Assembly assembly, string resourceName)
 		{
+            if (assembly == null)
+			{
+                throw new ArgumentNullException(nameof(assembly));
+			}
+
             var stream = assembly.GetManifestResourceStream(resourceName);
+
+            if (stream == null)
+			{
+                throw new ArgumentException($"The resourceName '{resourceName}' doesn't exist");
+			}
 
             var bytes = new byte[stream.Length];
             stream.Read(bytes, 0, bytes.Length);
@@ -52,7 +64,7 @@ namespace PrimitierModdingFramework
         /// <returns></returns>
         public static Texture2D LoadImageFromEmbeddedResource(string resourceName)
         {
-            return LoadImageFromEmbeddedResource(Assembly.GetEntryAssembly(), resourceName);
+            return LoadImageFromEmbeddedResource(Mod.Assembly, resourceName);
         }
 
 

@@ -1,5 +1,4 @@
-﻿using Il2CppSystem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -13,6 +12,8 @@ namespace PrimitierModdingFramework
 	/// </summary>
 	public static class PMFIL2CPPHelpers
 	{
+		private static Il2CppSystem.Collections.Generic.List<Il2CppSystem.Object> s_GarbageCollectBlock = new Il2CppSystem.Collections.Generic.List<Il2CppSystem.Object>();
+
 		private static List<System.Type> _AllValueTypes = new List<System.Type>();
 
 		/// <summary>
@@ -41,6 +42,45 @@ namespace PrimitierModdingFramework
 
 		}
 
+
+		/// <summary>
+		/// Blocks the object from being garbage collected until RemoveCollectBlock is called
+		/// Used to prevent ObjectCollectedException
+		/// </summary>
+		public static T AddCollectBlock<T>(T obj) where T : Il2CppSystem.Object
+		{
+			s_GarbageCollectBlock.Add(obj);
+			return obj;
+		}
+
+		/// <summary>
+		/// Returns true if the object is being blocked from garbage collection
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="obj"></param>
+		/// <returns></returns>
+		public static bool HasCollectBlock<T>(T obj) where T : Il2CppSystem.Object
+		{
+			if (s_GarbageCollectBlock.Contains(obj))
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+
+		/// <summary>
+		/// Unblocks the object from being garbage collected
+		/// </summary>
+		public static T RemoveCollectBlock<T>(T obj) where T : Il2CppSystem.Object
+		{
+			s_GarbageCollectBlock.Remove(obj);
+			return obj;
+		}
+
+
+
 		/// <summary>
 		/// Automatically finds type to unbox to.
 		/// </summary>
@@ -51,7 +91,7 @@ namespace PrimitierModdingFramework
 			throw new System.NotImplementedException();
 
 			var unboxed = IL2CPP.il2cpp_object_unbox(obj.Pointer);
-			if (unboxed == IntPtr.Zero)
+			if (unboxed == System.IntPtr.Zero)
 			{
 				return null;
 			}
