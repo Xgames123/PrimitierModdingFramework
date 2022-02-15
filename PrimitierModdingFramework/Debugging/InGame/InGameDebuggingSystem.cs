@@ -10,7 +10,16 @@ namespace PrimitierModdingFramework.Debugging
 {
 	public class InGameDebuggingSystem : PMFSystem
 	{
+		public static bool IsEnabled { get; private set; } = false;
 
+		public override void OnSystemEnabled()
+		{
+			IsEnabled = true;
+		}
+		public override void OnSystemDisabled()
+		{
+			IsEnabled = false;
+		}
 
 		public override void OnStart()
 		{
