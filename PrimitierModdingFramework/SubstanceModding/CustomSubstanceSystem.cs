@@ -12,8 +12,20 @@ namespace PrimitierModdingFramework.SubstanceModding
 	/// </summary>
 	public class CustomSubstanceSystem : PMFSystem
 	{
+		public static bool IsEnabled { get; private set; } = false;
 
 		private static Dictionary<string, Material> s_customMats = new Dictionary<string, Material>();
+
+
+		public override void OnSystemEnabled()
+		{
+			IsEnabled = true;
+		}
+		public override void OnSystemDisabled()
+		{
+			IsEnabled = false;
+		}
+
 
 		/// <summary>
 		/// Gets the loaded custom material by name
@@ -22,6 +34,8 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <returns></returns>
 		public static Material GetCustomMaterial(string name)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
 
 			if(s_customMats.TryGetValue(name, out var outMat))
 			{
@@ -38,6 +52,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <param name="substance"></param>
 		public static void LoadCustomSubstance(SubstanceParameters.Param substance)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
+
 			if (SubstanceManager.instance == null)
 			{
 				SubstanceManager.instance = Resources.Load<SubstanceParameters>(SubstanceManager.scriptableObjectPath);
@@ -52,6 +69,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <param name="baseSubstace"></param>
 		public static SubstanceParameters.Param CreateCustomSubstance(Substance baseSubstace)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
+
 			if (SubstanceManager.instance == null)
 			{
 				SubstanceManager.instance = Resources.Load<SubstanceParameters>(SubstanceManager.scriptableObjectPath);
@@ -68,6 +88,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <returns></returns>
 		public static Material CreateCustomMaterial(string baseMaterial)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
+
 			var baseMat = SubstanceManager.GetMaterial(baseMaterial);
 
 			var outputMat = new Material(baseMat);
@@ -82,6 +105,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <returns></returns>
 		public static Material GetMaterial(string materialName)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
+
 			return SubstanceManager.GetMaterial(materialName);
 		}
 
@@ -91,6 +117,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// </summary>
 		public static void LoadCustomMaterial(Material material)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
+
 			s_customMats.Add(material.name, material);
 		}
 
@@ -103,6 +132,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <returns></returns>
 		public static Substance GetSubstanceByName(string name)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
+
 			if (SubstanceManager.instance == null)
 			{
 				SubstanceManager.instance = Resources.Load<SubstanceParameters>(SubstanceManager.scriptableObjectPath);

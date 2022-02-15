@@ -77,7 +77,8 @@ namespace DemoMod
 			PMFSystem.EnableSystem<PMFHelper>();
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
-			
+			PMFSystem.EnableSystem<CustomAssetSystem>();
+
 
 		}
 		public override void OnUpdate()

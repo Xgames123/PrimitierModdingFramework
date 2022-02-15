@@ -14,6 +14,17 @@ namespace PrimitierModdingFramework
 	/// </summary>
 	public class CustomAssetSystem : PMFSystem
 	{
+        public static bool IsEnabled { get; private set; } = false;
+
+
+        public override void OnSystemEnabled()
+        {
+            IsEnabled = true;
+        }
+        public override void OnSystemDisabled()
+        {
+            IsEnabled = false;
+        }
 
         /// <summary>
         /// loads a image into Primitier from bytes
@@ -22,6 +33,8 @@ namespace PrimitierModdingFramework
         /// <returns></returns>
         public static Texture2D LoadImageFromBytes(byte[] bytes)
         {
+            if (!IsEnabled)
+                throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
 
             var tex = PMFIL2CPPHelpers.AddCollectBlock(new Texture2D(0, 0));
 
@@ -38,6 +51,9 @@ namespace PrimitierModdingFramework
         /// <returns></returns>
         public static Texture2D LoadImageFromEmbeddedResource(Assembly assembly, string resourceName)
 		{
+            if (!IsEnabled)
+                throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
+
             if (assembly == null)
 			{
                 throw new ArgumentNullException(nameof(assembly));
@@ -64,6 +80,9 @@ namespace PrimitierModdingFramework
         /// <returns></returns>
         public static Texture2D LoadImageFromEmbeddedResource(string resourceName)
         {
+            if (!IsEnabled)
+                throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
+
             return LoadImageFromEmbeddedResource(Mod.Assembly, resourceName);
         }
 

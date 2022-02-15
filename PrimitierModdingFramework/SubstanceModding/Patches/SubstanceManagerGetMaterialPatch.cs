@@ -18,6 +18,10 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 		static bool Prefix(ref Material __result, string materialName)
 		{
 
+			if (!CustomSubstanceSystem.IsEnabled)
+			{
+				return true;
+			}
 
 			var customMat = CustomSubstanceSystem.GetCustomMaterial(materialName);
 			if (customMat != null)

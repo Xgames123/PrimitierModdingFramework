@@ -8,6 +8,8 @@ namespace PrimitierModdingFramework
 {
 	public class PMFHelper : PMFSystem
 	{
+		public static bool IsEnabled { get; private set; } = false;
+
 		public static Transform LHand;
 		public static Transform RHand;
 		public static Transform CameraRig;
@@ -20,6 +22,18 @@ namespace PrimitierModdingFramework
 		/// The system transform is used to store gameobjects that don't require saving (Custom objects that are not Cubes)
 		/// </summary>
 		public static Transform SystemTransform;
+
+		public override void OnSystemEnabled()
+		{
+			IsEnabled = true;
+			base.OnSystemEnabled();
+		}
+		public override void OnSystemDisabled()
+		{
+			IsEnabled = false;
+			base.OnSystemDisabled();
+		}
+
 
 		public override void OnStart()
 		{
