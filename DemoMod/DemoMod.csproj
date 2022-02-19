@@ -49,6 +49,9 @@
     <Reference Include="MelonLoader">
       <HintPath>..\Dlls\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="PrimitierModdingFrameworkV0.2">
+      <HintPath>..\PrimitierModdingFramework\bin\PrimitierModdingFrameworkV0.2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -92,12 +95,6 @@
     </None>
     <None Include="RunInDebug.ps1" />
     <None Include="RunInRelease.ps1" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj">
-      <Project>{0cf60620-bb4f-43a3-8f18-77eb9a4be344}</Project>
-      <Name>PrimitierModdingFramework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
