@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -19,14 +20,18 @@ namespace PrimitierModdingFramework
 		/// <summary>
 		/// All the value types in the current AppDomain
 		/// </summary>
+		[Obsolete("This is going to be implemented in the future")]
 		public static IReadOnlyList<System.Type> AllValueTypes { get { return _AllValueTypes; } }
 
 
 		/// <summary>
 		/// Regenerates the AllValueTypes list
 		/// </summary>
+		[Obsolete("This is going to be implemented in the future")]
 		public static void RegenerateValueTypeList()
 		{
+			throw new NotImplementedException();
+
 			_AllValueTypes.Clear();
 			foreach (var asm in System.AppDomain.CurrentDomain.GetAssemblies())
 			{
@@ -50,6 +55,7 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>
+		[Obsolete("This is going to be implemented in the future")]
 		public static object AutoUnbox(Il2CppSystem.Object obj)
 		{
 			

@@ -10,14 +10,13 @@ using UnityEngine;
 namespace PrimitierModdingFramework
 {
 
-	/// <summary>
-	/// A System for loading custom assets into Primitier
-	/// </summary>
-	public class CustomAssetSystem : PMFSystem
+    /// <summary>
+    /// A System for loading custom assets into Primitier
+    /// </summary>
+    public class CustomAssetSystem : PMFSystem
 	{
         public static bool IsEnabled { get; private set; } = false;
 
-        private static Il2CppReferenceArray<Texture2D> s_garbageCollectionBlock = new Il2CppReferenceArray<Texture2D>(1);
 
         public override void OnSystemEnabled()
         {
@@ -28,67 +27,117 @@ namespace PrimitierModdingFramework
             IsEnabled = false;
         }
 
+
         /// <summary>
-        /// loads a image into Primitier from bytes
+        /// Creates an empty 1x1 Texture2D and adds it to the CachedResources (so it can be used in a customSubstance)
         /// </summary>
-        /// <param name="bytes">the data of the image</param>
+        /// <param name="name">Name of the texture</param>
         /// <returns></returns>
-        public static Texture2D LoadImageFromBytes(byte[] bytes)
+        [Obsolete("This is going to be implemented in the future")]
+        public static Texture2D CreateEmptyTexture(string name)
+		{
+            throw new NotImplementedException();
+            CachedResources.caches[name] = new Texture2D(1, 1);
+            return CachedResources.Load<Texture2D>(name);
+        }
+
+
+
+        /// <summary>
+        /// Writes data to a Texture2D
+        /// </summary>
+        /// /// <param name="bytes">the data of the image</param>
+        /// <param name="texture">the texture to write the data to</param>
+        [Obsolete("This is going to be implemented in the future")]
+        public static void LoadImageFromBytes(byte[] bytes, ref Texture2D texture)
         {
+            throw new NotImplementedException();
+            if (!IsEnabled)
+                throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
+
+
+            texture.LoadRawTextureData(bytes);
+
+        }
+
+        /// <summary>
+        /// Writes data from an EmbeddedResource to a Texture2D
+        /// </summary>
+        /// <param name="assembly">The assembly were the image is located</param>
+        /// <param name="resourceName">The full name of the resource (AssemblyName.fileStructure)</param>
+        /// <param name="texture">the texture to write the data to</param>
+        [Obsolete("This is going to be implemented in the future")]
+        public static void LoadImageFromEmbeddedResource(Assembly assembly, string resourceName, ref Texture2D texture)
+		{
+            throw new NotImplementedException();
             
             if (!IsEnabled)
                 throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
 
-            s_garbageCollectionBlock[0] = new Texture2D(0, 0);
-            var tex = s_garbageCollectionBlock[0];
+            var bytes = LoadEmbeddedResource(assembly, resourceName);
 
-            tex.LoadRawTextureData(bytes);
+            LoadImageFromBytes(bytes, ref texture);
+		}
 
-            return tex;
-        }
 
         /// <summary>
-        /// loads a image into Primitier from an EmbeddedResource
+        /// Writes data from an EmbeddedResource to a Texture2D
         /// </summary>
-        /// <param name="assembly">The assembly were the image is located</param>
         /// <param name="resourceName">The full name of the resource (AssemblyName.fileStructure)</param>
+        /// <param name="texture">the texture to write the data to</param>
+        [Obsolete("This is going to be implemented in the future")]
+        public static void LoadImageFromEmbeddedResource(string resourceName, ref Texture2D texture)
+        {
+            throw new NotImplementedException();
+            if (!IsEnabled)
+                throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
+
+            LoadImageFromEmbeddedResource(Mod.Assembly, resourceName, ref texture);
+        }
+
+
+        /// <summary>
+        /// Loads the bytes from an EmbeddedResource
+        /// </summary>
+        /// <param name="resourceName">The assembly were the resource is located</param>
+        /// <param name="assembly">The full name of the resource (AssemblyName.fileStructure)</param>
         /// <returns></returns>
-        public static Texture2D LoadImageFromEmbeddedResource(Assembly assembly, string resourceName)
+        public static byte[] LoadEmbeddedResource(Assembly assembly, string resourceName)
 		{
+
             if (!IsEnabled)
                 throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
 
             if (assembly == null)
-			{
+            {
                 throw new ArgumentNullException(nameof(assembly));
-			}
+            }
 
             var stream = assembly.GetManifestResourceStream(resourceName);
 
             if (stream == null)
-			{
+            {
                 throw new ArgumentException($"The resourceName '{resourceName}' doesn't exist");
-			}
+            }
 
             var bytes = new byte[stream.Length];
             stream.Read(bytes, 0, bytes.Length);
             stream.Close();
 
-            return LoadImageFromBytes(bytes);
-		}
+            return bytes;
+        }
 
         /// <summary>
-        /// loads a image into Primitier from an EmbeddedResource
+        /// Loads the bytes from an EmbeddedResource
         /// </summary>
-        /// <param name="resourceName">The full name of the resource (AssemblyName.fileStructure)</param>
+        /// <param name="resourceName">The assembly were the resource is located</param>
         /// <returns></returns>
-        public static Texture2D LoadImageFromEmbeddedResource(string resourceName)
-        {
-            if (!IsEnabled)
-                throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
-
-            return LoadImageFromEmbeddedResource(Mod.Assembly, resourceName);
+        public static byte[] LoadEmbeddedResource(string resourceName)
+		{
+            return LoadEmbeddedResource(Mod.Assembly, resourceName);
         }
+
+
 
 
     }

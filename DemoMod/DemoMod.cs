@@ -1,20 +1,12 @@
-﻿using PrimitierModdingFramework;
+﻿using Il2CppSystem;
+using PrimitierModdingFramework;
 using PrimitierModdingFramework.Debugging;
-using PrimitierModdingFramework.Debugging.ComponentDumpers;
 using PrimitierModdingFramework.SubstanceModding;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnhollowerRuntimeLib;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace DemoMod
 {
-    public class DemoMod : PrimitierMod
+	public class DemoMod : PrimitierMod
     {
 		
 
@@ -43,16 +35,12 @@ namespace DemoMod
 			}));
 
 
-			var texture = CustomAssetSystem.LoadImageFromEmbeddedResource("DemoMod.Assets.DemoImage.png");
-
 			
 
 			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Wood");
 			customMat.name = "CustomMat";
 			customMat.color = new Color(0, 1, 1);
-			customMat.mainTexture = texture;
-
-	
+			
 
 			CustomSubstanceSystem.LoadCustomMaterial(customMat);
 
@@ -62,7 +50,8 @@ namespace DemoMod
 			customSubstance.collisionSound = "RespawnPoint";
 			customSubstance.isEdible = true;
 			customSubstance.material = "CustomMat";
-			customSubstance.stiffness = 99999999;
+			customSubstance.stiffness = 99999999; //Damage
+			customSubstance.strength = 999999999999999999; //HP
 
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);

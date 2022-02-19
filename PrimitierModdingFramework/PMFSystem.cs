@@ -54,14 +54,8 @@ namespace PrimitierModdingFramework
 		/// <typeparam name="T"></typeparam>
 		public static void EnableSystem<T>() where T : PMFSystem, new()
 		{
-			foreach (var system in EnabledSystems)
-			{
-				if (system is T)
-				{
-					return;
-				}
-
-			}
+			if (IsEnabled<T>())
+				return;
 
 			var newSystem = new T();
 			newSystem.FireEvent(PMFEventType.SystemEnabled);
@@ -87,6 +81,17 @@ namespace PrimitierModdingFramework
 			
 
 		}
+
+		/// <summary>
+		/// Returns true if the system is enabled
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public static bool IsEnabled<T>() where T : PMFSystem
+		{
+			return EnabledSystems.Any((system) => { return system is T; }); ;
+		}
+
 
 
 		internal void FireEvent(PMFEventType type)
