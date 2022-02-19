@@ -79,20 +79,7 @@ namespace DemoMod
 
 		public override void OnFixedUpdate()
 		{
-		
-			if (Input.GetKeyUp(KeyCode.W))
-			{
-				ResourceXmlDumper.DumpAllToFile();
-			}
-
-
-			if (Input.GetKey(KeyCode.A))
-			{
-
-				CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
-			}
-
-			
+					
 
 		}
 
