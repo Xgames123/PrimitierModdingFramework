@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PrimitierModdingFramework</RootNamespace>
-    <AssemblyName>PrimitierModdingFramework</AssemblyName>
+    <AssemblyName>PrimitierModdingFrameworkV0.2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\PrimitierModdingFramework.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\PrimitierModdingFrameworkV0.2.xml</DocumentationFile>
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\PrimitierModdingFramework.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\PrimitierModdingFrameworkV0.2.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomAssetLoader.cs" />
@@ -84,9 +84,8 @@
       <HintPath>..\Dlls\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
-    <Reference Include="UnhollowerBaseLib, Version=0.4.17.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\UnhollowerBaseLib.dll</HintPath>
+    <Reference Include="UnhollowerBaseLib">
+      <HintPath>..\Dlls\UnhollowerBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="UnhollowerRuntimeLib">
       <HintPath>..\Dlls\UnhollowerRuntimeLib.dll</HintPath>
@@ -122,9 +121,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\UnityEngine.UI.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\Dlls\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
