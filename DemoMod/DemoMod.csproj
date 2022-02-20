@@ -33,71 +33,71 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="Iced, Version=1.10.0.0, Culture=neutral, PublicKeyToken=5baba79f4264913b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Iced.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Iced.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppMono.Security, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppMono.Security.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppMono.Security.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cppmscorlib, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2Cppmscorlib.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2Cppmscorlib.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppNewtonsoft.Json, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppNewtonsoft.Json.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppNewtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppSystem.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppSystem.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Configuration, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppSystem.Configuration.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppSystem.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppSystem.Core.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppSystem.Core.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Data, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppSystem.Data.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppSystem.Data.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Numerics, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppSystem.Numerics.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppSystem.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppSystem.Runtime.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Xml, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppSystem.Xml.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppSystem.Xml.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem.Xml.Linq, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Il2CppSystem.Xml.Linq.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Il2CppSystem.Xml.Linq.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader, Version=0.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\MelonLoader.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\MelonLoader.dll</HintPath>
     </Reference>
     <Reference Include="PrimitierModdingFrameworkV0.2, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\PrimitierModdingFrameworkV0.2.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\PrimitierModdingFrameworkV0.2.dll</HintPath>
     </Reference>
     <Reference Include="SteamVR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\SteamVR.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\SteamVR.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -108,319 +108,319 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnhollowerBaseLib, Version=0.4.17.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnhollowerBaseLib.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnhollowerBaseLib.dll</HintPath>
     </Reference>
     <Reference Include="UnhollowerRuntimeLib, Version=0.4.10.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnhollowerRuntimeLib.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnhollowerRuntimeLib.dll</HintPath>
     </Reference>
     <Reference Include="UniGLTF, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UniGLTF.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UniGLTF.dll</HintPath>
     </Reference>
     <Reference Include="UniHumanoid, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UniHumanoid.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UniHumanoid.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Addressables, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Unity.Addressables.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Unity.Addressables.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Localization, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Unity.Localization.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Unity.Localization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Unity.ResourceManager.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.Management, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Unity.XR.Management.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Unity.XR.Management.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenVR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\Unity.XR.OpenVR.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\Unity.XR.OpenVR.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AccessibilityModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.AccessibilityModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.AccessibilityModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.AIModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.AIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AndroidJNIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.AndroidJNIModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.AndroidJNIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ARModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.ARModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.AudioModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClothModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.ClothModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.ClothModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClusterInputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.ClusterInputModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.ClusterInputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ClusterRendererModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.ClusterRendererModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CrashReportingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.CrashReportingModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.CrashReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DirectorModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.DirectorModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.DirectorModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.DSPGraphModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.DSPGraphModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.DSPGraphModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GameCenterModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.GameCenterModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.GameCenterModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.GIModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.GIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.GridModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.GridModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HotReloadModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.HotReloadModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.HotReloadModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.InputModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.JSONSerializeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.LocalizationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.LocalizationModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.LocalizationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.ParticleSystemModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PerformanceReportingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.PerformanceReportingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.Physics2DModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ProfilerModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.ProfilerModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.ProfilerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ScreenCaptureModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.ScreenCaptureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.SharedInternalsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.SpatialTracking.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteMaskModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.SpriteMaskModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.SpriteMaskModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpriteShapeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.SpriteShapeModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.SpriteShapeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StreamingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.StreamingModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.StreamingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubstanceModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.SubstanceModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.SubstanceModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SubsystemsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.SubsystemsModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.SubsystemsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.TerrainModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.TerrainModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TerrainPhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.TerrainPhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextCoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.TextCoreModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.TextCoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TilemapModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.TilemapModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.TilemapModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TLSModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.TLSModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.TLSModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIElementsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UIElementsModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIElementsNativeModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UIElementsNativeModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UIElementsNativeModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UmbraModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UmbraModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UmbraModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UNETModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UNETModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UNETModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityAnalyticsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityConnectModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityConnectModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityCurlModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityCurlModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityCurlModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityTestProtocolModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityTestProtocolModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityWebRequestModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestTextureModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestWWWModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VehiclesModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.VehiclesModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.VehiclesModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VFXModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.VFXModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.VFXModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VideoModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.VideoModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VirtualTexturingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.VirtualTexturingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VRModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.VRModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.VRModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.WindModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.WindModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.WindModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.XRModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\UnityEngine.XRModule.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="VRM, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\VRM.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\VRM.dll</HintPath>
     </Reference>
     <Reference Include="VRMShaders.GLTF.IO.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PrimitierModdingFramework\bin\PMFLibV0.2\VRMShaders.GLTF.IO.Runtime.dll</HintPath>
+      <HintPath>..\PMFLibV0.2\VRMShaders.GLTF.IO.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
