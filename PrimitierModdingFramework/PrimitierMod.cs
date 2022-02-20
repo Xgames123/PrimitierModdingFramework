@@ -34,6 +34,8 @@ namespace PrimitierModdingFramework
 
 			PMFSystem.FireEventOnSystems(PMFEventType.ApplicationStart);
 			IsApplicationStarted = true;
+
+			HarmonyInstance.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
 		}
 
 		/// <summary>

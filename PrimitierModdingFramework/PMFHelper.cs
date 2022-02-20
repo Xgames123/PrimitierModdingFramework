@@ -8,10 +8,13 @@ namespace PrimitierModdingFramework
 {
 	public class PMFHelper : PMFSystem
 	{
+		public static bool IsEnabled { get; private set; } = false;
+
 		public static Transform LHand;
 		public static Transform RHand;
 		public static Transform CameraRig;
 		public static PlayerMovement PlayerMovement;
+		public static PlayerLife PlayerLife;
 
 		public static Transform MenuWindowL;
 
@@ -20,8 +23,21 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public static Transform SystemTransform;
 
+		public override void OnSystemEnabled()
+		{
+			IsEnabled = true;
+			base.OnSystemEnabled();
+		}
+		public override void OnSystemDisabled()
+		{
+			IsEnabled = false;
+			base.OnSystemDisabled();
+		}
+
+
 		public override void OnStart()
 		{
+
 			base.OnStart();
 			EnableSystem<PMFLog>();
 			

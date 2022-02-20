@@ -62,11 +62,6 @@ namespace PrimitierModdingFramework.Debugging
 			{
 				ResourceXmlDumper.DumpAllToFile();
 			}));
-			DebugMenu.CreateButton("Heal max", new System.Action(() =>
-			{
-				PMFHelper.CameraRig.GetComponent<PlayerLife>().Recover(1000000);
-
-			}));
 
 
 			OpenMenu("MainMenu");
@@ -161,6 +156,7 @@ namespace PrimitierModdingFramework.Debugging
 
 			return Pannel;
 		}
+
 
 		
 	}

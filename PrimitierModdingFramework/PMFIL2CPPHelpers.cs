@@ -1,4 +1,4 @@
-﻿using Il2CppSystem;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -13,16 +13,25 @@ namespace PrimitierModdingFramework
 	/// </summary>
 	public static class PMFIL2CPPHelpers
 	{
+		private static Il2CppSystem.Collections.Generic.List<Il2CppSystem.Object> s_GarbageCollectBlock = new Il2CppSystem.Collections.Generic.List<Il2CppSystem.Object>();
+
 		private static List<System.Type> _AllValueTypes = new List<System.Type>();
 
+		/// <summary>
+		/// All the value types in the current AppDomain
+		/// </summary>
+		[Obsolete("This is going to be implemented in the future")]
 		public static IReadOnlyList<System.Type> AllValueTypes { get { return _AllValueTypes; } }
 
 
 		/// <summary>
 		/// Regenerates the AllValueTypes list
 		/// </summary>
+		[Obsolete("This is going to be implemented in the future")]
 		public static void RegenerateValueTypeList()
 		{
+			throw new NotImplementedException();
+
 			_AllValueTypes.Clear();
 			foreach (var asm in System.AppDomain.CurrentDomain.GetAssemblies())
 			{
@@ -38,17 +47,22 @@ namespace PrimitierModdingFramework
 
 		}
 
+
+
+
 		/// <summary>
 		/// Automatically finds type to unbox to.
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <returns></returns>
+		[Obsolete("This is going to be implemented in the future")]
 		public static object AutoUnbox(Il2CppSystem.Object obj)
 		{
+			
 			throw new System.NotImplementedException();
 
 			var unboxed = IL2CPP.il2cpp_object_unbox(obj.Pointer);
-			if (unboxed == IntPtr.Zero)
+			if (unboxed == System.IntPtr.Zero)
 			{
 				return null;
 			}

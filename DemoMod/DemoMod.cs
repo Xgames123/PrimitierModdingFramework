@@ -1,26 +1,20 @@
-﻿using PrimitierModdingFramework;
+﻿using Il2CppSystem;
+using PrimitierModdingFramework;
 using PrimitierModdingFramework.Debugging;
-using PrimitierModdingFramework.Debugging.ComponentDumpers;
 using PrimitierModdingFramework.SubstanceModding;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnhollowerRuntimeLib;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace DemoMod
 {
-    public class DemoMod : PrimitierMod
+	public class DemoMod : PrimitierMod
     {
 		
 
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
+
+			
 
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
 
@@ -37,15 +31,28 @@ namespace DemoMod
 
 			spawnMenu.CreateButton("Custom", new System.Action(() =>
 			{
-				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"), temperature: 999);
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			}));
 
 
+			
+
+			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Wood");
+			customMat.name = "CustomMat";
+			customMat.color = new Color(0, 1, 1);
+			
+
+			CustomSubstanceSystem.LoadCustomMaterial(customMat);
+
 			var customSubstance = CustomSubstanceSystem.CreateCustomSubstance(Substance.Iron);
+
 			customSubstance.displayNameKey = "SUB_CUSTOM";
+			customSubstance.collisionSound = "RespawnPoint";
 			customSubstance.isEdible = true;
-			customSubstance.material = "Slime";
-			customSubstance.stiffness = 99999999;
+			customSubstance.material = "CustomMat";
+			customSubstance.stiffness = 99999999; //Damage
+			customSubstance.strength = 999999999999999999; //HP
+
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 
@@ -59,7 +66,8 @@ namespace DemoMod
 			PMFSystem.EnableSystem<PMFHelper>();
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
-			
+			PMFSystem.EnableSystem<CustomAssetSystem>();
+
 
 		}
 		public override void OnUpdate()
@@ -71,15 +79,7 @@ namespace DemoMod
 
 		public override void OnFixedUpdate()
 		{
-		
-
-			if (Input.GetKey(KeyCode.A))
-			{
-
-				CubeGenerator.GenerateCube(new Vector3(1, 1, 1), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
-			}
-
-			
+					
 
 		}
 
