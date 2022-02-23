@@ -15,7 +15,7 @@ namespace DemoMod
 		float lowerBlockSizeLim = 0.05f;
 		float creativeBlockSizeInc = 0.05f;
 		float creativeBlockSizeDec = 0.05f;
-		Vector3 creativeBlockGenerationOffset = new Vector3(.75f, 0.75f, 0.0f);
+		Vector3 creativeBlockGenerationOffset = new Vector3(.75f, 0.0f, -0.75f);
 
 		DateTime sysTime = new DateTime();
 
@@ -47,21 +47,21 @@ namespace DemoMod
 			//Increment Buttons
 			newmenu.CreateButton("IncX", new System.Action(() =>
 			{
-				if(creativeBlockSize.x < upperBlockSizeLim){
+				if(creativeBlockSize.x+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.x += creativeBlockSizeInc;
 				}
 				UpdateLastRecordedButtonPress();
 			}));
 			newmenu.CreateButton("IncY", new System.Action(() =>
 			{
-				if(creativeBlockSize.y < upperBlockSizeLim){
+				if(creativeBlockSize.y+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.y += creativeBlockSizeInc;
 				}
 				UpdateLastRecordedButtonPress();
 			}));
 			newmenu.CreateButton("IncZ", new System.Action(() =>
 			{
-				if(creativeBlockSize.z < upperBlockSizeLim){
+				if(creativeBlockSize.z+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.z += creativeBlockSizeInc;
 				}
 				UpdateLastRecordedButtonPress();
@@ -69,21 +69,21 @@ namespace DemoMod
 			//Decrement Buttons
 			newmenu.CreateButton("DecX", new System.Action(() =>
 			{
-				if(creativeBlockSize.x > lowerBlockSizeLim){
+				if(creativeBlockSize.x-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.x -= creativeBlockSizeDec;
 				}
 				UpdateLastRecordedButtonPress();
 			}));
 			newmenu.CreateButton("DecY", new System.Action(() =>
 			{
-				if(creativeBlockSize.y > lowerBlockSizeLim){
+				if(creativeBlockSize.y-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.y -= creativeBlockSizeDec;
 				}
 				UpdateLastRecordedButtonPress();
 			}));
 			newmenu.CreateButton("DecZ", new System.Action(() =>
 			{
-				if(creativeBlockSize.z > lowerBlockSizeLim){
+				if(creativeBlockSize.z-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.z -= creativeBlockSizeDec;
 				}
 				UpdateLastRecordedButtonPress();

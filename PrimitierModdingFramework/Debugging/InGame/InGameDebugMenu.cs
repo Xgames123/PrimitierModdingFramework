@@ -12,13 +12,14 @@ namespace PrimitierModdingFramework.Debugging
 		private const float s_buttonWidth = 0.1f;
 		private const float s_buttonSpaceing = 0.01f;
 		private const int s_maxButtonsPerLine = 3;
-		private const float s_buttonTextDepth = 0.0062f;
+		private const float s_buttonTextDepth = 0.011f;
 
 		private int _buttonsOnCurrentLine = 0;
 		private Vector2 _nextButtonPos = new Vector2(-0.1f, 0.05f);
 
-		private const float s_backButtonWidth = 0.36f;
-		private const float s_backButtonHeight = 0.1f;
+		private const float s_backButtonWidth = 0.4f;
+		private const float s_backButtonHeight = 0.05f;
+		private Vector2 _backButtonPos = new Vector2(0.0f, 0.1f+s_buttonSpaceing+s_backButtonHeight);
 
 		
 
@@ -85,7 +86,7 @@ namespace PrimitierModdingFramework.Debugging
 			buttonGameObject.transform.parent = transform;
 			buttonGameObject.name = "Button";
 			buttonGameObject.transform.localScale = new Vector3(s_backButtonWidth, s_backButtonHeight, s_buttonZSize);
-			buttonGameObject.transform.localPosition = new Vector3(_nextButtonPos.x, _nextButtonPos.y, -s_buttonZSize);
+			buttonGameObject.transform.localPosition = new Vector3(_backButtonPos.x, _backButtonPos.y, -s_buttonZSize);
 
 			buttonGameObject.AddComponent<BoxCollider>();
 			var button = buttonGameObject.AddComponent<InGameDebugToolButton>();
@@ -108,7 +109,7 @@ namespace PrimitierModdingFramework.Debugging
 			textMP.color = Color.black;
 			textMP.alignment = TextAlignmentOptions.Center;
 			textGameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-			textGameObject.transform.localPosition = new Vector3(_nextButtonPos.x, _nextButtonPos.y, -s_buttonTextDepth);
+			textGameObject.transform.localPosition = new Vector3(_backButtonPos.x, _backButtonPos.y, -s_buttonTextDepth);
 
 			button.CubeTransform = cube.transform;
 

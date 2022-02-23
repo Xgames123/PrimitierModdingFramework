@@ -103,7 +103,9 @@ namespace PrimitierModdingFramework.Debugging
 			textGameObject.transform.parent = menuGameObject.transform;
 			var text = textGameObject.AddComponent<TextMeshPro>();
 			text.text = title;
-			text.fontSize = 0.5f;
+			if(title.Length > 11){ text.fontSize = 0.35f;}
+			else if(title.Length > 19){ text.fontSize = 0.2f;}
+			else{text.fontSize = 0.5f;}
 			text.color = Color.white;
 			text.alignment = TextAlignmentOptions.Center;
 			textGameObject.transform.localScale = new Vector3(1, 1, 1);
@@ -111,7 +113,8 @@ namespace PrimitierModdingFramework.Debugging
 
 			if (parentMenuName != null)
 			{
-				menu.CreateButton("Back", new System.Action(() => 
+				// menu.CreateButton("Back", new System.Action(() => 
+				menu.CreateBackButton(new System.Action(() => 
 				{
 					OpenMenu(parentMenuName);
 				}));
