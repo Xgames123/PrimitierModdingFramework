@@ -1,5 +1,5 @@
-$PRIMITIER_PATH = 'D:\Program Files (x86)\Steam\steamapps\common\Primitier';
-$DEBUG_BIN_PATH = 'bin\Debug';
+$PRIMITIER_PATH = 'E:\Games\Steam\steamapps\common\Primitier';
+$DEBUG_BIN_PATH = 'PrimitierModdingFramework\DemoMod\bin\Debug';
 
 $ModsFolder =  $PRIMITIER_PATH+"\Mods"
 

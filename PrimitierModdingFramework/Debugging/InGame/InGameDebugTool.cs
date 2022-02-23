@@ -149,7 +149,7 @@ namespace PrimitierModdingFramework.Debugging
 		{
 			var Pannel = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			Pannel.transform.parent = parent;
-			Pannel.transform.localScale = new Vector3(0.4f, 0.3f, 0.02f);
+			Pannel.transform.localScale = new Vector3(0.4f, 0.3f, 0.005f);
 			Pannel.transform.localPosition = new Vector3(0, 0, 0);
 			Pannel.GetComponent<MeshRenderer>().material.color = Color.black;
 
