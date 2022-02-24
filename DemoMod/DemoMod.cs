@@ -49,6 +49,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.x+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.x += creativeBlockSizeInc;
+					newmenu.UpdateLabelWidgetText("Xcounter",creativeBlockSize.x.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -56,6 +57,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.y+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.y += creativeBlockSizeInc;
+					newmenu.UpdateLabelWidgetText("Ycounter",creativeBlockSize.y.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -63,14 +65,20 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.z+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.z += creativeBlockSizeInc;
+					newmenu.UpdateLabelWidgetText("Zcounter",creativeBlockSize.z.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
+			//Label Widgets
+			newmenu.CreateLabelWidget("Xcounter", creativeBlockSize.x.ToString("0.00"));
+			newmenu.CreateLabelWidget("Ycounter", creativeBlockSize.y.ToString("0.00"));
+			newmenu.CreateLabelWidget("Zcounter", creativeBlockSize.z.ToString("0.00"));
 			//Decrement Buttons
 			newmenu.CreateButton("DecX", new System.Action(() =>
 			{
 				if(creativeBlockSize.x-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.x -= creativeBlockSizeDec;
+					newmenu.UpdateLabelWidgetText("Xcounter",creativeBlockSize.x.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -78,6 +86,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.y-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.y -= creativeBlockSizeDec;
+					newmenu.UpdateLabelWidgetText("Ycounter",creativeBlockSize.y.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -85,6 +94,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.z-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.z -= creativeBlockSizeDec;
+					newmenu.UpdateLabelWidgetText("Zcounter",creativeBlockSize.z.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));

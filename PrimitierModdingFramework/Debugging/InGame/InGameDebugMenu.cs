@@ -1,5 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 namespace PrimitierModdingFramework.Debugging
 {
@@ -21,7 +23,7 @@ namespace PrimitierModdingFramework.Debugging
 		private const float s_backButtonHeight = 0.05f;
 		private Vector2 _backButtonPos = new Vector2(0.0f, 0.1f+s_buttonSpaceing+s_backButtonHeight);
 
-		
+		private List<LabelWidget> activeLabelWidgets = new List<LabelWidget>();
 
 		public InGameDebugToolButton CreateButton(string text, Il2CppSystem.Action opPress)
 		{
@@ -118,7 +120,89 @@ namespace PrimitierModdingFramework.Debugging
 			return button;
 		}
 
+		public class LabelWidget
+		{
+			private string widgetName;
+			private TextMeshPro textMPObj;
+			public LabelWidget(string widgetName, TextMeshPro widgetObj)
+			{
+				this.widgetName = widgetName;
+				this.textMPObj = widgetObj;
+			}
+
+			public string Name
+			{
+				get { return widgetName; }
+			}
+
+			public bool Equals(string labelName)
+			{
+				return widgetName.Equals(labelName);
+			}
+
+			public string Text
+			{
+				get { return textMPObj.text; }
+				set { textMPObj.text = value; }
+			}
+		}
+		public GameObject CreateLabelWidget(string labelName, string initialText)
+		{
+			var labelGameObject = new GameObject();
+			labelGameObject.transform.parent = transform;
+			labelGameObject.name = "Label";
+			labelGameObject.transform.localScale = new Vector3(s_buttonWidth, s_buttonHeight, s_buttonZSize);
+			labelGameObject.transform.localPosition = new Vector3(_nextButtonPos.x, _nextButtonPos.y, -s_buttonZSize);
+
+			labelGameObject.AddComponent<BoxCollider>();
+			//var labelBase = labelGameObject.AddComponent<InGameDebugToolLabel>();
 
 
+			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			cube.transform.parent = labelGameObject.transform;
+			cube.transform.localPosition = Vector3.zero;
+			cube.transform.localScale = new Vector3(1, 1, 1);
+			cube.GetComponent<MeshRenderer>().material.color = Color.grey;
+			Destroy(cube.GetComponent<BoxCollider>());
+
+
+			GameObject textGameObject = new GameObject("Text");
+			textGameObject.transform.parent = transform;
+
+			var textMP = textGameObject.AddComponent<TextMeshPro>();
+			textMP.text = initialText;
+			textMP.fontSize = 0.1f;
+			textMP.color = Color.black;
+			textMP.alignment = TextAlignmentOptions.Center;
+			textGameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+			textGameObject.transform.localPosition = new Vector3(_nextButtonPos.x, _nextButtonPos.y, -s_buttonTextDepth);
+
+			activeLabelWidgets.Add(new LabelWidget(labelName,textMP));
+
+			_buttonsOnCurrentLine++;
+			_nextButtonPos += new Vector2(s_buttonWidth + s_buttonSpaceing, 0);
+			if (_buttonsOnCurrentLine >= s_maxButtonsPerLine)
+			{
+				_buttonsOnCurrentLine = 0;
+				_nextButtonPos.x = -0.1f;
+				_nextButtonPos.y -= s_buttonHeight + s_buttonSpaceing;
+			}
+
+			return labelGameObject;
+		}
+
+		public void UpdateLabelWidgetText(string labelName, string newText)
+		{
+			//Console.WriteLine("Update method called with text " + newText + " for widget " + labelName);
+			foreach(var item in activeLabelWidgets)
+			{
+				//Console.WriteLine("Widget " + item.Name);
+				if(item.Equals(labelName))//labelName.Equals(item.GetName())
+				{
+					//Console.WriteLine("Update method sees an equivalent text name");
+					item.Text = newText;
+				}
+			}
+		}
 	}
 }
