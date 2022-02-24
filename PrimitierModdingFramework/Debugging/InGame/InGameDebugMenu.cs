@@ -24,6 +24,7 @@ namespace PrimitierModdingFramework.Debugging
 		private Vector2 _backButtonPos = new Vector2(0.0f, 0.1f+s_buttonSpaceing+s_backButtonHeight);
 
 		private List<LabelWidget> activeLabelWidgets = new List<LabelWidget>();
+		private List<ToggleWidget> activeToggleWidgets = new List<ToggleWidget>();
 
 		public InGameDebugToolButton CreateButton(string text, Il2CppSystem.Action opPress)
 		{
@@ -191,7 +192,7 @@ namespace PrimitierModdingFramework.Debugging
 			return labelGameObject;
 		}
 
-		public void UpdateLabelWidgetText(string labelName, string newText)
+		public void SetLabelWidgetText(string labelName, string newText)
 		{
 			//Console.WriteLine("Update method called with text " + newText + " for widget " + labelName);
 			foreach(var item in activeLabelWidgets)
@@ -201,6 +202,108 @@ namespace PrimitierModdingFramework.Debugging
 				{
 					//Console.WriteLine("Update method sees an equivalent text name");
 					item.Text = newText;
+				}
+			}
+		}
+
+		public class ToggleWidget
+		{
+			private string widgetName;
+			private GameObject widgetObj;
+			public ToggleWidget(string widgetName, GameObject widgetObj)
+			{
+				this.widgetName = widgetName;
+				this.widgetObj = widgetObj;
+			}
+
+			public string Name
+			{
+				get { return widgetName; }
+			}
+
+			public bool Equals(string labelName)
+			{
+				return widgetName.Equals(labelName);
+			}
+
+			public void UpdateToggleState(bool toggleState)
+			{
+				if(toggleState)
+				{
+					widgetObj.GetComponent<MeshRenderer>().material.color = Color.green;
+				}
+				else
+				{
+					widgetObj.GetComponent<MeshRenderer>().material.color = Color.red;
+				}
+			}
+		}
+
+		public InGameDebugToolButton CreateToggleWidget(string labelName, string labelText, bool initialState, Il2CppSystem.Action opPress)
+		{
+			var buttonGameObject = new GameObject();
+			buttonGameObject.transform.parent = transform;
+			buttonGameObject.name = "Toggle";
+			buttonGameObject.transform.localScale = new Vector3(s_buttonWidth, s_buttonHeight, s_buttonZSize);
+			buttonGameObject.transform.localPosition = new Vector3(_nextButtonPos.x, _nextButtonPos.y, -s_buttonZSize);
+
+			buttonGameObject.AddComponent<BoxCollider>();
+			var button = buttonGameObject.AddComponent<InGameDebugToolButton>();
+
+
+			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			cube.transform.parent = buttonGameObject.transform;
+			cube.transform.localPosition = Vector3.zero;
+			cube.transform.localScale = new Vector3(1, 1, 1);
+			if(initialState)
+			{
+				cube.GetComponent<MeshRenderer>().material.color = Color.green;
+			}
+			else
+			{
+				cube.GetComponent<MeshRenderer>().material.color = Color.red;
+			}
+			//var cube_before = cube;
+			Destroy(cube.GetComponent<BoxCollider>());
+			//console.WriteLine("Cube status after destroy: " + cube_before.Equals(cube));
+
+			GameObject textGameObject = new GameObject("Text");
+			textGameObject.transform.parent = transform;
+
+			var textMP = textGameObject.AddComponent<TextMeshPro>();
+			textMP.text = labelText;
+			textMP.fontSize = 0.12f;
+			textMP.color = Color.black;
+			textMP.alignment = TextAlignmentOptions.Center;
+			textGameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+			textGameObject.transform.localPosition = new Vector3(_nextButtonPos.x, _nextButtonPos.y, -s_buttonTextDepth);
+
+			activeToggleWidgets.Add(new ToggleWidget(labelName, cube));
+
+			button.CubeTransform = cube.transform;
+			button.AttachOnPressListener(opPress);
+
+			_buttonsOnCurrentLine++;
+			_nextButtonPos += new Vector2(s_buttonWidth + s_buttonSpaceing, 0);
+			if (_buttonsOnCurrentLine >= s_maxButtonsPerLine)
+			{
+				_buttonsOnCurrentLine = 0;
+				_nextButtonPos.x = -0.1f;
+				_nextButtonPos.y -= s_buttonHeight + s_buttonSpaceing;
+			}
+			return button;
+		}
+
+		public void UpdateToggleWidgetState(string labelName, bool state)
+		{
+			//Console.WriteLine("Update method called with text " + newText + " for widget " + labelName);
+			foreach(var item in activeToggleWidgets)
+			{
+				//Console.WriteLine("Widget " + item.Name);
+				if(item.Equals(labelName))//labelName.Equals(item.GetName())
+				{
+					//Console.WriteLine("Update method sees an equivalent text name");
+					item.UpdateToggleState(state);
 				}
 			}
 		}

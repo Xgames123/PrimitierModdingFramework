@@ -3,6 +3,7 @@ using PrimitierModdingFramework;
 using PrimitierModdingFramework.Debugging;
 using PrimitierModdingFramework.SubstanceModding;
 using UnityEngine;
+using Valve.VR;
 
 
 namespace DemoMod
@@ -26,19 +27,44 @@ namespace DemoMod
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
+			var spawnMenu = CreateSpawnMenu();
 
 			var creativeMenu = CreateCreativeMenu();
-
 			var creativeBlockBuilderMenu = CreateCreativeBlockBuilderMenu();
-
-			var spawnMenu = CreateSpawnMenu();
+			var creativeGodModeMenu = CreateCreativeGodMenu();
 			
 			LoadCustomSubstances();
-
 		}
 
 		public InGameDebugMenu CreateCreativeMenu(){
 			var newmenu = InGameDebugTool.CreateMenu("CreativeMenu", "MainMenu");
+			return newmenu;
+		}
+
+
+		public bool godmodeFlying = false;
+		public bool regenHealth = false;
+		public bool infiniteHealth = false;
+		public InGameDebugMenu CreateCreativeGodMenu(){
+			var newmenu = InGameDebugTool.CreateMenu("GodMenu", "CreativeMenu");
+			//Activate flying mode
+			newmenu.CreateToggleWidget("fly", "Flying", false, new System.Action(() =>
+			{
+				godmodeFlying = !godmodeFlying;
+				newmenu.UpdateToggleWidgetState("fly", godmodeFlying);
+			}));
+			//Enable regenerating health over time
+			newmenu.CreateToggleWidget("regen", "Regen HP", false, new System.Action(() =>
+			{
+				regenHealth = !regenHealth;
+				newmenu.UpdateToggleWidgetState("regen", regenHealth);
+			}));
+			//Activate infinite HP mode
+			newmenu.CreateToggleWidget("infiniteHP", "Infinite HP", false, new System.Action(() =>
+			{
+				infiniteHealth = !infiniteHealth;
+				newmenu.UpdateToggleWidgetState("infiniteHP", infiniteHealth);
+			}));
 			return newmenu;
 		}
 
@@ -49,7 +75,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.x+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.x += creativeBlockSizeInc;
-					newmenu.UpdateLabelWidgetText("Xcounter",creativeBlockSize.x.ToString("0.00"));
+					newmenu.SetLabelWidgetText("Xcounter",creativeBlockSize.x.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -57,7 +83,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.y+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.y += creativeBlockSizeInc;
-					newmenu.UpdateLabelWidgetText("Ycounter",creativeBlockSize.y.ToString("0.00"));
+					newmenu.SetLabelWidgetText("Ycounter",creativeBlockSize.y.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -65,7 +91,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.z+creativeBlockSizeInc < upperBlockSizeLim){
 					creativeBlockSize.z += creativeBlockSizeInc;
-					newmenu.UpdateLabelWidgetText("Zcounter",creativeBlockSize.z.ToString("0.00"));
+					newmenu.SetLabelWidgetText("Zcounter",creativeBlockSize.z.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -78,7 +104,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.x-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.x -= creativeBlockSizeDec;
-					newmenu.UpdateLabelWidgetText("Xcounter",creativeBlockSize.x.ToString("0.00"));
+					newmenu.SetLabelWidgetText("Xcounter",creativeBlockSize.x.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -86,7 +112,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.y-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.y -= creativeBlockSizeDec;
-					newmenu.UpdateLabelWidgetText("Ycounter",creativeBlockSize.y.ToString("0.00"));
+					newmenu.SetLabelWidgetText("Ycounter",creativeBlockSize.y.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -94,7 +120,7 @@ namespace DemoMod
 			{
 				if(creativeBlockSize.z-creativeBlockSizeDec > lowerBlockSizeLim){
 					creativeBlockSize.z -= creativeBlockSizeDec;
-					newmenu.UpdateLabelWidgetText("Zcounter",creativeBlockSize.z.ToString("0.00"));
+					newmenu.SetLabelWidgetText("Zcounter",creativeBlockSize.z.ToString("0.00"));
 				}
 				UpdateLastRecordedButtonPress();
 			}));
@@ -237,11 +263,82 @@ namespace DemoMod
 
 
 		}
+
+		private bool last_infiniteHealth = false;
+		private float lastRegenHealth = 1000f;
+		private float regenDelay = 1.0f;
+		private float regenIncrease = 10.0f;
+		public float currTime = 0.0f;
+		private float lastTime = 0.0f;
+		private byte regenCooldownCounter = 0;
+		private float lastZHeight = 0.0f;
+		Vector3 tempPosition;
 		public override void OnUpdate()
 		{
 			base.OnUpdate();
+			sysTime = DateTime.Now;
 
+			if(godmodeFlying)
+			{ 
+				//PMFLog.Message("Jump cool time " + PlayerMovement.jumpCoolTime.ToString()); //default 0.5
+				
+				//for some reason +y is up, +x is to left of spawn (death respawn attitude) and +z is straight ahead of spawn
+				Vector3 tempPosition = PMFHelper.PlayerMovement.rb.position;
+				PMFLog.Message("Position: ("+tempPosition.x.ToString()+","+tempPosition.y.ToString()+","+tempPosition.z.ToString()+")");
+				
+				if(lastZHeight < tempPosition.y)
+				{
+					tempPosition.y = lastZHeight;
+					//PMFHelper.PlayerMovement.rb.position = tempPosition;
+				}
+				else
+				{
+					lastZHeight = tempPosition.y;
+				}
 
+			}
+			if(regenHealth)
+			{
+				PMFLog.Message("Systicks: " + sysTime.Ticks + "CurrTime: " + currTime.ToString() + " LastRecord: " + lastTime.ToString());
+				currTime = (sysTime.Ticks/10000);
+				if(currTime - lastTime > regenDelay)
+				{
+					if(PlayerLife.Life != lastRegenHealth || regenCooldownCounter > 0)
+					{
+						if(PlayerLife.Life+regenIncrease > 1000)
+						{
+							PlayerLife.Life = 1000;
+						}
+						else
+						{
+							PlayerLife.Life += regenIncrease;
+						}
+						lastRegenHealth = PlayerLife.Life;
+						lastTime = currTime;
+					}
+					else if(regenCooldownCounter > 0)
+					{
+						regenCooldownCounter--;
+						lastTime = currTime;
+					}
+					else
+					{
+						regenCooldownCounter = 5;
+					}
+				}
+			}
+			if(infiniteHealth)
+			{
+				PlayerLife.MaxLife = float.MaxValue;
+				PlayerLife.Life = float.MaxValue;
+				last_infiniteHealth = true;
+			}
+			if(last_infiniteHealth == true && infiniteHealth == false)
+			{
+				PlayerLife.MaxLife = 1000;
+				PlayerLife.Life = 1000;
+				last_infiniteHealth = false;
+			}
 		}
 
 		public override void OnFixedUpdate()
