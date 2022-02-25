@@ -3,14 +3,12 @@ using PrimitierModdingFramework;
 using PrimitierModdingFramework.Debugging;
 using PrimitierModdingFramework.SubstanceModding;
 using UnityEngine;
-using Valve.VR;
 
 
 namespace DemoMod
 {
 	public class DemoMod : PrimitierMod
     {
-		
 		Vector3 creativeBlockSize = new Vector3(0.25f,0.25f,0.25f);
 		float upperBlockSizeLim = 2f;
 		float lowerBlockSizeLim = 0.05f;
@@ -18,7 +16,7 @@ namespace DemoMod
 		float creativeBlockSizeDec = 0.05f;
 		Vector3 creativeBlockGenerationOffset = new Vector3(.75f, 0.0f, -0.75f);
 
-		DateTime sysTime = new DateTime();
+		DateTime sysTime;// = new DateTime();
 
 		long lastTimeBtnPressed = 0;
 
@@ -45,6 +43,7 @@ namespace DemoMod
 		public bool godmodeFlying = false;
 		public bool regenHealth = false;
 		public bool infiniteHealth = false;
+		public bool antigravity = false;
 		public InGameDebugMenu CreateCreativeGodMenu(){
 			var newmenu = InGameDebugTool.CreateMenu("GodMenu", "CreativeMenu");
 			//Activate flying mode
@@ -64,6 +63,12 @@ namespace DemoMod
 			{
 				infiniteHealth = !infiniteHealth;
 				newmenu.UpdateToggleWidgetState("infiniteHP", infiniteHealth);
+			}));
+			//Activate infinite HP mode
+			newmenu.CreateToggleWidget("antigrav", "AngtiGravity", false, new System.Action(() =>
+			{
+				antigravity = !antigravity;
+				newmenu.UpdateToggleWidgetState("antigrav", antigravity);
 			}));
 			return newmenu;
 		}
@@ -271,62 +276,48 @@ namespace DemoMod
 		public float currTime = 0.0f;
 		private float lastTime = 0.0f;
 		private byte regenCooldownCounter = 0;
+		private byte regenCooldownCounterResetVal = 7;
 		private float lastZHeight = 0.0f;
-		Vector3 tempPosition;
+		//private float lastSystemTime = 0.0;
+		
 		public override void OnUpdate()
 		{
 			base.OnUpdate();
 			sysTime = DateTime.Now;
 
-			if(godmodeFlying)
-			{ 
-				//PMFLog.Message("Jump cool time " + PlayerMovement.jumpCoolTime.ToString()); //default 0.5
-				
-				//for some reason +y is up, +x is to left of spawn (death respawn attitude) and +z is straight ahead of spawn
-				Vector3 tempPosition = PMFHelper.PlayerMovement.rb.position;
-				PMFLog.Message("Position: ("+tempPosition.x.ToString()+","+tempPosition.y.ToString()+","+tempPosition.z.ToString()+")");
-				
-				if(lastZHeight < tempPosition.y)
-				{
-					tempPosition.y = lastZHeight;
-					//PMFHelper.PlayerMovement.rb.position = tempPosition;
-				}
-				else
-				{
-					lastZHeight = tempPosition.y;
-				}
-
-			}
 			if(regenHealth)
 			{
-				PMFLog.Message("Systicks: " + sysTime.Ticks + "CurrTime: " + currTime.ToString() + " LastRecord: " + lastTime.ToString());
-				currTime = (sysTime.Ticks/10000);
+				float currTime = Time.fixedUnscaledTime;
+				PMFLog.Message("CurrTime: " + currTime.ToString() + " LastRecord: " + lastTime.ToString() + " Delta: " + (currTime - lastTime).ToString());
+				
+
 				if(currTime - lastTime > regenDelay)
 				{
-					if(PlayerLife.Life != lastRegenHealth || regenCooldownCounter > 0)
+					if(lastRegenHealth != PlayerLife.Life)
 					{
-						if(PlayerLife.Life+regenIncrease > 1000)
+						regenCooldownCounter = regenCooldownCounterResetVal;
+					}
+					if(regenCooldownCounter == 0)
+					{
+						if(PlayerLife.Life+regenIncrease > 1000f)
 						{
-							PlayerLife.Life = 1000;
+							PlayerLife.Life = 1000f;
 						}
 						else
 						{
 							PlayerLife.Life += regenIncrease;
 						}
-						lastRegenHealth = PlayerLife.Life;
-						lastTime = currTime;
 					}
-					else if(regenCooldownCounter > 0)
+					if(regenCooldownCounter > 0)
 					{
+						PMFLog.Message("regencooldown subtraction: " + regenCooldownCounter.ToString());
 						regenCooldownCounter--;
-						lastTime = currTime;
 					}
-					else
-					{
-						regenCooldownCounter = 5;
-					}
+					lastRegenHealth = PlayerLife.Life;
+					lastTime = currTime;
 				}
 			}
+
 			if(infiniteHealth)
 			{
 				PlayerLife.MaxLife = float.MaxValue;
@@ -339,11 +330,47 @@ namespace DemoMod
 				PlayerLife.Life = 1000;
 				last_infiniteHealth = false;
 			}
+
+			if(antigravity)
+			{ 
+				PMFHelper.PlayerMovement.rb.useGravity = false;
+			}
+			else
+			{
+				PMFHelper.PlayerMovement.rb.useGravity = true;
+			}
+			PMFLog.Message("Max air move: " + PlayerMovement.maxAirMovePower.ToString() + "   Max air move: " + PlayerMovement.airMovePowerMlp.ToString());
+			PMFLog.Message("Moving threshold: " + PlayerMovement.movingThreshold.ToString() + "   Ground Move Power: " + PlayerMovement.groundMovePowerMlp.ToString());
+
 		}
 
 		public override void OnFixedUpdate()
 		{
-					
+			if(godmodeFlying)
+			{ 
+				//PMFLog.Message("Jump cool time " + PlayerMovement.jumpCoolTime.ToString()); //default 0.5
+				
+				//for some reason +y is up, +x is to left of spawn (death respawn attitude) and +z is straight ahead of spawn
+				Vector3 tempPosition = PMFHelper.PlayerMovement.rb.position;
+				PMFLog.Message("Position: (" + tempPosition.x.ToString() + "," + tempPosition.y.ToString() + "," + tempPosition.z.ToString() + ")");
+				//tempPosition.y = 15.0f;
+				PMFHelper.PlayerMovement.rb.useGravity = false;
+				PMFHelper.PlayerMovement.rb.velocity = new Vector3(0f,0f,1f);
+				//PMFHelper.PlayerMovement.rb.position = tempPosition;
+				if(lastZHeight > tempPosition.y)
+				{
+					tempPosition.y = lastZHeight;
+					//PMFHelper.PlayerMovement.rb.position = tempPosition;
+				}
+				else
+				{
+					lastZHeight = tempPosition.y;
+				}
+			}
+			else
+			{
+				PMFHelper.PlayerMovement.rb.useGravity = true;
+			}
 
 		}
 
