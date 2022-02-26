@@ -45,10 +45,8 @@ namespace PrimitierModdingFramework.Debugging
 			menusGameObject.transform.localScale = new Vector3(1, 1, 1);
 			_Menus = menusGameObject.transform;
 
-
 			MainMenu = CreateMenu("MainMenu", null, "DEBUG TOOL");
-			var closeButton = MainMenu.CreateButton("Close");
-			closeButton.AttachOnPressListener(new System.Action(() =>
+			var closeButton = MainMenu.CreateOverheadButton("Close", new System.Action(() =>
 			{
 				Hide();
 			}));
