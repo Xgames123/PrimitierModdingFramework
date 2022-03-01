@@ -46,7 +46,7 @@ namespace PrimitierModdingFramework.Debugging
 			_Menus = menusGameObject.transform;
 
 			MainMenu = CreateMenu("MainMenu", null, "DEBUG TOOL");
-			var closeButton = MainMenu.CreateOverheadButton("Close", new System.Action(() =>
+			var closeButton = MainMenu.CreateOverheadButton("Close", "MAINMENU_CLOSE", new System.Action(() =>
 			{
 				Hide();
 			}));
