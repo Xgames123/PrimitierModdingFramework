@@ -31,6 +31,19 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static void Create()
 		{
+			if(DebugTool != null)
+			{
+				return;
+			}
+
+			var tool = GameObject.Find("InGameDebugTool");
+			if (tool != null)
+			{
+				DebugTool = tool.GetComponent<InGameDebugTool>();
+				return;
+			}
+
+
 			var gameObject = new GameObject();
 			gameObject.transform.parent = PMFHelper.SystemTransform;
 			gameObject.name = "InGameDebugTool";

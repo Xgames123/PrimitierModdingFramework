@@ -41,6 +41,7 @@
     <Compile Include="Debugging\ComponentDumpers\MeshRendererDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\RectTransformDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
+    <Compile Include="Debugging\Editor\PMFEditorSystem.cs" />
     <Compile Include="Debugging\InGame\InGameDebuggingSystem.cs" />
     <Compile Include="Debugging\InGame\InGameDebugMenu.cs" />
     <Compile Include="Debugging\InGame\InGameDebugTool.cs" />

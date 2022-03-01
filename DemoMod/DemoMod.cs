@@ -68,7 +68,6 @@ namespace DemoMod
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
 			PMFSystem.EnableSystem<CustomAssetSystem>();
 
-
 		}
 		public override void OnUpdate()
 		{
