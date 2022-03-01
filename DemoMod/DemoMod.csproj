@@ -91,9 +91,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\MelonLoader.dll</HintPath>
     </Reference>
-    <Reference Include="PrimitierModdingFrameworkV0.2, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dlls\PrimitierModdingFrameworkV0.2.dll</HintPath>
+    <Reference Include="PrimitierModdingFrameworkV0.3">
+      <HintPath>..\Dlls\PrimitierModdingFrameworkV0.3.dll</HintPath>
     </Reference>
     <Reference Include="SteamVR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
