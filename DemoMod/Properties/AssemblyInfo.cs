@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("DemoMod")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany(BuildInfo.Authors)]
 [assembly: AssemblyProduct("DemoMod")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
@@ -33,7 +33,14 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.2.0.0")]
-[assembly: AssemblyFileVersion("0.2.0.0")]
-[assembly: MelonInfo(typeof(DemoMod.DemoMod), "A demo mod for PrimitierModdingFramework", "0.2.0", "XGames105")]
+
+[assembly: AssemblyVersion(BuildInfo.Version)]
+[assembly: AssemblyFileVersion(BuildInfo.Version)]
+[assembly: MelonInfo(typeof(DemoMod.DemoMod), "A demo mod for PrimitierModdingFramework", BuildInfo.Version, BuildInfo.Authors)]
 [assembly: MelonGame("PrimitierDev", "Primitier")]
+
+internal class BuildInfo
+{
+	public const string Version = "0.3.0.0";
+	public const string Authors = "XGames105";
+}
