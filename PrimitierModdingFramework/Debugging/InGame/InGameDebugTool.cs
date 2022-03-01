@@ -20,6 +20,8 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static void Hide()
 		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
 			if (DebugTool == null)
 			{
 				return;
@@ -31,7 +33,9 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static void Create()
 		{
-			if(DebugTool != null)
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+			if (DebugTool != null)
 			{
 				return;
 			}
@@ -87,6 +91,8 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static void Show()
 		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
 			if (DebugTool == null)
 			{
 				return;
@@ -100,6 +106,8 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static InGameDebugMenu CreateMenu(string name, string parentMenuName, string title=null)
 		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
 			var menuGameObject = new GameObject();
 			menuGameObject.name = name;
 			menuGameObject.transform.parent = _Menus.transform;
@@ -142,10 +150,16 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static InGameDebugMenu GetMenu(string name)
 		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
 			return _Menus.Find(name).GetComponent<InGameDebugMenu>();
 		}
 		public static void OpenMenu(string name)
 		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
 			if (_CurrentMenu != null)
 			{
 				_CurrentMenu.gameObject.SetActive(false);
@@ -160,6 +174,9 @@ namespace PrimitierModdingFramework.Debugging
 		
 		private static GameObject CreatePannel(Transform parent)
 		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
 			var Pannel = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			Pannel.transform.parent = parent;
 			Pannel.transform.localScale = new Vector3(0.4f, 0.3f, 0.02f);

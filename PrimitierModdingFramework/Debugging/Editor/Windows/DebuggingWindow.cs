@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimitierModdingFramework.Debugging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,11 +59,20 @@ namespace PrimitierModdingFramework.Debugging.Editor.Windows
 				ResourceXmlDumper.DumpAllToFile();
 			}
 
-			flyCamEnabled = PMFEditorLayout.ToggleButton(flyCamEnabled, 200, 30, "Fly cam");
-			if (flyCamEnabled)
+			var newValue = PMFEditorLayout.ToggleButton(flyCamEnabled, 200, 30, "Fly cam");
+			if (newValue != flyCamEnabled)
 			{
-				
+				if (newValue)
+				{
+					FlyCam.Create();
+				}
+				else
+				{
+					FlyCam.Remove();
+				}
+
 			}
+			flyCamEnabled = newValue;
 
 			PMFEditorLayout.EndVertical();
 		}

@@ -19,6 +19,8 @@ namespace PrimitierModdingFramework.Debugging
 
 		public InGameDebugToolButton CreateButton(string text, Il2CppSystem.Action opPress)
 		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
 			var button = CreateButton(text);
 			button.AttachOnPressListener(opPress);
 			return button;
@@ -26,7 +28,9 @@ namespace PrimitierModdingFramework.Debugging
 
 		public InGameDebugToolButton CreateButton(string text)
 		{
-			
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
 
 			var buttonGameObject = new GameObject();
 			buttonGameObject.transform.parent = transform;

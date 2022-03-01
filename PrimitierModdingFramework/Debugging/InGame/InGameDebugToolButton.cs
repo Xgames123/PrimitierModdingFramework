@@ -18,6 +18,9 @@ namespace PrimitierModdingFramework.Debugging
 
 		public void AttachOnPressListener(Il2CppSystem.Action onPress)
 		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
 			_OnPress = onPress;
 
 		}
@@ -25,6 +28,7 @@ namespace PrimitierModdingFramework.Debugging
 
 		public void OnPress()
 		{
+
 
 			CubeTransform.localScale = new Vector3(1, 1, 0.3f);
 			CubeTransform.localPosition = new Vector3(0, 0, 0.3f);

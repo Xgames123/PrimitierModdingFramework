@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimitierModdingFramework.Debugging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,7 @@ namespace PrimitierModdingFramework.Debugging
 		{
 			EnableSystem<PMFHelper>();
 
+			ClassInjector.RegisterTypeInIl2Cpp<FlyCam>();
 			ClassInjector.RegisterTypeInIl2Cpp<InGameDebugMenu>();
 			ClassInjector.RegisterTypeInIl2Cpp<InGameDebugTool>();
 			ClassInjector.RegisterTypeInIl2CppWithInterfaces<InGameDebugToolButton>(typeof(IButton));
