@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>PrimitierModdingFrameworkV0.2</name>
+        <name>PrimitierModdingFrameworkV0.3</name>
     </assembly>
     <members>
         <member name="T:PrimitierModdingFramework.CustomAssetSystem">
