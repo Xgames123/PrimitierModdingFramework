@@ -11,7 +11,7 @@ namespace PrimitierModdingFramework.Debugging.Editor
 	/// <summary>
 	/// A class for drawing pmf editor stuff
 	/// </summary>
-	public static class PMFEditorLayout
+	public static partial class PMFEditorLayout
 	{
 
 		/// <summary>
@@ -20,95 +20,234 @@ namespace PrimitierModdingFramework.Debugging.Editor
 		public static Il2CppReferenceArray<GUILayoutOption> EmptyLayout { get; private set; } = new Il2CppReferenceArray<GUILayoutOption>(0);
 
 
-		private const int c_windowDragBarSize = 30;
+		public const int MenuBarSize = 30;
+		public const int Spaceing = 5;
 
-		private static int _currentlyDragging = -1;
-		private static Vector2 _currentlyDraggingOffset = Vector2.zero;
+		private static Texture2D s_blueTexture;
+
+		private static bool s_styleSetup = false;
+
+		private static int s_horizontalOffset = 0;
+		private static int s_verticalOffset = 0;
+
+		private static bool s_moveHorizontal=false;
+		private static bool s_moveVertical = false;
 
 		/// <summary>
-		/// draws a draggable editor window 
+		/// creates a button
 		/// </summary>
-		/// <param name="id"></param>
-		/// <param name="windowRect"></param>
-		/// <param name="windowFunc"></param>
-		/// <param name="title"></param>
+		/// <param name="w"></param>
+		/// <param name="h"></param>
+		/// <param name="text"></param>
 		/// <returns></returns>
-		public static Rect Window(int id, string title, Rect windowRect, Action<int> windowFunc)
+		public static bool Button(int w, int h, string text)
 		{
-			GUI.skin.box.normal.background = Texture2D.whiteTexture;
-			var oldColor = GUI.color;
-			var oldContentColor = GUI.color;
+			TrySetupStyle();
 
-	
-			GUI.color = new Color(0f, 0.6f, 1f);
-			GUI.contentColor = Color.black;
-			var dragbar = new Rect(windowRect.position-new Vector2(0, c_windowDragBarSize), new Vector2(windowRect.width, c_windowDragBarSize));
-			GUI.Box(dragbar, title);
+			int x = s_horizontalOffset;
+			int y = s_verticalOffset;
 
-
-			GUI.color = new Color(0.3f, 0.3f, 0.3f);
-			GUI.Box(windowRect, "");
-
-
-			GUI.color = oldColor;
-			GUI.contentColor = oldContentColor;
-
-			GUI.BeginGroup(windowRect);
-			windowFunc?.Invoke(id);
-			GUI.EndGroup();
-
-
-			DoWindowDrag(id, dragbar);
-			if (_currentlyDragging == id)
+			if (s_moveHorizontal)
 			{
-				windowRect.position = Event.current.mousePosition+ _currentlyDraggingOffset;
-
-				if (windowRect.x < 0)
-				{
-					windowRect.x = 0;
-				}
-				if (windowRect.y-dragbar.height < 0)
-				{
-					windowRect.y = dragbar.height;
-				}
-
-				if (windowRect.x+windowRect.width > Screen.width)
-				{
-					windowRect.x = Screen.width-windowRect.width;
-				}
-				if (windowRect.y + windowRect.height - dragbar.height > Screen.height)
-				{
-					windowRect.y = Screen.height- windowRect.height+dragbar.height;
-				}
-
+				s_horizontalOffset += w+Spaceing;
+			}
+			if (s_moveVertical)
+			{
+				s_verticalOffset += h + Spaceing;
 			}
 
+			return GUI.Button(new Rect(x, y, w, h), text);
+		}
 
+		/// <summary>
+		/// creates a toggle button
+		/// </summary>
+		/// <param name="w"></param>
+		/// <param name="h"></param>
+		/// <param name="text"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool ToggleButton(bool value, int w, int h, string text)
+		{
+			TrySetupStyle();
 
-			return windowRect;
+			int x = s_horizontalOffset;
+			int y = s_verticalOffset;
+
+			if (s_moveHorizontal)
+			{
+				s_horizontalOffset += w + Spaceing;
+			}
+			if (s_moveVertical)
+			{
+				s_verticalOffset += h + Spaceing;
+			}
+
+			
+			if (value)
+			{
+				GUI.skin.button.normal.background = s_blueTexture;
+				GUI.skin.button.hover.background = s_blueTexture;
+			}
+			
+
+			if (GUI.Button(new Rect(x, y, w, h), text))
+			{
+				if (value)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+			GUI.skin.button.normal.background = Texture2D.grayTexture;
+			GUI.skin.button.hover.background = Texture2D.grayTexture;
+			return value;
 		}
 
 
-
-		private static void DoWindowDrag(int id, Rect dragbar)
+		/// <summary>
+		/// Sets the vertical offset for the next ui elements to be drawn
+		/// </summary>
+		/// <param name="offset"></param>
+		public static void SetVerticalOffset(int offset)
 		{
-			if (dragbar.Contains(Event.current.mousePosition))
+			TrySetupStyle();
+			s_verticalOffset = offset;
+		}
+		/// <summary>
+		/// Sets the horizontal offset for the next ui elements to be drawn
+		/// </summary>
+		/// <param name="offset"></param>
+		public static void SetHorizontalOffset(int offset)
+		{
+			TrySetupStyle();
+			s_horizontalOffset = offset;
+		}
+
+		/// <summary>
+		/// draws the next ui elements horizontal until EndHorizontal is called
+		/// </summary>
+		public static void BeginHorizontal()
+		{
+			TrySetupStyle();
+			s_moveVertical = false;
+			s_moveHorizontal = true;
+
+		}
+		public static void EndHorizontal()
+		{
+			TrySetupStyle();
+			s_moveHorizontal = false;
+			s_horizontalOffset = 0;
+
+		}
+
+		/// <summary>
+		/// draws the next ui elements vertical until EndVertical is called
+		/// </summary>
+		public static void BeginVertical()
+		{
+			TrySetupStyle();
+			s_moveVertical = true;
+			s_moveHorizontal = false;
+
+		}
+		public static void EndVertical()
+		{
+			TrySetupStyle();
+			s_moveVertical = false;
+			s_verticalOffset = 0;
+
+		}
+
+
+		/// <summary>
+		/// Creates a menu bar at the top of the screen
+		/// </summary>
+		public static void BeginGlobalMenuBar()
+		{
+			TrySetupStyle();
+			var oldColor = GUI.color;
+
+			GUI.color = Color.grey;
+			var bar = new Rect(0, 0, Screen.width, MenuBarSize);
+
+			GUI.Box(bar, "");
+			GUI.BeginGroup(bar);
+
+			GUI.color = oldColor;
+			s_verticalOffset = 0;
+			s_horizontalOffset = 0;
+			s_moveHorizontal = false;
+			s_moveVertical = false;
+		}
+
+		/// <summary>
+		/// Creates a menu item in a GlobalMenuBar
+		/// </summary>
+		/// <param name="text"></param>
+		/// <returns></returns>
+		public static bool GlobalMenuBarItem(int w, string text)
+		{
+			TrySetupStyle();
+			var x = s_horizontalOffset;
+			s_horizontalOffset += w + Spaceing;
+
+			return GUI.Button(new Rect(x, 0, w, MenuBarSize), text);
+		}
+
+
+		public static void EndGlobalMenuBar()
+		{
+			TrySetupStyle();
+			s_verticalOffset = 0;
+			s_horizontalOffset = 0;
+			GUI.EndGroup();
+		}
+
+	
+
+
+		
+		private static void TrySetupStyle()
+		{
+			if (s_styleSetup)
 			{
-				if (Event.current.type == EventType.MouseDown)
-				{
-					_currentlyDraggingOffset = dragbar.position - Event.current.mousePosition + new Vector2(0, c_windowDragBarSize);
-					_currentlyDragging = id;
-				}
-				if (Event.current.type == EventType.MouseUp)
-				{
-					if (_currentlyDragging == id)
-					{
-						_currentlyDragging = -1;
-					}
-
-				}
-
+				return;
 			}
+
+			s_styleSetup = true;
+
+			s_blueTexture = new Texture2D(1, 1);
+			s_blueTexture.SetPixel(0, 0, new Color(0, 0.8f, 1));
+			s_blueTexture.Apply();
+
+			GUI.skin.box.normal.background = Texture2D.whiteTexture;
+			GUI.skin.box.fontSize = 15;
+			GUI.skin.box.normal.textColor = Color.white;
+
+
+			GUI.skin.button.fontSize = 18;
+			GUI.skin.button.padding.left = 7;
+			GUI.skin.button.padding.right = 7;
+			GUI.skin.button.padding.top = 7;
+			GUI.skin.button.padding.bottom = 7;
+
+			GUI.skin.button.normal.background = Texture2D.grayTexture;
+			GUI.skin.button.normal.textColor = Color.white;
+			GUI.skin.button.focused.background = Texture2D.grayTexture;
+			GUI.skin.button.focused.textColor = Color.white;
+			GUI.skin.button.hover.background = Texture2D.grayTexture;
+			GUI.skin.button.hover.textColor = Color.white;
+			GUI.skin.button.active.background = s_blueTexture;
+			GUI.skin.button.active.textColor = Color.white;
+
+			GUI.color = Color.grey;
+			GUI.contentColor = Color.white;
 		}
 
 	}

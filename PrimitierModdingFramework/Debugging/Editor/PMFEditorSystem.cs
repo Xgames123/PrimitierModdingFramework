@@ -4,15 +4,17 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnhollowerBaseLib;
+using PrimitierModdingFramework.Debugging.Editor.Windows;
 
 namespace PrimitierModdingFramework.Debugging.Editor
 {
+	/// <summary>
+	/// A system that creates a custom editor inside Primitier to debug your mods
+	/// </summary>
 	public class PMFEditorSystem : PMFSystem
 	{
 		public static bool IsEnabled { get; private set; } = false;
 
-		private static Rect _windowRect = new Rect(20, 20, 500, 500);
-		
 
 		public override void OnSystemEnabled()
 		{
@@ -28,15 +30,16 @@ namespace PrimitierModdingFramework.Debugging.Editor
 
 		public override void OnGUI()
 		{
-			_windowRect = PMFEditorLayout.Window(0, "Test", _windowRect, OnWindow);
+			PMFEditorLayout.BeginGlobalMenuBar();
+
+			DebuggingWindow.MenuBar();
+
+			PMFEditorLayout.EndGlobalMenuBar();
+
+
+			DebuggingWindow.Draw();
+
 			
-
-		}
-
-		private static void OnWindow(int id)
-		{
-			GUILayout.Button("hi", PMFEditorLayout.EmptyLayout);
-			GUILayout.Button("hi", PMFEditorLayout.EmptyLayout);
 
 		}
 
