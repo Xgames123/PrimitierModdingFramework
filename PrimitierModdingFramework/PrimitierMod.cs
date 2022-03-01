@@ -24,6 +24,12 @@ namespace PrimitierModdingFramework
 			
 		}
 
+		public override void OnGUI()
+		{
+			PMFSystem.FireEventOnSystems(PMFEventType.GUI);
+			base.OnGUI();
+		}
+
 		/// <summary>
 		/// Runs after game Initialization
 		/// When overriding call base.OnApplicationStart() before you do anything.

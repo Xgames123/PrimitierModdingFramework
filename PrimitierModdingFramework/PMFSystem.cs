@@ -16,6 +16,7 @@ namespace PrimitierModdingFramework
 		ApplicationQuit,
 		SceneLoad,
 		Update,
+		GUI,
 
 		SystemEnabled,
 		SystemDisabled,
@@ -119,6 +120,9 @@ namespace PrimitierModdingFramework
 				case PMFEventType.Update:
 					OnUpdate();
 					break;
+				case PMFEventType.GUI:
+					OnGUI();
+					break;
 
 				case PMFEventType.ApplicationQuit:
 					OnApplicationQuit();
@@ -147,6 +151,7 @@ namespace PrimitierModdingFramework
 		public virtual void OnSceneLoad() { }
 
 		public virtual void OnUpdate() { }
+		public virtual void OnGUI() { }
 
 		public virtual void OnApplicationQuit() { }
 
@@ -155,6 +160,8 @@ namespace PrimitierModdingFramework
 		public virtual void OnSystemEnabled() { }
 
 		public virtual void OnStart() { }
+
+
 
 	}
 }

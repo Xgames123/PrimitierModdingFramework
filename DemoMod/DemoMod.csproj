@@ -91,9 +91,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\MelonLoader.dll</HintPath>
     </Reference>
-    <Reference Include="PrimitierModdingFrameworkV0.3">
-      <HintPath>..\Dlls\PrimitierModdingFrameworkV0.3.dll</HintPath>
-    </Reference>
     <Reference Include="SteamVR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\SteamVR.dll</HintPath>
@@ -438,6 +435,12 @@
     </None>
     <None Include="RunInDebug.ps1" />
     <None Include="RunInRelease.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj">
+      <Project>{0cf60620-bb4f-43a3-8f18-77eb9a4be344}</Project>
+      <Name>PrimitierModdingFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -42,6 +42,7 @@
     <Compile Include="Debugging\ComponentDumpers\RectTransformDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
     <Compile Include="Debugging\Editor\PMFEditorSystem.cs" />
+    <Compile Include="Debugging\Editor\PMFEditorLayout.cs" />
     <Compile Include="Debugging\InGame\InGameDebuggingSystem.cs" />
     <Compile Include="Debugging\InGame\InGameDebugMenu.cs" />
     <Compile Include="Debugging\InGame\InGameDebugTool.cs" />
@@ -110,6 +111,10 @@
     <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>..\Dlls\UnityEngine.InputLegacyModule.dll</HintPath>

@@ -23,20 +23,19 @@ namespace PrimitierModdingFramework.Debugging
 		public static void Create()
 		{
 			//For V0.2 or lower
-			var textGameObject = PMFHelper.MenuWindowL.Find("Text").gameObject;
-			if (textGameObject != null)
+			var textGameObjectTransform = PMFHelper.MenuWindowL.Find("Text");
+			if (textGameObjectTransform != null)
 			{
 				return;
 			}
 
-
-			var button = PMFHelper.MenuWindowL.Find("ShowDebugToolButton").gameObject;
-			if (button != null)
+			var buttonTransform = PMFHelper.MenuWindowL.Find("ShowDebugToolButton");
+			if (buttonTransform != null)
 			{
 				return;
 			}
-
-			button = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			
+			var button = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			button.name = "ShowDebugToolButton";
 			button.transform.parent = PMFHelper.MenuWindowL;
 			button.transform.localScale = new Vector3(0.3f, 0.05f, 0.01f);
@@ -45,7 +44,7 @@ namespace PrimitierModdingFramework.Debugging
 			button.GetComponent<MeshRenderer>().material.color = Color.grey;
 			button.AddComponent<InGameDebugToolShowButton>();
 
-			textGameObject = new GameObject("ShowDebugToolButtonText");
+			var textGameObject = new GameObject("ShowDebugToolButtonText");
 			textGameObject.transform.parent = PMFHelper.MenuWindowL;
 			var textMP = textGameObject.AddComponent<TextMeshPro>();
 			textMP.text = "Show Debug menu";
