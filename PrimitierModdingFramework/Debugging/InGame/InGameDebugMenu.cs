@@ -9,18 +9,17 @@ namespace PrimitierModdingFramework.Debugging
 	{
 		public InGameDebugMenu(System.IntPtr ptr) : base(ptr) { }
 
-		private const float s_buttonHeight = 0.05f;
-		private const float s_buttonWidth = 0.1f;
-		private const float s_buttonSpaceing = 0.01f;
-		private const int s_maxButtonsPerLine = 3;
-		private const float s_buttonZSize = 0.006f;
-		private const float s_buttonTextDepth = 0.011f;
+		private const float _buttonHeight = 0.05f;
+		private const float _buttonWidth = 0.1f;
+		private const float _buttonSpaceing = 0.01f;
+		private const int _maxButtonsPerLine = 3;
+		private const float _buttonZSize = 0.006f;
+		private const float _buttonTextDepth = 0.011f;
 
 		private int _buttonsOnCurrentLine = 0;
 		private Vector2 _nextButtonPos = new Vector2(-0.1f, 0.05f);
 
-		//private List<LabelWidget> activeLabelWidgets = new List<LabelWidget>();
-		//private List<ToggleWidget> activeToggleWidgets = new List<ToggleWidget>();
+		/// Vars to store Widget class objects and active type of widgets
 		private List<Widget> activeWidgets = new List<Widget>();
 
 		private byte buttonCount=0, toggleCount=0, labelCount=0;
@@ -31,7 +30,7 @@ namespace PrimitierModdingFramework.Debugging
 		public InGameDebugToolButton CreateButton(string text, Il2CppSystem.Action opPress)
 		{
 			buttonCount++;
-			var button = CreateButton(	new Vector2(s_buttonWidth, s_buttonHeight),
+			var button = CreateButton(	new Vector2(_buttonWidth, _buttonHeight),
 										new Vector2(_nextButtonPos.x, _nextButtonPos.y), 
 										text, Color.grey, Color.black, 0.0f, buttonCount.ToString());
 			button.AttachOnPressListener(opPress);
@@ -44,7 +43,7 @@ namespace PrimitierModdingFramework.Debugging
 		public GameObject CreateLabel(string text)
 		{
 			labelCount++;
-			var label = CreateLabel(	new Vector2(s_buttonWidth, s_buttonHeight),
+			var label = CreateLabel(	new Vector2(_buttonWidth, _buttonHeight),
 										new Vector2(_nextButtonPos.x, _nextButtonPos.y), 
 										text, Color.grey, Color.black, 0.0f, labelCount.ToString());
 			AdvanceButtonPosition();
@@ -56,7 +55,7 @@ namespace PrimitierModdingFramework.Debugging
 		public InGameDebugToolButton CreateToggle(string text, bool initialState, Il2CppSystem.Action opPress)
 		{
 			toggleCount++;
-			var button = CreateToggle(	new Vector2(s_buttonWidth, s_buttonHeight),
+			var button = CreateToggle(	new Vector2(_buttonWidth, _buttonHeight),
 										new Vector2(_nextButtonPos.x, _nextButtonPos.y), 
 										text, Color.black, 0.0f, initialState, toggleCount.ToString());
 			button.AttachOnPressListener(opPress);
@@ -94,9 +93,9 @@ namespace PrimitierModdingFramework.Debugging
 			var textMP = CreateButtonTextObject(textGameObject, buttonText, textSize, textColor);
 
 			textGameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-			textGameObject.transform.localPosition = new Vector3(buttonLocation.x, buttonLocation.y, -s_buttonTextDepth);
+			textGameObject.transform.localPosition = new Vector3(buttonLocation.x, buttonLocation.y, -_buttonTextDepth);
 
-			AddWidget(new Widget(Widget.Type.BUTTON, refName, buttonGameObject));
+			AddWidget(new Widget(Widget.Type.BUTTON, refName, buttonGameObject, cube, textGameObject));
 
 			button.CubeTransform = cube.transform;
 
@@ -128,9 +127,9 @@ namespace PrimitierModdingFramework.Debugging
 			var textMP = CreateButtonTextObject(textGameObject, buttonText, textSize, textColor);
 
 			textGameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-			textGameObject.transform.localPosition = new Vector3(buttonLocation.x, buttonLocation.y, -s_buttonTextDepth);
+			textGameObject.transform.localPosition = new Vector3(buttonLocation.x, buttonLocation.y, -_buttonTextDepth);
 
-			AddWidget(new Widget(Widget.Type.LABEL, refName, labelGameObject));
+			AddWidget(new Widget(Widget.Type.LABEL, refName, labelGameObject, cube, textGameObject));
 
 			return labelGameObject;
 		}
@@ -166,9 +165,9 @@ namespace PrimitierModdingFramework.Debugging
 			var textMP = CreateButtonTextObject(textGameObject, buttonText, textSize, textColor);
 
 			textGameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-			textGameObject.transform.localPosition = new Vector3(buttonLocation.x, buttonLocation.y, -s_buttonTextDepth);
+			textGameObject.transform.localPosition = new Vector3(buttonLocation.x, buttonLocation.y, -_buttonTextDepth);
 
-			AddWidget(new Widget(Widget.Type.TOGGLE, refName, buttonGameObject));
+			AddWidget(new Widget(Widget.Type.TOGGLE, refName, buttonGameObject, cube, textGameObject));
 
 			button.CubeTransform = cube.transform;
 
@@ -184,8 +183,8 @@ namespace PrimitierModdingFramework.Debugging
 			var baseObject = new GameObject();
 			baseObject.transform.parent = transform;
 			baseObject.name = "UK."+buttonText;
-			baseObject.transform.localScale = new Vector3(buttonSize.x, buttonSize.y, s_buttonZSize);
-			baseObject.transform.localPosition = new Vector3(buttonLocation.x, buttonLocation.y, -s_buttonZSize);
+			baseObject.transform.localScale = new Vector3(buttonSize.x, buttonSize.y, _buttonZSize);
+			baseObject.transform.localPosition = new Vector3(buttonLocation.x, buttonLocation.y, -_buttonZSize);
 			return baseObject;
 		}
 
@@ -198,18 +197,26 @@ namespace PrimitierModdingFramework.Debugging
 			//override textSize if 0.0 value. Indicates text size should be calculated based on string length
 			if(textSize.Equals(0.0f))
 			{
-				if(text.Length > 5)
+				int offset = 3;
+				float maxTextSize = 3.0f;
+				if(text.Length > offset)
+				{ textSize = (maxTextSize / ((float)(text.Length-offset))); }
+				else
+				{ textSize = maxTextSize; }
+				
+				/* if(text.Length > 5)
 				{ textSize = 0.2f;}
-				if(text.Length > 10)
+				else if(text.Length > 7)
+				{ textSize = 0.15f;}
+				else if(text.Length > 10)
 				{ textSize = 0.1f;}
 				else if(text.Length > 15)
 				{ textSize = 0.075f;}
 				else if(text.Length > 20)
 				{ textSize = 0.05f;}
 				else
-				{textSize = 0.3f;}
+				{textSize = 0.3f;} */
 			}
-			
 			
 			var textObj = parentObj.AddComponent<TextMeshPro>();
 
@@ -227,26 +234,25 @@ namespace PrimitierModdingFramework.Debugging
 		public void AdvanceButtonPosition()
 		{
 			_buttonsOnCurrentLine++;
-			_nextButtonPos += new Vector2(s_buttonWidth + s_buttonSpaceing, 0);
-			if (_buttonsOnCurrentLine >= s_maxButtonsPerLine)
+			_nextButtonPos += new Vector2(_buttonWidth + _buttonSpaceing, 0);
+			if (_buttonsOnCurrentLine >= _maxButtonsPerLine)
 			{
 				_buttonsOnCurrentLine = 0;
 				_nextButtonPos.x = -0.1f;
-				_nextButtonPos.y -= s_buttonHeight + s_buttonSpaceing;
+				_nextButtonPos.y -= _buttonHeight + _buttonSpaceing;
 			}
 		}
 
 		///// Vars for Overhead button /////
 		private const float s_backButtonWidth = 0.4f;
 		private const float s_backButtonHeight = 0.05f;
-		private Vector2 _backButtonPos = new Vector2(0.0f, 0.15f+s_buttonSpaceing+s_backButtonHeight);
+		private Vector2 _backButtonPos = new Vector2(0.0f, 0.15f+_buttonSpaceing+s_backButtonHeight);
 
 		/// <summary>
 		/// Create an overhead button to close or go back
 		/// </summary>
 		public InGameDebugToolButton CreateOverheadButton(string text, string refName, Il2CppSystem.Action opPress)
 		{
-
 			var overheadButton = CreateButton(	new Vector2(s_backButtonWidth, s_backButtonHeight),
 												new Vector2(_backButtonPos.x, _backButtonPos.y),
 												text, Color.grey, Color.black, 0.0f, refName);
@@ -278,119 +284,94 @@ namespace PrimitierModdingFramework.Debugging
 				LABEL = 1,		/// <summary> Text label</summary>
 				BUTTON = 2,		/// <summary> Regular PMF button</summary>
 				TOGGLE = 3,		/// <summary> Toggle button</summary>
-
 			}
-			/// <summary>
-			/// Object template and default Null type object
-			/// </summary>
-			public class NullObj
-			{
-				private GameObject _widgetObject;
-				public NullObj(GameObject widgetObj)
-				{
-					_widgetObject = null;
-				}
-			}
-			/// <summary>
-			/// Label type object to access parent object and change/read text
-			/// </summary>
-			public class Label
-			{
-				private GameObject _widgetObject;
-				public Label(GameObject widgetObj)
-				{
-					_widgetObject = widgetObj;
-				}
-
-				public string Text
-				{
-					get { return _widgetObject.GetComponent<TextMeshPro>().text; }
-					set { _widgetObject.GetComponent<TextMeshPro>().text = value; }
-				}
-			}
-			/// <summary>
-			/// Button type object
-			/// </summary>
-			public class Button
-			{
-				private GameObject _widgetObject;
-				public Button(GameObject widgetObj)
-				{
-					_widgetObject = widgetObj;
-				}
-			}
-			/// <summary>
-			/// Toggle type object to change/read toggle state
-			/// </summary>
-			public class Toggle
-			{
-				private GameObject _widgetObject;
-				private bool _state;
-				public Toggle(GameObject widgetObj, bool initialState)
-				{
-					_widgetObject = widgetObj;
-					_state = initialState;
-				}
-				/// <summary>
-				/// Change the state of the toggle button by passing in the desired state
-				/// </summary>
-				public void Update(bool toggleState)
-				{
-					if(toggleState)
-					{
-						_widgetObject.GetComponent<MeshRenderer>().material.color = Color.green;
-						_state = true;
-					}
-					else
-					{
-						_widgetObject.GetComponent<MeshRenderer>().material.color = Color.red;
-						_state = false;
-					}
-				}
-				/// <summary>
-				/// Get method to return toggle state
-				/// Set method not active, use Update() instead
-				/// </summary>
-				bool State{
-					get{ return _state; }
-					//set{ _state = value; }
-				}
-			}
-
+			
 			private Type _widgetType;
 			private string _name;
-			public Button _buttonObj = null;
-			public Label _labelObj = null;
-			public Toggle _toggleObj = null;
+			private GameObject _baseObject;
+			private GameObject _cubeObject;
+			private GameObject _textObject;
+
+			private bool _state;
 
 			/// <summary>
 			/// Widget object constructor (menu.widget.Type type, name, parentGameObj)
 			/// </summary>
-			public Widget(Type type, string name, GameObject parentObject)
+			public Widget(Type type, string name, GameObject baseObject, GameObject cubeObject, GameObject textObject)
 			{
 				_widgetType = type;
 				_name = name;
+				_baseObject = baseObject;
+				_cubeObject = cubeObject;
+				_textObject = textObject;
 
 				switch(_widgetType)
 				{
 					case Type.LABEL:
-						parentObject.name = "LABEL."+name;
-						_labelObj = new Label(parentObject);
+						baseObject.name = "LABEL."+name;
 					break;
 					case Type.BUTTON:
-					parentObject.name = "BUTTON."+name;
-						_buttonObj = new Button(parentObject);
+						baseObject.name = "BUTTON."+name;
 					break;
 					case Type.TOGGLE:
-					parentObject.name = "TOGGLE."+name;
-						_toggleObj = new Toggle(parentObject, false);
+						baseObject.name = "TOGGLE."+name;
 					break;
 					default:
 					 PMFLog.Message("Widget default case in constructor");
 					break;
 				}
 			}
-			
+		/// Widget related functions
+
+			/// Toggle Widget section
+
+			/// <summary>
+			/// Change the state of the toggle button by passing in the desired state
+			/// </summary>
+			public void ToggleUpdate(bool toggleState)
+			{
+				if(toggleState)
+				{
+					_cubeObject.GetComponent<MeshRenderer>().material.color = Color.green;
+					_state = true;
+				}
+				else
+				{
+					_cubeObject.GetComponent<MeshRenderer>().material.color = Color.red;
+					_state = false;
+				}
+			}
+
+			/// <summary>
+			/// Get access to check the widget state (if a toggle widget)
+			/// </summary>
+			public bool State
+			{
+				get { return _state; }
+			}
+
+			/// Label Widget section
+
+			/// <summary>
+			/// Get and set access to update the widget text
+			/// </summary>
+			public string Text
+			{
+				get { return _textObject.GetComponent<TextMeshPro>().text; }
+				set { _textObject.GetComponent<TextMeshPro>().text = value; }
+			}
+
+			/// <summary>
+			/// Get and set access to the widget text font size
+			/// </summary>
+			public float FontSize
+			{
+				get { return _textObject.GetComponent<TextMeshPro>().fontSize; }
+				set { _textObject.GetComponent<TextMeshPro>().fontSize = value; }
+			}
+
+			/// General purpose Widget functions/getters/setters
+
 			/// <summary>
 			/// Get access the Widget Name 
 			/// </summary>
@@ -400,7 +381,7 @@ namespace PrimitierModdingFramework.Debugging
 			}
 			
 			/// <summary>
-			/// Equals comparison to compare names
+			/// Equals comparison to compare refNames
 			/// </summary>
 			public bool Equals(string eqname)
 			{
@@ -408,23 +389,21 @@ namespace PrimitierModdingFramework.Debugging
 			}
 
 			/// <summary>
-			/// Returns the null, label, toggle or button object stored in _widgetObject
+			/// Get and set color of underlying button GameObject stored in Widget
 			/// </summary>
-			/* public dynamic Obj()
+			public Color color
 			{
-				return _widgetObject;
-			} */
-			public Button button
-			{
-				get { return _buttonObj; }
+				set { _cubeObject.GetComponent<MeshRenderer>().material.color = value; }
+				get { return _cubeObject.GetComponent<MeshRenderer>().material.color; }
 			}
-			public Label label
+
+			/// <summary>
+			/// Get and set color of overlaid text on GameObject stored in Widget
+			/// </summary>
+			public Color textcolor
 			{
-				get { return _labelObj; }
-			}
-			public Toggle toggle
-			{
-				get { return _toggleObj; }
+				set { _textObject.GetComponent<TextMeshPro>().color = value; }
+				get { return _textObject.GetComponent<TextMeshPro>().color; }
 			}
 		}
 
@@ -460,10 +439,10 @@ namespace PrimitierModdingFramework.Debugging
 		public void UpdateLabel(string refName, string text)
 		{
 			Widget w = GetWidget(refName);
-			if(w.label != null)
+			if(w != null)
 			{
-				PMFLog.Message(w);
-				w.label.Text = text;
+				//PMFLog.Message(w);
+				w.Text = text;
 				PMFLog.Message("Text written to");
 			}
 			PMFLog.Message("No Label for "+refName+" found");
@@ -475,10 +454,10 @@ namespace PrimitierModdingFramework.Debugging
 		public void UpdateToggle(string refName, bool state)
 		{
 			Widget w = GetWidget(refName);
-			if(w.toggle != null)
+			if(w != null)
 			{
 				PMFLog.Message(w);
-				w.toggle.Update(state);
+				w.ToggleUpdate(state);
 				PMFLog.Message("State written to");
 			}
 			PMFLog.Message("No Toggle for "+refName+" found");
@@ -504,7 +483,7 @@ namespace PrimitierModdingFramework.Debugging
 		public GameObject CreateLabelWidget(string labelName, string initialText)
 		{
 			labelCount++;
-			var label = CreateLabel(	new Vector2(s_buttonWidth, s_buttonHeight),
+			var label = CreateLabel(	new Vector2(_buttonWidth, _buttonHeight),
 										new Vector2(_nextButtonPos.x, _nextButtonPos.y), 
 										initialText, Color.grey, Color.black, 0.0f, labelName);
 			AdvanceButtonPosition();
@@ -524,7 +503,7 @@ namespace PrimitierModdingFramework.Debugging
 		/// </summary>
 		public InGameDebugToolButton CreateToggleWidget(string refName, string text, bool initialState, Il2CppSystem.Action opPress)
 		{
-			var button = CreateToggle(	new Vector2(s_buttonWidth, s_buttonHeight),
+			var button = CreateToggle(	new Vector2(_buttonWidth, _buttonHeight),
 										new Vector2(_nextButtonPos.x, _nextButtonPos.y), 
 										text, Color.black, 0.0f, initialState, refName);
 			button.AttachOnPressListener(opPress);
