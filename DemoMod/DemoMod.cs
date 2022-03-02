@@ -2,17 +2,20 @@
 using PrimitierModdingFramework;
 using PrimitierModdingFramework.Debugging;
 using PrimitierModdingFramework.Debugging.Editor;
+using PrimitierModdingFramework.Debugging.Editor.Windows;
 using PrimitierModdingFramework.SubstanceModding;
 using UnityEngine;
 
 namespace DemoMod
 {
+
 	public class DemoMod : PrimitierMod
     {
 		
 
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
+
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 
 			

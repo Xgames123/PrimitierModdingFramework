@@ -22,13 +22,14 @@ namespace PrimitierModdingFramework.Debugging.Editor
 
 		public const int MenuBarSize = 30;
 		public const int Spaceing = 5;
+		public const int ButtonH = 30;
 
 		private static Texture2D s_blueTexture;
 
 		private static bool s_styleSetup = false;
 
-		private static int s_horizontalOffset = 0;
-		private static int s_verticalOffset = 0;
+		private static float s_horizontalOffset = 0;
+		private static float s_verticalOffset = 0;
 
 		private static bool s_moveHorizontal=false;
 		private static bool s_moveVertical = false;
@@ -40,12 +41,12 @@ namespace PrimitierModdingFramework.Debugging.Editor
 		/// <param name="h"></param>
 		/// <param name="text"></param>
 		/// <returns></returns>
-		public static bool Button(int w, int h, string text)
+		public static bool Button(float w, float h, string text)
 		{
 			TrySetupStyle();
 
-			int x = s_horizontalOffset;
-			int y = s_verticalOffset;
+			float x = s_horizontalOffset;
+			float y = s_verticalOffset;
 
 			if (s_moveHorizontal)
 			{
@@ -60,6 +61,18 @@ namespace PrimitierModdingFramework.Debugging.Editor
 		}
 
 		/// <summary>
+		/// creates a button
+		/// </summary>
+		/// <param name="w"></param>
+		/// <param name="text"></param>
+		/// <returns></returns>
+		public static bool Button(float w, string text)
+		{
+			return Button(w, ButtonH, text);
+		}
+
+
+		/// <summary>
 		/// creates a toggle button
 		/// </summary>
 		/// <param name="w"></param>
@@ -67,12 +80,12 @@ namespace PrimitierModdingFramework.Debugging.Editor
 		/// <param name="text"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		public static bool ToggleButton(bool value, int w, int h, string text)
+		public static bool ToggleButton(bool value, float w, float h, string text)
 		{
 			TrySetupStyle();
 
-			int x = s_horizontalOffset;
-			int y = s_verticalOffset;
+			float x = s_horizontalOffset;
+			float y = s_verticalOffset;
 
 			if (s_moveHorizontal)
 			{
@@ -108,12 +121,24 @@ namespace PrimitierModdingFramework.Debugging.Editor
 			return value;
 		}
 
+		/// <summary>
+		/// creates a toggle button
+		/// </summary>
+		/// <param name="w"></param>
+		/// <param name="text"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static bool ToggleButton(bool value, float w, string text)
+		{
+			return ToggleButton(value, w, ButtonH, text);
+		}
+
 
 		/// <summary>
 		/// Sets the vertical offset for the next ui elements to be drawn
 		/// </summary>
 		/// <param name="offset"></param>
-		public static void SetVerticalOffset(int offset)
+		public static void SetVerticalOffset(float offset)
 		{
 			TrySetupStyle();
 			s_verticalOffset = offset;
@@ -122,7 +147,7 @@ namespace PrimitierModdingFramework.Debugging.Editor
 		/// Sets the horizontal offset for the next ui elements to be drawn
 		/// </summary>
 		/// <param name="offset"></param>
-		public static void SetHorizontalOffset(int offset)
+		public static void SetHorizontalOffset(float offset)
 		{
 			TrySetupStyle();
 			s_horizontalOffset = offset;
@@ -191,7 +216,7 @@ namespace PrimitierModdingFramework.Debugging.Editor
 		/// </summary>
 		/// <param name="text"></param>
 		/// <returns></returns>
-		public static bool GlobalMenuBarItem(int w, string text)
+		public static bool GlobalMenuBarItem(float w, string text)
 		{
 			TrySetupStyle();
 			var x = s_horizontalOffset;
