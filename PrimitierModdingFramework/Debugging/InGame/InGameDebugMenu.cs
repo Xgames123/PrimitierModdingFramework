@@ -62,7 +62,7 @@ namespace PrimitierModdingFramework.Debugging
 		{
 			if (!InGameDebuggingSystem.IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
-				
+
 			toggleCount++;
 			var button = CreateToggle(	new Vector2(_buttonWidth, _buttonHeight),
 										new Vector2(_nextButtonPos.x, _nextButtonPos.y), 
@@ -207,7 +207,7 @@ namespace PrimitierModdingFramework.Debugging
 			if(textSize.Equals(0.0f))
 			{
 				int offset = 3;
-				float maxTextSize = 3.0f;
+				float maxTextSize = 0.3f;
 				if(text.Length > offset)
 				{ textSize = (maxTextSize / ((float)(text.Length-offset))); }
 				else
