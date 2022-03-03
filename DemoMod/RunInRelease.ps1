@@ -1,4 +1,4 @@
-$PRIMITIER_PATH = 'D:\Program Files (x86)\Steam\steamapps\common\Primitier';
+$PRIMITIER_PATH = 'E:\Games\Steam\steamapps\common\Primitier';
 $DEBUG_BIN_PATH = 'bin\Release';
 
 $ModsFolder =  $PRIMITIER_PATH+"\Mods"

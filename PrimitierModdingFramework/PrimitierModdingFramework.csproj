@@ -52,6 +52,7 @@
     <Compile Include="Debugging\InGame\InGameDebugMenu.cs" />
     <Compile Include="Debugging\InGame\InGameDebugTool.cs" />
     <Compile Include="Debugging\HierarchyXmlDumper.cs" />
+    <Compile Include="Debugging\InGame\InGameDebugToolLabel.cs" />
     <Compile Include="Debugging\InGame\InGameDebugToolButton.cs" />
     <Compile Include="Debugging\InGame\InGameDebugToolShowButton.cs" />
     <Compile Include="Debugging\ResourceXmlDumper.cs" />
