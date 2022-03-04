@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoMod", "DemoMod\DemoMod.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimitierModdingFramework", "PrimitierModdingFramework\PrimitierModdingFramework.csproj", "{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMFTool", "PMFTool\PMFTool.csproj", "{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,14 @@ Global
 		{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}.Release|x86.ActiveCfg = Release|Any CPU
 		{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}.Release|x86.Build.0 = Release|Any CPU
+		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Debug|x86.Build.0 = Debug|Any CPU
+		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Release|x86.ActiveCfg = Release|Any CPU
+		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
