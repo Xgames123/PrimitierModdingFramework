@@ -42,18 +42,37 @@ namespace PMFTool.Commands
 			}
 
 			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");
-			var modsDirectory = Path.Combine(Path.GetDirectoryName(path), "Mods");
+			var modsDirectory = Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "Mods");
 			foreach (var file in Directory.GetFiles(modsDirectory))
 			{
-				if (file.EndsWith(".dll"))
-				{
-					ConsoleWriter.WriteLineStatus($"Deleting '{file}'");
-				}
-				
+				ConsoleWriter.WriteLineStatus($"Deleting '{file}'");
 				
 			}
 
+			ConsoleWriter.WriteLineStatus("=== Copying new files ===");
 
+			foreach (var file in Directory.GetFiles(path))
+			{
+				if (!file.EndsWith(".dll"))
+				{
+					continue;
+				}
+
+				var destFileName = Path.Combine(modsDirectory, Path.GetFileName(file));
+				ConsoleWriter.WriteLineStatus($"Copying '{file}' to {destFileName}");
+				//try
+				//{
+				//	File.Copy(file, destFileName);
+				//}
+				//catch (Exception e)
+				//{
+				//	ConsoleWriter.WriteLineError($"Can not copy '{file}' to {destFileName}", e);
+				//}
+
+			}
+
+			ConsoleWriter.WriteLineStatus("=== Starting Primitier ===");
+			
 		}
 	}
 }
