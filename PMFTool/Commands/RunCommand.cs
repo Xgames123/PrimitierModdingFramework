@@ -25,7 +25,7 @@ namespace PMFTool.Commands
 			[Argument(Description = "The path to the directory with the dll files of the mod you want to run or an alias if you have setup one")] 
 			string path,
 
-			[DirExists] [Option(Description = "The path to the PMFToolConfig.json file")]
+			[Option(Description = "The path to the PMFToolConfig.json file")]
 			string config="PMFToolConfig.json",
 
 			[Option(Description = "The mode to run in")]
@@ -40,21 +40,7 @@ namespace PMFTool.Commands
 				return;
 			}
 
-			foreach (var alias in configClass.Aliases)
-			{
-				if (alias.RunMode != null)
-				{
-					if (mode != alias.RunMode)
-					{
-						continue;
-					}
-				}
-
-				if (alias.Name.ToLower() == path.ToLower())
-				{
-					path = alias.Value;
-				}
-			}
+			path = AliasSolver.Solve(path, mode, configClass);
 
 
 			if (!Directory.Exists(path))

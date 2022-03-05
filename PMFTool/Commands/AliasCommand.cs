@@ -1,4 +1,5 @@
 ﻿using Cocona;
+using PMFTool.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace PMFTool.Commands
 		public void Create(
 			[Argument(Description ="The name of the alias")]
 			string name,
+
 			[Argument(Description = "The value of the alias")]
 			string value,
+
 			[Option(Description = "The runMode for the alias to be active or null for all runModes")]
 			RunMode? mode=null,
+
 			[Option(Description = "The path to the PMFToolConfig.json file to add the alias into")]
 			string config="PMFToolConfig.json")
 		{
