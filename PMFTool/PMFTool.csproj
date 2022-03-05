@@ -19,14 +19,14 @@
 
 	  <Company>$(PMFToolAuthors)</Company>
 	  <Authors>$(PMFToolAuthors)</Authors>
-	  <AssemblyName>PMFToolV$(PMFToolVersion)</AssemblyName>
+	  <AssemblyName>PMFTool</AssemblyName>
 
 
   </PropertyGroup>
 	
 	
   <ItemGroup>
-    <PackageReference Include="Cocona" Version="2.0.3" />
+    <PackageReference Include="Cocona.Lite" Version="2.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="XGames.BetterConsole.Net" Version="1.0.0" />
   </ItemGroup>

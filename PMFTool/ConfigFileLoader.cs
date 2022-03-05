@@ -11,6 +11,20 @@ namespace PMFTool
 	public static class ConfigFileLoader
 	{
 
+		public static void SaveConfig(string path, ConfigFile config)
+		{
+			try
+			{
+				File.WriteAllText(path, JsonConvert.SerializeObject(config));
+
+			}catch(Exception e)
+			{
+				ConsoleWriter.WriteLineError("Could not save config file", e);
+			}
+			
+		}
+
+
 		public static ConfigFile? Load(string path)
 		{
 			if (!File.Exists(path))
@@ -30,16 +44,16 @@ namespace PMFTool
 			{
 				var config = JsonConvert.DeserializeObject<ConfigFile>(File.ReadAllText(path));
 
-				string newPrimitierPath = config?.PrimitierPath;
+				string oldPrimitierPath = config?.PrimitierPath;
 				if (config == null || !File.Exists(config.PrimitierPath))
 				{
 
 					ConsoleWriter.WriteLineError("Primitier path was invalid. please enter a valid one");
-					newPrimitierPath = ConsoleDrawer.DrawTextInput(newPrimitierPath, CancellationToken.None);
+					config.PrimitierPath = ConsoleDrawer.DrawTextInput(oldPrimitierPath, CancellationToken.None);
+
+					SaveConfig(path, config);
 				}
 
-				config.PrimitierPath = newPrimitierPath;
-				File.WriteAllText(path, JsonConvert.SerializeObject(config));
 				return config;
 
 			}
