@@ -23,7 +23,7 @@ namespace PMFTool.Commands
 		public void Pack(
 			[Argument(Description = "The path to the directory with the dll files of the mod you want to pack or an alias if you have setup one")]
 			string path,
-			[Option(Description = "The directory to put the generated file into")]
+			[Option(Description = "The directory to put the generated file into or an alias if you have setup one")]
 			string outputDir,
 
 			[Option(Description = "The format to generate the package in")]
@@ -35,9 +35,9 @@ namespace PMFTool.Commands
 			var configClass = ConfigFileLoader.Load(config);
 
 			path = AliasSolver.Solve(path, RunMode.Release, configClass);
+			outputDir = AliasSolver.Solve(outputDir, RunMode.Release, configClass);
 
 
-		
 			var extention = ".zip";
 			if (format == PackFormat.Pmfm)
 				extention = ".pmfm";
@@ -60,7 +60,6 @@ namespace PMFTool.Commands
 				for (int i = 0; i < files.Length; i++)
 				{
 					ignoreFiles[i] = Path.GetFileName(files[i]);
-					ConsoleWriter.WriteLineStatus($"Ignoring file '{ignoreFiles[i]}'");
 				}
 
 			}
@@ -71,6 +70,7 @@ namespace PMFTool.Commands
 			{
 				if (file.EndsWith(".pdb") || file.EndsWith(".xml"))
 				{
+					ConsoleWriter.WriteLineStatus($"Ignoring file '{file}'");
 					continue;
 				}
 
@@ -78,6 +78,7 @@ namespace PMFTool.Commands
 				{
 					if (ignoreFiles.Contains(Path.GetFileName(file)))
 					{
+						ConsoleWriter.WriteLineStatus($"Ignoring file '{file}'");
 						continue;
 					}
 				}
