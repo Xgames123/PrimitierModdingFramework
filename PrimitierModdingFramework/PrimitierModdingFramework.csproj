@@ -34,7 +34,7 @@
     <DocumentationFile>bin\Release\PrimitierModdingFrameworkV0.3.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CustomAssetLoader.cs" />
+    <Compile Include="CustomAssetSystem.cs" />
     <Compile Include="Debugging\ComponentDumper.cs" />
     <Compile Include="Debugging\ComponentDumperList.cs" />
     <Compile Include="Debugging\ComponentDumpers\MeshFilterDumper.cs" />

@@ -23,15 +23,19 @@ namespace PrimitierModdingFramework
 
 	}
 
-
+	/// <summary>
+	/// Base class for all systems in pmf
+	/// </summary>
 	public abstract class PMFSystem
 	{
 		internal static List<PMFSystem> EnabledSystems = new List<PMFSystem>();
+		/// <summary>
+		/// The current mod
+		/// </summary>
 		protected static PrimitierMod Mod { get; private set; }
 
 		
 		private bool _IsStarted = false;
-
 
 
 		internal static void Startup(PrimitierMod mod)
