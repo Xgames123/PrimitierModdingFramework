@@ -4,14 +4,17 @@ using PrimitierModdingFramework.Debugging;
 using PrimitierModdingFramework.Debugging.Editor;
 using PrimitierModdingFramework.Debugging.Editor.Windows;
 using PrimitierModdingFramework.SubstanceModding;
+using Il2CppSystem.IO;
+using System.Text;
 using UnityEngine;
+using UnhollowerBaseLib;
 
 namespace DemoMod
 {
 
 	public class DemoMod : PrimitierMod
     {
-		
+
 
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
@@ -60,6 +63,7 @@ namespace DemoMod
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 
+
 		}
 
 
@@ -77,12 +81,11 @@ namespace DemoMod
 		{
 			base.OnUpdate();
 
-
 		}
 
 		public override void OnFixedUpdate()
 		{
-					
+			
 
 		}
 

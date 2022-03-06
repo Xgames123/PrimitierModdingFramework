@@ -12,6 +12,7 @@ public class App
 
 	public static void Run()
 	{
+		
 		CoconaLiteApp.Run<App>();
 	}
 

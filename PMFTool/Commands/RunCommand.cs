@@ -97,6 +97,7 @@ namespace PMFTool.Commands
 					FileName = configClass.PrimitierPath,
 					RedirectStandardError = true,
 					RedirectStandardOutput = true,
+					UseShellExecute = false,
 				});
 			}
 			catch (Exception e)
