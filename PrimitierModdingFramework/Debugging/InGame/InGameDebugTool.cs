@@ -16,7 +16,6 @@ namespace PrimitierModdingFramework.Debugging
 		private static Transform _Menus;
 
 		public static InGameDebugMenu MainMenu = null;
-		public static InGameDebugMenu DebugMenu = null;
 
 		public static void Hide()
 		{
@@ -68,16 +67,6 @@ namespace PrimitierModdingFramework.Debugging
 			closeButton.AttachOnPressListener(new System.Action(() =>
 			{
 				Hide();
-			}));
-
-			DebugMenu = CreateMenu("Debug", "MainMenu");
-			DebugMenu.CreateButton("Dump Scene", new System.Action(() =>
-			{
-				HierarchyXmlDumper.DumpSceneToFile(HierarchyXmlDumper.DefaultDumperList);
-			}));
-			DebugMenu.CreateButton("Dump Resources", new System.Action(() =>
-			{
-				ResourceXmlDumper.DumpAllToFile();
 			}));
 
 
