@@ -433,8 +433,6 @@
     <None Include="Mod.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="RunInDebug.ps1" />
-    <None Include="RunInRelease.ps1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj">
