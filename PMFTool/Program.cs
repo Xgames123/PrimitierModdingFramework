@@ -7,6 +7,7 @@ App.Run();
 [HasSubCommands(typeof(AliasCommand), "alias", Description = " 'alias create MyMod F:/Source/Repos/MyMod/MyMod/bin/Debug' and than you can type MyMod in a path and it will be replaced by the path")]
 [HasSubCommands(typeof(RunCommand), "run", Description = "Copies mod files to mods directory and starts primitier")]
 [HasSubCommands(typeof(PackCommand), "pack", Description = "Generates a mod package")]
+[HasSubCommands(typeof(EditorCommand), "editor", Description = "Opens the pmf editor")]
 public class App
 {
 

@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<PMFToolVersion>1.0.0.0</PMFToolVersion>
 		<PMFToolAuthors>XGames105</PMFToolAuthors>
+		<IncludeEditor>true</IncludeEditor>
 	</PropertyGroup>
 	
 	
@@ -20,15 +21,28 @@
 	  <Company>$(PMFToolAuthors)</Company>
 	  <Authors>$(PMFToolAuthors)</Authors>
 	  <AssemblyName>PMFTool</AssemblyName>
-
-
+	
   </PropertyGroup>
-	
-	
+  <PropertyGroup Condition="$(IncludeEditor)">
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <DefineConstants>INCLUDE_EDITOR</DefineConstants>
+  </PropertyGroup>
+
+
   <ItemGroup>
     <PackageReference Include="Cocona.Lite" Version="2.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="XGames.BetterConsole.Net" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup Condition="$(IncludeEditor)">
+	  <PackageReference Include="Veldrid.ImGui" Version="5.72.0" />
+	  <PackageReference Include="Veldrid.StartupUtilities" Version="4.8.0" />
+  </ItemGroup>
+  <ItemGroup Condition="!$(IncludeEditor)">
+	 <Compile Remove="Editor/**" />
+	 <EmbeddedResource Remove="Editor/**" />
+	 <None Remove="Editor/**" />
+  </ItemGroup>
+	
 </Project>
