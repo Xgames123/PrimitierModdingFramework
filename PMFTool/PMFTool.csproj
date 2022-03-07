@@ -32,11 +32,12 @@
   <ItemGroup>
     <PackageReference Include="Cocona.Lite" Version="2.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Veldrid.ImGui" Version="5.72.0" />
     <PackageReference Include="XGames.BetterConsole.Net" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="$(IncludeEditor)">
-	  <PackageReference Include="Veldrid.ImGui" Version="5.72.0" />
+	  <PackageReference Include="ImGui.NET.Docking" Version="1.75.0" />
 	  <PackageReference Include="Veldrid.StartupUtilities" Version="4.8.0" />
   </ItemGroup>
   <ItemGroup Condition="!$(IncludeEditor)">
