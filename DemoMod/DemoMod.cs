@@ -62,6 +62,10 @@ namespace DemoMod
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 
 
+			var group = ObjectGenerationSystem.GenerateGroup(new Vector3(0, 0, 0));
+			ObjectGenerationSystem.GenerateCube(new Vector3(0, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), Substance.Silver);
+
+			FlyCam.Create();
 		}
 
 
@@ -73,6 +77,7 @@ namespace DemoMod
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
 			PMFSystem.EnableSystem<CustomAssetSystem>();
+			PMFSystem.EnableSystem<ObjectGenerationSystem>();
 		}
 		public override void OnUpdate()
 		{
