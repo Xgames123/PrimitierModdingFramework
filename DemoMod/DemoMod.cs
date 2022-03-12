@@ -1,8 +1,6 @@
 ﻿using Il2CppSystem;
 using PrimitierModdingFramework;
 using PrimitierModdingFramework.Debugging;
-using PrimitierModdingFramework.Debugging.Editor;
-using PrimitierModdingFramework.Debugging.Editor.Windows;
 using PrimitierModdingFramework.SubstanceModding;
 using Il2CppSystem.IO;
 using System.Text;
@@ -75,7 +73,6 @@ namespace DemoMod
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
 			PMFSystem.EnableSystem<CustomAssetSystem>();
-			PMFSystem.EnableSystem<PMFEditorSystem>();
 		}
 		public override void OnUpdate()
 		{
