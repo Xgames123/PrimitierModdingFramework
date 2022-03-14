@@ -26,23 +26,24 @@ namespace DemoMod
 			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");
 			spawnMenu.CreateButton("Tree", new System.Action(() =>
 			{
-				CubeGenerator.GenerateTree(spawnMenu.transform.position, 0.1f, CubeGenerator.TreeType.Conifer);
+				ObjectGenerationSystem.GenerateTree(spawnMenu.transform.position, 0.1f, CubeGenerator.TreeType.Conifer);
 			}));
 
 			spawnMenu.CreateButton("Leaf", new System.Action(() =>
 			{
-				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf, temperature:999);
+				var cube = ObjectGenerationSystem.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf);
+				cube.GetComponent<Heat>().AddHeat(10000);
 			}));
 
 			spawnMenu.CreateButton("Custom", new System.Action(() =>
 			{
-				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+				ObjectGenerationSystem.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			}));
 
 
 			
 
-			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Wood");
+			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Leaf");
 			customMat.name = "CustomMat";
 			customMat.color = new Color(0, 1, 1);
 			
@@ -62,10 +63,35 @@ namespace DemoMod
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 
 
-			var group = ObjectGenerationSystem.GenerateGroup(new Vector3(0, 0, 0));
-			ObjectGenerationSystem.GenerateCube(new Vector3(0, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), Substance.Silver);
+		
+		
+		}
+
+		public override void OnRealyLateStart()
+		{
+			base.OnRealyLateStart();
+
+			GenerateKillTree(new Vector3(0, 0, 0));
+
+			
 
 			FlyCam.Create();
+		}
+
+		private static void GenerateKillTree(Vector3 pos)
+		{
+			const float treeThicness = 0.4f;
+			const float stemHeight = 3f;
+			const float leafSize = 2f;
+			const float leafHeight = 2f;
+
+			var stem = ObjectGenerationSystem.GenerateCube(new Vector3(pos.x, pos.y+(stemHeight/2), pos.z), new Vector3(treeThicness, stemHeight, treeThicness), Substance.Wood);
+			var leaf = ObjectGenerationSystem.GenerateCube(new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+
+
+			//TODO find out what CubeConnector.Anchor does (can't do it now because my oculus account is still not working)
+			ObjectGenerationSystem.ConnectCubes(stem, CubeConnector.Anchor.Temporary, leaf, CubeConnector.Anchor.Temporary);
+
 		}
 
 

@@ -14,6 +14,9 @@ namespace PrimitierModdingFramework
 	{
 		internal bool IsApplicationStarted { get; private set; } = false;
 
+		private bool RealyLateStartCalled = false;
+
+
 		/// <summary>
 		/// Runs when a Scene has Loaded and is passed the Scene's Build Index and Name.
 		/// When overriding call base.OnSceneWasLoaded() before you do anything.
@@ -23,6 +26,7 @@ namespace PrimitierModdingFramework
 			PMFSystem.FireEventOnSystems(PMFEventType.SceneLoad);
 			
 		}
+
 
 		public override void OnGUI()
 		{
@@ -59,8 +63,16 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnUpdate()
 		{
+			if (!RealyLateStartCalled)
+			{
+				RealyLateStartCalled = true;
+				OnRealyLateStart();
+			}
+
 			PMFSystem.FireEventOnSystems(PMFEventType.Update);
 		}
+
+
 
 
 		/// <summary>
@@ -73,6 +85,15 @@ namespace PrimitierModdingFramework
 			IsApplicationStarted = false;
 		}
 
+
+		/// <summary>
+		/// Runs after OnSceneWasLoaded
+		/// When overriding call base.OnApplicationQuit() before you do anything.
+		/// </summary>
+		public virtual void OnRealyLateStart()
+		{
+			PMFSystem.FireEventOnSystems(PMFEventType.RealyLateStart);
+		}
 
 	}
 }

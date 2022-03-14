@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace PrimitierModdingFramework
 {
+	/// <summary>
+	/// A class for generating cubes and objects (some of the functions are wrappers of CubeGenerator to make pmf mods more upgradeable)
+	/// </summary>
 	public class ObjectGenerationSystem : PMFSystem
 	{
 
@@ -24,19 +27,49 @@ namespace PrimitierModdingFramework
 
 
 		/// <summary>
-		/// Creates a new CubeGroup to store new cubes
+		/// Connects 2 cubes together
 		/// </summary>
-		public static GameObject GenerateGroup(Vector3 position)
+		/// <param name="cube1"></param>
+		/// <param name="cube2"></param>
+		public static void ConnectCubes(GameObject cube1, GameObject cube2)
 		{
 			if (!IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(ObjectGenerationSystem));
-			
 
-			var groupedCubePrefab = CubeGenerator.groupPrefab;
-
-			return GameObject.Instantiate(groupedCubePrefab, position, Quaternion.identity);
-
+			cube1.GetComponent<CubeConnector>().Connect(cube2.GetComponent<CubeConnector>());
 		}
+		/// <summary>
+		/// Connects 2 cubes together using an anchor
+		/// </summary>
+		/// <param name="cube1"></param>
+		/// <param name="anchor1"></param>
+		/// <param name="cube2"></param>
+		/// <param name="anchor2"></param>
+		public static void ConnectCubes(GameObject cube1, CubeConnector.Anchor anchor1, GameObject cube2, CubeConnector.Anchor anchor2)
+		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(ObjectGenerationSystem));
+
+			var connector1 = cube1.GetComponent<CubeConnector>();
+			var connector2 = cube1.GetComponent<CubeConnector>();
+			connector1.anchor = anchor1;
+			connector2.anchor = anchor2;
+
+			connector1.Connect(connector2);
+		}
+
+
+		/// <summary>
+		/// Generates a tee in a random spot inside the space provided by spaceCenter and spaceLength
+		/// </summary>
+		/// <param name="spaceCenter">size of the space</param>
+		/// <param name="spaceLength">center of the space</param>
+		/// <param name="treeType">type of tree</param>
+		public static void GenerateTree(Vector3 spaceCenter, float spaceLength, CubeGenerator.TreeType treeType)
+		{
+			CubeGenerator.GenerateTree(spaceCenter, spaceLength, treeType);
+		}
+
 
 		/// <summary>
 		/// Creates a new cube
