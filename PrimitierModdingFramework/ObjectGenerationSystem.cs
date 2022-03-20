@@ -26,37 +26,6 @@ namespace PrimitierModdingFramework
 		}
 
 
-		/// <summary>
-		/// Connects 2 cubes together
-		/// </summary>
-		/// <param name="cube1"></param>
-		/// <param name="cube2"></param>
-		public static void ConnectCubes(GameObject cube1, GameObject cube2)
-		{
-			if (!IsEnabled)
-				throw new PMFSystemNotEnabledException(typeof(ObjectGenerationSystem));
-
-			cube1.GetComponent<CubeConnector>().Connect(cube2.GetComponent<CubeConnector>());
-		}
-		/// <summary>
-		/// Connects 2 cubes together using an anchor
-		/// </summary>
-		/// <param name="cube1"></param>
-		/// <param name="anchor1"></param>
-		/// <param name="cube2"></param>
-		/// <param name="anchor2"></param>
-		public static void ConnectCubes(GameObject cube1, CubeConnector.Anchor anchor1, GameObject cube2, CubeConnector.Anchor anchor2)
-		{
-			if (!IsEnabled)
-				throw new PMFSystemNotEnabledException(typeof(ObjectGenerationSystem));
-
-			var connector1 = cube1.GetComponent<CubeConnector>();
-			var connector2 = cube1.GetComponent<CubeConnector>();
-			connector1.anchor = anchor1;
-			connector2.anchor = anchor2;
-
-			connector1.Connect(connector2);
-		}
 
 
 		/// <summary>

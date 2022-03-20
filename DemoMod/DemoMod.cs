@@ -6,6 +6,7 @@ using Il2CppSystem.IO;
 using System.Text;
 using UnityEngine;
 using UnhollowerBaseLib;
+using UnhollowerRuntimeLib;
 
 namespace DemoMod
 {
@@ -27,6 +28,18 @@ namespace DemoMod
 			spawnMenu.CreateButton("Tree", new System.Action(() =>
 			{
 				ObjectGenerationSystem.GenerateTree(spawnMenu.transform.position, 0.1f, CubeGenerator.TreeType.Conifer);
+			}));
+			spawnMenu.CreateButton("Kill Tree", new System.Action(() =>
+			{
+				GenerateKillTree(spawnMenu.transform.position);
+			}));
+			spawnMenu.CreateButton("Drone", new System.Action(()=>
+			{
+				CubeGenerator.GenerateDrone(spawnMenu.transform.position, 0.1f);
+			}));
+			spawnMenu.CreateButton("Insect", new System.Action(() =>
+			{
+				Insect.Generate(spawnMenu.transform.position);
 			}));
 
 			spawnMenu.CreateButton("Leaf", new System.Action(() =>
@@ -71,8 +84,8 @@ namespace DemoMod
 		{
 			base.OnRealyLateStart();
 
-			GenerateKillTree(new Vector3(0, 0, 0));
-
+			//GenerateKillTree(new Vector3(0, 0, 0));
+			
 			
 
 			FlyCam.Create();
@@ -90,15 +103,21 @@ namespace DemoMod
 
 
 			//TODO find out what CubeConnector.Anchor does (can't do it now because my oculus account is still not working)
-			ObjectGenerationSystem.ConnectCubes(stem, CubeConnector.Anchor.Temporary, leaf, CubeConnector.Anchor.Temporary);
+
+			leaf.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Temporary;
+			stem.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Temporary;
+			stem.GetComponent<CubeConnector>().Connect(leaf.GetComponent<CubeConnector>());
 
 		}
+
 
 
 
 		public override void OnApplicationStart()
 		{
 			base.OnApplicationStart();
+			ClassInjector.RegisterTypeInIl2CppWithInterfaces<Insect>(typeof(ICubeBehavior));
+
 			PMFSystem.EnableSystem<PMFHelper>();
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
@@ -109,11 +128,16 @@ namespace DemoMod
 		{
 			base.OnUpdate();
 
+			if (Input.GetKeyUp(KeyCode.Space))
+			{
+				Insect.Generate(new Vector3(0, 2, 0));
+			}
+
 		}
 
 		public override void OnFixedUpdate()
 		{
-			
+			base.OnFixedUpdate();
 
 		}
 
