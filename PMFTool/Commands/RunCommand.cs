@@ -23,7 +23,7 @@ namespace PMFTool.Commands
 		[PrimaryCommand]
 		public void Run(
 			[Argument(Description = "The path to the directory of the mod you want to pack")] 
-			string path,
+			string path="",
 
 			[Option(Description = "The mode to run in")]
 			RunMode mode=RunMode.Debug)
@@ -35,6 +35,11 @@ namespace PMFTool.Commands
 			{
 				ConsoleWriter.WriteLineError($"Could not find primitier exe'{config.PrimitierPath}'");
 				return;
+			}
+
+			if (!Path.IsPathRooted(path))
+			{
+				path = Path.Combine(Environment.CurrentDirectory, path);
 			}
 
 			if (mode == RunMode.Debug)
@@ -53,7 +58,7 @@ namespace PMFTool.Commands
 			}
 			
 
-
+		
 			if (!Directory.Exists(path))
 			{
 				ConsoleWriter.WriteLineError($"The directory '{path}' doesn't exist");

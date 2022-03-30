@@ -29,12 +29,12 @@ namespace PMFTool
 @"; configuration file from pmf tool
 
 ; REQUIRED change this to the full path of Primitier.exe
-;primitier_path=
+PrimitierPath=
 
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in debug mode
-;bin_debug_path=/bin/Debug
+;DebugBinPath=/bin/Debug
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in release mode
-;bin_release_path=/bin/Release
+;ReleaseBinPath=/bin/Release
 ";
 
 
@@ -48,7 +48,14 @@ namespace PMFTool
 
 			if (File.Exists(file))
 			{
-				IniFile.ToObject<ConfigFile>(ref populate, new IniFile(file), null);
+				try
+				{
+					IniFile.ToObject<ConfigFile>(ref populate, new IniFile(file), null, flags: IniFile.ParseObjectFlags.AllowMissingFields);
+				}catch(FormatException e)
+				{
+					ConsoleWriter.WriteLineError(e.Message);
+				}
+				
 			}
 			else
 			{

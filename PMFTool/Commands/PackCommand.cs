@@ -38,10 +38,15 @@ namespace PMFTool.Commands
 				return;
 			}
 
+			if (!Path.IsPathRooted(path))
+			{
+				path = Path.Combine(Environment.CurrentDirectory, path);
+			}
 			if (config.ReleaseBinPath != "")
 			{
 				path = Path.Combine(path, config.ReleaseBinPath);
 			}
+			
 
 			if (outputDir != "")
 			{
