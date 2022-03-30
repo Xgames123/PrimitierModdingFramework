@@ -1,5 +1,6 @@
 ﻿using BetterConsole.UI;
 using Newtonsoft.Json;
+using Sini;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,64 +9,76 @@ using System.Threading.Tasks;
 
 namespace PMFTool
 {
+
+
+
+	public class ConfigFile
+	{
+		public string PrimitierPath = "";
+		public string DebugBinPath = "";
+		public string ReleaseBinPath = "";
+
+
+	}
+
+
+
 	public static class ConfigFileLoader
 	{
+		public static readonly string EmptyConfigTemplate =
+@"; configuration file from pmf tool
 
-		public static void SaveConfig(string path, ConfigFile config)
+; REQUIRED change this to the full path of Primitier.exe
+;primitier_path=
+
+; OPTIONAL relative path to the working directory to pull the files from when packing a mod in debug mode
+;bin_debug_path=/bin/Debug
+; OPTIONAL relative path to the working directory to pull the files from when packing a mod in release mode
+;bin_release_path=/bin/Release
+";
+
+
+		public static ConfigFile LoadConfig(string file, ConfigFile populate=null, bool generateIfNotExist=false)
 		{
-			try
-			{
-				File.WriteAllText(path, JsonConvert.SerializeObject(config));
 
-			}catch(Exception e)
+			if (populate == null)
 			{
-				ConsoleWriter.WriteLineError("Could not save config file", e);
+				populate = new ConfigFile();
 			}
-			
+
+			if (File.Exists(file))
+			{
+				IniFile.ToObject<ConfigFile>(ref populate, new IniFile(file), null);
+			}
+			else
+			{
+				if (generateIfNotExist)
+				{
+					File.WriteAllText(file, EmptyConfigTemplate);
+				}
+				
+			}
+
+			return populate;
+
+		}
+
+		public static ConfigFile LoadGlobalConfig()
+		{
+			var globalPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".pmftoolconfig");
+
+			return LoadConfig(globalPath, generateIfNotExist:true);
 		}
 
 
-		public static ConfigFile? Load(string path)
+
+		public static ConfigFile LoadMergedConfig()
 		{
-			if (!File.Exists(path))
-			{
-				ConsoleWriter.WriteLineError($"Can not find config file '{path}'");
-				bool awnser= ConsoleDrawer.DrawYesOrNo(31, "Would you like to generate it", CancellationToken.None);
-				if (awnser)
-				{
-					var config = new ConfigFile();
-					File.WriteAllText(path, JsonConvert.SerializeObject(config));
-				}
+			var config = LoadGlobalConfig();
 
-				return null;
-			}
-
-			try
-			{
-				var config = JsonConvert.DeserializeObject<ConfigFile>(File.ReadAllText(path));
-
-				string oldPrimitierPath = config?.PrimitierPath;
-				if (config == null || !File.Exists(config.PrimitierPath))
-				{
-
-					ConsoleWriter.WriteLineError("Primitier path was invalid. please enter a valid one");
-					config.PrimitierPath = ConsoleDrawer.DrawTextInput(oldPrimitierPath, CancellationToken.None);
-
-					SaveConfig(path, config);
-				}
-
-				return config;
-
-			}
-			catch (JsonException e)
-			{
-				ConsoleWriter.WriteLineError($"Invalid config file '{path}'", e);
-				return null;
-			}
-
-
-
+			return LoadConfig(".pmftoolconfig", config);
 		}
+
 
 	}
 }

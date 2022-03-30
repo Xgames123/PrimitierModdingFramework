@@ -22,35 +22,46 @@ namespace PMFTool.Commands
 		
 		[PrimaryCommand]
 		public void Run(
-			[Argument(Description = "The path to the directory with the dll files of the mod you want to run or an alias if you have setup one")] 
+			[Argument(Description = "The path to the directory of the mod you want to pack")] 
 			string path,
-
-			[Option(Description = "The path to the PMFToolConfig.json file")]
-			string config="PMFToolConfig.json",
 
 			[Option(Description = "The mode to run in")]
 			RunMode mode=RunMode.Debug)
 		{
 
-			path = path.Trim();
+			var config = ConfigFileLoader.LoadMergedConfig();
 
-			var configClass = ConfigFileLoader.Load(config);
-			if (configClass == null)
+			if (!File.Exists(config.PrimitierPath))
 			{
+				ConsoleWriter.WriteLineError($"Could not find primitier exe'{config.PrimitierPath}'");
 				return;
 			}
 
-			path = AliasSolver.Solve(path, mode, configClass);
+			if (mode == RunMode.Debug)
+			{
+				if (config.DebugBinPath != "")
+				{
+					path = Path.Combine(path, config.DebugBinPath);
+				}
+			}
+			else if (mode == RunMode.Release)
+			{
+				if (config.ReleaseBinPath != "")
+				{
+					path = Path.Combine(path, config.ReleaseBinPath);
+				}
+			}
+			
 
 
 			if (!Directory.Exists(path))
 			{
-				ConsoleWriter.WriteLineError($"The path or alias '{path}' is invalid");
+				ConsoleWriter.WriteLineError($"The directory '{path}' doesn't exist");
 				return;
 			}
 
 			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");
-			var modsDirectory = Path.Combine(Path.GetDirectoryName(configClass.PrimitierPath), "Mods");
+			var modsDirectory = Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "Mods");
 			foreach (var file in Directory.GetFiles(modsDirectory))
 			{
 				ConsoleWriter.WriteLineStatus($"Deleting '{file}'");
@@ -88,13 +99,13 @@ namespace PMFTool.Commands
 				args = "--melonloader.debug";
 			}
 
-			Process process = null;
+			Process? process = null;
 			try
 			{
 				process = Process.Start(new ProcessStartInfo()
 				{
 					Arguments = args,
-					FileName = configClass.PrimitierPath,
+					FileName = config.PrimitierPath,
 					RedirectStandardError = true,
 					RedirectStandardOutput = true,
 					UseShellExecute = false,

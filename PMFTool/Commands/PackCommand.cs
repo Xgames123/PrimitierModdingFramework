@@ -21,22 +21,33 @@ namespace PMFTool.Commands
 	{
 		[PrimaryCommand]
 		public void Pack(
-			[Argument(Description = "The path to the directory with the dll files of the mod you want to pack or an alias if you have setup one")]
+			[Argument(Description = "The path to the directory of the mod you want to pack")]
 			string path,
-			[Option(Description = "The directory to put the generated file into or an alias if you have setup one")]
-			string outputDir,
+			[Option(Description = "The directory to put the generated file into")]
+			string outputDir="",
 
 			[Option(Description = "The format to generate the package in")]
-			PackFormat format=PackFormat.Pmfm,
-
-			[Option(Description = "The path to the PMFToolConfig.json file")]
-			string config="PMFToolConfig.json")
+			PackFormat format=PackFormat.Pmfm)
 		{
-			var configClass = ConfigFileLoader.Load(config);
+			
+			var config = ConfigFileLoader.LoadMergedConfig();
 
-			path = AliasSolver.Solve(path, RunMode.Release, configClass);
-			outputDir = AliasSolver.Solve(outputDir, RunMode.Release, configClass);
+			if (!File.Exists(config.PrimitierPath))
+			{
+				ConsoleWriter.WriteLineError($"Could not find primitier exe'{config.PrimitierPath}'");
+				return;
+			}
 
+			if (config.ReleaseBinPath != "")
+			{
+				path = Path.Combine(path, config.ReleaseBinPath);
+			}
+
+			if (outputDir != "")
+			{
+				Directory.CreateDirectory(outputDir);
+			}
+	
 
 			var extention = ".zip";
 			if (format == PackFormat.Pmfm)
@@ -53,7 +64,7 @@ namespace PMFTool.Commands
 			string[] ignoreFiles = Array.Empty<string>();
 			if (format == PackFormat.Pmfm)
 			{
-				var generatedProxyDllPath = Path.Combine(Path.GetDirectoryName(configClass.PrimitierPath), "MelonLoader", "Managed");
+				var generatedProxyDllPath = Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "Managed");
 				
 				var files = Directory.GetFiles(generatedProxyDllPath);
 				ignoreFiles = new string[files.Length];
@@ -65,7 +76,11 @@ namespace PMFTool.Commands
 			}
 
 
-
+			if(!Directory.Exists(path))
+			{
+				ConsoleWriter.WriteLineError($"dir '{path}' doesn't exist");
+				return;
+			}
 			foreach (var file in Directory.GetFiles(path))
 			{
 				if (file.EndsWith(".pdb") || file.EndsWith(".xml"))
