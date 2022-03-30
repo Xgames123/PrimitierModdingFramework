@@ -422,7 +422,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DemoMod.cs" />
-    <Compile Include="Insect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

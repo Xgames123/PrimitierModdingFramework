@@ -29,17 +29,13 @@ namespace DemoMod
 			{
 				ObjectGenerationSystem.GenerateTree(spawnMenu.transform.position, 0.1f, CubeGenerator.TreeType.Conifer);
 			}));
-			spawnMenu.CreateButton("Kill Tree", new System.Action(() =>
+			spawnMenu.CreateButton("Custom Tree", new System.Action(() =>
 			{
-				GenerateKillTree(spawnMenu.transform.position);
+				GenerateCustomTree(spawnMenu.transform.position);
 			}));
 			spawnMenu.CreateButton("Drone", new System.Action(()=>
 			{
 				CubeGenerator.GenerateDrone(spawnMenu.transform.position, 0.1f);
-			}));
-			spawnMenu.CreateButton("Insect", new System.Action(() =>
-			{
-				Insect.Generate(spawnMenu.transform.position);
 			}));
 
 			spawnMenu.CreateButton("Leaf", new System.Action(() =>
@@ -84,14 +80,11 @@ namespace DemoMod
 		{
 			base.OnRealyLateStart();
 
-			//GenerateKillTree(new Vector3(0, 0, 0));
-			
-			
 
 			FlyCam.Create();
 		}
 
-		private static void GenerateKillTree(Vector3 pos)
+		private static void GenerateCustomTree(Vector3 pos)
 		{
 			const float treeThicness = 0.4f;
 			const float stemHeight = 3f;
@@ -116,7 +109,7 @@ namespace DemoMod
 		public override void OnApplicationStart()
 		{
 			base.OnApplicationStart();
-			ClassInjector.RegisterTypeInIl2CppWithInterfaces<Insect>(typeof(ICubeBehavior));
+
 
 			PMFSystem.EnableSystem<PMFHelper>();
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
@@ -127,11 +120,6 @@ namespace DemoMod
 		public override void OnUpdate()
 		{
 			base.OnUpdate();
-
-			if (Input.GetKeyUp(KeyCode.Space))
-			{
-				Insect.Generate(new Vector3(0, 2, 0));
-			}
 
 		}
 
