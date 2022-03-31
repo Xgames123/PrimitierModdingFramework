@@ -28,5 +28,32 @@ namespace PMFTool
 			}
 			Console.ForegroundColor = ConsoleColor.White;
 		}
+
+		public static string? AskForString(string question, Func<string?, bool>? validate=null)
+		{
+			while (true)
+			{
+				Console.WriteLine(question);
+				Console.Write(">");
+
+				var awnser = Console.ReadLine();
+
+				if (validate == null)
+				{
+					return awnser;
+				}
+				if (validate.Invoke(awnser))
+				{
+					return awnser;
+				}
+
+
+				WriteLineError($"'{awnser}' was not valid");
+			}
+			
+
+		}
+
+
 	}
 }

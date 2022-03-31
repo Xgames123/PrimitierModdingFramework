@@ -11,10 +11,7 @@
 	  <TargetFramework>net6.0</TargetFramework>
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <Nullable>enable</Nullable>
-	  <PackAsTool>true</PackAsTool>
-	  <ToolCommandName>PMFTool</ToolCommandName>
-	  <PackageOutputPath>./bin/Release/nupkg</PackageOutputPath>
-	  
+
 	  <Version>$(PMFToolVersion)</Version>
 	  <AssemblyVersion>$(PMFToolVersion)</AssemblyVersion>
 	  <FileVersion>$(PMFToolVersion)</FileVersion>
@@ -24,7 +21,6 @@
 	  <Authors>$(PMFToolAuthors)</Authors>
 	  <AssemblyName>PMFTool</AssemblyName>
 	  <PackageId>XGames105.PMFTool</PackageId>
-	  <Description>A tool to help make mods using PMF</Description>
 		
 
   </PropertyGroup>
