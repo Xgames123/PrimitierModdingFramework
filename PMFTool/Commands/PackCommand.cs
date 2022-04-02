@@ -86,6 +86,9 @@ namespace PMFTool.Commands
 				ConsoleWriter.WriteLineError($"dir '{path}' doesn't exist");
 				return;
 			}
+
+			
+			int PackedFileCount = 0;
 			foreach (var file in Directory.GetFiles(path))
 			{
 				if (file.EndsWith(".pdb") || file.EndsWith(".xml"))
@@ -105,6 +108,11 @@ namespace PMFTool.Commands
 
 				zip.CreateEntryFromFile(file, Path.GetFileName(file));
 				ConsoleWriter.WriteLineStatus($"Packing '{file}'");
+				PackedFileCount++;
+			}
+			if (PackedFileCount == 0)
+			{
+				ConsoleWriter.WriteLineError("There are no files to packed (You are probably in the wrong directory)");
 			}
 
 			zip.Dispose();

@@ -22,7 +22,7 @@ namespace PMFTool.Commands
 		
 		[PrimaryCommand]
 		public void Run(
-			[Argument(Description = "The path to the directory of the mod you want to pack")] 
+			[Argument(Description = "The path to the directory of the mod you want to run")] 
 			string path="",
 
 			[Option(Description = "The mode to run in")]
@@ -76,6 +76,7 @@ namespace PMFTool.Commands
 
 			ConsoleWriter.WriteLineStatus("=== Copying new files ===");
 
+			int copiedFileCount = 0;
 			foreach (var file in Directory.GetFiles(path))
 			{
 				if (!file.EndsWith(".dll"))
@@ -88,12 +89,17 @@ namespace PMFTool.Commands
 				try
 				{
 					File.Copy(file, destFileName);
+					copiedFileCount++;
 				}
 				catch (Exception e)
 				{
 					ConsoleWriter.WriteLineError($"Can not copy '{file}' to {destFileName}", e);
 				}
 
+			}
+			if (copiedFileCount == 0)
+			{
+				ConsoleWriter.WriteLineError("There are no files to copied (You are probably in the wrong directory)");
 			}
 
 			ConsoleWriter.WriteLineStatus("=== Starting Primitier ===");

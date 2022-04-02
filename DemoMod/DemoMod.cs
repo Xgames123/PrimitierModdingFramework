@@ -31,7 +31,7 @@ namespace DemoMod
 			}));
 			spawnMenu.CreateButton("Custom Tree", new System.Action(() =>
 			{
-				GenerateCustomTree(spawnMenu.transform.position);
+				GenerateCustomTree(spawnMenu.transform.position, CubeConnector.Anchor.Temporary);
 			}));
 			spawnMenu.CreateButton("Drone", new System.Action(()=>
 			{
@@ -73,32 +73,34 @@ namespace DemoMod
 
 
 		
-		
 		}
 
 		public override void OnRealyLateStart()
 		{
 			base.OnRealyLateStart();
 
+			ObjectGenerationSystem.GenerateCube(new Vector3(1, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+			GenerateCustomTree(new Vector3(0, 0, -2), CubeConnector.Anchor.Free);
+			GenerateCustomTree(new Vector3(0, 0, 0), CubeConnector.Anchor.Temporary);
+			GenerateCustomTree(new Vector3(0, 0, 2), CubeConnector.Anchor.Permanent);
 
-			FlyCam.Create();
+			//FlyCam.Create();
 		}
 
-		private static void GenerateCustomTree(Vector3 pos)
+		private static void GenerateCustomTree(Vector3 pos, CubeConnector.Anchor anchor)
 		{
 			const float treeThicness = 0.4f;
-			const float stemHeight = 3f;
-			const float leafSize = 2f;
+			const float stemHeight = 2f;
+			const float leafSize = 1f;
 			const float leafHeight = 2f;
 
 			var stem = ObjectGenerationSystem.GenerateCube(new Vector3(pos.x, pos.y+(stemHeight/2), pos.z), new Vector3(treeThicness, stemHeight, treeThicness), Substance.Wood);
-			var leaf = ObjectGenerationSystem.GenerateCube(new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+			var leaf = ObjectGenerationSystem.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 
 
 			//TODO find out what CubeConnector.Anchor does (can't do it now because my oculus account is still not working)
 
-			leaf.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Temporary;
-			stem.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Temporary;
+			stem.GetComponent<CubeConnector>().anchor = anchor;
 			stem.GetComponent<CubeConnector>().Connect(leaf.GetComponent<CubeConnector>());
 
 		}
