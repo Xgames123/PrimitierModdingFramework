@@ -84,7 +84,7 @@ namespace DemoMod
 			GenerateCustomTree(new Vector3(0, 0, 0), CubeConnector.Anchor.Temporary);
 			GenerateCustomTree(new Vector3(0, 0, 2), CubeConnector.Anchor.Permanent);
 
-			//FlyCam.Create();
+			FlyCam.Create();
 		}
 
 		private static void GenerateCustomTree(Vector3 pos, CubeConnector.Anchor anchor)
