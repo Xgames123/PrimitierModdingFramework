@@ -3,53 +3,43 @@ Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.
 
 ## Try building the Demo mod
 * Clone the repo.
-* Install MelonLoader. you can use a automated install.
+* Install [MelonLoader](https://github.com/LavaGang/MelonLoader). you can use a automated install. or install [Primitier mod manager](https://github.com/Xgames123/PrimitierModManager/releases)
+* Install [PMFTool](./PMFTool/InstallPMFTool.md)
+
 * Try building the demoMod project.
-* Open 'RunInDebug.ps1' and change $PRIMITIER_PATH= to the [install directory of Primitier](#get-the-install-directory-of-primitier.)
-* Than run 'RunInDebug.ps1' or copy the files form the bin/Debug folder to the mods folder in the [install directory of Primitier](#get-the-install-directory-of-primitier.)
-* Run Primitier
+
+* Try running the demoMod by running ```PMFTool run```
+    - If it doesn't work run ```PMFTool update-dlls```
+    - If that doesn't work run primitier so that melonloader can generate the dlls and run ```PMFTool update-dlls``` again
+
 * If you need help feel free to start a issue on GitHub
 
 
 ## Setup a project
-* Creating a .NET Framework 4.7.2. or lower project.
-* Add PrimtierModdingFramework.dll as a reference.
+* Copy the DemoProject
+* In AssemblyInfo.cs change the the values in the buildInfo class
+* In Mod.json change the values to your own
+* Rename DemoMod.cs to your own mods name
 
-* Go to the [Primitier install directory](#get-the-install-directory-of-primitier.)/MelonLoader and add MelonLoader.dll as a reference and than go to [Primitier install directory](#get-the-install-directory-of-primitier.)/MelonLoader/Managed and add the dlls that you need
-
-* In the AssemblyInfo.cs file add
-```cs
-[assembly: MelonInfo(typeof(DemoMod.DemoMod), "Description of your mod", "1.0.0", "you name")]
-[assembly: MelonGame("PrimitierDev", "Primitier")
- ```
-
-* Copy 'RunInDebug.ps1' from the demo mod or copy the files form the bin/Debug folder to the mods folder in the [install directory of Primitier](#get-the-install-directory-of-primitier.)
+* run ```PMFTool update-dlls```
+* to run use ```PMFTool run``` Note: PMFTool doesn't build your project so you have to build it first before you call ```PMFTool run```
 
 * If you need help feel free to start a issue on GitHub.
 
 
 ## Package a mod for Primiter mod manager
-* Create a .zip file and add the files for your mod to it. NOTE: You don't have to add the generated dlls from MelonLoader because they will copied by Primiter mod manager
-* Add a Mod.json file to your .zip file. [see Mod.json](./Mod.json.md)
-* Add a Icon.png (This is optional)
-* Rename the .zip file to .pmfm (This is optional)
+* run ```PMFTool pack --format Pmfm``` you can change the format to zip if you want compatibility with raw melonLoader
 
 
-### Get the install directory of Primitier.
-* Go to steam and click the gear icon on the Primitier page
-![Gear](GearIcon.png)
 
-* Click on properties and than on local files and than on browse.
+## Documentation
 
-## Creating custom substances
-[Custom substances](./CustomSubstances.md)
+* [PMFTool](./PMFTool/PMFTool.md)
 
-## Dumping the state of the game
-[Dumping](./Dumping.md)
+* [Custom substances](./CustomSubstances.md)
 
-## PMFSystems
-[PMFSystems](./PMFSystems.md)
+* [Dumping](./Dumping.md)
 
+* [PMFSystems](./PMFSystems.md)
 
-## PMFSystems
-[ObjectCollectedException](./ObjectCollectedException.md)
+* [ObjectCollectedException](./ObjectCollectedException.md)
