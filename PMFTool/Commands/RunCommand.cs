@@ -37,10 +37,7 @@ namespace PMFTool.Commands
 				return;
 			}
 
-			if (!Path.IsPathRooted(path))
-			{
-				path = Path.Combine(Environment.CurrentDirectory, path);
-			}
+			path = Path.GetFullPath(path);
 
 			if (mode == RunMode.Debug)
 			{
@@ -56,9 +53,7 @@ namespace PMFTool.Commands
 					path = Path.Combine(path, config.ReleaseBinPath);
 				}
 			}
-			
 
-		
 			if (!Directory.Exists(path))
 			{
 				ConsoleWriter.WriteLineError($"The directory '{path}' doesn't exist");
@@ -66,12 +61,20 @@ namespace PMFTool.Commands
 			}
 
 			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");
-			var modsDirectory = Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "Mods");
-			foreach (var file in Directory.GetFiles(modsDirectory))
-			{
-				ConsoleWriter.WriteLineStatus($"Deleting '{file}'");
+			var modsDirectory = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "Mods"));
 
-				File.Delete(file);
+			if (!modsDirectory.Exists)
+			{
+				ConsoleWriter.WriteLineError($"'{modsDirectory.FullName}' doesn't exist. This could be because MelonLoader is not installed properly");
+				return;
+			}
+
+
+			foreach (var file in modsDirectory.GetFiles())
+			{
+				ConsoleWriter.WriteLineStatus($"Deleting '{file.FullName}'");
+
+				file.Delete();
 			}
 
 			ConsoleWriter.WriteLineStatus("=== Copying new files ===");
@@ -84,7 +87,7 @@ namespace PMFTool.Commands
 					continue;
 				}
 
-				var destFileName = Path.Combine(modsDirectory, Path.GetFileName(file));
+				var destFileName = Path.Combine(modsDirectory.FullName, Path.GetFileName(file));
 				ConsoleWriter.WriteLineStatus($"Copying '{file}'");
 				try
 				{

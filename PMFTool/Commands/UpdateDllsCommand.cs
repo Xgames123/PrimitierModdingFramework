@@ -17,7 +17,9 @@ namespace PMFTool.Commands
 			string path="")
 		{
 
-			var config = ConfigFileLoader.LoadMergedConfig();
+			DirectoryInfo dllDir = null;
+
+			var config  = ConfigFileLoader.LoadMergedConfig();
 
 			if (!File.Exists(config.PrimitierPath))
 			{
@@ -26,57 +28,78 @@ namespace PMFTool.Commands
 			}
 
 
-			if (path == "")
-			{
-				if(ConsoleWriter.AskForYesNo("no valid path was given. Would you like to search for the folder") == true)
-				{
-					var dirs = SearchForDllsFolder();
-					if (dirs.Count == 0)
-					{
-						ConsoleWriter.WriteLineError("There were no directories found");
-						return;
-					}
+			path = Path.GetFullPath(path);
 
-					foreach (var foundDir in dirs)
-					{
-						if(ConsoleWriter.AskForYesNo($"Found directory '{foundDir}'. Would you like to use this one"))
-						{
-							path = foundDir.FullName;
-							break;
-						}
-
-					}
-
-				}
-				else
-				{
-					return;
-				}
-
-			}
-
-
-			if (!Path.IsPathRooted(path))
-			{
-				path = Path.Combine(Environment.CurrentDirectory, path);
-			}
 
 			if (!Directory.Exists(path))
 			{
 				ConsoleWriter.WriteLineError($"Directory {path} doesn't exist");
+
+				if (path == "")
+				{
+					if (ConsoleWriter.AskForYesNo("Would you like to search for the folder") == true)
+					{
+						var dirs = SearchForDllsFolder();
+						if (dirs.Count == 0)
+						{
+							ConsoleWriter.WriteLineError("There were no directories found");
+							return;
+						}
+
+						foreach (var foundDir in dirs)
+						{
+							if (ConsoleWriter.AskForYesNo($"Found directory '{foundDir}'. Would you like to use this one"))
+							{
+								path = foundDir.FullName;
+								break;
+							}
+
+						}
+
+					}
+					else
+					{
+						return;
+					}
+
+				}
 			}
 
+			dllDir = new DirectoryInfo(path);
 
 
-			var fileCount = Directory.GetFiles(path).Length;
-			if (fileCount < 4)
+			int dllFileCount = dllDir.GetFiles().Count((FileInfo file) => { return file.Extension == ".dll"; });
+			if (dllFileCount < 150)
 			{
-				if(!ConsoleWriter.AskForYesNo($"There are only {fileCount} files in this directory. Are you sure this is the right one"))
+				if(!ConsoleWriter.AskForYesNo($"There are only {dllFileCount} dll files in this directory. Are you sure this is the right one"))
 				{
 					return;
 				}
 			}
 
+			var proxyDllDir = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "Managed"));
+
+			if (!proxyDllDir.Exists)
+			{
+				ConsoleWriter.WriteLineError($"'{proxyDllDir.FullName}' doesn't exist. This could be because MelonLoader is not installed properly");
+				return;
+			}
+
+
+			foreach (var file in proxyDllDir.GetFiles())
+			{
+				if (file.Extension == ".dll" || file.Extension == ".xml")
+				{
+					ConsoleWriter.WriteLineStatus($"Copying '{file.FullName}' to '{dllDir.FullName}'");
+					file.CopyTo(dllDir.FullName, true);
+					
+				}
+
+			}
+
+			ConsoleWriter.WriteLineStatus("Copying MelonLoader.dll");
+			var melonloaderDll = new FileInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "MelonLoader.dll"));
+			melonloaderDll.CopyTo(dllDir.FullName, true);
 
 		}
 

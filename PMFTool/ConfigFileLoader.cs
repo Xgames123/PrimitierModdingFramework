@@ -1,5 +1,4 @@
-﻿using BetterConsole.UI;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Sini;
 using System;
 using System.Collections.Generic;
@@ -17,7 +16,7 @@ namespace PMFTool
 		public string PrimitierPath = "";
 		public string DebugBinPath = "";
 		public string ReleaseBinPath = "";
-
+		public string DllPath = "";
 
 	}
 
@@ -35,6 +34,9 @@ PrimitierPath=
 ;DebugBinPath=/bin/Debug
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in release mode
 ;ReleaseBinPath=/bin/Release
+
+; OPTIONAL relative path to the working directory where the dlls are stored. Used by 'PMFTool update-dlls'
+;DllPath=../Dlls
 ";
 
 

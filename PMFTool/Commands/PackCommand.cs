@@ -38,10 +38,8 @@ namespace PMFTool.Commands
 				return;
 			}
 
-			if (!Path.IsPathRooted(path))
-			{
-				path = Path.Combine(Environment.CurrentDirectory, path);
-			}
+			path = Path.GetFullPath(path);
+
 			if (config.ReleaseBinPath != "")
 			{
 				path = Path.Combine(path, config.ReleaseBinPath);
@@ -71,6 +69,13 @@ namespace PMFTool.Commands
 			{
 				var generatedProxyDllPath = Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "Managed");
 				
+				if (!Directory.Exists(generatedProxyDllPath))
+				{
+					ConsoleWriter.WriteLineError($"'{generatedProxyDllPath}' doesn't exist. This could be because MelonLoader is not installed properly");
+					return;
+				}
+
+
 				var files = Directory.GetFiles(generatedProxyDllPath);
 				ignoreFiles = new string[files.Length];
 				for (int i = 0; i < files.Length; i++)
