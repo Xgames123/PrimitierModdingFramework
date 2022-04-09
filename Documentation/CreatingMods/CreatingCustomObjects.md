@@ -23,7 +23,7 @@ var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight
 
         }
         ```
-    3) add these methods to your class
+    3) Add these methods to your class
         ```cs
         public void OnFragmentInitialized(CubeBase fragmentCubeBase)
         {
