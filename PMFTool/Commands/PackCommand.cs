@@ -22,7 +22,7 @@ namespace PMFTool.Commands
 		[PrimaryCommand]
 		public void Pack(
 			[Argument(Description = "The path to the directory of the mod you want to pack")]
-			string path,
+			string path="",
 			[Option(Description = "The directory to put the generated file into")]
 			string outputDir="",
 
