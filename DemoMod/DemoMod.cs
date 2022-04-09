@@ -27,7 +27,7 @@ namespace DemoMod
 			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");
 			spawnMenu.CreateButton("Tree", new System.Action(() =>
 			{
-				ObjectGenerationSystem.GenerateTree(spawnMenu.transform.position, 0.1f, CubeGenerator.TreeType.Conifer);
+				CubeGenerator.GenerateTree(spawnMenu.transform.position, 0.1f, CubeGenerator.TreeType.Conifer);
 			}));
 			spawnMenu.CreateButton("Custom Tree", new System.Action(() =>
 			{
@@ -40,13 +40,13 @@ namespace DemoMod
 
 			spawnMenu.CreateButton("Leaf", new System.Action(() =>
 			{
-				var cube = ObjectGenerationSystem.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf);
+				var cube = CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf);
 				cube.GetComponent<Heat>().AddHeat(10000);
 			}));
 
 			spawnMenu.CreateButton("Custom", new System.Action(() =>
 			{
-				ObjectGenerationSystem.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			}));
 
 
@@ -68,7 +68,6 @@ namespace DemoMod
 			customSubstance.stiffness = 99999999; //Damage
 			customSubstance.strength = 999999999999999999; //HP
 
-
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
 
 
@@ -79,7 +78,7 @@ namespace DemoMod
 		{
 			base.OnRealyLateStart();
 
-			ObjectGenerationSystem.GenerateCube(new Vector3(1, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+			CubeGenerator.GenerateCube(new Vector3(1, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			GenerateCustomTree(new Vector3(0, 0, -2), CubeConnector.Anchor.Free);
 			GenerateCustomTree(new Vector3(0, 0, 0), CubeConnector.Anchor.Temporary);
 			GenerateCustomTree(new Vector3(0, 0, 2), CubeConnector.Anchor.Permanent);
@@ -94,8 +93,8 @@ namespace DemoMod
 			const float leafSize = 1f;
 			const float leafHeight = 2f;
 
-			var stem = ObjectGenerationSystem.GenerateCube(new Vector3(pos.x, pos.y+(stemHeight/2), pos.z), new Vector3(treeThicness, stemHeight, treeThicness), Substance.Wood);
-			var leaf = ObjectGenerationSystem.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+			var stem = CubeGenerator.GenerateCube(new Vector3(pos.x, pos.y+(stemHeight/2), pos.z), new Vector3(treeThicness, stemHeight, treeThicness), Substance.Wood);
+			var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 
 
 			//TODO find out what CubeConnector.Anchor does (can't do it now because my oculus account is still not working)
@@ -117,7 +116,6 @@ namespace DemoMod
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
 			PMFSystem.EnableSystem<CustomAssetSystem>();
-			PMFSystem.EnableSystem<ObjectGenerationSystem>();
 		}
 		public override void OnUpdate()
 		{

@@ -11,7 +11,7 @@ To dump the scene call HierarchyXmlDumper.DumpSceneToFile()
 ### A ComponentDumper
 A ComponentDumper is used to change the generated xml tag of the TargetComponent.
 
-### TheyHierarchyXmlDumper.DefaultDumperList
+### HierarchyXmlDumper.DefaultDumperList
 PMF Includes a default ComponentDumpersList for basic classes like Transform, MeshFilter, MeshRenderer, ...
 
 ## ResourceXmlDumper

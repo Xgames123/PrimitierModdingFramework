@@ -9,7 +9,7 @@ It adds helper classes to make mods for Primitier.
 [Downloading mods](Documentation/DownloadingMods.md)
 
 ## Creating a mod
-[Creating mods](Documentation/CreatingMods.md)
+[Creating mods](Documentation/CreatingMods/CreatingMods.md)
 
 
 

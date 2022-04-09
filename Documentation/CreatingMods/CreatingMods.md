@@ -36,10 +36,12 @@ Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.
 
 * [PMFTool](./PMFTool/PMFTool.md)
 
-* [Custom substances](./CustomSubstances.md)
+* [Custom substances and materials](./CustomSubstancesAndMaterials.md)
+
+* [Custom objects like Drones, Slimes, Engines, ...](./CreatingCustomObjects.md)
 
 * [Dumping](./Dumping.md)
 
 * [PMFSystems](./PMFSystems.md)
 
-* [ObjectCollectedException](./ObjectCollectedException.md)
+* [Mod.json](./Mod.json.md)

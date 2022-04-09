@@ -53,7 +53,6 @@
     <Compile Include="PMFIL2CPPHelpers.cs" />
     <Compile Include="PMFLog.cs" />
     <Compile Include="PMFHelper.cs" />
-    <Compile Include="ObjectGenerationSystem.cs" />
     <Compile Include="PMFSystem.cs" />
     <Compile Include="PMFSystemNotEnabledException.cs" />
     <Compile Include="PrimitierMod.cs" />

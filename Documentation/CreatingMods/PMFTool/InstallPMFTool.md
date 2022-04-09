@@ -23,6 +23,6 @@ PrimitierPath=
 
 ### Get the install directory of Primitier.
 * Go to steam and click the gear icon on the Primitier page
-![Gear](../GearIcon.png)
+![Gear](../../GearIcon.png)
 
 * Click on properties and than on local files and than on browse.
