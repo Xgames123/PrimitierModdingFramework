@@ -38,6 +38,10 @@ namespace PMFTool.Commands
 				return;
 			}
 
+			if (path == "")
+			{
+				path = Environment.CurrentDirectory;
+			}
 			path = Path.GetFullPath(path);
 
 			if (config.ReleaseBinPath != "")

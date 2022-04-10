@@ -12,7 +12,7 @@ namespace PMFTool.Commands
 	{
 
 		[PrimaryCommand()]
-		public void Mod(
+		public void UpdateDlls(
 			[Argument(Description ="The path to the dlls folder")]
 			string path="")
 		{
@@ -27,43 +27,23 @@ namespace PMFTool.Commands
 				return;
 			}
 
+			if (path == "")
+			{
+				path = config.DllPath;
+			}
 
+			if (path == "")
+			{
+				path = Environment.CurrentDirectory;
+			}
 			path = Path.GetFullPath(path);
 
 
 			if (!Directory.Exists(path))
 			{
 				ConsoleWriter.WriteLineError($"Directory {path} doesn't exist");
-
-				if (path == "")
-				{
-					if (ConsoleWriter.AskForYesNo("Would you like to search for the folder") == true)
-					{
-						var dirs = SearchForDllsFolder();
-						if (dirs.Count == 0)
-						{
-							ConsoleWriter.WriteLineError("There were no directories found");
-							return;
-						}
-
-						foreach (var foundDir in dirs)
-						{
-							if (ConsoleWriter.AskForYesNo($"Found directory '{foundDir}'. Would you like to use this one"))
-							{
-								path = foundDir.FullName;
-								break;
-							}
-
-						}
-
-					}
-					else
-					{
-						return;
-					}
-
-				}
 			}
+
 
 			dllDir = new DirectoryInfo(path);
 
@@ -71,7 +51,7 @@ namespace PMFTool.Commands
 			int dllFileCount = dllDir.GetFiles().Count((FileInfo file) => { return file.Extension == ".dll"; });
 			if (dllFileCount < 150)
 			{
-				if(!ConsoleWriter.AskForYesNo($"There are only {dllFileCount} dll files in this directory. Are you sure this is the right one"))
+				if(!ConsoleWriter.AskForYesNo($"There are only {dllFileCount} dll files in directory '{path}'. Are you sure this is the right one?"))
 				{
 					return;
 				}
@@ -104,41 +84,6 @@ namespace PMFTool.Commands
 		}
 
 
-		private static IReadOnlyList<DirectoryInfo> SearchForDllsFolder()
-		{
-			List<DirectoryInfo> foundPaths = new List<DirectoryInfo>();
-			var workingDir = new DirectoryInfo(Environment.CurrentDirectory);
-
-
-			SearchDir(workingDir, foundPaths);
-
-			SearchDir(workingDir.Parent, foundPaths);
-
-
-			return foundPaths;
-		}
-
-		private static void SearchDir(DirectoryInfo dir, List<DirectoryInfo> pathsList)
-		{
-			ConsoleWriter.WriteLineStatus($"Searching {dir.Name}");
-			if (!dir.Exists)
-			{
-				return;
-			}
-
-			foreach (var folder in dir.GetDirectories())
-			{
-				var name = folder.Name.ToLower();
-
-				if (name.Contains("dll"))
-				{
-					pathsList.Add(folder);
-				}
-
-			}
-
-			return;
-		}
 
 
 
