@@ -71,7 +71,7 @@ namespace PMFTool.Commands
 				if (file.Extension == ".dll" || file.Extension == ".xml")
 				{
 					ConsoleWriter.WriteLineStatus($"Copying '{file.FullName}' to '{dllDir.FullName}'");
-					file.CopyTo(dllDir.FullName, true);
+					file.CopyTo(Path.Combine(dllDir.FullName, file.Name), true);
 					
 				}
 
@@ -79,7 +79,7 @@ namespace PMFTool.Commands
 
 			ConsoleWriter.WriteLineStatus("Copying MelonLoader.dll");
 			var melonloaderDll = new FileInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "MelonLoader.dll"));
-			melonloaderDll.CopyTo(dllDir.FullName, true);
+			melonloaderDll.CopyTo(Path.Combine(dllDir.FullName, "MelonLoader.dll"), true);
 
 		}
 

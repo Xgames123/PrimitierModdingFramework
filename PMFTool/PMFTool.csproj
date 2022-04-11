@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<PMFToolVersion>1.0.0.2</PMFToolVersion>
+		<PMFToolVersion>1.0.0.0</PMFToolVersion>
 		<PMFToolAuthors>XGames105</PMFToolAuthors>
 	</PropertyGroup>
 	
