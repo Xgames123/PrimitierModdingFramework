@@ -19,9 +19,7 @@ namespace DemoMod
 		{
 
 			base.OnSceneWasLoaded(buildIndex, sceneName);
-
-			
-
+	
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
 
 			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");

@@ -43,6 +43,8 @@ namespace PMFTool.Commands
 			}
 			path = Path.GetFullPath(path);
 
+			var projPath = (string)path.Clone();
+
 			if (mode == RunMode.Debug)
 			{
 				if (config.DebugBinPath != "")
@@ -64,6 +66,24 @@ namespace PMFTool.Commands
 				return;
 			}
 
+			ConsoleWriter.WriteLineStatus("== Starting dotnet build ==");
+			Process? dotnetBuild = null;
+			try
+			{
+				dotnetBuild = Process.Start(new ProcessStartInfo()
+				{
+					WorkingDirectory = projPath,
+					FileName = "dotnet",
+					Arguments = $"build -c {mode}",
+					RedirectStandardError = true,
+					RedirectStandardOutput = true,
+				});
+			}catch(Exception e)
+			{
+				ConsoleWriter.WriteLineError("Error starting dotnet build", e);
+			}
+
+
 			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");
 			var modsDirectory = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "Mods"));
 
@@ -80,6 +100,31 @@ namespace PMFTool.Commands
 
 				file.Delete();
 			}
+
+
+			ConsoleWriter.WriteLineStatus("=== Waiting for dotnet build ===");
+			Console.Write('\n');
+			while (true)
+			{
+				Console.Write(dotnetBuild?.StandardOutput.ReadToEnd());
+				if (dotnetBuild.HasExited)
+				{
+					var exitCode = dotnetBuild.ExitCode;
+
+					if(exitCode != 0)
+					{
+						ConsoleWriter.WriteLineError($"dotnet build exited with non zero exit code: {exitCode}");
+						return;
+					}
+					
+					break;
+				}
+
+				Thread.Sleep(400);
+			}
+			dotnetBuild.Dispose();
+
+
 
 			ConsoleWriter.WriteLineStatus("=== Copying new files ===");
 
