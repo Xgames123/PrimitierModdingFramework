@@ -9,11 +9,12 @@ It copies the mod files from the (Debug/Release can be specified by --mode) to t
 ## ``` PMFTool pack ```
 Generates a mod package that can be shared and installed by other people.
 
-you can change the format using --format (Zip/Pmfm)
+you can change the format using --format
 
-you can change the format to zip for a mod that can work on raw MelonLoader but is really large
-
-or you can change the format to pmfm for a mod that can be installed using PrimitierModManager and is really small
+### Available formats
+* zip: for a mod that can work on raw MelonLoader but is really large
+* pmfm: for a mod that can be installed using PrimitierModManager and is really small
 
 ## ```PMFTool update-dlls```
-**TODO: add documentation for this**
+Copies the latest proxy dlls to the folder specified by path or .pmftoolconfig.
+Used to update mods made for older versions of primitier
