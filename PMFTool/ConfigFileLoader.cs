@@ -31,9 +31,9 @@ namespace PMFTool
 PrimitierPath=
 
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in debug mode
-;DebugBinPath=/bin/Debug
+;DebugBinPath=bin/Debug
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in release mode
-;ReleaseBinPath=/bin/Release
+;ReleaseBinPath=bin/Release
 
 ; OPTIONAL relative path to the working directory where the dlls are stored. Used by 'PMFTool update-dlls'
 ;DllPath=../Dlls

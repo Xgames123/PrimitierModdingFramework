@@ -14,6 +14,9 @@ namespace TemplateMod
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
 			base.OnSceneWasLoaded(buildIndex, sceneName);
+
+
+			PMFLog.Message("Hello Primitier!");
 		}
 
 		public override void OnApplicationStart()
@@ -21,6 +24,7 @@ namespace TemplateMod
 			base.OnApplicationStart();
 
 			PMFSystem.EnableSystem<PMFHelper>();
+
 		}
 		
 		public override void OnUpdate()

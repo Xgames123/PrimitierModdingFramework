@@ -1,0 +1,2 @@
+﻿run 'PMFTool update-dlls' to fix the build errors (make sure to run it in the directory of the .csproj and not the solution directory).
+After this you have to reload the project in some IDE's.

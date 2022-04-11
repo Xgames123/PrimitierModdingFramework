@@ -93,7 +93,7 @@
     </Reference>
     <Reference Include="PrimitierModdingFrameworkV0.3, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dlls\PrimitierModdingFrameworkV0.3.dll</HintPath>
+      <HintPath>PMFLibV0.3\PrimitierModdingFrameworkV0.3.dll</HintPath>
     </Reference>
     <Reference Include="SteamVR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -432,6 +432,7 @@
     <Content Include="Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="READTHIS.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Mod.json">

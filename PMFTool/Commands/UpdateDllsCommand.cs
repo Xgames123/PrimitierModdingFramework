@@ -47,6 +47,15 @@ namespace PMFTool.Commands
 
 			dllDir = new DirectoryInfo(path);
 
+			if (!dllDir.Exists)
+			{
+				if (!ConsoleWriter.AskForYesNo($"Directory '{path}' doesn't exist. Do you want to create it?"))
+				{
+					return;
+				}
+				Directory.CreateDirectory(path);
+			}
+
 
 			int dllFileCount = dllDir.GetFiles().Count((FileInfo file) => { return file.Extension == ".dll"; });
 			if (dllFileCount < 150)
