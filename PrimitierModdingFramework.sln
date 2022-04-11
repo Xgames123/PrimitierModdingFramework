@@ -6,7 +6,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoMod", "DemoMod\DemoMod.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimitierModdingFramework", "PrimitierModdingFramework\PrimitierModdingFramework.csproj", "{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMFTool", "PMFTool\PMFTool.csproj", "{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PMFTool", "PMFTool\PMFTool.csproj", "{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateMod", "TemplateMod\TemplateMod.csproj", "{641884AC-5B59-43C3-A166-FDE4BAD6E574}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,14 @@ Global
 		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Release|x86.ActiveCfg = Release|Any CPU
 		{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}.Release|x86.Build.0 = Release|Any CPU
+		{641884AC-5B59-43C3-A166-FDE4BAD6E574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{641884AC-5B59-43C3-A166-FDE4BAD6E574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{641884AC-5B59-43C3-A166-FDE4BAD6E574}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{641884AC-5B59-43C3-A166-FDE4BAD6E574}.Debug|x86.Build.0 = Debug|Any CPU
+		{641884AC-5B59-43C3-A166-FDE4BAD6E574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{641884AC-5B59-43C3-A166-FDE4BAD6E574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{641884AC-5B59-43C3-A166-FDE4BAD6E574}.Release|x86.ActiveCfg = Release|Any CPU
+		{641884AC-5B59-43C3-A166-FDE4BAD6E574}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
