@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PrimitierModdingFramework")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(BuildInfo.Description)]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany(BuildInfo.Authors)]
 [assembly: AssemblyProduct("PrimitierModdingFramework")]
@@ -39,4 +39,6 @@ internal class BuildInfo
 {
 	public const string Version = "0.3.0.0";
 	public const string Authors = "XGames105";
+
+	public const string Description = "A framework for making it easier to make mods for Primitier";
 }
