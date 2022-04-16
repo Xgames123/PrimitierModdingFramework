@@ -45,5 +45,9 @@ var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight
     stem.GetComponent<CubeConnector>().Connect(leaf.GetComponent<CubeConnector>());
 
     ```
-**TODO: explain what anchor does**
+    Anchor describes how the objects get connected.
+    ### Anchor types
 
+    * Free (Player can disconnect the connected objects by pressing trigger)
+    * Temporary (Player can disconnect the connected objects by pressing trigger)
+    * Permanent ()
