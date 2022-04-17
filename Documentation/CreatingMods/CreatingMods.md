@@ -20,7 +20,14 @@ Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.
 
 
 ## Setup a project Using the template
-1) Install the template from the latest release
+1) download ```XGames105.PMF.Templates.0.3.0.nupkg``` from the latest release
+
+2) Install the template by running ```dotnet new --install C:/full/path/to/XGames105.PMF.Templates.0.3.0.nupkg```
+    
+    Note: --install should end with XGames105.PMF.Templates.0.3.0.nupkg
+
+    Note: To uninstall the templates run ```dotnet new --uninstall XGames105.PMF.Templates```
+
 2) Create a new project and select the 'Empty PMF mod'
 5) run ```PMFTool update-dlls```
 6) to run use ```PMFTool run```

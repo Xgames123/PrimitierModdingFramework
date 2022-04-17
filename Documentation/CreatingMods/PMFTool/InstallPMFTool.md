@@ -2,7 +2,13 @@
 
 1) go to the latest release of pmf and download ```XGames105.PMFTool.1.0.0.nupkg ```
 
-2) run ``` dotnet tool install XGames105.PMFTool --global --add-source path/to/the/DIRECTORY/where/XGames105.PMFTool.1.0.0.nupkg/is``` Note: --add-source is the path to the directory where XGames105.PMFTool.1.0.0.nupkg is not XGames105.PMFTool.1.0.0.nupkg itself Note: --global is optional if that is not set PMFTool will only be installed for the current project
+2) run ``` dotnet tool install XGames105.PMFTool --global --add-source C:/full/path/to/the/DIRECTORY```
+
+    Note: --add-source is the path to the directory where XGames105.PMFTool.1.0.0.nupkg is not XGames105.PMFTool.1.0.0.nupkg itself
+
+    Note: --global is optional if that is not set PMFTool will only be installed for the current project
+
+    Note: To uninstall PMFTool run ```dotnet tool uninstall XGames105.PMFTool ```
 
 3) got to the user directory (C:/User/YourName) and create a file called ```.pmftoolconfig``` and add this 
 ```ini
