@@ -63,7 +63,7 @@ namespace DemoMod
 			customSubstance.collisionSound = "RespawnPoint";
 			customSubstance.isEdible = true;
 			customSubstance.material = "CustomMat";
-			customSubstance.density = 100;
+			customSubstance.density = 0.1f;
 			customSubstance.stiffness = 99999999; //Damage
 			customSubstance.strength = 999999999999999999; //HP
 
@@ -77,15 +77,11 @@ namespace DemoMod
 		{
 			base.OnRealyLateStart();
 
-			CubeGenerator.GenerateCube(new Vector3(1, 0, 0), new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
-			GenerateCustomTree(new Vector3(0, 0, -2), CubeConnector.Anchor.Free);
-			GenerateCustomTree(new Vector3(0, 0, 0), CubeConnector.Anchor.Temporary);
-			GenerateCustomTree(new Vector3(0, 0, 3), CubeConnector.Anchor.Permanent);
 
 			//FlyCam.Create();
 		}
 
-		private static void GenerateCustomTree(Vector3 pos, CubeConnector.Anchor anchor)
+		private static void GenerateCustomTree(Vector3 pos)
 		{
 			const float treeThicness = 0.1f;
 			const float stemHeight = 1f;
@@ -96,10 +92,8 @@ namespace DemoMod
 			var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 
 
-			//TODO find out what CubeConnector.Anchor does (can't do it now because my oculus account is still not working)
-			
-
-			stem.GetComponent<CubeConnector>().anchor = anchor;
+			leaf.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Permanent;
+			stem.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Permanent;
 			stem.GetComponent<CubeConnector>().Connect(leaf.GetComponent<CubeConnector>());
 
 		}

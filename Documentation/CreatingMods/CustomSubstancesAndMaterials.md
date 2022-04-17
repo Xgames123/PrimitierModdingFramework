@@ -23,6 +23,9 @@ Call ```CustomSubstanceSystem.GetSubstanceByName("YOUR_SUBSTANCE")``` to get the
 
 
 ## Substance values descriptions
+**If any of this is wrong please create an issue**
+
 SubstanceParameters.Param has a couple of misleading names.
 * stiffness: this is the damage the object does to another object. (Maybe this is wrong I haven't tested it allot)
 * strength: this is the health of the object.
+* density: Mass through =m/v relationship (This value goes from 0 to 1)

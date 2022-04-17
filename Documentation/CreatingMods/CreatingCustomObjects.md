@@ -48,6 +48,6 @@ var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight
     Anchor describes how the objects get connected.
     ### Anchor types
 
-    * Free (Player can disconnect the connected objects by pressing trigger)
-    * Temporary (Player can disconnect the connected objects by pressing trigger)
-    * Permanent ()
+    * Free (Player can disconnect the connected objects by pressing trigger and it not attached to the ground)
+    * Temporary (Player can disconnect the connected objects by pressing trigger and is attached to the ground)
+    * Permanent (Player can not disconnect the connected objects by pressing trigger and is attached to the ground)

@@ -1,30 +1,42 @@
 # Creating mods
 Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.xyz/#/)
 
+**Note: if any of this documentation is wrong or contains spelling errors please create an issue**
+
 ## Try building the Demo mod
-* Clone the repo.
-* Install [MelonLoader](https://github.com/LavaGang/MelonLoader). you can use a automated install. or install [Primitier mod manager](https://github.com/Xgames123/PrimitierModManager/releases)
-* Install [PMFTool](./PMFTool/InstallPMFTool.md)
+1) Clone the repo.
 
-* Try building the demoMod project.
+2) Install [Primitier mod manager](https://github.com/Xgames123/PrimitierModManager/releases). or MelonLoader [MelonLoader](https://github.com/LavaGang/MelonLoader). For melonLoader you can use a automated install.
 
-* Try running the demoMod by running ```PMFTool run```
+3) Install [PMFTool](./PMFTool/InstallPMFTool.md)
+
+4) Try building the demoMod project.
+
+5) Try running the demoMod by running ```PMFTool run```
     - If it doesn't work run ```PMFTool update-dlls```
     - If that doesn't work run primitier so that melonloader can generate the dlls and run ```PMFTool update-dlls``` again
 
-* If you need help feel free to start a issue on GitHub
+6) If you need help feel free to start a issue on GitHub
 
 
-## Setup a project
-* Copy the DemoProject
-* In AssemblyInfo.cs change the the values in the buildInfo class
-* In Mod.json change the values to your own
-* Rename DemoMod.cs to your own mods name
+## Setup a project Using the template
+1) Install the template from the latest release
+2) Create a new project and select the 'Empty PMF mod'
+5) run ```PMFTool update-dlls```
+6) to run use ```PMFTool run```
 
-* run ```PMFTool update-dlls```
-* to run use ```PMFTool run``` Note: PMFTool doesn't build your project so you have to build it first before you call ```PMFTool run```
+7) If you need help feel free to start a issue on GitHub.
 
-* If you need help feel free to start a issue on GitHub.
+## Setup a project without using the template
+1) Copy the DemoProject
+2) In AssemblyInfo.cs change the the values in the buildInfo class
+3) In Mod.json change the values to your own
+4) Rename DemoMod.cs to your own mods name
+
+5) run ```PMFTool update-dlls```
+6) to run use ```PMFTool run```
+
+7) If you need help feel free to start a issue on GitHub.
 
 
 ## Package a mod for Primiter mod manager
