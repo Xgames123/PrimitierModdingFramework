@@ -63,6 +63,21 @@
             A list of component dumpers
             </summary>
         </member>
+        <member name="P:PrimitierModdingFramework.Debugging.FlyCam.Current">
+            <summary>
+            The current flycam
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.Debugging.FlyCam.Remove">
+            <summary>
+            Removes the current FlyCam
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.Debugging.FlyCam.Create">
+            <summary>
+            Creates a new FlyCam if it doesn't exists
+            </summary>
+        </member>
         <member name="T:PrimitierModdingFramework.Debugging.HierarchyXmlDumper">
             <summary>
             A class for dumping the current state of the scene to an xml file
@@ -169,6 +184,16 @@
             The event types for a PMFSystem
             </summary>
         </member>
+        <member name="T:PrimitierModdingFramework.PMFSystem">
+            <summary>
+            Base class for all systems in pmf
+            </summary>
+        </member>
+        <member name="P:PrimitierModdingFramework.PMFSystem.Mod">
+            <summary>
+            The current mod
+            </summary>
+        </member>
         <member name="M:PrimitierModdingFramework.PMFSystem.EnableSystem``1">
             <summary>
             Enables a system.
@@ -226,6 +251,12 @@
             <summary>
             Runs when the Game is told to Close.
             When overriding call base.OnApplicationQuit() before you do anything.
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.PrimitierMod.OnRealyLateStart">
+            <summary>
+            Runs after OnSceneWasLoaded
+            When overriding call base.OnRealyLateStart() before you do anything.
             </summary>
         </member>
         <member name="T:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSystem">

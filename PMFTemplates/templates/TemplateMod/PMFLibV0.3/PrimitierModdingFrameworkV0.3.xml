@@ -256,7 +256,7 @@
         <member name="M:PrimitierModdingFramework.PrimitierMod.OnRealyLateStart">
             <summary>
             Runs after OnSceneWasLoaded
-            When overriding call base.OnApplicationQuit() before you do anything.
+            When overriding call base.OnRealyLateStart() before you do anything.
             </summary>
         </member>
         <member name="T:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSystem">
