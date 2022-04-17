@@ -63,7 +63,7 @@ namespace DemoMod
 			customSubstance.collisionSound = "RespawnPoint";
 			customSubstance.isEdible = true;
 			customSubstance.material = "CustomMat";
-			customSubstance.density = 0.1f;
+			
 			customSubstance.stiffness = 99999999; //Damage
 			customSubstance.strength = 999999999999999999; //HP
 
@@ -92,7 +92,7 @@ namespace DemoMod
 			var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 
 
-			leaf.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Permanent;
+			leaf.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Free;
 			stem.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Permanent;
 			stem.GetComponent<CubeConnector>().Connect(leaf.GetComponent<CubeConnector>());
 
