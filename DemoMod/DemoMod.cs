@@ -29,7 +29,7 @@ namespace DemoMod
 			}));
 			spawnMenu.CreateButton("Custom Tree", new System.Action(() =>
 			{
-				GenerateCustomTree(spawnMenu.transform.position, CubeConnector.Anchor.Temporary);
+				GenerateCustomTree(spawnMenu.transform.position);
 			}));
 			spawnMenu.CreateButton("Drone", new System.Action(()=>
 			{
