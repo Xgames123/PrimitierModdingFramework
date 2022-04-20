@@ -21,66 +21,32 @@ namespace PMFTool.Commands
 		
 		[PrimaryCommand]
 		public void Run(
-			[Argument(Description = "The path to the directory of the mod you want to run")] 
+			[Argument(Description = "The path to the project directory of the mod you want to run")] 
 			string path="",
 
 			[Option(Description = "The mode to run in")]
 			RunMode mode=RunMode.Debug)
 		{
 
-			var config = ConfigFileLoader.LoadMergedConfig();
-
-			if (!File.Exists(config.PrimitierPath))
+			var projectPath = Validator.ValidateProjectPath(path);
+			if (projectPath == null)
 			{
-				ConsoleWriter.WriteLineError($"Could not find primitier exe'{config.PrimitierPath}'");
 				return;
 			}
 
-			if (path == "")
+			var config = ConfigFileLoader.LoadMergedConfig(projectPath);
+			if (config == null)
 			{
-				path = Environment.CurrentDirectory;
-			}
-			path = Path.GetFullPath(path);
-
-			var projPath = (string)path.Clone();
-
-			if (mode == RunMode.Debug)
-			{
-				if (config.DebugBinPath != "")
-				{
-					path = Path.Combine(path, config.DebugBinPath);
-				}
-			}
-			else if (mode == RunMode.Release)
-			{
-				if (config.ReleaseBinPath != "")
-				{
-					path = Path.Combine(path, config.ReleaseBinPath);
-				}
-			}
-
-			if (!Directory.Exists(path))
-			{
-				ConsoleWriter.WriteLineError($"The directory '{path}' doesn't exist");
 				return;
 			}
 
-			ConsoleWriter.WriteLineStatus("== Starting dotnet build ==");
-			Process? dotnetBuild = null;
-			try
-			{
-				dotnetBuild = Process.Start(new ProcessStartInfo()
-				{
-					WorkingDirectory = projPath,
-					FileName = "dotnet",
-					Arguments = $"build -c {mode}",
-					RedirectStandardError = true,
-					RedirectStandardOutput = true,
-				});
-			}catch(Exception e)
-			{
-				ConsoleWriter.WriteLineError("Error starting dotnet build", e);
+			string? binPath = Validator.ValidateBinPath(config, projectPath, mode);
+			if (binPath == null)
+			{ 
+				return; 
 			}
+
+			ModBuilder.StartBuild(projectPath, mode);
 
 
 			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");
@@ -101,35 +67,14 @@ namespace PMFTool.Commands
 			}
 
 
-			ConsoleWriter.WriteLineStatus("=== Waiting for dotnet build ===");
-			Console.Write('\n');
-			while (true)
-			{
-				Console.Write(dotnetBuild?.StandardOutput.ReadToEnd());
-				if (dotnetBuild.HasExited)
-				{
-					var exitCode = dotnetBuild.ExitCode;
-
-					if(exitCode != 0)
-					{
-						ConsoleWriter.WriteLineError($"dotnet build exited with non zero exit code: {exitCode}");
-						Console.WriteLine("If this looks something like this 'Could not locate the assembly \"Assembly name\"' Try running 'PMFTool update-dlls'");
-						return;
-					}
-					
-					break;
-				}
-
-				Thread.Sleep(400);
-			}
-			dotnetBuild.Dispose();
+			ModBuilder.WaitForBuildDone();
 
 
 
 			ConsoleWriter.WriteLineStatus("=== Copying new files ===");
 
 			int copiedFileCount = 0;
-			foreach (var file in Directory.GetFiles(path))
+			foreach (var file in Directory.GetFiles(binPath))
 			{
 				if (!file.EndsWith(".dll"))
 				{
@@ -162,10 +107,10 @@ namespace PMFTool.Commands
 				args = "--melonloader.debug";
 			}
 
-			Process? process = null;
+			Process? primitierProcess = null;
 			try
 			{
-				process = Process.Start(new ProcessStartInfo()
+				primitierProcess = Process.Start(new ProcessStartInfo()
 				{
 					Arguments = args,
 					FileName = config.PrimitierPath,
@@ -180,18 +125,16 @@ namespace PMFTool.Commands
 				return;
 			}
 			
-			if (process == null)
+			if (primitierProcess == null)
 			{
 				ConsoleWriter.WriteLineError("Can not start primitier");
 				return;
 			}
 
-			while (!process.HasExited)
+			while (!primitierProcess.HasExited)
 			{
-				Console.Write(process.StandardOutput.ReadToEnd());
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.Write(process.StandardError.ReadToEnd());
-				Console.ForegroundColor = ConsoleColor.White;
+				Console.Write(primitierProcess.StandardOutput.ReadToEnd());
+				Console.Write(primitierProcess.StandardError.ReadToEnd());
 
 				Thread.Sleep(100);
 			}

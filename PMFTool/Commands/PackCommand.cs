@@ -20,7 +20,7 @@ namespace PMFTool.Commands
 	{
 		[PrimaryCommand]
 		public void Pack(
-			[Argument(Description = "The path to the directory of the mod you want to pack")]
+			[Argument(Description = "The path to the project directory of the mod you want to pack")]
 			string path="",
 			[Option(Description = "The directory to put the generated file into")]
 			string outputDir="",
@@ -28,30 +28,37 @@ namespace PMFTool.Commands
 			[Option(Description = "The format to generate the package in")]
 			PackFormat format=PackFormat.Pmfm)
 		{
-			
-			var config = ConfigFileLoader.LoadMergedConfig();
 
-			if (!File.Exists(config.PrimitierPath))
+			var projectPath = Validator.ValidateProjectPath(path);
+			if (projectPath == null)
 			{
-				ConsoleWriter.WriteLineError($"Could not find primitier exe'{config.PrimitierPath}'");
 				return;
 			}
 
-			if (path == "")
+			var config = ConfigFileLoader.LoadMergedConfig(projectPath);
+			if (config == null)
 			{
-				path = Environment.CurrentDirectory;
+				return;
 			}
-			path = Path.GetFullPath(path);
 
-			if (config.ReleaseBinPath != "")
+
+			string? binPath = Validator.ValidateBinPath(config, projectPath, RunMode.Release);
+			if (binPath == null)
 			{
-				path = Path.Combine(path, config.ReleaseBinPath);
+				return;
 			}
 			
 
-			if (outputDir != "")
+			if (!string.IsNullOrWhiteSpace(outputDir))
 			{
-				Directory.CreateDirectory(outputDir);
+				try
+				{
+					Directory.CreateDirectory(outputDir);
+				}catch(Exception e)
+				{
+					ConsoleWriter.WriteLineError($"Could not create output directory '{outputDir}'", e);
+				}
+				
 			}
 	
 
@@ -89,15 +96,12 @@ namespace PMFTool.Commands
 			}
 
 
-			if(!Directory.Exists(path))
-			{
-				ConsoleWriter.WriteLineError($"dir '{path}' doesn't exist");
-				return;
-			}
+			ModBuilder.StartBuild(projectPath, RunMode.Release);
 
+			ModBuilder.WaitForBuildDone();
 			
 			int PackedFileCount = 0;
-			foreach (var file in Directory.GetFiles(path))
+			foreach (var file in Directory.GetFiles(binPath))
 			{
 				if (file.EndsWith(".pdb") || file.EndsWith(".xml"))
 				{

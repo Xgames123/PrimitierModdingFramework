@@ -12,54 +12,42 @@ namespace PMFTool.Commands
 
 		[PrimaryCommand()]
 		public void UpdateDlls(
-			[Argument(Description ="The path to the dlls folder")]
+			[Argument(Description ="The path to project directory of the mod you want to update the dlls for")]
 			string path="")
 		{
 
-			DirectoryInfo dllDir = null;
 
-			var config  = ConfigFileLoader.LoadMergedConfig();
 
-			if (!File.Exists(config.PrimitierPath))
+			var projectPath = Validator.ValidateProjectPath(path);
+			if (projectPath == null)
 			{
-				ConsoleWriter.WriteLineError($"Could not find primitier exe'{config.PrimitierPath}'");
 				return;
 			}
 
-			if (path == "")
+			var config  = ConfigFileLoader.LoadMergedConfig(projectPath);
+			if (config == null)
 			{
-				path = config.DllPath;
+				return;
 			}
 
-			if (path == "")
-			{
-				path = Environment.CurrentDirectory;
-			}
-			path = Path.GetFullPath(path);
+			DirectoryInfo dllDir = null;
 
-
-			if (!Directory.Exists(path))
-			{
-				ConsoleWriter.WriteLineError($"Directory {path} doesn't exist");
-			}
-
-
-			dllDir = new DirectoryInfo(path);
+			dllDir = new DirectoryInfo(config.DllPath);
 
 			if (!dllDir.Exists)
 			{
-				if (!ConsoleWriter.AskForYesNo($"Directory '{path}' doesn't exist. Do you want to create it?"))
+				if (!ConsoleWriter.AskForYesNo($"Directory '{dllDir.FullName}' doesn't exist.\nDo you want to create it?"))
 				{
 					return;
 				}
-				Directory.CreateDirectory(path);
+				Directory.CreateDirectory(dllDir.FullName);
 			}
 
 
 			int dllFileCount = dllDir.GetFiles().Count((FileInfo file) => { return file.Extension == ".dll"; });
 			if (dllFileCount < 150)
 			{
-				if(!ConsoleWriter.AskForYesNo($"There are only {dllFileCount} dll files in directory '{path}'. Are you sure this is the right one?"))
+				if(!ConsoleWriter.AskForYesNo($"There are only {dllFileCount} dll files in directory '{dllDir.FullName}'. Are you sure this is the right one?"))
 				{
 					return;
 				}
