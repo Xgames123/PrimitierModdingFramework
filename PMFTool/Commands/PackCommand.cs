@@ -95,7 +95,7 @@ namespace PMFTool.Commands
 
 
 			}
-			ModBuilder.StartBuild(projectPath, RunMode.Release);
+			ModBuilder.StartBuild(projectPath, config, RunMode.Release);
 
 			ModBuilder.WaitForBuildDone();
 			

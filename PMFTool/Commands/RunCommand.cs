@@ -46,7 +46,7 @@ namespace PMFTool.Commands
 				return; 
 			}
 
-			ModBuilder.StartBuild(projectPath, mode);
+			ModBuilder.StartBuild(projectPath, config, mode);
 
 
 			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");

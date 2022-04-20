@@ -93,8 +93,10 @@ namespace PrimitierModdingFramework
 		/// <returns></returns>
 		public static object UnboxUsingType(Il2CppSystem.Object obj, System.Type type)
 		{
+
 			return Marshal.PtrToStructure(IL2CPP.il2cpp_object_unbox(obj.Pointer), type);
 		}
+
 
 	}
 }
