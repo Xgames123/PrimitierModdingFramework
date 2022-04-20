@@ -81,11 +81,21 @@ PrimitierPath=
 
 
 
-		public static ConfigFile LoadMergedConfig()
+		public static ConfigFile? LoadMergedConfig(string projectPath, bool log=true)
 		{
 			var config = LoadGlobalConfig();
 
-			return LoadConfig(".pmftoolconfig", config);
+			var mergedConfig = LoadConfig(Path.Combine(projectPath, ".pmftoolconfig"), config);
+
+
+			if (!File.Exists(config.PrimitierPath))
+			{
+				if (log)
+					ConsoleWriter.WriteLineError($"Could not find primitier exe'{config.PrimitierPath}'");
+				return null;
+			}
+
+			return mergedConfig;
 		}
 
 

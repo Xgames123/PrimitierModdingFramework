@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -17,6 +18,7 @@ namespace PrimitierModdingFramework
 	{
         public static bool IsEnabled { get; private set; } = false;
 
+        private static Dictionary<Assembly, string> _modPrivateFolders = new Dictionary<Assembly, string>();
 
         public override void OnSystemEnabled()
         {
@@ -26,6 +28,50 @@ namespace PrimitierModdingFramework
         {
             IsEnabled = false;
         }
+
+
+        /// <summary>
+        /// Used to get the current AssetFolder of the mod
+        /// </summary>
+        public string GetAssetFolder(Assembly assembly)
+		{
+            return GetModPrivateFolder(assembly)+"__ASSETS";
+
+        }
+        private string GetModPrivateFolder(Assembly assembly)
+		{
+            if (_modPrivateFolders.TryGetValue(assembly, out string folder))
+            {
+                return folder;
+
+            }
+
+            var melonInfo = assembly.GetCustomAttribute<MelonLoader.MelonInfoAttribute>();
+
+            if (melonInfo == null)
+            {
+                throw new ArgumentException("The assembly doesn't contain a MelonInfo attribute", "assembly");
+            }
+
+            StringBuilder newName = new StringBuilder();
+            var invalidPathChars = Path.GetInvalidPathChars();
+            foreach (var character in melonInfo.Name)
+            {
+                if (invalidPathChars.Contains(character))
+                {
+                    newName.Append('_');
+                    continue;
+                }
+                newName.Append(character);
+
+            }
+            var newNameStr = newName.ToString();
+            _modPrivateFolders.Add(assembly, newNameStr);
+
+            return newNameStr;
+
+        }
+
 
 
         /// <summary>
