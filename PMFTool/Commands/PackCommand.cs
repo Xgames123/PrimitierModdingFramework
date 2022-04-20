@@ -93,9 +93,8 @@ namespace PMFTool.Commands
 					ignoreFiles[i] = Path.GetFileName(files[i]);
 				}
 
+
 			}
-
-
 			ModBuilder.StartBuild(projectPath, RunMode.Release);
 
 			ModBuilder.WaitForBuildDone();
