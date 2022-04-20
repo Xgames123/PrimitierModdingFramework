@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 
 internal class BuildInfo
 {
-	public const string Version = "0.3.0.0";
+	public const string Version = "0.4.0.0";
 	public const string Authors = "XGames105";
 
 	public const string Description = "A framework for making it easier to make mods for Primitier";

@@ -41,7 +41,7 @@ using System.Runtime.InteropServices;
 
 public static class BuildInfo
 {
-	public const string Version = "0.3.0.0";
+	public const string Version = "0.4.0.0";
 	public const string Authors = "XGames105";
 
 	public const string Name = "DemoMod";
