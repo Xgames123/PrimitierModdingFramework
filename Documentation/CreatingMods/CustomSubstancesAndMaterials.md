@@ -9,13 +9,19 @@
 
 
 ## Creating a custom substance
-* Before you can start creating custom substances you have to call ``` PMFSystem.EnableSystem<CustomSubstanceSystem>(); ``` This will enable the CustomSubstanceSystem. [See PMFSystems](./PMFSystems.md)
-* Next call ```CustomSubstanceSystem.CreateCustomSubstance()``` and pass in the base substance to start from.
-* Modify the values of the substance. NOTE: don't forget to change displayNameKey to a custom name.
+1) Before you can start creating custom substances you have to call ``` PMFSystem.EnableSystem<CustomSubstanceSystem>(); ``` This will enable the CustomSubstanceSystem. [See PMFSystems](./PMFSystems.md)
+
+2) Next call ```CustomSubstanceSystem.CreateCustomSubstance()``` and pass in the base substance to start from.
+
+3) Modify the values of the substance. NOTE: don't forget to change displayNameKey to a custom name.
 
     To change the material of your custom substance change the material property to the name of your custom material
 
-* To load your custom substance in the game call ```CustomSubstanceSystem.LoadCustomSubstance(yourCustomSubstance);```
+4) To load your custom substance in the game call ```CustomSubstanceSystem.LoadCustomSubstance(yourCustomSubstance);```
+
+## CustomSubstanceSettings
+This are extra settings for your custom substances
+* ```CustomSubstanceSettings.OnSubstanceInitialize``` If you set this lambda you can do stuff when the substance initializes like adding components or [ICubeBehaviors](./ICubeBehaviors.md)
 
 
 ## Spawning a custom substance

@@ -59,6 +59,8 @@ Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.
 
 * [Custom objects like Drones, Slimes, Engines, ...](./CreatingCustomObjects.md)
 
+* [ICubeBehaviors](./ICubeBehaviors.md)
+
 * [Dumping](./Dumping.md)
 
 * [PMFSystems](./PMFSystems.md)

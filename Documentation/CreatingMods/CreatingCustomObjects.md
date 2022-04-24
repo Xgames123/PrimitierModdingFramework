@@ -12,32 +12,8 @@ var stem = CubeGenerator.GenerateCube(new Vector3(pos.x, pos.y+(stemHeight/2), p
 var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 ```
 
-2) Add a ICubeBehavior to the object.
-    ### Creating a custom ICubeBehavior
-    1) Create a class that inherits from MonoBehavior
-    
-    2) Add a constructor that takes in an IntPtr and passes it to the base constructor 
-        ```cs
-        public MyCustomCubeBehavior(System.IntPtr ptr) : base(ptr)
-        {
-
-        }
-        ```
-    3) Add these methods to your class
-        ```cs
-        public void OnFragmentInitialized(CubeBase fragmentCubeBase)
-        {
-            
-        }
-        public void OnCollideWithCube(CubeBase colCubeBase) 
-        {
-            
-        }
-        ```
-    4) Add this to OnApplicationStart 
-        ```cs
-        ClassInjector.RegisterTypeInIl2CppWithInterfaces<MyCustomCubeBehavior>(typeof(ICubeBehavior));
-        ```
+2) Add a ICubeBehavior to the object [or create a custom one](./ICubeBehaviors.md).
+   
 
 3) Than attach the objects together using there CubeConnectors.
     ```cs
