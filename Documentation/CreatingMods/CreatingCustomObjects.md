@@ -12,7 +12,10 @@ var stem = CubeGenerator.GenerateCube(new Vector3(pos.x, pos.y+(stemHeight/2), p
 var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 ```
 
-2) Add a ICubeBehavior to the object [or create a custom one](./ICubeBehaviors.md).
+2) Add a ICubeBehavior to the object [or create a custom one](./ICubeBehaviors.md). like this 
+```cs
+    leaf.AddComponent<CubeBehaviorOrComponent>();
+```
    
 
 3) Than attach the objects together using there CubeConnectors.
