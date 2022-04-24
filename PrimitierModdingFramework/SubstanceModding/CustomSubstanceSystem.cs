@@ -46,6 +46,29 @@ namespace PrimitierModdingFramework.SubstanceModding
 			return null;
 		}
 
+		internal static void ReloadLocalizations()
+		{
+			foreach (var keyValuePair in CustomSubstanceSettings)
+			{
+				var substanceName = keyValuePair.Key;
+				var settings = keyValuePair.Value;
+
+				if (Localizer.table.name == "StringTable_en")
+				{
+					Localizer.table.RemoveEntry(substanceName);
+					Localizer.table.AddEntry(substanceName, settings.EnName);
+				}
+				else if (Localizer.table.name == "StringTable_ja")
+				{
+					Localizer.table.RemoveEntry(substanceName);
+					Localizer.table.AddEntry(substanceName, settings.JpName);
+				}
+
+
+			}
+		}
+
+
 
 		/// <summary>
 		/// Loads the custom substance in the game.
@@ -66,8 +89,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 			{
 				CustomSubstanceSettings.Add(substance.displayNameKey, settings);
 			}
-			
+
 			SubstanceManager.instance.param.Add(substance);
+			ReloadLocalizations();
 		}
 
 		/// <summary>

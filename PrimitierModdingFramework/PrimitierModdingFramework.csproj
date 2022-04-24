@@ -62,6 +62,7 @@
     <Compile Include="SubstanceModding\CustomSubstanceSystem.cs" />
     <Compile Include="SubstanceModding\ICustomCubeBehaviour.cs" />
     <Compile Include="SubstanceModding\Patches\CubeBaseInitializePatch.cs" />
+    <Compile Include="SubstanceModding\Patches\LocalizerOnLocaleChangedPatch.cs" />
     <Compile Include="SubstanceModding\Patches\SubstanceManagerGetMaterialPatch.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +96,9 @@
     <Reference Include="UnhollowerRuntimeLib">
       <HintPath>..\Dlls\UnhollowerRuntimeLib.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Localization">
+      <HintPath>..\Dlls\Unity.Localization.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\Unity.TextMeshPro.dll</HintPath>
@@ -125,6 +129,9 @@
     <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\Dlls\UnityEngine.LocalizationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

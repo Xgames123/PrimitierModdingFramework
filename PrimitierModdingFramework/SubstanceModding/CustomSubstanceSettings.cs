@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PrimitierModdingFramework.SubstanceModding
 {
+	/// <summary>
+	/// Extra settings for a custom substance
+	/// </summary>
 	public class CustomSubstanceSettings
 	{
 		/// <summary>
@@ -13,6 +16,15 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// This is used to add components or do other things with the substance.
 		/// </summary>
 		public Action<CubeBase> OnSubstanceInitialize = null;
+
+		/// <summary>
+		/// Japanese name of the substance
+		/// </summary>
+		public string JpName = "";
+		/// <summary>
+		/// English name of the substance
+		/// </summary>
+		public string EnName = "";
 
 	}
 }

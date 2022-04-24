@@ -12,6 +12,7 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 	{
 		private static void Postfix(CubeBase __instance, Substance substance)
 		{
+			
 
 			if (!CustomSubstanceSystem.IsEnabled)
 			{

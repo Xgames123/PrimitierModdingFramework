@@ -43,6 +43,8 @@ namespace DemoMod.Substances
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance, new CustomSubstanceSettings()
 			{
+				EnName = "Custom substance",
+				JpName = "カスタム物質_japan",
 				OnSubstanceInitialize = (CubeBase cubeBase) =>
 				{
 					cubeBase.gameObject.AddComponent<Decay>();

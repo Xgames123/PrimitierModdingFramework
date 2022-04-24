@@ -71,12 +71,14 @@ namespace PrimitierModdingFramework
 
 			foreach (var type in types)
 			{
-				if (type.IsAssignableFrom(typeof(ICustomCubeBehaviour)))
+				if (type.GetInterface("ICustomCubeBehaviour") != null)
 				{
-					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, typeof(ICustomCubeBehaviour));
+					PMFLog.Message($"PMF: Injecting {type.FullName} ...");
+					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, typeof(ICubeBehavior));
 				}
-				if (type.IsAssignableFrom(typeof(CustomSubstanceBuilder)))
+				if (type.BaseType == typeof(CustomSubstanceBuilder))
 				{
+					PMFLog.Message($"PMF: Building {type.FullName} ...");
 					CustomSubstanceBuilder.RegisterBuilder(type);
 				}
 

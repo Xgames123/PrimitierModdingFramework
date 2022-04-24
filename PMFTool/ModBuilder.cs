@@ -54,6 +54,8 @@ namespace PMFTool
 				return;
 			}
 
+
+
 		}
 
 
@@ -82,6 +84,13 @@ namespace PMFTool
 							ConsoleWriter.WriteLineError($"dotnet build exited with non zero exit code: {exitCode}");
 						if (_log)
 							Console.WriteLine("If this looks something like this 'Could not locate the assembly \"Assembly name\"' Try running 'PMFTool update-dlls'");
+						if (_log)
+						{
+							if(!ConsoleWriter.AskForYesNo("Would you like to continue?"))
+							{
+								Environment.Exit(-1);
+							}
+						}
 						return;
 					}
 

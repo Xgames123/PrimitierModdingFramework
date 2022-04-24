@@ -40,7 +40,7 @@ namespace DemoMod
 			spawnMenu.CreateButton("Hot Leaf", new System.Action(() =>
 			{
 				var cube = CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf);
-				cube.GetComponent<Heat>().AddHeat(10000);
+				cube.GetComponent<Heat>().AddHeat(9000000);
 			}));
 
 			spawnMenu.CreateButton("Custom", new System.Action(() =>
@@ -55,8 +55,6 @@ namespace DemoMod
 		public override void OnRealyLateStart()
 		{
 			base.OnRealyLateStart();
-			Localizer.table.AddEntry("SUB_CUSTOM", "Custom substance");
-			PMFLog.Message(Localizer.GetLocalizedString("SUB_CUSTOM"));
 		}
 
 
