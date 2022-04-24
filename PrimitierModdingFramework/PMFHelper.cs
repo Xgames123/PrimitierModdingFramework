@@ -75,6 +75,10 @@ namespace PrimitierModdingFramework
 				{
 					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, typeof(ICustomCubeBehaviour));
 				}
+				if (type.IsAssignableFrom(typeof(CustomSubstanceBuilder)))
+				{
+					CustomSubstanceBuilder.RegisterBuilder(type);
+				}
 
 			}
 		}

@@ -8,6 +8,7 @@ using UnityEngine;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using DemoMod.Substances;
+using DemoMod.CustomObjects;
 
 namespace DemoMod
 {
@@ -25,18 +26,18 @@ namespace DemoMod
 			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");
 			spawnMenu.CreateButton("Tree", new System.Action(() =>
 			{
-				CubeGenerator.GenerateTree(spawnMenu.transform.position, 0.1f, CubeGenerator.TreeType.Conifer);
+				CubeGenerator.GenerateTree(spawnMenu.transform.position, 1f, CubeGenerator.TreeType.Conifer);
 			}));
 			spawnMenu.CreateButton("Custom Tree", new System.Action(() =>
 			{
-				GenerateCustomTree(spawnMenu.transform.position);
+				CustomThreeGenerator.Generate(spawnMenu.transform.position, 1f);
 			}));
 			spawnMenu.CreateButton("Drone", new System.Action(()=>
 			{
-				CubeGenerator.GenerateDrone(spawnMenu.transform.position, 0.1f);
+				CubeGenerator.GenerateDrone(spawnMenu.transform.position, 1f);
 			}));
 
-			spawnMenu.CreateButton("Leaf", new System.Action(() =>
+			spawnMenu.CreateButton("Hot Leaf", new System.Action(() =>
 			{
 				var cube = CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Leaf);
 				cube.GetComponent<Heat>().AddHeat(10000);
@@ -46,9 +47,7 @@ namespace DemoMod
 			{
 				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.4f, 0.4f, 0.4f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			}));
-
-
-			CustomSubstance.Load();
+			
 			
 
 		}
@@ -56,25 +55,9 @@ namespace DemoMod
 		public override void OnRealyLateStart()
 		{
 			base.OnRealyLateStart();
-
+			PMFLog.Message(Localizer.GetLocalizedString("SUB_WOOD"));
 		}
 
-		private static void GenerateCustomTree(Vector3 pos)
-		{
-			const float treeThicness = 0.1f;
-			const float stemHeight = 1f;
-			const float leafSize = 0.5f;
-			const float leafHeight = 0.8f;
-
-			var stem = CubeGenerator.GenerateCube(new Vector3(pos.x, pos.y+(stemHeight/2), pos.z), new Vector3(treeThicness, stemHeight, treeThicness), Substance.Wood);
-			var leaf = CubeGenerator.GenerateCube(pos+new Vector3(0, stemHeight + leafHeight/2, 0), new Vector3(leafSize, leafHeight, leafSize), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
-
-
-			leaf.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Free;
-			stem.GetComponent<CubeConnector>().anchor = CubeConnector.Anchor.Permanent;
-			stem.GetComponent<CubeConnector>().Connect(leaf.GetComponent<CubeConnector>());
-
-		}
 
 
 

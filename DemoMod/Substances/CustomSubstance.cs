@@ -11,11 +11,12 @@ using UnityEngine;
 namespace DemoMod.Substances
 {
 
-	public class CustomSubstance 
+	public class CustomSubstance : CustomSubstanceBuilder
 	{
 
-		public static void Load()
+		public override void OnBuild()
 		{
+
 			var customTexture = new Texture2D(1, 1);
 			customTexture.filterMode = FilterMode.Point; //This is important if you don't want your textures to look blurry
 			CustomAssetSystem.LoadImageFromEmbeddedResource(System.Reflection.Assembly.GetExecutingAssembly(), "DemoMod.Assets.Textures.CustomTexture.png", ref customTexture);

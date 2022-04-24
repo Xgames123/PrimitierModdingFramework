@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MelonLoader;
+using PrimitierModdingFramework.SubstanceModding;
+
 namespace PrimitierModdingFramework
 {
 
@@ -25,6 +27,7 @@ namespace PrimitierModdingFramework
 		{
 			PMFSystem.FireEventOnSystems(PMFEventType.SceneLoad);
 			OnSceneWasLoadedCalled = true;
+			CustomSubstanceBuilder.BuildAll();
 		}
 
 

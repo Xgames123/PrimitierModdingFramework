@@ -57,6 +57,7 @@
     <Compile Include="PMFSystemNotEnabledException.cs" />
     <Compile Include="PrimitierMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubstanceModding\CustomSubstanceBuilder.cs" />
     <Compile Include="SubstanceModding\CustomSubstanceSettings.cs" />
     <Compile Include="SubstanceModding\CustomSubstanceSystem.cs" />
     <Compile Include="SubstanceModding\ICustomCubeBehaviour.cs" />
