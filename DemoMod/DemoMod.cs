@@ -55,7 +55,8 @@ namespace DemoMod
 		public override void OnRealyLateStart()
 		{
 			base.OnRealyLateStart();
-			PMFLog.Message(Localizer.GetLocalizedString("SUB_WOOD"));
+			Localizer.table.AddEntry("SUB_CUSTOM", "Custom substance");
+			PMFLog.Message(Localizer.GetLocalizedString("SUB_CUSTOM"));
 		}
 
 

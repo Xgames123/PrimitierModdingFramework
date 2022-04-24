@@ -92,7 +92,7 @@ namespace PrimitierModdingFramework
 				throw new PMFSystemNotEnabledException(nameof(PMFHelper));
 			
 
-			PMFLog.Message("Scanning assemblies");
+			PMFLog.Message("PMF: Scanning assemblies");
 			foreach (var assembly in assemblies)
 			{
 				AutoInject(assembly.GetExportedTypes());
