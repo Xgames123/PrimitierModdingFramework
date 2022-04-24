@@ -1,7 +1,9 @@
-﻿using System;
+﻿using PrimitierModdingFramework.SubstanceModding;
+using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using UnhollowerBaseLib;
+using UnhollowerRuntimeLib;
 using UnityEngine;
 
 namespace PrimitierModdingFramework
@@ -58,6 +60,33 @@ namespace PrimitierModdingFramework
 		}
 
 
+
+		/// <summary>
+		/// Finds the types that have to be injected and injects them
+		/// </summary>
+		public static void AutoInject(params Type[] types)
+		{
+			foreach (var type in types)
+			{
+				if (type.IsAssignableFrom(typeof(ICustomCubeBehaviour)))
+				{
+					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, typeof(ICustomCubeBehaviour));
+				}
+
+			}
+		}
+
+		/// <summary>
+		/// Scans the specified assembly's for classes to inject and injects them
+		/// </summary>
+		public static void AutoInject(params Assembly[] assemblies)
+		{
+			PMFLog.Message("Scanning assemblies");
+			foreach (var assembly in assemblies)
+			{
+				AutoInject(assembly.GetExportedTypes());
+			}
+		}
 	
 
 	}

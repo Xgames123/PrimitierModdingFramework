@@ -7,6 +7,7 @@ using System.Text;
 using UnityEngine;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
+using DemoMod.Substances;
 
 namespace DemoMod
 {
@@ -47,9 +48,7 @@ namespace DemoMod
 			}));
 
 
-
-		
-			
+			CustomSubstance.Load();
 			
 
 		}
@@ -90,7 +89,8 @@ namespace DemoMod
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
 			PMFSystem.EnableSystem<CustomAssetSystem>();
 
-			ClassInjector.RegisterTypeInIl2CppWithInterfaces<Decay>(typeof(ICubeBehavior));
+			PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly());
+			
 		}
 		public override void OnUpdate()
 		{

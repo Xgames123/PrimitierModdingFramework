@@ -1,13 +1,14 @@
-﻿using System;
+﻿using PrimitierModdingFramework.SubstanceModding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace DemoMod
+namespace DemoMod.CubeBehaviors
 {
-	public class Decay : MonoBehaviour
+	public class Decay : MonoBehaviour, ICustomCubeBehaviour
 	{
 
 		private CubeBase cubeBase;

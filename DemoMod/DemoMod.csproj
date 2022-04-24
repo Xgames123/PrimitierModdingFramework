@@ -421,7 +421,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Decay.cs" />
+    <Compile Include="CubeBehaviors\Decay.cs" />
     <Compile Include="DemoMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Substances\CustomSubstance.cs" />

@@ -1,4 +1,5 @@
-﻿using PrimitierModdingFramework;
+﻿using DemoMod.CubeBehaviors;
+using PrimitierModdingFramework;
 using PrimitierModdingFramework.SubstanceModding;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,11 @@ using UnityEngine;
 
 namespace DemoMod.Substances
 {
-	public class CustomSubstance
+
+	public class CustomSubstance 
 	{
 
-		public static void Init()
+		public static void Load()
 		{
 			var customTexture = new Texture2D(1, 1);
 			customTexture.filterMode = FilterMode.Point; //This is important if you don't want your textures to look blurry
