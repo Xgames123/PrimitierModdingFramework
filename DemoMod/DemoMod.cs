@@ -47,7 +47,11 @@ namespace DemoMod
 			{
 				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.4f, 0.4f, 0.4f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			}));
-			
+
+			spawnMenu.CreateButton("Drone Spawn egg", new System.Action(() =>
+			{
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.4f, 0.4f, 0.4f), CustomSubstanceSystem.GetSubstanceByName("SUB_SPAWN_EGG_DRONE"));
+			}));
 			
 
 		}

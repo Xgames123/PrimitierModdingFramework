@@ -422,10 +422,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CubeBehaviors\Decay.cs" />
+    <Compile Include="CubeBehaviors\DroneSpawnEgg.cs" />
     <Compile Include="CustomObjects\CustomThreeGenerator.cs" />
     <Compile Include="DemoMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Substances\CustomSubstance.cs" />
+    <Compile Include="Substances\DecayThingBuilder.cs" />
+    <Compile Include="Substances\DroneSpawnEggBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\Textures\DemoImage.png" />

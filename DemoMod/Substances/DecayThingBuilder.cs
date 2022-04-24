@@ -11,7 +11,7 @@ using UnityEngine;
 namespace DemoMod.Substances
 {
 
-	public class CustomSubstance : CustomSubstanceBuilder
+	public class DecayThingBuilder : CustomSubstanceBuilder
 	{
 
 		public override void OnBuild()
@@ -43,8 +43,8 @@ namespace DemoMod.Substances
 
 			CustomSubstanceSystem.LoadCustomSubstance(customSubstance, new CustomSubstanceSettings()
 			{
-				EnName = "Custom substance",
-				JpName = "カスタム物質_japan",
+				EnName = "Decay thing",
+				JpName = "腐敗の事",
 				OnSubstanceInitialize = (CubeBase cubeBase) =>
 				{
 					cubeBase.gameObject.AddComponent<Decay>();
