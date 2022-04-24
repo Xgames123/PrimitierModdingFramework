@@ -91,10 +91,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\MelonLoader.dll</HintPath>
     </Reference>
-    <Reference Include="PrimitierModdingFrameworkV0.3, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dlls\PrimitierModdingFrameworkV0.3.dll</HintPath>
-    </Reference>
     <Reference Include="SteamVR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\SteamVR.dll</HintPath>
@@ -425,13 +421,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decay.cs" />
     <Compile Include="DemoMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Substances\CustomSubstance.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\DemoImage.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="Assets\Textures\DemoImage.png" />
+    <EmbeddedResource Include="Assets\Textures\CustomTexture.png" />
     <Content Include="Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -440,6 +437,12 @@
     <None Include="Mod.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj">
+      <Project>{0cf60620-bb4f-43a3-8f18-77eb9a4be344}</Project>
+      <Name>PrimitierModdingFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

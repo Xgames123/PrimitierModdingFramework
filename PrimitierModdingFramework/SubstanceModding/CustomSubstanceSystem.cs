@@ -16,6 +16,7 @@ namespace PrimitierModdingFramework.SubstanceModding
 
 		private static Dictionary<string, Material> s_customMats = new Dictionary<string, Material>();
 
+		internal static Dictionary<string, CustomSubstanceSettings> CustomSubstanceSettings = new Dictionary<string, CustomSubstanceSettings>();
 
 		public override void OnSystemEnabled()
 		{
@@ -50,7 +51,8 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// Loads the custom substance in the game.
 		/// </summary>
 		/// <param name="substance"></param>
-		public static void LoadCustomSubstance(SubstanceParameters.Param substance)
+		/// <param name="settings"></param>
+		public static void LoadCustomSubstance(SubstanceParameters.Param substance, CustomSubstanceSettings settings=null)
 		{
 			if (!IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
@@ -60,8 +62,27 @@ namespace PrimitierModdingFramework.SubstanceModding
 				SubstanceManager.instance = Resources.Load<SubstanceParameters>(SubstanceManager.scriptableObjectPath);
 			}
 
+			if (settings != null)
+			{
+				CustomSubstanceSettings.Add(substance.displayNameKey, settings);
+			}
+			
 			SubstanceManager.instance.param.Add(substance);
 		}
+
+		/// <summary>
+		/// Gets the substance form its enum value
+		/// </summary>
+		/// <param name="substance"></param>
+		/// <returns></returns>
+		public static SubstanceParameters.Param GetSubstance(Substance substance)
+		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
+			return SubstanceManager.GetParameter(substance);
+		}
+
+
 
 		/// <summary>
 		/// Creates a custom substance from a base substance.

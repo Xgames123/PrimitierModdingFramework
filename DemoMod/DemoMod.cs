@@ -14,7 +14,6 @@ namespace DemoMod
 	public class DemoMod : PrimitierMod
     {
 
-
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
 
@@ -44,41 +43,21 @@ namespace DemoMod
 
 			spawnMenu.CreateButton("Custom", new System.Action(() =>
 			{
-				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.4f, 0.4f, 0.4f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
 			}));
 
 
-			
-
-			var customMat = CustomSubstanceSystem.CreateCustomMaterial("Leaf");
-			customMat.name = "CustomMat";
-			customMat.color = new Color(0, 1, 1);
-			
-
-			CustomSubstanceSystem.LoadCustomMaterial(customMat);
-
-			var customSubstance = CustomSubstanceSystem.CreateCustomSubstance(Substance.Iron);
-
-			customSubstance.displayNameKey = "SUB_CUSTOM";
-			customSubstance.collisionSound = "RespawnPoint";
-			customSubstance.isEdible = true;
-			customSubstance.material = "CustomMat";
-			
-			customSubstance.stiffness = 99999999; //Damage
-			customSubstance.strength = 999999999999999999; //HP
-
-			CustomSubstanceSystem.LoadCustomSubstance(customSubstance);
-
 
 		
+			
+			
+
 		}
 
 		public override void OnRealyLateStart()
 		{
 			base.OnRealyLateStart();
 
-
-			//FlyCam.Create();
 		}
 
 		private static void GenerateCustomTree(Vector3 pos)
@@ -105,11 +84,13 @@ namespace DemoMod
 		{
 			base.OnApplicationStart();
 
-
+			PMFSystem.EnableSystem<CustomAssetSystem>();
 			PMFSystem.EnableSystem<PMFHelper>();
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
 			PMFSystem.EnableSystem<CustomAssetSystem>();
+
+			ClassInjector.RegisterTypeInIl2CppWithInterfaces<Decay>(typeof(ICubeBehavior));
 		}
 		public override void OnUpdate()
 		{

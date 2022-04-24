@@ -28,36 +28,19 @@ namespace PrimitierModdingFramework
             IsEnabled = false;
         }
 
-        /// <summary>
-        /// Creates an empty 1x1 Texture2D and adds it to the CachedResources (so it can be used in a customSubstance)
-        /// </summary>
-        /// <param name="name">Name of the texture</param>
-        /// <returns></returns>
-        [Obsolete("This is going to be implemented in the future")]
-        public static Texture2D CreateEmptyTexture(string name)
-		{
-            throw new NotImplementedException();
-            CachedResources.caches[name] = new Texture2D(1, 1);
-            return CachedResources.Load<Texture2D>(name);
-        }
-
-
 
         /// <summary>
         /// Writes data to a Texture2D
         /// </summary>
         /// /// <param name="bytes">the data of the image</param>
         /// <param name="texture">the texture to write the data to</param>
-        [Obsolete("This is going to be implemented in the future")]
-        public static void LoadImageFromBytes(byte[] bytes, ref Texture2D texture)
+        public static void LoadImageFromBytes(Il2CppStructArray<byte> bytes, ref Texture2D texture)
         {
-            throw new NotImplementedException();
             if (!IsEnabled)
                 throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
 
 
-            texture.LoadRawTextureData(bytes);
-
+            ImageConversion.LoadImage(texture, bytes);
         }
 
         /// <summary>
@@ -66,11 +49,8 @@ namespace PrimitierModdingFramework
         /// <param name="assembly">The assembly were the image is located</param>
         /// <param name="resourceName">The full name of the resource (AssemblyName.Assets.MyImage.png)</param>
         /// <param name="texture">the texture to write the data to</param>
-        [Obsolete("This is going to be implemented in the future")]
         public static void LoadImageFromEmbeddedResource(Assembly assembly, string resourceName, ref Texture2D texture)
 		{
-            throw new NotImplementedException();
-            
             if (!IsEnabled)
                 throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
 
@@ -85,10 +65,8 @@ namespace PrimitierModdingFramework
         /// </summary>
         /// <param name="resourceName">The full name of the resource (AssemblyName.Assets.MyImage.png)</param>
         /// <param name="texture">the texture to write the data to</param>
-        [Obsolete("This is going to be implemented in the future")]
         public static void LoadImageFromEmbeddedResource(string resourceName, ref Texture2D texture)
         {
-            throw new NotImplementedException();
             if (!IsEnabled)
                 throw new PMFSystemNotEnabledException(typeof(CustomAssetSystem));
 
