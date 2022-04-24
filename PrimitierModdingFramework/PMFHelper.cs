@@ -66,6 +66,9 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public static void AutoInject(params Type[] types)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(nameof(PMFHelper));
+
 			foreach (var type in types)
 			{
 				if (type.IsAssignableFrom(typeof(ICustomCubeBehaviour)))
@@ -81,6 +84,10 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public static void AutoInject(params Assembly[] assemblies)
 		{
+			if (!IsEnabled)
+				throw new PMFSystemNotEnabledException(nameof(PMFHelper));
+			
+
 			PMFLog.Message("Scanning assemblies");
 			foreach (var assembly in assemblies)
 			{
