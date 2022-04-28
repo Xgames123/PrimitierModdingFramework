@@ -93,10 +93,18 @@ namespace PrimitierModdingFramework.Debugging
 		}
 
 
+
 		public static InGameDebugMenu CreateMenu(string name, string parentMenuName, string title=null)
 		{
 			if (!InGameDebuggingSystem.IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
+			var existingMenu = GetMenu(name);
+			if (existingMenu != null)
+			{
+				return existingMenu;
+			}
+
 			var menuGameObject = new GameObject();
 			menuGameObject.name = name;
 			menuGameObject.transform.parent = _Menus.transform;
@@ -142,7 +150,7 @@ namespace PrimitierModdingFramework.Debugging
 			if (!InGameDebuggingSystem.IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
 
-			return _Menus.Find(name).GetComponent<InGameDebugMenu>();
+			return _Menus.Find(name)?.GetComponent<InGameDebugMenu>();
 		}
 		public static void OpenMenu(string name)
 		{

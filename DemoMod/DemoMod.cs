@@ -22,6 +22,20 @@ namespace DemoMod
 	
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
 
+			var spawnEggsMenu = InGameDebugTool.CreateMenu("Spawn Eggs", "Demo");
+
+
+			foreach (SpawnEggType eggType in System.Enum.GetValues(typeof(SpawnEggType)))
+			{
+				spawnEggsMenu.CreateButton(SpawnEggGenerator.GetEggInfo(eggType).NameEn, new System.Action(() =>
+				{
+					SpawnEggGenerator.Generate(spawnEggsMenu.transform.position, 1f, eggType);
+				}));
+			}
+
+
+
+
 			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");
 			spawnMenu.CreateButton("Tree", new System.Action(() =>
 			{

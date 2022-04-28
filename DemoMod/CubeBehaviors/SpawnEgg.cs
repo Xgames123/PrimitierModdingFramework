@@ -9,11 +9,13 @@ using UnityEngine;
 
 namespace DemoMod.CubeBehaviors
 {
-	public class DroneSpawnEgg : MonoBehaviour, ICustomCubeBehaviour
+	//If you are here to learn the basics of PMF look at the DecayThing. This class is more complicated
+	public class SpawnEgg : MonoBehaviour, ICustomCubeBehaviour
 	{
 
-		public DroneSpawnEgg(System.IntPtr ptr) : base(ptr) {}
+		public SpawnEgg(System.IntPtr ptr) : base(ptr) {}
 
+		public Action<SpawnEgg> OnSpawn;
 
 		private CubeBase _cubeBase;
 
@@ -22,17 +24,9 @@ namespace DemoMod.CubeBehaviors
 		private void Start()
 		{
 			_cubeBase = GetComponent<CubeBase>();
-			
-			if (transform.localScale.x >= 0.1f &&
-				transform.localScale.y >= 0.1f &&
-				transform.localScale.z >= 0.1f)
-			{
-				_cubeBase.add_Splitted(new System.Action<Il2CppSystem.Object, Il2CppSystem.EventArgs>(OnSplited));
-			}
-			else
-			{
-				Destroy(this);
-			}
+
+			_cubeBase.add_Splitted(new System.Action<Il2CppSystem.Object, Il2CppSystem.EventArgs>(OnSplited));
+
 			
 		}
 
@@ -57,7 +51,7 @@ namespace DemoMod.CubeBehaviors
 
 		private void OnSplited(Il2CppSystem.Object sender, Il2CppSystem.EventArgs args)
 		{
-			CubeGenerator.GenerateDrone(transform.position, 0.5f);
+			OnSpawn?.Invoke(this);
 		}
 
 

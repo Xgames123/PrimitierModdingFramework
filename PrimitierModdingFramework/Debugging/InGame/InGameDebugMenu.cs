@@ -26,6 +26,7 @@ namespace PrimitierModdingFramework.Debugging
 			return button;
 		}
 
+
 		public InGameDebugToolButton CreateButton(string text)
 		{
 			if (!InGameDebuggingSystem.IsEnabled)
