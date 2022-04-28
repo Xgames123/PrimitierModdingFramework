@@ -15,7 +15,7 @@ namespace DemoMod.CubeBehaviors
 
 		public SpawnEgg(System.IntPtr ptr) : base(ptr) {}
 
-		public Action<SpawnEgg> OnSpawn;
+		public Il2CppSystem.Action<SpawnEgg> OnSpawn;
 
 		private CubeBase _cubeBase;
 
