@@ -1,4 +1,5 @@
 ﻿using PrimitierModdingFramework.SubstanceModding;
+using PrimitierModdingFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace DemoMod.CubeBehaviors
 
 		private CubeBase _cubeBase;
 
+		private int _notMovingFrames = 0;
 
 		private void Start()
 		{
@@ -27,8 +29,31 @@ namespace DemoMod.CubeBehaviors
 			{
 				_cubeBase.add_Splitted(new System.Action<Il2CppSystem.Object, Il2CppSystem.EventArgs>(OnSplited));
 			}
+			else
+			{
+				Destroy(this);
+			}
 			
 		}
+
+
+		private void FixedUpdate()
+		{
+			if(_cubeBase.rb.velocity.magnitude < 0.1f)
+			{
+				_notMovingFrames++;
+			}
+			else
+			{
+				_notMovingFrames = 0;
+			}
+			if (_notMovingFrames >= 150)
+			{
+				_cubeBase.ReceiveDamage(1000, transform.position, true);
+			}
+
+		}
+
 
 		private void OnSplited(Il2CppSystem.Object sender, Il2CppSystem.EventArgs args)
 		{

@@ -7,7 +7,6 @@ using System.Text;
 using UnityEngine;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
-using DemoMod.Substances;
 using DemoMod.CustomObjects;
 
 namespace DemoMod
@@ -50,7 +49,7 @@ namespace DemoMod
 
 			spawnMenu.CreateButton("Drone Spawn egg", new System.Action(() =>
 			{
-				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.4f, 0.4f, 0.4f), CustomSubstanceSystem.GetSubstanceByName("SUB_SPAWN_EGG_DRONE"));
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.15f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_SPAWN_EGG_DRONE"));
 			}));
 			
 

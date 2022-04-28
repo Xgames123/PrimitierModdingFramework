@@ -432,6 +432,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Assets\Textures\DemoImage.png" />
     <EmbeddedResource Include="Assets\Textures\CustomTexture.png" />
+    <EmbeddedResource Include="Assets\Textures\EggTexture.png" />
     <Content Include="Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
