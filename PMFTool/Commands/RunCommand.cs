@@ -22,44 +22,114 @@ namespace PMFTool.Commands
 		
 		[PrimaryCommand]
 		public void Run(
-			[Argument(Description = "The path to the directory with the dll files of the mod you want to run or an alias if you have setup one")] 
-			string path,
-
-			[Option(Description = "The path to the PMFToolConfig.json file")]
-			string config="PMFToolConfig.json",
+			[Argument(Description = "The path to the directory of the mod you want to run")] 
+			string path="",
 
 			[Option(Description = "The mode to run in")]
 			RunMode mode=RunMode.Debug)
 		{
 
-			path = path.Trim();
+			var config = ConfigFileLoader.LoadMergedConfig();
 
-			var configClass = ConfigFileLoader.Load(config);
-			if (configClass == null)
+			if (!File.Exists(config.PrimitierPath))
 			{
+				ConsoleWriter.WriteLineError($"Could not find primitier exe'{config.PrimitierPath}'");
 				return;
 			}
 
-			path = AliasSolver.Solve(path, mode, configClass);
+			if (path == "")
+			{
+				path = Environment.CurrentDirectory;
+			}
+			path = Path.GetFullPath(path);
 
+			var projPath = (string)path.Clone();
+
+			if (mode == RunMode.Debug)
+			{
+				if (config.DebugBinPath != "")
+				{
+					path = Path.Combine(path, config.DebugBinPath);
+				}
+			}
+			else if (mode == RunMode.Release)
+			{
+				if (config.ReleaseBinPath != "")
+				{
+					path = Path.Combine(path, config.ReleaseBinPath);
+				}
+			}
 
 			if (!Directory.Exists(path))
 			{
-				ConsoleWriter.WriteLineError($"The path or alias '{path}' is invalid");
+				ConsoleWriter.WriteLineError($"The directory '{path}' doesn't exist");
 				return;
 			}
 
-			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");
-			var modsDirectory = Path.Combine(Path.GetDirectoryName(configClass.PrimitierPath), "Mods");
-			foreach (var file in Directory.GetFiles(modsDirectory))
+			ConsoleWriter.WriteLineStatus("== Starting dotnet build ==");
+			Process? dotnetBuild = null;
+			try
 			{
-				ConsoleWriter.WriteLineStatus($"Deleting '{file}'");
-
-				File.Delete(file);
+				dotnetBuild = Process.Start(new ProcessStartInfo()
+				{
+					WorkingDirectory = projPath,
+					FileName = "dotnet",
+					Arguments = $"build -c {mode}",
+					RedirectStandardError = true,
+					RedirectStandardOutput = true,
+				});
+			}catch(Exception e)
+			{
+				ConsoleWriter.WriteLineError("Error starting dotnet build", e);
 			}
+
+
+			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");
+			var modsDirectory = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "Mods"));
+
+			if (!modsDirectory.Exists)
+			{
+				ConsoleWriter.WriteLineError($"'{modsDirectory.FullName}' doesn't exist. This could be because MelonLoader is not installed properly");
+				return;
+			}
+
+
+			foreach (var file in modsDirectory.GetFiles())
+			{
+				ConsoleWriter.WriteLineStatus($"Deleting '{file.FullName}'");
+
+				file.Delete();
+			}
+
+
+			ConsoleWriter.WriteLineStatus("=== Waiting for dotnet build ===");
+			Console.Write('\n');
+			while (true)
+			{
+				Console.Write(dotnetBuild?.StandardOutput.ReadToEnd());
+				if (dotnetBuild.HasExited)
+				{
+					var exitCode = dotnetBuild.ExitCode;
+
+					if(exitCode != 0)
+					{
+						ConsoleWriter.WriteLineError($"dotnet build exited with non zero exit code: {exitCode}");
+						Console.WriteLine("If this looks something like this 'Could not locate the assembly \"Assembly name\"' Try running 'PMFTool update-dlls'");
+						return;
+					}
+					
+					break;
+				}
+
+				Thread.Sleep(400);
+			}
+			dotnetBuild.Dispose();
+
+
 
 			ConsoleWriter.WriteLineStatus("=== Copying new files ===");
 
+			int copiedFileCount = 0;
 			foreach (var file in Directory.GetFiles(path))
 			{
 				if (!file.EndsWith(".dll"))
@@ -67,17 +137,22 @@ namespace PMFTool.Commands
 					continue;
 				}
 
-				var destFileName = Path.Combine(modsDirectory, Path.GetFileName(file));
+				var destFileName = Path.Combine(modsDirectory.FullName, Path.GetFileName(file));
 				ConsoleWriter.WriteLineStatus($"Copying '{file}'");
 				try
 				{
 					File.Copy(file, destFileName);
+					copiedFileCount++;
 				}
 				catch (Exception e)
 				{
 					ConsoleWriter.WriteLineError($"Can not copy '{file}' to {destFileName}", e);
 				}
 
+			}
+			if (copiedFileCount == 0)
+			{
+				ConsoleWriter.WriteLineError("There are no files to copied (You are probably in the wrong directory)");
 			}
 
 			ConsoleWriter.WriteLineStatus("=== Starting Primitier ===");
@@ -88,13 +163,13 @@ namespace PMFTool.Commands
 				args = "--melonloader.debug";
 			}
 
-			Process process = null;
+			Process? process = null;
 			try
 			{
 				process = Process.Start(new ProcessStartInfo()
 				{
 					Arguments = args,
-					FileName = configClass.PrimitierPath,
+					FileName = config.PrimitierPath,
 					RedirectStandardError = true,
 					RedirectStandardOutput = true,
 					UseShellExecute = false,

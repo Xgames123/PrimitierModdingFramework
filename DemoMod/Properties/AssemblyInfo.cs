@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DemoMod")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle(BuildInfo.Name)]
+[assembly: AssemblyDescription(BuildInfo.Description)]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany(BuildInfo.Authors)]
-[assembly: AssemblyProduct("DemoMod")]
+[assembly: AssemblyProduct(BuildInfo.Name)]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -36,11 +36,14 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion(BuildInfo.Version)]
 [assembly: AssemblyFileVersion(BuildInfo.Version)]
-[assembly: MelonInfo(typeof(DemoMod.DemoMod), "A demo mod for PrimitierModdingFramework", BuildInfo.Version, BuildInfo.Authors)]
+[assembly: MelonInfo(typeof(DemoMod.DemoMod), BuildInfo.Description, BuildInfo.Version, BuildInfo.Authors)]
 [assembly: MelonGame("PrimitierDev", "Primitier")]
 
-internal class BuildInfo
+public static class BuildInfo
 {
 	public const string Version = "0.3.0.0";
 	public const string Authors = "XGames105";
+
+	public const string Name = "DemoMod";
+	public const string Description = "A demo mod for PrimitierModdingFramework";
 }

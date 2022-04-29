@@ -20,7 +20,7 @@ namespace PrimitierModdingFramework
 
 		SystemEnabled,
 		SystemDisabled,
-
+		RealyLateStart,
 	}
 
 	/// <summary>
@@ -120,6 +120,9 @@ namespace PrimitierModdingFramework
 				case PMFEventType.SceneLoad:
 					OnSceneLoad();
 					break;
+				case PMFEventType.RealyLateStart:
+					OnRealyLateStart();
+					break;
 
 				case PMFEventType.Update:
 					OnUpdate();
@@ -165,7 +168,7 @@ namespace PrimitierModdingFramework
 
 		public virtual void OnStart() { }
 
-
+		public virtual void OnRealyLateStart() { }
 
 	}
 }

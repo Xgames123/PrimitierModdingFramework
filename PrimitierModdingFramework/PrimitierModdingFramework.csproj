@@ -41,12 +41,6 @@
     <Compile Include="Debugging\ComponentDumpers\MeshRendererDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\RectTransformDumper.cs" />
     <Compile Include="Debugging\ComponentDumpers\TransformDumper.cs" />
-    <Compile Include="Debugging\Editor\EditorWindow.cs" />
-    <Compile Include="Debugging\Editor\PMFEditorSystem.cs" />
-    <Compile Include="Debugging\Editor\PMFEditorLayout.cs" />
-    <Compile Include="Debugging\Editor\PMFEditorWindowLayout.cs" />
-    <Compile Include="Debugging\Editor\Windows\DebuggingWindow.cs" />
-    <Compile Include="Debugging\Editor\Windows\SceneViewerWindow.cs" />
     <Compile Include="Debugging\InGame\FlyCam.cs" />
     <Compile Include="Debugging\InGame\InGameDebuggingSystem.cs" />
     <Compile Include="Debugging\InGame\InGameDebugMenu.cs" />

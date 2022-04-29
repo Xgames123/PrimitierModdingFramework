@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<PMFToolVersion>1.0.0.0</PMFToolVersion>
-		<PMFToolAuthors>XGames105</PMFToolAuthors>
-		<IncludeEditor>true</IncludeEditor>
+		<_Version>0.3.0.0</_Version>
+		<_Authors>XGames105</_Authors>
+		<_Name>PMFTool</_Name>
+		<_Command>PMFTool</_Command>
 	</PropertyGroup>
 	
 	
@@ -12,15 +13,25 @@
 	  <TargetFramework>net6.0</TargetFramework>
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <Nullable>enable</Nullable>
+	  <PackAsTool>true</PackAsTool>
+	  <ToolCommandName>$(_Command)</ToolCommandName>
+	  <PackageOutputPath>./bin/Release/nupkg</PackageOutputPath>
 
-	  <Version>$(PMFToolVersion)</Version>
-	  <AssemblyVersion>$(PMFToolVersion)</AssemblyVersion>
-	  <FileVersion>$(PMFToolVersion)</FileVersion>
+	  <Title>$(_Name)</Title>
+	  <Version>$(_Version)</Version>
+	  <AssemblyVersion>$(_Version)</AssemblyVersion>
+	  <FileVersion>$(_Version)</FileVersion>
 
 
-	  <Company>$(PMFToolAuthors)</Company>
-	  <Authors>$(PMFToolAuthors)</Authors>
-	  <AssemblyName>PMFTool</AssemblyName>
+	  <Company>$(_Authors)</Company>
+	  <Authors>$(_Authors)</Authors>
+	  <AssemblyName>$(_Name)</AssemblyName>
+	  
+	  <PackageId>XGames105.PMF.PMFTool</PackageId>
+	  <Description>A tool to help make mods using PMF</Description>
+	  <PackageTags>pfm;PMF;Primitier;Mod;Modding;mod;modding;melonloader;MelonLoader;Melonloader;tool;Tool;cli;CLI</PackageTags>
+	  <ApplicationIcon>Icon.ico</ApplicationIcon>
+	  <PackageIcon>Icon.png</PackageIcon>
 	
   </PropertyGroup>
   <PropertyGroup Condition="$(IncludeEditor)">
@@ -30,10 +41,22 @@
 
 
   <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+	
+	
+  <ItemGroup>
     <PackageReference Include="Cocona.Lite" Version="2.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Veldrid.ImGui" Version="5.72.0" />
-    <PackageReference Include="XGames.BetterConsole.Net" Version="1.0.0" />
+    <PackageReference Include="Sini" Version="1.0.5" />
+  </ItemGroup>
+	
+	
+  <ItemGroup>
+    <None Update="Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup Condition="$(IncludeEditor)">

@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<_Version>0.3.0.0</_Version>
+		<_Authors>XGames105</_Authors>
+		<_Name>PMF Templates</_Name>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<PackageType>Template</PackageType>
+
+		<PackageVersion>$(_Version)</PackageVersion>
+		<Title>$(_Name)</Title>
+		<Authors>$(_Authors)</Authors>
+		
+		<IncludeContentInPack>true</IncludeContentInPack>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<ContentTargetFolders>content</ContentTargetFolders>
+		<NoWarn>$(NoWarn);NU5128</NoWarn>
+		<NoDefaultExcludes>true</NoDefaultExcludes>
+
+		<PackageId>XGames105.PMF.Templates</PackageId>
+		<Description>Templates for PMF</Description>
+		<PackageTags>dotnet-new;templates;pfm;PMF;Primitier;Mod;Modding;mod;modding;melonloader;MelonLoader;Melonloader</PackageTags>
+		<PackageIcon>Icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="templates\**\*" />
+		<Compile Remove="**\*" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Folder Include="templates\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Icon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>

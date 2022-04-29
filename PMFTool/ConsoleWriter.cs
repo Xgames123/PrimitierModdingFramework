@@ -28,5 +28,56 @@ namespace PMFTool
 			}
 			Console.ForegroundColor = ConsoleColor.White;
 		}
+
+
+		public static bool AskForYesNo(string question)
+		{
+			Console.WriteLine(question+" (y/n)");
+			while (true)
+			{
+				Console.Write(">");
+				var awnser = Console.ReadLine().ToLower();
+				if (awnser == "y" || awnser == "yes")
+				{
+					return true;
+
+				}
+				else if (awnser == "n" || awnser == "no")
+				{
+					return false;
+				}
+				Console.WriteLine($"'{awnser}' Was not a valid value (y/n)");
+
+			}
+
+		}
+
+
+		public static string? AskForString(string question, Func<string?, bool>? validate=null)
+		{
+			while (true)
+			{
+				Console.WriteLine(question);
+				Console.Write(">");
+
+				var awnser = Console.ReadLine();
+
+				if (validate == null)
+				{
+					return awnser;
+				}
+				if (validate.Invoke(awnser))
+				{
+					return awnser;
+				}
+
+
+				WriteLineError($"'{awnser}' was not valid");
+			}
+			
+
+		}
+
+
 	}
 }
