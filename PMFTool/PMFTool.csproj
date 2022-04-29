@@ -1,12 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IncludeEditor>true</IncludeEditor>
+	</PropertyGroup>
+
+	<PropertyGroup>
 		<_Version>0.3.0.0</_Version>
 		<_Authors>XGames105</_Authors>
 		<_Name>PMFTool</_Name>
 		<_Command>PMFTool</_Command>
 	</PropertyGroup>
-	
+
 	
   <PropertyGroup>
 	  <OutputType>Exe</OutputType>
