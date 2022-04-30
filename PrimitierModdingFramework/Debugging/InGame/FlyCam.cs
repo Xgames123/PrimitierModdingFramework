@@ -4,6 +4,19 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+
+/*
+Modified by XGames105
+Writen by Windexglow 11-13-10.  Use it, edit it, steal it I don't care.  
+Converted to C# 27-02-13 - no credit wanted.
+
+Simple flycam I made, since I couldn't find any others made public.  
+Made simple to use (drag and drop, done) for regular keyboard layout  
+wasd : basic movement
+shift : Makes camera accelerate
+space : Moves camera on X and Z axis only.  So camera doesn't gain any height
+*/
+
 namespace PrimitierModdingFramework.Debugging
 {
 	public class FlyCam : MonoBehaviour
@@ -15,14 +28,6 @@ namespace PrimitierModdingFramework.Debugging
 		/// </summary>
 		public static FlyCam Current { get; private set; } = null;
 
-		/*
-    Writen by Windexglow 11-13-10.  Use it, edit it, steal it I don't care.  
-    Converted to C# 27-02-13 - no credit wanted.
-    Simple flycam I made, since I couldn't find any others made public.  
-    Made simple to use (drag and drop, done) for regular keyboard layout  
-    wasd : basic movement
-    shift : Makes camera accelerate
-    space : Moves camera on X and Z axis only.  So camera doesn't gain any height*/
 
 
 		public float mainSpeed = 10; //regular speed
@@ -42,12 +47,25 @@ namespace PrimitierModdingFramework.Debugging
 		}
 
 
+		void FixedUpdate()
+		{
+
+			
+		}
+
 		void Update()
 		{
 
 			if (Input.GetMouseButtonDown(1))
 			{
 				lastMouse = Input.mousePosition; // $CTK reset when we begin
+			}
+			else
+			{
+				if (Input.GetMouseButtonUp(0))
+				{
+					//ShootClickRay(Input.mousePosition);
+				}
 			}
 
 			if (!rotateOnlyIfMousedown ||
@@ -94,6 +112,31 @@ namespace PrimitierModdingFramework.Debugging
 			}
 
 		}
+
+		private void ShootClickRay(Vector3 mousePos)
+		{
+			var cam = GetComponent<Camera>();
+			var hits = Physics.RaycastAll(cam.ScreenPointToRay(mousePos), 3);
+
+			for (int i = 0; i < hits.Length; i++)
+			{
+				var hit = hits[i];
+				var components = hit.rigidbody.GetComponents<MonoBehaviour>();
+
+				for (int ii = 0; ii < components.Length; ii++)
+				{
+					var button = components[i].TryCast<IButton>();
+					if (button != null)
+					{
+						button.OnPress();
+					}
+
+					
+				}
+
+			}
+		}
+
 
 		private Vector3 GetBaseInput()
 		{ //returns the basic values, if it's 0 than it's not active.

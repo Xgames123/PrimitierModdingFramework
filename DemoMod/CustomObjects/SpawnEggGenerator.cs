@@ -83,7 +83,7 @@ namespace DemoMod.CustomObjects
 			var margin = Mathf.Max(0, spaceLength - eggSize.y);
 			var pos = spaceCenter + new Vector3((CubeGenerator.chunkRandom.Value - 0.5f) * margin, 0, (CubeGenerator.chunkRandom.Value - 0.5f) * margin);
 
-			var subName = eggDef.NameEn.Replace(" ", "_").ToUpper();
+			var subName = "SUB_SPAWN_EGG_" + eggDef.NameEn.Replace(" ", "_").ToUpper();
 
 		 	var eggGameObject = CubeGenerator.GenerateCube(pos, eggSize, CustomSubstanceSystem.GetSubstanceByName(subName));
 

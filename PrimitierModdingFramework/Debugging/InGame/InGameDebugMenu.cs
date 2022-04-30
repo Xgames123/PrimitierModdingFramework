@@ -26,6 +26,57 @@ namespace PrimitierModdingFramework.Debugging
 			return button;
 		}
 
+		public InGameDebugToolToggleButton CreateToggleButton(string text)
+		{
+			if (!InGameDebuggingSystem.IsEnabled)
+				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
+			var buttonGameObject = new GameObject();
+			buttonGameObject.transform.parent = transform;
+			buttonGameObject.name = "ToggleButton";
+			buttonGameObject.transform.localScale = new Vector3(s_buttonWidth, s_buttonHeight, s_buttonZSize);
+			buttonGameObject.transform.localPosition = new Vector3(_nextButtonPos.x, _nextButtonPos.y, -s_buttonZSize);
+
+			buttonGameObject.AddComponent<BoxCollider>();
+			var button = buttonGameObject.AddComponent<InGameDebugToolToggleButton>();
+
+
+			var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			cube.transform.parent = buttonGameObject.transform;
+			cube.transform.localPosition = Vector3.zero;
+			cube.transform.localScale = new Vector3(1, 1, 1);
+			cube.GetComponent<MeshRenderer>().material.color = Color.grey;
+			Destroy(cube.GetComponent<BoxCollider>());
+
+
+			GameObject textGameObject = new GameObject("Text");
+			textGameObject.transform.parent = transform;
+
+			var textMP = textGameObject.AddComponent<TextMeshPro>();
+			textMP.text = text;
+			textMP.fontSize = 0.1f;
+			textMP.color = Color.black;
+			textMP.alignment = TextAlignmentOptions.Center;
+			textGameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+			textGameObject.transform.localPosition = new Vector3(_nextButtonPos.x, _nextButtonPos.y, -0.031f);
+
+
+			button.CubeTransform = cube.transform;
+
+			_buttonsOnCurrentLine++;
+			_nextButtonPos += new Vector2(s_buttonWidth + s_buttonSpaceing, 0);
+			if (_buttonsOnCurrentLine >= s_maxButtonsPerLine)
+			{
+				_buttonsOnCurrentLine = 0;
+				_nextButtonPos.x = -0.1f;
+				_nextButtonPos.y -= s_buttonHeight + s_buttonSpaceing;
+			}
+
+
+			return button;
+		}
+
+
 
 		public InGameDebugToolButton CreateButton(string text)
 		{

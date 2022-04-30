@@ -77,19 +77,25 @@ namespace PrimitierModdingFramework.Debugging
 			DebugTool.gameObject.SetActive(false);
 		}
 
-
 		public static void Show()
+		{
+			Show(PMFHelper.MenuWindowL.position, PMFHelper.MenuWindowL.rotation);
+		}
+
+
+		public static void Show(Vector3 pos, Quaternion rot)
 		{
 			if (!InGameDebuggingSystem.IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
 			if (DebugTool == null)
 			{
 				return;
 			}
 
 			DebugTool.gameObject.SetActive(true);
-			DebugTool.transform.position = PMFHelper.MenuWindowL.position;
-			DebugTool.transform.rotation = PMFHelper.MenuWindowL.rotation;
+			DebugTool.transform.position = pos;
+			DebugTool.transform.rotation = rot;
 		}
 
 

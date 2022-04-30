@@ -43,7 +43,11 @@ namespace DemoMod.CubeBehaviors
 			}
 			if (_notMovingFrames >= 150)
 			{
-				_cubeBase.ReceiveDamage(1000, transform.position, true);
+				_notMovingFrames = 0;
+				if (SpawnEggSettings.AutoHatchEntry.Value)
+				{
+					_cubeBase.ReceiveDamage(1000, transform.position, true);
+				}
 			}
 
 		}

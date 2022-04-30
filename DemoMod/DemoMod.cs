@@ -9,6 +9,7 @@ using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using DemoMod.CustomObjects;
 
+
 namespace DemoMod
 {
 
@@ -22,7 +23,18 @@ namespace DemoMod
 	
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
 
-			var spawnEggsMenu = InGameDebugTool.CreateMenu("Spawn Eggs", "Demo");
+			var spawnEggsSettingsMenu = InGameDebugTool.CreateMenu("Spawn Eggs Settings", "Demo");
+			var autoHatchToggleButton = spawnEggsSettingsMenu.CreateToggleButton("Auto hatch");
+			autoHatchToggleButton.Value = SpawnEggSettings.AutoHatchEntry.Value;
+			autoHatchToggleButton.AttachOnValueChanged(new System.Action(() =>
+			{
+				SpawnEggSettings.AutoHatchEntry.Value = autoHatchToggleButton.Value;
+			}));
+
+
+			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");
+
+			var spawnEggsMenu = InGameDebugTool.CreateMenu("Eggs", "Spawn");
 
 
 			foreach (SpawnEggType eggType in System.Enum.GetValues(typeof(SpawnEggType)))
@@ -36,7 +48,6 @@ namespace DemoMod
 
 
 
-			var spawnMenu = InGameDebugTool.CreateMenu("Spawn", "Demo");
 			spawnMenu.CreateButton("Tree", new System.Action(() =>
 			{
 				CubeGenerator.GenerateTree(spawnMenu.transform.position, 1f, CubeGenerator.TreeType.Conifer);
@@ -72,6 +83,9 @@ namespace DemoMod
 		public override void OnRealyLateStart()
 		{
 			base.OnRealyLateStart();
+			FlyCam.Create();
+
+			SpawnEggGenerator.Generate(new Vector3(0, 2, 0), 2f, SpawnEggType.GreenSlime);
 		}
 
 
@@ -89,7 +103,8 @@ namespace DemoMod
 			PMFSystem.EnableSystem<CustomAssetSystem>();
 
 			PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly());
-			
+
+			SpawnEggSettings.LoadFromMelonPreferences();
 		}
 		public override void OnUpdate()
 		{

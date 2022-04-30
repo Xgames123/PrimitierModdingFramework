@@ -427,6 +427,7 @@
     <Compile Include="CustomObjects\SpawnEggGenerator.cs" />
     <Compile Include="DemoMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpawnEggSettings.cs" />
     <Compile Include="Substances\DecayThingBuilder.cs" />
     <Compile Include="Substances\SpawnEggBuilder.cs" />
   </ItemGroup>
