@@ -8,7 +8,8 @@ using UnityEngine;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using DemoMod.CustomObjects;
-
+using Valve.VR;
+using UnityEngine.XR;
 
 namespace DemoMod
 {
@@ -18,7 +19,7 @@ namespace DemoMod
 
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
-
+			
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 	
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
@@ -47,7 +48,6 @@ namespace DemoMod
 
 
 
-
 			spawnMenu.CreateButton("Tree", new System.Action(() =>
 			{
 				CubeGenerator.GenerateTree(spawnMenu.transform.position, 1f, CubeGenerator.TreeType.Conifer);
@@ -67,6 +67,24 @@ namespace DemoMod
 				cube.GetComponent<Heat>().AddHeat(9000000);
 			}));
 
+			spawnMenu.CreateButton("Sulfur", new System.Action(() =>
+			{
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Sulfur);
+			}));
+			spawnMenu.CreateButton("Clay", new System.Action(() =>
+			{
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Clay);
+			}));
+			spawnMenu.CreateButton("Niter", new System.Action(() =>
+			{
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), Substance.Niter);
+			}));
+
+			spawnMenu.CreateButton("Tree", new System.Action(() =>
+			{
+				CubeGenerator.GenerateTree(spawnMenu.transform.position, 1f, CubeGenerator.TreeType.Conifer);
+			}));
+
 			spawnMenu.CreateButton("Custom", new System.Action(() =>
 			{
 				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.4f, 0.4f, 0.4f), CustomSubstanceSystem.GetSubstanceByName("SUB_CUSTOM"));
@@ -76,7 +94,6 @@ namespace DemoMod
 			{
 				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.15f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_SPAWN_EGG_DRONE"));
 			}));
-			
 
 		}
 
@@ -84,6 +101,7 @@ namespace DemoMod
 		{
 			base.OnRealyLateStart();
 
+			
 
 		}
 
@@ -104,6 +122,8 @@ namespace DemoMod
 			PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly());
 
 			SpawnEggSettings.LoadFromMelonPreferences();
+
+			
 		}
 		public override void OnUpdate()
 		{

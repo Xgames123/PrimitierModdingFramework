@@ -42,8 +42,11 @@ namespace PrimitierModdingFramework.Debugging
 		}
 		public override void OnUpdate()
 		{
-			base.OnUpdate();
-			InGameDebugTool.UpdateToolPosRot(PMFHelper.MenuWindowL.position, PMFHelper.MenuWindowL.rotation);
+			if (InGameDebugTool.LockToolToHand && PMFHelper.MenuWindowL != null) //PMFHelper.MenuWindowL != null is to check if where not in the unity loading screen
+			{
+				InGameDebugTool.UpdateToolPosRot(PMFHelper.MenuWindowL.position, PMFHelper.MenuWindowL.rotation);
+			}
+			
 		}
 
 

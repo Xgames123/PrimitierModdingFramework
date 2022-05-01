@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MelonLoader;
+using System;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,18 @@ namespace PrimitierModdingFramework.Debugging
 		private static Transform _Menus;
 
 		public static InGameDebugMenu MainMenu = null;
+
+		public static InGameDebugMenu ToolSettingsMenu = null;
+
+		/// <summary>
+		/// The MelonPreferences_Entry used to store if the tool should lock to your hand
+		/// </summary>
+		public static MelonPreferences_Entry<bool> LockToolToHandEntry;
+
+		/// <summary>
+		/// Is true when the setting lock to hand is on
+		/// </summary>
+		public static bool LockToolToHand { get { if (LockToolToHandEntry != null) return LockToolToHandEntry.Value; else return true; } }
 
 		/// <summary>
 		/// Is true when the debug tool is shown
@@ -81,6 +94,15 @@ namespace PrimitierModdingFramework.Debugging
 			DebugTool = gameObject.AddComponent<InGameDebugTool>();
 
 			DebugTool.gameObject.SetActive(false);
+
+
+			var toolSettingsCategory = MelonPreferences.CreateCategory("Tool Settings");
+			LockToolToHandEntry = toolSettingsCategory.CreateEntry("LockToHand", true);
+
+			ToolSettingsMenu = CreateMenu("Settings", "MainMenu");
+
+			ToolSettingsMenu.CreateToggleButton("Lock to hand", LockToolToHandEntry);
+
 		}
 
 
@@ -112,6 +134,7 @@ namespace PrimitierModdingFramework.Debugging
 			}
 
 			DebugTool.gameObject.SetActive(true);
+			UpdateToolPosRot(PMFHelper.MenuWindowL.position, PMFHelper.MenuWindowL.rotation);
 		}
 
 

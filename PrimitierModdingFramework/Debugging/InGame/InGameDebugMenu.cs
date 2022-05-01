@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using MelonLoader;
+using TMPro;
 using UnityEngine;
 
 namespace PrimitierModdingFramework.Debugging
@@ -26,6 +27,34 @@ namespace PrimitierModdingFramework.Debugging
 			return button;
 		}
 
+
+		/// <summary>
+		/// Creates a toggle button and adds it to this menu.
+		/// The value gets automatically synced with the MelonPreferences_Entry provided.
+		/// </summary>
+		/// <param name="text">text to show on the button</param>
+		/// <param name="entry">The entry to sync to</param>
+		/// <returns>The created button</returns>
+		/// <exception cref="PMFSystemNotEnabledException"></exception>
+		public InGameDebugToolToggleButton CreateToggleButton(string text, MelonPreferences_Entry<bool> entry)
+		{
+			var button = CreateToggleButton(text);
+			button.Value = entry.Value;
+			button.AttachOnValueChanged(new System.Action(() => 
+			{
+				entry.Value = button.Value;
+			}));
+
+			return button;
+		}
+
+
+		/// <summary>
+		/// Creates a toggle button and adds it to this menu
+		/// </summary>
+		/// <param name="text">text to show on the button</param>
+		/// <returns>The created button</returns>
+		/// <exception cref="PMFSystemNotEnabledException"></exception>
 		public InGameDebugToolToggleButton CreateToggleButton(string text)
 		{
 			if (!InGameDebuggingSystem.IsEnabled)
@@ -77,7 +106,12 @@ namespace PrimitierModdingFramework.Debugging
 		}
 
 
-
+		/// <summary>
+		/// Creates a button and adds it to this menu
+		/// </summary>
+		/// <param name="text">The text on the button</param>
+		/// <returns>The created button</returns>
+		/// <exception cref="PMFSystemNotEnabledException"></exception>
 		public InGameDebugToolButton CreateButton(string text)
 		{
 			if (!InGameDebuggingSystem.IsEnabled)

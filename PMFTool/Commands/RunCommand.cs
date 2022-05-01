@@ -25,7 +25,9 @@ namespace PMFTool.Commands
 			string path="",
 
 			[Option(Description = "The mode to run in")]
-			RunMode mode=RunMode.Debug)
+			RunMode mode=RunMode.Debug,
+			[Option(Description = "Enables the fly cam")]
+			bool novr=false)
 		{
 
 			var projectPath = Validator.ValidateProjectPath(path);
@@ -101,10 +103,15 @@ namespace PMFTool.Commands
 
 			ConsoleWriter.WriteLineStatus("=== Starting Primitier ===");
 
-			string args = "";
+
+			StringBuilder args = new StringBuilder();
 			if (mode == RunMode.Debug)
 			{
-				args = "--melonloader.debug";
+				args.Append(" --melonloader.debug ");
+			}
+			if (novr)
+			{
+				args.Append(" --pmf.flycam ");
 			}
 
 			Process? primitierProcess = null;
@@ -112,7 +119,7 @@ namespace PMFTool.Commands
 			{
 				primitierProcess = Process.Start(new ProcessStartInfo()
 				{
-					Arguments = args,
+					Arguments = args.ToString(),
 					FileName = config.PrimitierPath,
 					RedirectStandardError = true,
 					RedirectStandardOutput = true,

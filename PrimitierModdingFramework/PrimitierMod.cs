@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MelonLoader;
+using PrimitierModdingFramework.Debugging;
 using PrimitierModdingFramework.SubstanceModding;
 
 namespace PrimitierModdingFramework
@@ -49,6 +50,7 @@ namespace PrimitierModdingFramework
 			IsApplicationStarted = true;
 
 			HarmonyInstance.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
+
 		}
 
 		/// <summary>
@@ -100,6 +102,13 @@ namespace PrimitierModdingFramework
 		public virtual void OnRealyLateStart()
 		{
 			PMFSystem.FireEventOnSystems(PMFEventType.RealyLateStart);
+
+			var args = Environment.GetCommandLineArgs();
+			if (args.Contains("--pmf.flycam"))
+			{
+				FlyCam.Create();
+			}
+
 		}
 
 	}
