@@ -23,7 +23,7 @@ namespace DemoMod
 	
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
 
-			var spawnEggsSettingsMenu = InGameDebugTool.CreateMenu("Spawn Eggs Settings", "Demo");
+			var spawnEggsSettingsMenu = InGameDebugTool.CreateMenu("Spawn Egg Settings", "Demo");
 			var autoHatchToggleButton = spawnEggsSettingsMenu.CreateToggleButton("Auto hatch");
 			autoHatchToggleButton.Value = SpawnEggSettings.AutoHatchEntry.Value;
 			autoHatchToggleButton.AttachOnValueChanged(new System.Action(() =>
@@ -83,9 +83,8 @@ namespace DemoMod
 		public override void OnRealyLateStart()
 		{
 			base.OnRealyLateStart();
-			FlyCam.Create();
 
-			SpawnEggGenerator.Generate(new Vector3(0, 2, 0), 2f, SpawnEggType.GreenSlime);
+
 		}
 
 

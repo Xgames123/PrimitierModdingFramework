@@ -13,7 +13,7 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 		private static void Postfix()
 		{
 
-			CustomSubstanceSystem.ReloadLocalizations();
+			PMFLocalizer.ReloadLocalizations();
 		}
 	}
 }

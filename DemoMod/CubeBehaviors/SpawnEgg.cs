@@ -41,7 +41,7 @@ namespace DemoMod.CubeBehaviors
 			{
 				_notMovingFrames = 0;
 			}
-			if (_notMovingFrames >= 150)
+			if (_notMovingFrames >= 200)
 			{
 				_notMovingFrames = 0;
 				if (SpawnEggSettings.AutoHatchEntry.Value)

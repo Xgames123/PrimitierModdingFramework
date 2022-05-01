@@ -52,6 +52,7 @@
     <Compile Include="Debugging\ResourceXmlDumper.cs" />
     <Compile Include="Debugging\XmlHelper.cs" />
     <Compile Include="PMFIL2CPPHelpers.cs" />
+    <Compile Include="PMFLocalizer.cs" />
     <Compile Include="PMFLog.cs" />
     <Compile Include="PMFHelper.cs" />
     <Compile Include="PMFSystem.cs" />

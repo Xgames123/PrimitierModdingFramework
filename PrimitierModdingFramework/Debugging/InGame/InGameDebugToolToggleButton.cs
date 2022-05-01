@@ -46,8 +46,7 @@ namespace PrimitierModdingFramework.Debugging
 			else
 				Value = true;
 
-
-		
+			_OnValueChanged?.Invoke();
 
 			UpdateButton();
 		}

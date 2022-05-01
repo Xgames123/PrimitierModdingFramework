@@ -9,13 +9,18 @@ namespace PrimitierModdingFramework.Debugging
 	{
 		public static InGameDebugTool DebugTool = null;
 
-		public InGameDebugTool(System.IntPtr ptr) : base(ptr){ }
+		public InGameDebugTool(System.IntPtr ptr) : base(ptr) { }
 
 
 		private static InGameDebugMenu _CurrentMenu = null;
 		private static Transform _Menus;
 
 		public static InGameDebugMenu MainMenu = null;
+
+		/// <summary>
+		/// Is true when the debug tool is shown
+		/// </summary>
+		public static bool IsShown { get { return DebugTool != null && DebugTool.isActiveAndEnabled; } }
 
 		public static void Hide()
 		{
@@ -34,6 +39,7 @@ namespace PrimitierModdingFramework.Debugging
 		{
 			if (!InGameDebuggingSystem.IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
+
 			if (DebugTool != null)
 			{
 				return;
@@ -62,7 +68,7 @@ namespace PrimitierModdingFramework.Debugging
 			_Menus = menusGameObject.transform;
 
 
-			MainMenu = CreateMenu("MainMenu", null, "DEBUG TOOL");
+			MainMenu = CreateMenu("MainMenu", null, "MOD SETTINGS");
 			var closeButton = MainMenu.CreateButton("Close");
 			closeButton.AttachOnPressListener(new System.Action(() =>
 			{
@@ -77,13 +83,25 @@ namespace PrimitierModdingFramework.Debugging
 			DebugTool.gameObject.SetActive(false);
 		}
 
-		public static void Show()
+
+		/// <summary>
+		/// Moves the tool to the new position and rotation
+		/// </summary>
+		/// <param name="pos">new position</param>
+		/// <param name="rot">new rotation</param>
+		public static void UpdateToolPosRot(Vector3 pos, Quaternion rot)
 		{
-			Show(PMFHelper.MenuWindowL.position, PMFHelper.MenuWindowL.rotation);
+			if (DebugTool == null || !DebugTool.isActiveAndEnabled)
+			{
+				return;
+			}
+
+			DebugTool.transform.position = pos;
+			DebugTool.transform.rotation = rot;
 		}
 
 
-		public static void Show(Vector3 pos, Quaternion rot)
+		public static void Show()
 		{
 			if (!InGameDebuggingSystem.IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
@@ -94,8 +112,6 @@ namespace PrimitierModdingFramework.Debugging
 			}
 
 			DebugTool.gameObject.SetActive(true);
-			DebugTool.transform.position = pos;
-			DebugTool.transform.rotation = rot;
 		}
 
 

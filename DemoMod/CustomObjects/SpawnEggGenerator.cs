@@ -48,8 +48,8 @@ namespace DemoMod.CustomObjects
 
 		public static SpawnEggInfo[] EggDefs = new SpawnEggInfo[]
 		{
-			new SpawnEggInfo("Drone", "ドローン", Color.gray, SpawnEggShape.Normal, (SpawnEgg spawnEgg) => { CubeGenerator.GenerateDrone(spawnEgg.transform.position, 0.1f); }),
-			new SpawnEggInfo("Blue slime", "ブルースライム", Color.blue, SpawnEggShape.Normal, (SpawnEgg spawnEgg) => { CubeGenerator.GenerateSlime(spawnEgg.transform.position, 0.1f); }),
+			new SpawnEggInfo("Drone", "ドローン", new Color(0.2f, 0.2f, 0.2f), SpawnEggShape.Normal, (SpawnEgg spawnEgg) => { CubeGenerator.GenerateDrone(spawnEgg.transform.position, 0.1f); }),
+			new SpawnEggInfo("Blue slime", "ブルースライム",new Color(0, 0.4f, 1), SpawnEggShape.Normal, (SpawnEgg spawnEgg) => { CubeGenerator.GenerateSlime(spawnEgg.transform.position, 0.1f); }),
 			new SpawnEggInfo("Red slime", "ベリースライム", Color.red, SpawnEggShape.Normal, (SpawnEgg spawnEgg) => { CubeGenerator.GenerateRedSlime(spawnEgg.transform.position, 0.1f); }),
 			new SpawnEggInfo("Green slime", "グリーンスライム", Color.green, SpawnEggShape.Normal, (SpawnEgg spawnEgg) => { CubeGenerator.GenerateGreenSlime(spawnEgg.transform.position, 0.1f); }),
 		};

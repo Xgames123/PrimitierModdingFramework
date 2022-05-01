@@ -40,6 +40,11 @@ namespace PrimitierModdingFramework.Debugging
 			InGameDebugTool.Create();
 			InGameDebugToolShowButton.Create();
 		}
+		public override void OnUpdate()
+		{
+			base.OnUpdate();
+			InGameDebugTool.UpdateToolPosRot(PMFHelper.MenuWindowL.position, PMFHelper.MenuWindowL.rotation);
+		}
 
 
 

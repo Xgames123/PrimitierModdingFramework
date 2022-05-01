@@ -16,7 +16,15 @@ namespace PrimitierModdingFramework.Debugging
 
 		public void OnPress()
 		{
-			InGameDebugTool.Show();
+			if (InGameDebugTool.IsShown)
+			{
+				InGameDebugTool.Hide();
+			}
+			else
+			{
+				InGameDebugTool.Show();
+			}
+			
 
 		}
 
