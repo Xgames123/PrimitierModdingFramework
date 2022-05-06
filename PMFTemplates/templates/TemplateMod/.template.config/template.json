@@ -1,8 +1,8 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "XGames105",
-  "classifications": ["Mod", "PMF", "V0.3" ],
-  "identity": "XGames105.PMF.V0_3.EmptyMod",
+  "classifications": ["Mod", "PMF", "V0.4" ],
+  "identity": "XGames105.PMF.V0_4.EmptyMod",
   "name": "Empty PMF V0.3 mod",
   "shortName": "emptypmfv0_3mod",
   "sourceName":"TemplateMod",

@@ -91,6 +91,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="PrimitierModdingFrameworkV0.4, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>PMFLibV0.4\PrimitierModdingFrameworkV0.4.dll</HintPath>
+    </Reference>
     <Reference Include="SteamVR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\SteamVR.dll</HintPath>
@@ -443,12 +447,6 @@
     <None Include="Mod.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj">
-      <Project>{0cf60620-bb4f-43a3-8f18-77eb9a4be344}</Project>
-      <Name>PrimitierModdingFramework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>PrimitierModdingFrameworkV0.3</name>
+        <name>PrimitierModdingFrameworkV0.4</name>
     </assembly>
     <members>
         <member name="T:PrimitierModdingFramework.CustomAssetSystem">
@@ -9,14 +9,7 @@
             A System for loading custom assets into Primitier
             </summary>
         </member>
-        <member name="M:PrimitierModdingFramework.CustomAssetSystem.CreateEmptyTexture(System.String)">
-            <summary>
-            Creates an empty 1x1 Texture2D and adds it to the CachedResources (so it can be used in a customSubstance)
-            </summary>
-            <param name="name">Name of the texture</param>
-            <returns></returns>
-        </member>
-        <member name="M:PrimitierModdingFramework.CustomAssetSystem.LoadImageFromBytes(System.Byte[],UnityEngine.Texture2D@)">
+        <member name="M:PrimitierModdingFramework.CustomAssetSystem.LoadImageFromBytes(UnhollowerBaseLib.Il2CppStructArray{System.Byte},UnityEngine.Texture2D@)">
             <summary>
             Writes data to a Texture2D
             </summary>
@@ -28,22 +21,37 @@
             Writes data from an EmbeddedResource to a Texture2D
             </summary>
             <param name="assembly">The assembly were the image is located</param>
-            <param name="resourceName">The full name of the resource (AssemblyName.fileStructure)</param>
+            <param name="resourceName">The full name of the resource (AssemblyName.Assets.MyImage.png)</param>
             <param name="texture">the texture to write the data to</param>
         </member>
         <member name="M:PrimitierModdingFramework.CustomAssetSystem.LoadImageFromEmbeddedResource(System.String,UnityEngine.Texture2D@)">
             <summary>
             Writes data from an EmbeddedResource to a Texture2D
             </summary>
-            <param name="resourceName">The full name of the resource (AssemblyName.fileStructure)</param>
+            <param name="resourceName">The full name of the resource (AssemblyName.Assets.MyImage.png)</param>
             <param name="texture">the texture to write the data to</param>
+        </member>
+        <member name="M:PrimitierModdingFramework.CustomAssetSystem.GetEmbeddedResourceStream(System.String)">
+            <summary>
+            Gets the stream from an EmbeddedResource
+            </summary>
+            <param name="resourceName">The assembly were the resource is located</param>
+            <returns></returns>
+        </member>
+        <member name="M:PrimitierModdingFramework.CustomAssetSystem.GetEmbeddedResourceStream(System.Reflection.Assembly,System.String)">
+            <summary>
+            Gets the stream from an EmbeddedResource
+            </summary>
+            <param name="resourceName">The assembly were the resource is located</param>
+            <param name="assembly">The full name of the resource (AssemblyName.Assets.MyImage.png)</param>
+            <returns></returns>
         </member>
         <member name="M:PrimitierModdingFramework.CustomAssetSystem.LoadEmbeddedResource(System.Reflection.Assembly,System.String)">
             <summary>
             Loads the bytes from an EmbeddedResource
             </summary>
             <param name="resourceName">The assembly were the resource is located</param>
-            <param name="assembly">The full name of the resource (AssemblyName.fileStructure)</param>
+            <param name="assembly">The full name of the resource (AssemblyName.Assets.MyImage.png)</param>
             <returns></returns>
         </member>
         <member name="M:PrimitierModdingFramework.CustomAssetSystem.LoadEmbeddedResource(System.String)">
@@ -78,6 +86,54 @@
             Creates a new FlyCam if it doesn't exists
             </summary>
         </member>
+        <member name="M:PrimitierModdingFramework.Debugging.InGameDebugMenu.CreateToggleButton(System.String,MelonLoader.MelonPreferences_Entry{System.Boolean})">
+            <summary>
+            Creates a toggle button and adds it to this menu.
+            The value gets automatically synced with the MelonPreferences_Entry provided.
+            </summary>
+            <param name="text">text to show on the button</param>
+            <param name="entry">The entry to sync to</param>
+            <returns>The created button</returns>
+            <exception cref="T:PrimitierModdingFramework.PMFSystemNotEnabledException"></exception>
+        </member>
+        <member name="M:PrimitierModdingFramework.Debugging.InGameDebugMenu.CreateToggleButton(System.String)">
+            <summary>
+            Creates a toggle button and adds it to this menu
+            </summary>
+            <param name="text">text to show on the button</param>
+            <returns>The created button</returns>
+            <exception cref="T:PrimitierModdingFramework.PMFSystemNotEnabledException"></exception>
+        </member>
+        <member name="M:PrimitierModdingFramework.Debugging.InGameDebugMenu.CreateButton(System.String)">
+            <summary>
+            Creates a button and adds it to this menu
+            </summary>
+            <param name="text">The text on the button</param>
+            <returns>The created button</returns>
+            <exception cref="T:PrimitierModdingFramework.PMFSystemNotEnabledException"></exception>
+        </member>
+        <member name="F:PrimitierModdingFramework.Debugging.InGameDebugTool.LockToolToHandEntry">
+            <summary>
+            The MelonPreferences_Entry used to store if the tool should lock to your hand
+            </summary>
+        </member>
+        <member name="P:PrimitierModdingFramework.Debugging.InGameDebugTool.LockToolToHand">
+            <summary>
+            Is true when the setting lock to hand is on
+            </summary>
+        </member>
+        <member name="P:PrimitierModdingFramework.Debugging.InGameDebugTool.IsShown">
+            <summary>
+            Is true when the debug tool is shown
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.Debugging.InGameDebugTool.UpdateToolPosRot(UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+            Moves the tool to the new position and rotation
+            </summary>
+            <param name="pos">new position</param>
+            <param name="rot">new rotation</param>
+        </member>
         <member name="T:PrimitierModdingFramework.Debugging.HierarchyXmlDumper">
             <summary>
             A class for dumping the current state of the scene to an xml file
@@ -110,6 +166,21 @@
         <member name="M:PrimitierModdingFramework.Debugging.HierarchyXmlDumper.DumpSceneToFile">
             <summary>
             Dumps the scene to HierarchyXmlDumper.FilePath using the default ComponentDumperList
+            </summary>
+        </member>
+        <member name="P:PrimitierModdingFramework.Debugging.InGameDebugToolToggleButton.Lock">
+            <summary>
+            If set to true the buttons value can't be changed by the user
+            </summary>
+        </member>
+        <member name="P:PrimitierModdingFramework.Debugging.InGameDebugToolToggleButton.Value">
+            <summary>
+            Is true when the button is pressed else it is false
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.Debugging.InGameDebugToolToggleButton.UpdateButton">
+            <summary>
+            Updates the buttons UI
             </summary>
         </member>
         <member name="T:PrimitierModdingFramework.Debugging.ResourceXmlDumper">
@@ -174,9 +245,48 @@
             <param name="type"></param>
             <returns></returns>
         </member>
+        <member name="F:PrimitierModdingFramework.PMFLocalizer.EnLocalizations">
+            <summary>
+            List that contains the English localizations
+            </summary>
+        </member>
+        <member name="F:PrimitierModdingFramework.PMFLocalizer.JpLocalizations">
+            <summary>
+            List that contains the Japanese localizations
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.PMFLocalizer.AddJpEntry(System.String,System.String)">
+            <summary>
+            Adds a new Japanese localization (This does not call ReloadLocalizations)
+            </summary>
+            <param name="key">key of the localization example "SUB_SUBSTANCE_NAME"</param>
+            <param name="value">The Text what the user sees example "物質名"</param>
+        </member>
+        <member name="M:PrimitierModdingFramework.PMFLocalizer.AddEnEntry(System.String,System.String)">
+            <summary>
+            Adds a new English localization (This does not call ReloadLocalizations)
+            </summary>
+            <param name="key">key of the localization example "SUB_SUBSTANCE_NAME"</param>
+            <param name="value">The Text what the user sees example "substance name"</param>
+        </member>
+        <member name="M:PrimitierModdingFramework.PMFLocalizer.ReloadLocalizations">
+            <summary>
+            Reloads the Localizations (Happens automatically when the language is changed in the game)
+            </summary>
+        </member>
         <member name="F:PrimitierModdingFramework.PMFHelper.SystemTransform">
             <summary>
             The system transform is used to store gameobjects that don't require saving (Custom objects that are not Cubes)
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.PMFHelper.AutoInject(System.Type[])">
+            <summary>
+            Finds the types that have to be injected and injects them
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.PMFHelper.AutoInject(System.Reflection.Assembly[])">
+            <summary>
+            Scans the specified assembly's for classes to inject and injects them
             </summary>
         </member>
         <member name="T:PrimitierModdingFramework.PMFEventType">
@@ -259,6 +369,60 @@
             When overriding call base.OnRealyLateStart() before you do anything.
             </summary>
         </member>
+        <member name="T:PrimitierModdingFramework.SubstanceModding.CustomSubstanceBuilder">
+            <summary>
+            Base class for all CustomSubstanceBuilders.
+            CustomSubstanceBuilders are used to generate custom substances 
+            </summary>
+        </member>
+        <member name="P:PrimitierModdingFramework.SubstanceModding.CustomSubstanceBuilder.HasBuild">
+            <summary>
+            Is true when the build method is called
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.SubstanceModding.CustomSubstanceBuilder.RegisterBuilder``1">
+            <summary>
+            Registers the customSubstanceBuilder to build on OnSceneWasLoaded
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:PrimitierModdingFramework.SubstanceModding.CustomSubstanceBuilder.RegisterBuilder(System.Type)">
+            <summary>
+            Registers the customSubstanceBuilder to build on OnSceneWasLoaded
+            </summary>
+            <param name="builderType"></param>
+        </member>
+        <member name="M:PrimitierModdingFramework.SubstanceModding.CustomSubstanceBuilder.Build">
+            <summary>
+            Builds the substance
+            </summary>
+        </member>
+        <member name="M:PrimitierModdingFramework.SubstanceModding.CustomSubstanceBuilder.OnBuild">
+            <summary>
+            Called when the custom substance needs to be build (In OnSceneWasLoaded)
+            </summary>
+        </member>
+        <member name="T:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSettings">
+            <summary>
+            Extra settings for a custom substance
+            </summary>
+        </member>
+        <member name="F:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSettings.OnSubstanceInitialize">
+            <summary>
+            Called when the substance is initialized so when the world loads or a new instance of your substance it created.
+            This is used to add components or do other things with the substance.
+            </summary>
+        </member>
+        <member name="F:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSettings.JpName">
+            <summary>
+            Japanese name of the substance
+            </summary>
+        </member>
+        <member name="F:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSettings.EnName">
+            <summary>
+            English name of the substance
+            </summary>
+        </member>
         <member name="T:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSystem">
             <summary>
             System used to load custom substances in to the game
@@ -271,11 +435,19 @@
             <param name="name">The name of the custom material</param>
             <returns></returns>
         </member>
-        <member name="M:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSystem.LoadCustomSubstance(SubstanceParameters.Param)">
+        <member name="M:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSystem.LoadCustomSubstance(SubstanceParameters.Param,PrimitierModdingFramework.SubstanceModding.CustomSubstanceSettings)">
             <summary>
             Loads the custom substance in the game.
             </summary>
             <param name="substance"></param>
+            <param name="settings"></param>
+        </member>
+        <member name="M:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSystem.GetSubstance(Substance)">
+            <summary>
+            Gets the substance form its enum value
+            </summary>
+            <param name="substance"></param>
+            <returns></returns>
         </member>
         <member name="M:PrimitierModdingFramework.SubstanceModding.CustomSubstanceSystem.CreateCustomSubstance(Substance)">
             <summary>
@@ -308,6 +480,11 @@
             </summary>
             <param name="name"></param>
             <returns></returns>
+        </member>
+        <member name="T:PrimitierModdingFramework.SubstanceModding.ICustomCubeBehaviour">
+            <summary>
+            Add this interface to a class to create a custom ICubeBehaviour
+            </summary>
         </member>
         <member name="T:PrimitierModdingFramework.SubstanceModding.Patches.SubstanceManagerGetMaterialPatch">
             <summary>
