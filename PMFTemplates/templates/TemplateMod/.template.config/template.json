@@ -4,7 +4,7 @@
   "classifications": ["Mod", "PMF", "V0.4" ],
   "identity": "XGames105.PMF.V0_4.EmptyMod",
   "name": "Empty PMF V0.4 mod",
-  "shortName": "emptypmfv0_3mod",
+  "shortName": "emptypmfv0_4mod",
   "sourceName":"TemplateMod",
   "tags": {
     "language": "C#",
