@@ -13,7 +13,9 @@ namespace PMFTool
 
 		public static async void Update(DirectoryInfo projectDir, FileInfo csprojFile, DirectoryInfo pmfLib, string targetVersion, bool log=true)
 		{
-			if(log)
+			//TODO: rewrite all of this ( Just comment out things that cause errors)
+
+			if (log)
 				ConsoleWriter.WriteLineStatus("=== STARTING UPDATE ===");
 
 
@@ -23,7 +25,7 @@ namespace PMFTool
 
 			var newPmfLib = new DirectoryInfo(Path.Combine(projectDir.FullName, $"PMFLib{targetVersion}"));
 
-			ChangeCsprojPMFLibPath(csprojFile, pmfLib);
+			//ChangeCsprojPMFLibPath(csprojFile, Path.Combine(newPmfLib.FullName));
 
 			pmfLib.Delete();
 		}
@@ -31,6 +33,8 @@ namespace PMFTool
 
 		private static void ChangeCsprojPMFLibPath(FileInfo csproj, string newPath)
 		{
+			//TODO: make this work
+
 			using (var csprojFile = csproj.OpenRead())
 			{
 				XmlDocument doc = new XmlDocument();

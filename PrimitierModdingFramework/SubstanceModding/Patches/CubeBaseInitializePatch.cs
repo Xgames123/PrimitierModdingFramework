@@ -18,7 +18,8 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 			{
 				return;
 			}
-			if (!CustomSubstanceSystem.CustomSubstanceSettings.TryGetValue(CustomSubstanceSystem.GetSubstance(substance).displayNameKey, out CustomSubstanceSettings settings))
+			var sub = CustomSubstanceSystem.GetSubstance(substance);
+			if (sub == null || !CustomSubstanceSystem.CustomSubstanceSettings.TryGetValue(sub.displayNameKey, out CustomSubstanceSettings settings))
 			{
 				return;
 			}

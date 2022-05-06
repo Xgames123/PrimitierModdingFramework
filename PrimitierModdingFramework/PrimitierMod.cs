@@ -106,6 +106,7 @@ namespace PrimitierModdingFramework
 			var args = Environment.GetCommandLineArgs();
 			if (args.Contains("--pmf.flycam"))
 			{
+				PMFSystem.EnableSystem<InGameDebuggingSystem>();
 				FlyCam.Create();
 			}
 
