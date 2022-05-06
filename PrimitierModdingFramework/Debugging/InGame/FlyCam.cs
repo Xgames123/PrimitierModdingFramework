@@ -115,6 +115,7 @@ namespace PrimitierModdingFramework.Debugging
 
 		private void ShootClickRay(Vector3 mousePos)
 		{
+			//TODO: make this work
 			var cam = GetComponent<Camera>();
 			var hits = Physics.RaycastAll(cam.ScreenPointToRay(mousePos), 3);
 
