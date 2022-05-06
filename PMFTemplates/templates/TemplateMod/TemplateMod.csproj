@@ -91,7 +91,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dlls\MelonLoader.dll</HintPath>
     </Reference>
-    <Reference Include="PrimitierModdingFrameworkV0.4, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PrimitierModdingFrameworkV0.4, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>PMFLibV0.4\PrimitierModdingFrameworkV0.4.dll</HintPath>
     </Reference>
