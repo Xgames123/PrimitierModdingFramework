@@ -1,5 +1,12 @@
 # Custom substances and materials
 
+## Custom substance builders
+Custom substance builders are not required to create custom substances but it can help to organize your substances into differed classes
+1) Create a class that inherits form CustomSubstanceBuilder 
+```cs
+```
+
+
 ## Creating a custom material
 * call ```CustomSubstanceSystem.CreateCustomMaterial("Leaf");``` and pass in the name of the material to start from
 * Modify the values of the material. NOTE: don't forget to change name to a custom name.

@@ -6,6 +6,10 @@ This command is used to run a mod to test it.
 
 It copies the mod files from the (Debug/Release can be specified by --mode) to the mods directory of primitier and starts primitier
 
+
+If --novr is specified it creates a flycam that you can control using your keyboard and mouse
+
+
 ## ``` PMFTool pack ```
 Generates a mod package that can be shared and installed by other people.
 

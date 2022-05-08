@@ -25,9 +25,7 @@ namespace DemoMod.CubeBehaviors
 		{
 			_cubeBase = GetComponent<CubeBase>();
 
-			_cubeBase.add_Splitted(new System.Action<Il2CppSystem.Object, Il2CppSystem.EventArgs>(OnSplited));
-
-			
+			_cubeBase.SplitEvent.AddListener(new System.Action(OnSplited));
 		}
 
 
@@ -53,7 +51,7 @@ namespace DemoMod.CubeBehaviors
 		}
 
 
-		private void OnSplited(Il2CppSystem.Object sender, Il2CppSystem.EventArgs args)
+		private void OnSplited()
 		{
 			OnSpawn?.Invoke(this);
 		}

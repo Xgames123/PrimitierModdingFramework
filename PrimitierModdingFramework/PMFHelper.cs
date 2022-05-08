@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
@@ -47,18 +48,64 @@ namespace PrimitierModdingFramework
 
 		public override void OnSceneLoad()
 		{
-			SystemTransform = GameObject.Find("System").transform;
+			SystemTransform = SafeTransformFind("System");
 
-			CameraRig = GameObject.Find("[CameraRig]").transform;
-			LHand = GameObject.Find("LeftHand").transform;
-			RHand = GameObject.Find("RightHand").transform;
+			CameraRig = SafeTransformFind("[CameraRig]");
 
-			PlayerMovement = CameraRig.GetComponent<PlayerMovement>();
+			LHand = SafeTransformFind("LeftHand");
+			RHand = SafeTransformFind("RightHand");
 
-			MenuWindowL = GameObject.Find("MenuWindowL/Window").transform;
+			if (CameraRig != null)
+			{
+				PlayerMovement = CameraRig.GetComponent<PlayerMovement>();
+			}
+			else
+			{
+				PMFLog.Error("Could not find 'PlayerMovement' component");
+			}
+
+			MenuWindowL = SafeTransformFind("MenuWindowL/Window", "MenuWindowL/Windows");
+			
 
 		}
 
+		
+
+		private Transform SafeTransformFind(params string[] names)
+		{
+			GameObject gameobject = null;
+			foreach (var name in names)
+			{
+				var foundGameObject = GameObject.Find(name);
+				if (foundGameObject != null)
+				{
+					gameobject = foundGameObject;
+				}
+
+			}
+			if (gameobject == null)
+			{
+				StringBuilder sb = new StringBuilder();
+				sb.Append("Gameobject and alternates are not found (");
+				foreach (var name in names)
+				{
+					sb.Append(name);
+					sb.Append(", ");
+				}
+				sb.Append(')');
+
+				PMFLog.Error(sb.ToString());
+				return null;
+			}
+			else
+			{
+				return gameobject.transform;
+			}
+
+			
+			
+
+		}
 
 
 		/// <summary>
