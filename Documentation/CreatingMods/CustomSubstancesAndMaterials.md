@@ -1,11 +1,5 @@
 # Custom substances and materials
 
-## Custom substance builders
-Custom substance builders are not required to create custom substances but it can help to organize your substances into differed classes
-1) Create a class that inherits form CustomSubstanceBuilder 
-```cs
-```
-
 
 ## Creating a custom material
 * call ```CustomSubstanceSystem.CreateCustomMaterial("Leaf");``` and pass in the name of the material to start from
@@ -28,8 +22,9 @@ Custom substance builders are not required to create custom substances but it ca
 
 ## CustomSubstanceSettings
 This are extra settings for your custom substances
-* ```CustomSubstanceSettings.OnSubstanceInitialize``` If you set this lambda you can do stuff when the substance initializes like adding components or [ICubeBehaviors](./ICubeBehaviors.md)
-
+* OnSubstanceInitialize If you set this lambda you can do stuff when the substance initializes like adding components or [ICubeBehaviors](./ICubeBehaviors.md)
+* EnName is the name of the substance in English
+* JpName is the name of the substance in Japanese
 
 ## Spawning a custom substance
 Call ```CustomSubstanceSystem.GetSubstanceByName("YOUR_SUBSTANCE")``` to get the Substance enum for your custom substance. you can pass it into ```CubeGenerator.GenerateCube``` to generate the substance
@@ -42,3 +37,29 @@ SubstanceParameters.Param has a couple of misleading names.
 * stiffness: this is the damage the object does to another object. (Maybe this is wrong I haven't tested it allot)
 * strength: this is the health of the object.
 * density: Mass through =m/v relationship (This value goes from 0 to 1)
+
+
+## Custom substance builders
+Custom substance builders are not required to create custom substances but it can help to organize your substances into differed classes
+1) Create a class that inherits form CustomSubstanceBuilder
+2) override OnBuild and add the code to create the custom substance
+```cs
+    public class DecayThingBuilder : CustomSubstanceBuilder
+    {
+        public override void OnBuild()
+        {
+            //Code to create the custom substance
+        }
+    }
+```
+3) add ``` PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly()); ``` to OnApplicationStart
+```cs
+public override void OnApplicationStart()
+{
+    base.OnApplicationStart();
+    PMFSystem.EnableSystem<PMFHelper>();
+
+    PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly());
+    
+}
+```
