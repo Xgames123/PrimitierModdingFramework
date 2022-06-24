@@ -80,6 +80,7 @@ namespace PrimitierModdingFramework
 				if (foundGameObject != null)
 				{
 					gameobject = foundGameObject;
+					break;
 				}
 
 			}
