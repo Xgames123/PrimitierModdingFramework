@@ -5,6 +5,7 @@
 
 
   <PropertyGroup>
+	  <OutputType>Exe</OutputType>
 	  <Title>PMFTool</Title>
 	  <ToolCommandName>PMFTool</ToolCommandName>
 	  <AssemblyName>PMFTool</AssemblyName>
@@ -13,22 +14,12 @@
 	  <PackAsTool>true</PackAsTool>
 
 
-	  <PackageOutputPath>./bin/Release/nupkg</PackageOutputPath>
 	  <TargetFramework>net6.0</TargetFramework>
 
 
 	  <PackageTags>$(PMFTags);tool;Tool;cli;CLI</PackageTags>
-	  <PackageIcon>Icon.png</PackageIcon>
-	
+
   </PropertyGroup>
-	
-	
-	<ItemGroup>
-		<None Update="Icon.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
 	
 	
   <ItemGroup>

@@ -18,7 +18,6 @@
 		<PackageId>XGames105.PMF.Templates</PackageId>
 		<Description>Templates for PMF</Description>
 		<PackageTags>$(PMFTags);dotnet-new;templates</PackageTags>
-		<PackageIcon>Icon.png</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -31,11 +30,6 @@
 	  <Folder Include="templates\" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="Icon.png">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
+
 
 </Project>

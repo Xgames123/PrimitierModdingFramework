@@ -13,9 +13,15 @@
 		
 	</PropertyGroup>
 
-	<Import Project="../PMF.targets" />
+	<ItemGroup>
+	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.4.1" />
+	</ItemGroup>
+
 
 	<ItemGroup>
+	
 	  <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj" />
 	</ItemGroup>
+
+	
 </Project>

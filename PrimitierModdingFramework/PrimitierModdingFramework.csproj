@@ -5,11 +5,23 @@
 	
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
-		<RootNamespace>PrimitierModdingFrameworkV$</RootNamespace>
+		
 		<AssemblyName>PrimitierModdingFrameworkV$(PMFVersion)</AssemblyName>
-
+		<PackageId>XGames105.PMF</PackageId>
+		<Title>PrimitierModdingFramework</Title>
+		<Description>A modding library for Primitier that uses MellonLoader</Description>
+		
+		<RootNamespace>PrimitierModdingFrameworkV$</RootNamespace>
+		<PackageTags>$(PMFTags)</PackageTags>
+	</PropertyGroup>
+	
+	<PropertyGroup>
 		<AddMelonAttributes>false</AddMelonAttributes>
 	</PropertyGroup>
+	
+	<ItemGroup>
+	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.4.1" />
+	</ItemGroup>
 
-	<Import Project="../PMF.targets" />
+	
 </Project>
