@@ -18,14 +18,13 @@
 	
 	<PropertyGroup>
 		<AddMelonAttributes>false</AddMelonAttributes>
+		<UpdateDllsBeforeBuild>false</UpdateDllsBeforeBuild>
+		
 	</PropertyGroup>
 	
 	<ItemGroup>
 	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.4.1" />
 	</ItemGroup>
-	
-	<Target Name="Run">
-		<Message Text="Starting PMFTool" />
-	</Target>
+
 	
 </Project>

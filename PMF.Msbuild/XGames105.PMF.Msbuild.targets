@@ -3,8 +3,11 @@
 	<PropertyGroup>
 		<ProxyDllsFolder Condition="'$(ProxyDllsFolder)' == ''">../Dlls</ProxyDllsFolder>
 		<EntryPointClass Condition="'$(EntryPointClass)' == ''">$(RootNamespace).Mod</EntryPointClass>
+		<NoPMFTool Condition="'$(NoPMFTool)' == ''">true</NoPMFTool>
 		<AddMelonAttributes Condition="'$(AddMelonAttributes)' == ''">true</AddMelonAttributes>
 		<OutputType Condition="'$(OutputType)' == ''">Library</OutputType>
+
+		
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="!$(ProxyDllsFolder.EndsWith('/'))">
@@ -30,8 +33,14 @@
 	</ItemGroup>
 
 
-	<Target Name="StartPMFTool" AfterTargets="Run">
-		<Message Text="Starting PMFTool" />
+	<Target Condition="'$(NoPMFTool)' == 'true'" Name="UpdateDlls" BeforeTargets="BeforeBuild">
+		<Exec Command="PMFTool update-dlls --noprompts" ContinueOnError="True" ConsoleToMsBuild="True">
+			<Output TaskParameter="ExitCode" PropertyName="UpdateDllsExitcode"/>
+			<Output TaskParameter="ConsoleOutput" PropertyName="UpdateDllsOutput"/>
+		</Exec>
+		<Error Condition="'$(UpdateDllsExitcode)' == '9009'" Text="PMFTool is not installed (If you don't want to use pmf tool you can set NoPMFTool to false)"></Error>
+		<Error Condition="'$(UpdateDllsExitcode)' != '0'" Text="PMFTool returned ExitCode: $(UpdateDllsExitcode) (If you don't want to use pmf tool you can set NoPMFTool to false) $(UpdateDllsOutput)"/>
+	
 	</Target>
 
 </Project>

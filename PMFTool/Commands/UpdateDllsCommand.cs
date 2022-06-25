@@ -33,6 +33,13 @@ namespace PMFTool.Commands
 				return;
 			}
 
+			if (string.IsNullOrWhiteSpace(config.DllPath))
+			{
+				ConsoleWriter.WriteLineError("No dll path found. You can give one by creating a .pmftoolconfig or passing it as an argument into this command");
+				return;
+			}
+
+
 			DirectoryInfo dllDir = null;
 
 			dllDir = new DirectoryInfo(config.DllPath);
