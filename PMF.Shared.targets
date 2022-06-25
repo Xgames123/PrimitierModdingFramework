@@ -2,7 +2,7 @@
 <Project>
 	
 	<PropertyGroup>
-		<PMFVersion>4.1.0</PMFVersion>
+		<PMFVersion>0.4.1</PMFVersion>
 		<PMFAuthors>XGames105</PMFAuthors>
 		<PMFTags>Primitier;pmf;primitier;mod;modding;melonloader;melon loader;MelonLoader</PMFTags>
 	</PropertyGroup>
