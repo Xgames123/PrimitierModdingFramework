@@ -28,4 +28,10 @@
 			<_Parameter2>Primitier</_Parameter2>
 		</AssemblyAttribute>
 	</ItemGroup>
+
+
+	<Target Name="StartPMFTool" AfterTargets="Run">
+		<Message Text="Starting PMFTool" />
+	</Target>
+
 </Project>

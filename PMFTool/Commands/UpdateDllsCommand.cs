@@ -14,7 +14,9 @@ namespace PMFTool.Commands
 		[PrimaryCommand()]
 		public void UpdateDlls(
 			[Argument(Description ="The path to project directory of the mod you want to update the dlls for")]
-			string path="")
+			string path="",
+			[Option(Description = "Answers yes to all prompts")]
+			bool noprompts=false)
 		{
 
 
@@ -37,21 +39,30 @@ namespace PMFTool.Commands
 
 			if (!dllDir.Exists)
 			{
-				if (!ConsoleWriter.AskForYesNo($"Directory '{dllDir.FullName}' doesn't exist.\nDo you want to create it?"))
+				if (!noprompts)
 				{
-					return;
+					if (!ConsoleWriter.AskForYesNo($"Directory '{dllDir.FullName}' doesn't exist.\nDo you want to create it?"))
+					{
+						return;
+					}
 				}
+				
 				Directory.CreateDirectory(dllDir.FullName);
 			}
 
+			var dllFiles = dllDir.GetFiles();
 
-			int dllFileCount = dllDir.GetFiles().Count((FileInfo file) => { return file.Extension == ".dll"; });
+			int dllFileCount = dllFiles.Count((FileInfo file) => { return file.Extension == ".dll"; });
 			if (dllFileCount < 150)
 			{
-				if(!ConsoleWriter.AskForYesNo($"There are only {dllFileCount} dll files in directory '{dllDir.FullName}'. Are you sure this is the right one?"))
+				if (!noprompts)
 				{
-					return;
+					if (!ConsoleWriter.AskForYesNo($"There are only {dllFileCount} dll files in directory '{dllDir.FullName}'. Are you sure this is the right one?"))
+					{
+						return;
+					}
 				}
+				
 			}
 
 			var proxyDllDir = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "Managed"));
@@ -67,6 +78,7 @@ namespace PMFTool.Commands
 			{
 				if (file.Extension == ".dll" || file.Extension == ".xml")
 				{
+
 					ConsoleWriter.WriteLineStatus($"Copying '{file.FullName}' to '{dllDir.FullName}'");
 					file.CopyTo(Path.Combine(dllDir.FullName, file.Name), true);
 					

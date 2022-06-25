@@ -29,7 +29,9 @@ namespace PMFTool.Commands
 			[Option(Description = "The mode to run in")]
 			RunMode mode=RunMode.Debug,
 			[Option(Description = "Enables the fly cam")]
-			bool novr=false)
+			bool novr=false,
+			[Option(Description = "Disables rebuilding the project before running it")]
+			bool nobuild=false)
 		{
 
 			var projectPath = Validator.ValidateProjectPath(path);
@@ -50,7 +52,11 @@ namespace PMFTool.Commands
 				return; 
 			}
 
-			ModBuilder.StartBuild(projectPath, config, mode);
+			if (!nobuild)
+			{
+				ModBuilder.StartBuild(projectPath, config, mode);
+			}
+			
 
 
 			ConsoleWriter.WriteLineStatus("=== Clearing mods directory ===");
@@ -70,8 +76,11 @@ namespace PMFTool.Commands
 				file.Delete();
 			}
 
-
-			ModBuilder.WaitForBuildDone();
+			if (!nobuild)
+			{
+				ModBuilder.WaitForBuildDone();
+			}
+			
 
 
 
