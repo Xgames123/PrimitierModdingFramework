@@ -1,0 +1,21 @@
+<!-- This file is used for sharing property's between the different PMF projects -->
+<Project Sdk="Microsoft.NET.Sdk">
+	
+	<PropertyGroup>
+		<PMFVersion>4.0.0</PMFVersion>
+		<PMFAuthors>XGames105</PMFAuthors>
+		<PMFTags>Primitier;pmf;primitier;mod;modding;melonloader;melon loader;MelonLoader</PMFTags>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<Authors>$(PMFAuthors)</Authors>
+		<Company>$(PMFAuthors)</Company>
+		
+		<AssemblyVersion>$(PMFVersion)</AssemblyVersion>
+		<FileVersion>$(PMFVersion)</FileVersion>
+		<Version>$(PMFVersion)</Version>
+		<PackageVersion>$(PMFVersion)</PackageVersion>
+	</PropertyGroup>
+	
+
+</Project>
