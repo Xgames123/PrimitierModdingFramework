@@ -5,31 +5,30 @@
 
 
   <PropertyGroup>
+	  <Title>PMFTool</Title>
 	  <ToolCommandName>PMFTool</ToolCommandName>
 	  <AssemblyName>PMFTool</AssemblyName>
 	  <PackageId>XGames105.PMF.PMFTool</PackageId>
 	  <Description>A tool to help make mods using PMF</Description>
-
-	  <OutputType>Exe</OutputType>
-	  <TargetFramework>net6.0</TargetFramework>
-	  <ImplicitUsings>enable</ImplicitUsings>
-	  <Nullable>enable</Nullable>
 	  <PackAsTool>true</PackAsTool>
 
-	  <PackageOutputPath>./bin/Release/nupkg</PackageOutputPath>
 
-	  <Title>PMFTool</Title>
+	  <PackageOutputPath>./bin/Release/nupkg</PackageOutputPath>
+	  <TargetFramework>net6.0</TargetFramework>
+
 
 	  <PackageTags>$(PMFTags);tool;Tool;cli;CLI</PackageTags>
-	  <ApplicationIcon>Icon.ico</ApplicationIcon>
 	  <PackageIcon>Icon.png</PackageIcon>
 	
   </PropertyGroup>
 	
 	
-  <ItemGroup>
-    <Content Include="Icon.ico" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 	
 	
   <ItemGroup>
@@ -40,11 +39,6 @@
   </ItemGroup>
 	
 	
-  <ItemGroup>
-    <None Update="Icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+
 
 </Project>

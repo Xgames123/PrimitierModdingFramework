@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<!--This import should not be in your projects. This file is used for sharing property's between the different PMF projects -->
+	<Import Project="../PMF.Shared.targets" />
+	
+	
+	<PropertyGroup>
+		
+
+		<Title>Msbuild targets for PMF</Title>
+		<Description>Msbuild targets for PMF</Description>
+		<PackageId>XGames105.PMF.Msbuild</PackageId>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		
+		<PackageOutputPath>./bin/Release/nupkg</PackageOutputPath>
+		<TargetFramework>net6.0</TargetFramework>
+		
+		<PackageTags>$(PMFTags);msbuild;targets;MsBuild;build</PackageTags>
+		<PackageIcon>Icon.png</PackageIcon>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Update="Icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="PMF.targets">
+			<Pack>True</Pack>
+			<PackagePath>/build/PMF.Msbuild.targets</PackagePath>
+		</None>
+	</ItemGroup>
+</Project>

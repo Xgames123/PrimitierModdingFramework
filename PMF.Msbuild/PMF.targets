@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<!--<TargetFramework Condition="'$(TargetFramework)' == ''">net472</TargetFramework>-->
 		<ProxyDllsFolder Condition="'$(ProxyDllsFolder)' == ''">../Dlls</ProxyDllsFolder>
 		<EntryPointClass Condition="'$(EntryPointClass)' == ''">$(RootNamespace).Mod</EntryPointClass>
 		<AddMelonAttributes Condition="'$(AddMelonAttributes)' == ''">true</AddMelonAttributes>
+		<OutputType Condition="'$(OutputType)' == ''">Library</OutputType>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="!$(ProxyDllsFolder.EndsWith('/'))">
@@ -16,8 +16,16 @@
 	</ItemGroup>
 	
 	<ItemGroup Condition="'$(AddMelonAttributes)' == 'true'">
-		<!--<AssemblyAttribute Include="MelonLoader.MelonInfo" IsLiteral="true" _Parameter1="typeof($(EntryPointClass))" _Parameter2="&quot;$(Description)&quot;" _Parameter3="&quot;$(Version)&quot;" _Parameter4="&quot;$(Authors)&quot;"/>
-		<AssemblyAttribute Include="MelonLoader.MelonGame" _Parameter1="PrimitierDev" _Parameter2="Primitier"/>
-		-->
+		<AssemblyAttribute Include="MelonLoader.MelonInfo">
+			<_Parameter1>typeof($(EntryPointClass))</_Parameter1>
+			<_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+			<_Parameter2>$(AssemblyName)</_Parameter2>
+			<_Parameter3>$(Version)</_Parameter3>
+			<_Parameter4>$(Authors)</_Parameter4>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="MelonLoader.MelonGame">
+			<_Parameter1>PrimitierDev</_Parameter1>
+			<_Parameter2>Primitier</_Parameter2>
+		</AssemblyAttribute>
 	</ItemGroup>
 </Project>

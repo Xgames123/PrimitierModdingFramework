@@ -14,7 +14,7 @@ using UnityEngine.XR;
 namespace DemoMod
 {
 
-	public class DemoMod : PrimitierMod
+	public class Mod : PrimitierMod
     {
 
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)

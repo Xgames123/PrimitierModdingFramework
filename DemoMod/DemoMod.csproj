@@ -4,13 +4,18 @@
 	<Import Project="../PMF.Shared.targets" />
 
 	<PropertyGroup>
+		<TargetFramework>net472</TargetFramework>
 		<RootNamespace>DemoMod</RootNamespace>
-		<Description>A demo mod for PMF</Description>
-
 		<AssemblyName>DemoModV$(PMFVersion)</AssemblyName>
+
+		<Description>A demo mod for PMF</Description>
 		
 		
 	</PropertyGroup>
 
 	<Import Project="../PMF.targets" />
+
+	<ItemGroup>
+	  <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj" />
+	</ItemGroup>
 </Project>

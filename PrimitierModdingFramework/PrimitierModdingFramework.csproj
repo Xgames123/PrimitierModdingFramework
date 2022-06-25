@@ -5,10 +5,7 @@
 	
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
-		<OutputType>Library</OutputType>
-		
 		<RootNamespace>PrimitierModdingFrameworkV$</RootNamespace>
-
 		<AssemblyName>PrimitierModdingFrameworkV$(PMFVersion)</AssemblyName>
 
 		<AddMelonAttributes>false</AddMelonAttributes>

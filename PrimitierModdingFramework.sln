@@ -4,11 +4,13 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoMod", "DemoMod\DemoMod.csproj", "{34CE6DED-C150-485F-9408-801AA9E99983}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimitierModdingFramework", "PrimitierModdingFramework\PrimitierModdingFramework.csproj", "{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimitierModdingFramework", "PrimitierModdingFramework\PrimitierModdingFramework.csproj", "{0CF60620-BB4F-43A3-8F18-77EB9A4BE344}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PMFTool", "PMFTool\PMFTool.csproj", "{81C7E8AB-8AFC-4A88-AF3A-82CF03C6AEDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMFTemplates", "PMFTemplates\PMFTemplates.csproj", "{9E7C6D3B-44A5-4FDC-97D0-4223B97E3C6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PMFTemplates", "PMFTemplates\PMFTemplates.csproj", "{9E7C6D3B-44A5-4FDC-97D0-4223B97E3C6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMF.Msbuild", "PMF.Msbuild\PMF.Msbuild.csproj", "{BAE25196-71C0-475C-8F65-649E803F4C28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,14 @@ Global
 		{9E7C6D3B-44A5-4FDC-97D0-4223B97E3C6C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E7C6D3B-44A5-4FDC-97D0-4223B97E3C6C}.Release|x86.ActiveCfg = Release|Any CPU
 		{9E7C6D3B-44A5-4FDC-97D0-4223B97E3C6C}.Release|x86.Build.0 = Release|Any CPU
+		{BAE25196-71C0-475C-8F65-649E803F4C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAE25196-71C0-475C-8F65-649E803F4C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAE25196-71C0-475C-8F65-649E803F4C28}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BAE25196-71C0-475C-8F65-649E803F4C28}.Debug|x86.Build.0 = Debug|Any CPU
+		{BAE25196-71C0-475C-8F65-649E803F4C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAE25196-71C0-475C-8F65-649E803F4C28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAE25196-71C0-475C-8F65-649E803F4C28}.Release|x86.ActiveCfg = Release|Any CPU
+		{BAE25196-71C0-475C-8F65-649E803F4C28}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
