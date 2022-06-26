@@ -1,31 +1,14 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "XGames105",
-  "classifications": ["Mod", "PMF", "V0.4" ],
-  "identity": "XGames105.PMF.V0_4.EmptyMod",
-  "name": "Empty PMF V0.4 mod",
-  "shortName": "emptypmfv0_4mod",
+  "classifications": ["Mod", "PMF"],
+  "identity": "XGames105.PMF.EmptyMod",
+  "name": "Empty PMF mod",
+  "shortName": "emptypmfmod",
   "sourceName":"TemplateMod",
   "tags": {
     "language": "C#",
     "type": "project"
-  },
-  
-  "symbols": {
-    "Authors":{
-     "type": "parameter",
-     "description": "the author(s) of this mod",
-     "datatype":"text",
-     "defaultValue": "",
-     "replaces": "{{Authors}}"
-    },
-    "Description":{
-      "type": "parameter",
-      "description": "description for this mod",
-      "datatype":"text",
-      "defaultValue": "",
-      "replaces": "{{Description}}"
-     }
   }
   
   

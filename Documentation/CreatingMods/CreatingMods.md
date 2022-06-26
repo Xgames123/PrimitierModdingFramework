@@ -21,39 +21,36 @@ Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.
 
 
 ## Setup a project Using the template
-1) download ```XGames105.PMF.Templates.0.4.0.nupkg``` from the latest release
+1) install the project template by running ```dotnet new --install XGames105.PMF.Templates```
 
-2) Install the template by running ```dotnet new --install C:/full/path/to/XGames105.PMF.Templates.0.4.0.nupkg```
-    
-    Note: --install should end with XGames105.PMF.Templates.0.4.0.nupkg
+2) install PMFTool by running ```dotnet tool install XGames105.PMF.PMFTool --global```
 
-    Note: To uninstall the templates run ```dotnet new --uninstall XGames105.PMF.Templates```
+2) Create a new project in your ide and select the 'Empty PMF mod' project template
+3) build your project
+4) open cmd or powershell in the directory of .csproj file and run ```PMFTool run```
 
-2) Create a new project and select the 'Empty PMF mod'
-5) run ```PMFTool update-dlls```
-6) to run use ```PMFTool run```
-
-7) If you need help feel free to start a issue on GitHub.
+5) If you need help feel free to start a issue on GitHub. or ask on discord
 
 ## Setup a project without using the template
-1) Copy the DemoProject
-2) In AssemblyInfo.cs change the the values in the buildInfo class
-3) In Mod.json change the values to your own
-4) Rename DemoMod.cs to your own mods name
+1) clone the repo
+2) copy PMFTemplates/templates/TemplateMod to a new location
+3) edit TemplateMod.csproj
+4) build
+5) open cmd or powershell in the directory of TemplateMod.csproj and run ```PMFTool run```
 
-5) run ```PMFTool update-dlls```
-6) to run use ```PMFTool run```
-
-7) If you need help feel free to start a issue on GitHub.
+6) If you need help feel free to start a issue on GitHub. or ask on discord
 
 
 ## Package a mod for Primiter mod manager
-* run ```PMFTool pack --format Pmfm``` you can change the format to zip if you want compatibility with raw melonLoader
+1) open cmd or powershell in the directory of the .csproj file
+2) run ```PMFTool pack --format Pmfm``` you can change the format to zip if you want compatibility with raw melonLoader
 
 
-## Table of contents
+## Table of content
 
 * [PMFTool](./PMFTool/PMFTool.md)
+
+* [MSBuild package](./PMF.Msbuild.md)
 
 * [Custom substances and materials](./CustomSubstancesAndMaterials.md)
 
