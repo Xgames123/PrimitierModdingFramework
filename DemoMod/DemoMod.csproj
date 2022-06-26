@@ -6,9 +6,8 @@
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<RootNamespace>DemoMod</RootNamespace>
-		<AssemblyName>DemoModV$(PMFVersion)</AssemblyName>
 
-		<Title>Demo mod</Title>
+		<Title>PMF Demo mod</Title>
 		<Description>A demo mod for PMF</Description>
 		
 		<!--This is commented out because it is already set by PMF.Shared.targets-->
@@ -22,7 +21,7 @@
 
 
 	<ItemGroup>
-	
+	  
 	  <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj" />
 	</ItemGroup>
 
