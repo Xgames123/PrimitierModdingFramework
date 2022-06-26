@@ -13,12 +13,12 @@
 		
 		<RootNamespace>PrimitierModdingFrameworkV$</RootNamespace>
 		<PackageTags>$(PMFTags)</PackageTags>
-
 	</PropertyGroup>
 	
 	<PropertyGroup>
 		<AddMelonAttributes>false</AddMelonAttributes>
-		<UpdateDllsBeforeBuild>false</UpdateDllsBeforeBuild>
+		<UsePMFTool>false</UsePMFTool>
+		
 		
 	</PropertyGroup>
 	

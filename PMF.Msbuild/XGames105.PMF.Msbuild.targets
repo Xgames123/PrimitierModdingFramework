@@ -1,15 +1,22 @@
 <Project>
-	
+
+
 	<PropertyGroup>
 		<ProxyDllsFolder Condition="'$(ProxyDllsFolder)' == ''">../Dlls</ProxyDllsFolder>
 		<EntryPointClass Condition="'$(EntryPointClass)' == ''">$(RootNamespace).Mod</EntryPointClass>
-		<NoPMFTool Condition="'$(NoPMFTool)' == ''">true</NoPMFTool>
+		<UsePMFTool Condition="'$(UsePMFTool)' == ''">true</UsePMFTool>
+		<AutoGenerateModJson Condition="'$(AutoGenerateModJson)' == ''">true</AutoGenerateModJson>
 		<AddMelonAttributes Condition="'$(AddMelonAttributes)' == ''">true</AddMelonAttributes>
+		
 		<OutputType Condition="'$(OutputType)' == ''">Library</OutputType>
 
-		
+
+		<PMFMsBuildNugetPackagePath>$([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName($(MSBuildThisFileDirectory)))))))</PMFMsBuildNugetPackagePath>
 	</PropertyGroup>
-	
+
+	<UsingTask TaskName="PMF.Msbuild.WriteModJson" AssemblyFile="$(PMFMsBuildNugetPackagePath)\lib\net472\PMF.MsBuild.dll" />	
+
+
 	<PropertyGroup Condition="!$(ProxyDllsFolder.EndsWith('/'))">
 		<ProxyDllsFolder>$(ProxyDllsFolder)/</ProxyDllsFolder>
 	</PropertyGroup>
@@ -30,17 +37,23 @@
 			<_Parameter1>PrimitierDev</_Parameter1>
 			<_Parameter2>Primitier</_Parameter2>
 		</AssemblyAttribute>
+		
 	</ItemGroup>
 
 
-	<Target Condition="'$(NoPMFTool)' == 'true'" Name="UpdateDlls" BeforeTargets="BeforeBuild">
-		<Exec Command="PMFTool update-dlls --noprompts" ContinueOnError="True" ConsoleToMsBuild="True">
+	<Target Condition="'$(UsePMFTool)' == 'true'" Name="UpdateDlls" BeforeTargets="BeforeBuild">
+		<Exec Command="PMFTool update-dlls --noprompts" ContinueOnError="True" ConsoleToMsBuild="True" WorkingDirectory="$(MSBuildProjectDirectory)">
 			<Output TaskParameter="ExitCode" PropertyName="UpdateDllsExitcode"/>
 			<Output TaskParameter="ConsoleOutput" PropertyName="UpdateDllsOutput"/>
 		</Exec>
-		<Error Condition="'$(UpdateDllsExitcode)' == '9009'" Text="PMFTool is not installed (If you don't want to use pmf tool you can set NoPMFTool to false)"></Error>
-		<Error Condition="'$(UpdateDllsExitcode)' != '0'" Text="PMFTool returned ExitCode: $(UpdateDllsExitcode) (If you don't want to use pmf tool you can set NoPMFTool to false) $(UpdateDllsOutput)"/>
+		<Error Condition="'$(UpdateDllsExitcode)' == '9009'" Text="PMFTool is not installed (If you don't want to use pmf tool you can set UsePMFTool to false)"></Error>
+		<Error Condition="'$(UpdateDllsExitcode)' != '0'" Text="PMFTool returned ExitCode: $(UpdateDllsExitcode) (If you don't want to use pmf tool you can set UsePMFTool to false) $(UpdateDllsOutput)"/>
 	
 	</Target>
 
+	<Target Name="WriteModJsonTarget" Condition="'$(AutoGenerateModJson)' == 'true'" AfterTargets="AfterBuild">
+		<WriteModJson Path="$(OutDir)/Mod.json" DisplayName="$(Title)" Authors="$(Authors)" Description="$(Description)" Version="$(Version)"/>
+		
+	</Target>
+	
 </Project>

@@ -5,7 +5,8 @@
 		<TargetFramework>net472</TargetFramework>
 		<RootNamespace>TemplateMod</RootNamespace>
 		<AssemblyName>TemplateMod</AssemblyName>
-		
+
+		<Title>Template Mod</Title>
 		<Version>1.0.0</Version>
 		<Authors></Authors>
 		<Description></Description>
