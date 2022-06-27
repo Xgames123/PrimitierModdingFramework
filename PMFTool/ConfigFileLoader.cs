@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Sini;
 using System;
 using System.Collections.Generic;
@@ -28,13 +29,13 @@ namespace PMFTool
 		public static readonly string EmptyConfigTemplate =
 @"; configuration file from pmf tool
 
-; REQUIRED change this to the full path of Primitier.exe
-PrimitierPath=
+; Change this to the full path of Primitier.exe (Only if you are not using Primitier mod manager)
+;PrimitierPath=
 
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in debug mode
-;DebugBinPath=bin/Debug
+;DebugBinPath=bin/Debug/net472
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in release mode
-;ReleaseBinPath=bin/Release
+;ReleaseBinPath=bin/Release/net472
 
 ; OPTIONAL relative path to the working directory where the dlls are stored. Used by 'PMFTool update-dlls'
 ;DllPath=../Dlls
@@ -77,7 +78,13 @@ PrimitierPath=
 		{
 			var globalPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".pmftoolconfig");
 
-			return LoadConfig(globalPath, generateIfNotExist:true);
+			var globalConf = LoadConfig(globalPath, generateIfNotExist: true);
+			if (string.IsNullOrWhiteSpace(globalConf.PrimitierPath))
+			{
+				globalConf.PrimitierPath = FindPrimitierPath();
+			}
+
+			return globalConf;
 		}
 
 
@@ -97,6 +104,32 @@ PrimitierPath=
 			}
 
 			return mergedConfig;
+		}
+
+		private static string? FindPrimitierPath()
+		{
+			var ConfigFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal, Environment.SpecialFolderOption.Create), "PrimitierModdingFramework", "PMFInstallerConfig.json");
+
+			JObject obj = null;
+			try
+			{
+				obj = JObject.Parse(File.ReadAllText(ConfigFilePath));
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+
+			if (obj == null)
+				return null;
+
+			var prop = obj.GetValue("PrimitierInstallPath");
+
+			if (prop == null)
+				return null;
+
+			var path = Path.Combine((string)prop, "Primitier.exe");
+			return path;
 		}
 
 
