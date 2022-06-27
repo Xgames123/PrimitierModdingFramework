@@ -5,6 +5,8 @@ Note: A helpful resource for making mods is [MelonLoaderDocs](https://melonwiki.
 
 
 ## Setup a project Using the template
+Here is a [getting started video](https://youtu.be/U6nOnpO1fb4)
+
 1) [install PMFTool](./PMFTool/InstallPMFTool.md)
 
 2) install the project template by running ```dotnet new --install XGames105.PMF.Templates```
