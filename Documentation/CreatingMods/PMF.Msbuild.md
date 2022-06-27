@@ -1,40 +1,49 @@
 # PMF.MsBuild
 This package integrates pmf with msbuild
 
-## Using PMF.Msbuild
+## Converting old project to PMF.Msbuild
 1) Delete the Properties folder
-1) Open your ProjectName.csproj file in a text editor
-2) Delete everything in that file
-3) add this
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+2) modify your .pmftoolconfig
+	```ini
+		;change this
+		DebugBinPath=bin/Debug
+		ReleaseBinPath=bin/Release
+		; to this
+		DebugBinPath=bin/Debug/net472
+		ReleaseBinPath=bin/Release/net472
+	```
+3) Open your ProjectName.csproj file in a text editor
+4) Delete everything in that file
+5) add this
+	```xml
+	<?xml version="1.0" encoding="utf-8"?>
+	<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net472</TargetFramework>
-        <AssemblyName>TemplateMod</AssemblyName>
+		<PropertyGroup>
+			<TargetFramework>net472</TargetFramework>
+			<AssemblyName>TemplateMod</AssemblyName>
 
-        <!--Change this to the namespace of your Mod class-->
-		<RootNamespace>TemplateMod</RootNamespace>
+			<!--Change this to the namespace of your Mod class-->
+			<RootNamespace>TemplateMod</RootNamespace>
+
+			
+			<Title>Template Mod</Title>
+			<Version>1.0.0</Version>
+			<Authors></Authors>
+			<Description></Description>
+			
+			<!--Use this to set the namespace.classname of your entry point class (Mod.cs)-->
+			<!--<EntryPointClass></EntryPointClass>-->
+		</PropertyGroup>
+
+		<ItemGroup>
+		<PackageReference Include="XGames105.PMF" Version="0.4.1" />
+		<PackageReference Include="XGames105.PMF.Msbuild" Version="0.4.1" />
+		</ItemGroup>
 
 		
-		<Title>Template Mod</Title>
-		<Version>1.0.0</Version>
-		<Authors></Authors>
-		<Description></Description>
-		
-		<!--Use this to set the namespace.classname of your entry point class (Mod.cs)-->
-		<!--<EntryPointClass></EntryPointClass>-->
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="XGames105.PMF" Version="0.4.1" />
-	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.4.1" />
-	</ItemGroup>
-
-	
-</Project>
-```
+	</Project>
+	```
 
 
 ## Custom properties
