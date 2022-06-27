@@ -23,6 +23,9 @@
 	
 	<ItemGroup>
 		<Reference Include="$(ProxyDllsFolder)*.dll" Exclude="$(ProxyDllsFolder)netstandard.dll;$(ProxyDllsFolder)mscorlib.dll;$(ProxyDllsFolder)System.dll;$(ProxyDllsFolder)System.*.dll" />
+		<None Update="Icon.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 	
 	<ItemGroup Condition="'$(AddMelonAttributes)' == 'true'">
