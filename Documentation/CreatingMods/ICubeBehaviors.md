@@ -22,7 +22,7 @@
 
 4) At the end the class should look like this
 ```cs
-    public class MyCustomCubeBehavior : MonoBehavior, ICustomCubeBehaviour
+    public class MyCustomCubeBehavior : MonoBehaviour, ICustomCubeBehaviour
     {
         public MyCustomCubeBehavior(System.IntPtr ptr) : base(ptr){}
 
