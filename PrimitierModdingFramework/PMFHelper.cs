@@ -3,6 +3,7 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using TMPro;
 using UnhollowerBaseLib;
 using UnhollowerRuntimeLib;
 using UnityEngine;
@@ -20,6 +21,9 @@ namespace PrimitierModdingFramework
 		public static PlayerLife PlayerLife;
 
 		public static Transform MenuWindowL;
+
+		public static TMP_FontAsset PrimitierDefaultFont = null;
+
 
 		/// <summary>
 		/// The system transform is used to store gameobjects that don't require saving (Custom objects that are not Cubes)
@@ -65,8 +69,29 @@ namespace PrimitierModdingFramework
 			}
 
 			MenuWindowL = SafeTransformFind("MenuWindowL/Window", "MenuWindowL/Windows");
-			
 
+
+
+
+			PrimitierDefaultFont = FindPrimitierDefaultFont();
+
+		}
+		private TMP_FontAsset FindPrimitierDefaultFont()
+		{
+			var infoText = SafeTransformFind("InfoText");
+			if (infoText != null && infoText.GetComponent<TMPro.TextMeshPro>() != null)
+			{
+				return infoText.GetComponent<TextMeshPro>().font;
+			}
+
+			var startButton = SafeTransformFind("StartButton/Text (TMP)");
+			if (startButton != null && startButton.GetComponent<TextMeshPro>() != null)
+			{
+				return startButton.GetComponent<TextMeshPro>().font;
+			}
+
+
+			return null;
 		}
 
 		

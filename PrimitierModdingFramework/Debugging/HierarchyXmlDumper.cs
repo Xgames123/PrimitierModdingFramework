@@ -27,7 +27,8 @@ namespace PrimitierModdingFramework.Debugging
 			new TransformDumper(), 
 			new RectTransformDumper(),
 			new MeshRendererDumper(),
-			new MeshFilterDumper());
+			new MeshFilterDumper(),
+			new TextMeshProComponentDumper());
 
 		/// <summary>
 		/// Dumps the provided scene to HierarchyXmlDumper.FilePath using a provided ComponentDumperList.
@@ -145,7 +146,14 @@ namespace PrimitierModdingFramework.Debugging
 			var dumper = dumperList.GetByTargetComponent(name);
 			if (dumper != null)
 			{
-				dumper.OnDump(component, currentNode, dumperList);
+				try 
+				{
+					dumper.OnDump(component, currentNode, dumperList);
+				}
+				catch (System.Exception e)
+				{
+					currentNode.InnerText = $"FAILED TO DUMP THIS COMPONENT Exception:{e}";
+				}
 			}
 			else
 			{
