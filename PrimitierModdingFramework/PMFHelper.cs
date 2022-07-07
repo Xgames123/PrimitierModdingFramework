@@ -76,25 +76,27 @@ namespace PrimitierModdingFramework
 			PrimitierDefaultFont = FindPrimitierDefaultFont();
 
 		}
-		private TMP_FontAsset FindPrimitierDefaultFont()
+		private static TMP_FontAsset FindPrimitierDefaultFont()
 		{
-			var infoText = SafeTransformFind("InfoText");
-			if (infoText != null && infoText.GetComponent<TMPro.TextMeshPro>() != null)
-			{
-				return infoText.GetComponent<TextMeshPro>().font;
-			}
 
-			var startButton = SafeTransformFind("StartButton/Text (TMP)");
-			if (startButton != null && startButton.GetComponent<TextMeshPro>() != null)
+			var fonts = GameObject.FindObjectsOfTypeIncludingAssets(UnhollowerRuntimeLib.Il2CppType.Of<TMP_FontAsset>());
+			foreach (var font in fonts)
 			{
-				return startButton.GetComponent<TextMeshPro>().font;
-			}
+				if (font.name == "mplus-1p-black SDF")
+				{
+					var castedFont = font.TryCast<TMP_FontAsset>();
+					if (castedFont == null)
+						continue;
 
+					return castedFont;
+				}
+
+			}
 
 			return null;
 		}
 
-		
+
 
 		private Transform SafeTransformFind(params string[] names)
 		{
