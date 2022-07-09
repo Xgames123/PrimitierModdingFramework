@@ -20,6 +20,7 @@ namespace DemoMod
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
 			
+			
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 	
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");

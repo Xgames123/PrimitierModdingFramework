@@ -11,7 +11,7 @@
 		<Title>PrimitierModdingFramework</Title>
 		<Description>A modding library for Primitier that uses MellonLoader</Description>
 		
-		<RootNamespace>PrimitierModdingFrameworkV$</RootNamespace>
+		<RootNamespace>PrimitierModdingFramework</RootNamespace>
 		<PackageTags>$(PMFTags)</PackageTags>
 	</PropertyGroup>
 	
