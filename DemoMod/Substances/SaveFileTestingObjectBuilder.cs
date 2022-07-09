@@ -27,8 +27,6 @@ namespace DemoMod.Substances
 				OnSubstanceInitialize = (CubeBase cubeBase) =>
 				{
 					var sfto = cubeBase.gameObject.AddComponent<SaveFileTestingObject>();
-
-					sfto.value = JsonConvert.DeserializeObject<Color>(CustomWorldDataSystem.LoadCubeBehaviourData(cubeBase, nameof(SaveFileTestingObject)));
 				}
 			});
 

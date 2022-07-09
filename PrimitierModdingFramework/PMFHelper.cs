@@ -148,9 +148,15 @@ namespace PrimitierModdingFramework
 			{
 				if (type.GetInterface("ICustomCubeBehaviour") != null)
 				{
-					PMFLog.Message($"PMF: Injecting {type.FullName} ...");
+					PMFLog.Message($"PMF: Injecting ICubeBehavior {type.FullName} ...");
 					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, typeof(ICubeBehavior));
 				}
+				if (type.GetInterface(nameof(ICustomSavable)) != null)
+				{
+					PMFLog.Message($"PMF: Injecting ISavable {type.FullName} ...");
+					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, typeof(ISavable));
+				}
+
 				if (type.BaseType == typeof(CustomSubstanceBuilder))
 				{
 					PMFLog.Message($"PMF: Building {type.FullName} ...");
