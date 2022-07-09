@@ -122,7 +122,7 @@ namespace DemoMod
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
 			PMFSystem.EnableSystem<CustomAssetSystem>();
-			PMFSystem.EnableSystem<CustomWorldDataSystem>();
+			//PMFSystem.EnableSystem<CustomWorldDataSystem>();
 
 			PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly());
 

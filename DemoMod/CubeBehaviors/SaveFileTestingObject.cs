@@ -17,6 +17,11 @@ namespace DemoMod.CubeBehaviors
 
 		}
 
+		public SaveFileTestingObject(System.IntPtr ptr) : base(ptr)
+		{
+
+		}
+
 		private void Start()
 		{
 			
