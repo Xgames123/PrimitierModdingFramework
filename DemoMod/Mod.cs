@@ -48,7 +48,10 @@ namespace DemoMod
 			}
 
 
-
+			spawnMenu.CreateButton("Save file testing object", new System.Action(() =>
+			{
+				CubeGenerator.GenerateCube(spawnMenu.transform.position, new Vector3(0.1f, 0.1f, 0.1f), CustomSubstanceSystem.GetSubstanceByName("SUB_SFTO"));
+			}));
 			spawnMenu.CreateButton("Tree", new System.Action(() =>
 			{
 				CubeGenerator.GenerateTree(spawnMenu.transform.position, 1f, CubeGenerator.TreeType.Conifer);

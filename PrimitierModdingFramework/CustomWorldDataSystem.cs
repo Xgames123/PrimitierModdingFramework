@@ -98,7 +98,22 @@ namespace PrimitierModdingFramework
 
 		public static string LoadCubeBehaviourData(CubeBase cube, string behaviourName)
 		{
-			return CustomCubeBehaviourData[new CubeAndCubeBehaviour() {CubeGlobalPos = cube.transform.position, CubePos = cube.transform.localPosition, BehaviourName = behaviourName }];
+			
+			var retValue = CustomCubeBehaviourData[new CubeAndCubeBehaviour() { CubeGlobalPos = cube.transform.position, CubePos = cube.transform.localPosition, BehaviourName = behaviourName }];
+			if(retValue != null)
+			{
+				return retValue;
+			}
+			var chunkPos = CubeGenerator.WorldToChunkPos(cube.transform.position);
+
+			LoadCustomCubeBehavioursDataFromSaveFile(chunkPos);
+
+			retValue = CustomCubeBehaviourData[new CubeAndCubeBehaviour() { CubeGlobalPos = cube.transform.position, CubePos = cube.transform.localPosition, BehaviourName = behaviourName }];
+			if (retValue != null)
+			{
+				return retValue;
+			}
+			return null;
 		}
 
 
