@@ -1,4 +1,5 @@
-﻿using PrimitierModdingFramework.SubstanceModding;
+﻿using Il2CppSystem.Collections.Generic;
+using PrimitierModdingFramework.SubstanceModding;
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -143,19 +144,26 @@ namespace PrimitierModdingFramework
 		{
 			if (!IsEnabled)
 				throw new PMFSystemNotEnabledException(nameof(PMFHelper));
-
+			var interfaces = new System.Collections.Generic.List<Type>();
 			foreach (var type in types)
 			{
-				if (type.GetInterface("ICustomCubeBehaviour") != null)
-				{
-					PMFLog.Message($"PMF: Injecting ICubeBehavior {type.FullName} ...");
-					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, typeof(ICubeBehavior));
-				}
+				interfaces.Clear();
 				if (type.GetInterface(nameof(ICustomSavable)) != null)
 				{
-					PMFLog.Message($"PMF: Injecting ISavable {type.FullName} ...");
-					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, typeof(ISavable));
+					interfaces.Add(typeof(ISavable));
+					
 				}
+				
+				if (type.GetInterface(nameof(ICustomCubeBehaviour)) != null)
+				{
+					interfaces.Add(typeof(ICubeBehavior));
+				}
+				if (interfaces.Count > 0)
+				{
+					PMFLog.Message($"PMF: Injecting ISavable {type.FullName} ...");
+					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, interfaces.ToArray());
+				}
+
 
 				if (type.BaseType == typeof(CustomSubstanceBuilder))
 				{

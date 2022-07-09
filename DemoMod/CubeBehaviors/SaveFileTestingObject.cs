@@ -13,7 +13,7 @@ namespace DemoMod.CubeBehaviors
 	{
 		public class SaveData
 		{
-			public Color overlayColor;
+			public Color32 overlayColor;
 
 		}
 
@@ -40,11 +40,14 @@ namespace DemoMod.CubeBehaviors
 
 		public string Save()
 		{
+			PMFLog.Message("Saveing...");
 			return JsonConvert.SerializeObject(new SaveData() { overlayColor = GetComponent<MeshRenderer>().material.color });
 		}
 
 		public void Load(string json)
 		{
+			PMFLog.Message("Loading... "+json);
+
 			var saveData = JsonConvert.DeserializeObject<SaveData>(json);
 			if (saveData != null)
 			{
@@ -53,7 +56,7 @@ namespace DemoMod.CubeBehaviors
 				return;
 			}
 			GetComponent<MeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-			
+
 		}
 	}
 }
