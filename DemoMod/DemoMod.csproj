@@ -15,6 +15,11 @@
 		<!--<Version>1.0.0</Version>-->
 	</PropertyGroup>
 
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Assets\Textures\**" />
+	</ItemGroup>
+
 	<ItemGroup>
 	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.4.1" />
 	</ItemGroup>
