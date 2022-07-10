@@ -137,6 +137,11 @@ namespace DemoMod
 		{
 			base.OnUpdate();
 
+			if (Input.GetKeyUp(KeyCode.Space))
+			{
+				HierarchyXmlDumper.DumpSceneToFile();
+			}
+
 		}
 
 		public override void OnFixedUpdate()

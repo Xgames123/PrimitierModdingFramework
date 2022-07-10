@@ -24,7 +24,12 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 				return;
 			}
 
+			var subBehaviour = settings.AddCustomCubeBehaviour?.Invoke(__instance);
+			__instance.substanceBehavior = (Component)subBehaviour;
+
 			settings.OnEarlySubstanceInitialize?.Invoke(__instance);
+
+			
 		}
 
 
@@ -45,8 +50,8 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 
 			settings.OnSubstanceInitialize?.Invoke(__instance);
 
-			var subBehaviour = settings.AddCustomCubeBehaviour?.Invoke(__instance);
-			__instance.substanceBehavior = (Component)subBehaviour;
+			var substanceBehaviour = settings.AddCustomCubeBehaviour?.Invoke(__instance);
+			__instance.substanceBehavior = (Component)substanceBehaviour;
 		}
 
 	}
