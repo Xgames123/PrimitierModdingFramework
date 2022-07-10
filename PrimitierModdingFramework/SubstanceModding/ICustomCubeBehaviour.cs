@@ -14,8 +14,6 @@ namespace PrimitierModdingFramework.SubstanceModding
 	
 	public interface ICustomCubeBehaviour
 	{
-		void OnFragmentInitialized(CubeBase fragmentCubeBase);
-		void OnCollideWithCube(CubeBase colCubeBase);
 
 	}
 }

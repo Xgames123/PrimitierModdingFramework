@@ -23,6 +23,11 @@ namespace PrimitierModdingFramework.SubstanceModding
 		public Action<CubeBase> OnEarlySubstanceInitialize = null;
 
 		/// <summary>
+		/// Function used to add a custom cube behaviour to the cubeBase
+		/// </summary>
+		public Func<CubeBase, ICustomCubeBehaviour> AddCustomCubeBehaviour;
+
+		/// <summary>
 		/// Japanese name of the substance
 		/// </summary>
 		public string JpName = "";

@@ -56,15 +56,5 @@ namespace DemoMod.CubeBehaviors
 			OnSpawn?.Invoke(this);
 		}
 
-
-		public void OnCollideWithCube(CubeBase colCubeBase)
-		{
-			
-		}
-
-		public void OnFragmentInitialized(CubeBase fragmentCubeBase)
-		{
-			
-		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace PrimitierModdingFramework.SubstanceModding.Patches
 {
@@ -44,6 +45,8 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 
 			settings.OnSubstanceInitialize?.Invoke(__instance);
 
+			var subBehaviour = settings.AddCustomCubeBehaviour?.Invoke(__instance);
+			__instance.substanceBehavior = (Component)subBehaviour;
 		}
 
 	}

@@ -28,16 +28,6 @@ namespace DemoMod.CubeBehaviors
 		}
 
 
-		public void OnCollideWithCube(CubeBase colCubeBase)
-		{
-			
-		}
-
-		public void OnFragmentInitialized(CubeBase fragmentCubeBase)
-		{
-			
-		}
-
 		public string Save()
 		{
 			PMFLog.Message("Saveing...");

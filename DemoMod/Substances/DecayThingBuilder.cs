@@ -45,10 +45,9 @@ namespace DemoMod.Substances
 			{
 				EnName = "Decay thing",
 				JpName = "腐敗の事",
-				OnSubstanceInitialize = (CubeBase cubeBase) =>
+				AddCustomCubeBehaviour = (CubeBase cubeBase) =>
 				{
-					cubeBase.gameObject.AddComponent<Decay>();
-
+					return cubeBase.gameObject.AddComponent<Decay>();
 				}
 			});
 
