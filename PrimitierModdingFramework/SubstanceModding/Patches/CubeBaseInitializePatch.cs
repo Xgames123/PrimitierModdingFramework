@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -25,7 +26,6 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 			}
 
 			var subBehaviour = settings.AddCustomCubeBehaviour?.Invoke(__instance);
-			__instance.substanceBehavior = (Component)subBehaviour;
 
 			settings.OnEarlySubstanceInitialize?.Invoke(__instance);
 
@@ -36,7 +36,6 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 
 		private static void Postfix(CubeBase __instance, Substance substance)
 		{
-			
 
 			if (!CustomSubstanceSystem.IsEnabled)
 			{
@@ -52,6 +51,8 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 
 			var substanceBehaviour = settings.AddCustomCubeBehaviour?.Invoke(__instance);
 			__instance.substanceBehavior = (Component)substanceBehaviour;
+
+			__instance.UpdateSubstanceBehavior();
 		}
 
 	}
