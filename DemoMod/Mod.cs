@@ -56,6 +56,10 @@ namespace DemoMod
 			{
 				CubeGenerator.GenerateTree(spawnMenu.transform.position, 1f, CubeGenerator.TreeType.Conifer);
 			}));
+			spawnMenu.CreateButton("Rubber Tree", new System.Action(() =>
+			{
+				CubeGenerator.GenerateTree(spawnMenu.transform.position, 1f, CubeGenerator.TreeType.Rubber);
+			}));
 			spawnMenu.CreateButton("Custom Tree", new System.Action(() =>
 			{
 				CustomThreeGenerator.Generate(spawnMenu.transform.position, 1f);
@@ -122,7 +126,6 @@ namespace DemoMod
 			PMFSystem.EnableSystem<InGameDebuggingSystem>();
 			PMFSystem.EnableSystem<CustomSubstanceSystem>();
 			PMFSystem.EnableSystem<CustomAssetSystem>();
-			//PMFSystem.EnableSystem<CustomWorldDataSystem>();
 
 			PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly());
 

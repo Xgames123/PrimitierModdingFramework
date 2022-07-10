@@ -24,7 +24,7 @@ namespace DemoMod.Substances
 			{
 				EnName = "Save file testing object",
 				JpName = "ファイルテストオブジェクトの保存",
-				OnSubstanceInitialize = (CubeBase cubeBase) =>
+				OnEarlySubstanceInitialize = (CubeBase cubeBase) =>
 				{
 					var sfto = cubeBase.gameObject.AddComponent<SaveFileTestingObject>();
 				}

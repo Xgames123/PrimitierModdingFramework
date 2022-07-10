@@ -1,4 +1,5 @@
-﻿using PrimitierModdingFramework.SubstanceModding;
+﻿using PrimitierModdingFramework;
+using PrimitierModdingFramework.SubstanceModding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,14 +51,22 @@ namespace DemoMod.CubeBehaviors
 		
 		}
 
+		public void SparseUpdate()
+		{
+			PMFLog.Message("SparseUpdate");
+		}
+		public void OnReceiveDamage(float amount, Vector3 colPoint)
+		{
+			PMFLog.Message("OnReceiveDamage "+ amount);
+		}
 
 		public void OnFragmentInitialized(CubeBase fragmentCubeBase)
 		{
-
+			PMFLog.Message("OnFragmentInitialized");
 		}
 		public void OnCollideWithCube(CubeBase colCubeBase)
 		{
-
+			PMFLog.Message("OnCollideWithCube");
 		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnhollowerBaseLib.Attributes;
+using UnityEngine;
 
 namespace PrimitierModdingFramework.SubstanceModding
 {
@@ -15,5 +16,6 @@ namespace PrimitierModdingFramework.SubstanceModding
 	{
 		void OnFragmentInitialized(CubeBase fragmentCubeBase);
 		void OnCollideWithCube(CubeBase colCubeBase);
+
 	}
 }

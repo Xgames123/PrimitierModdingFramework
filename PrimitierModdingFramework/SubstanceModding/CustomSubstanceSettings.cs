@@ -18,6 +18,11 @@ namespace PrimitierModdingFramework.SubstanceModding
 		public Action<CubeBase> OnSubstanceInitialize = null;
 
 		/// <summary>
+		/// Same as OnSubstanceInitialize except it is called before the game initializes the cube base
+		/// </summary>
+		public Action<CubeBase> OnEarlySubstanceInitialize = null;
+
+		/// <summary>
 		/// Japanese name of the substance
 		/// </summary>
 		public string JpName = "";

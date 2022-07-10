@@ -48,6 +48,8 @@ namespace DemoMod.CubeBehaviors
 		{
 			PMFLog.Message("Loading... "+json);
 
+			
+
 			var saveData = JsonConvert.DeserializeObject<SaveData>(json);
 			if (saveData != null)
 			{

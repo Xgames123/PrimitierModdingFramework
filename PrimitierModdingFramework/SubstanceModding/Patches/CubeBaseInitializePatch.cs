@@ -10,6 +10,24 @@ namespace PrimitierModdingFramework.SubstanceModding.Patches
 	[HarmonyPatch(typeof(CubeBase), nameof(CubeBase.Initialize))]
 	public class CubeBaseInitializePatch
 	{
+		private static void Prefix(CubeBase __instance, Substance substance)
+		{
+
+			if (!CustomSubstanceSystem.IsEnabled)
+			{
+				return;
+			}
+			var sub = CustomSubstanceSystem.GetSubstance(substance);
+			if (sub == null || !CustomSubstanceSystem.CustomSubstanceSettings.TryGetValue(sub.displayNameKey, out CustomSubstanceSettings settings))
+			{
+				return;
+			}
+
+			settings.OnEarlySubstanceInitialize?.Invoke(__instance);
+		}
+
+
+
 		private static void Postfix(CubeBase __instance, Substance substance)
 		{
 			

@@ -160,7 +160,16 @@ namespace PrimitierModdingFramework
 				}
 				if (interfaces.Count > 0)
 				{
-					PMFLog.Message($"PMF: Injecting ISavable {type.FullName} ...");
+					var interfacesSb = new StringBuilder();
+					for (int i = 0; i < interfaces.Count; i++)
+					{
+						if (i != 0)
+							interfacesSb.Append(", ");
+						interfacesSb.Append(interfaces[i].Name);
+						
+					}
+
+					PMFLog.Message($"PMF: Injecting {type.FullName} with interfaces: {interfacesSb}");
 					ClassInjector.RegisterTypeInIl2CppWithInterfaces(type, true, interfaces.ToArray());
 				}
 
