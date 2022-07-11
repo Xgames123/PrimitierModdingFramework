@@ -25,6 +25,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
+		<Reference Condition="'$(UseDirectLink)' == 'true'" Include="$(MelonloaderDll)"></Reference>
 		<Reference Include="$(ProxyDllsFolder)*.dll" Exclude="$(ProxyDllsFolder)netstandard.dll;$(ProxyDllsFolder)mscorlib.dll;$(ProxyDllsFolder)System.dll;$(ProxyDllsFolder)System.*.dll" />
 		<None Update="Icon.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -47,7 +48,7 @@
 	</ItemGroup>
 
 
-	<Target Condition="'$(UsePMFTool)' == 'true' And '$(UseDirectLink)' == 'false'" Name="UpdateDlls" BeforeTargets="BeforeBuild">
+	<Target Condition="'$(UsePMFTool)' == 'true'" Name="UpdateDlls" BeforeTargets="BeforeBuild">
 		<Exec Command="PMFTool update-dlls --noprompts" ContinueOnError="True" ConsoleToMsBuild="True" WorkingDirectory="$(MSBuildProjectDirectory)">
 			<Output TaskParameter="ExitCode" PropertyName="UpdateDllsExitcode"/>
 			<Output TaskParameter="ConsoleOutput" PropertyName="UpdateDllsOutput"/>
@@ -64,7 +65,7 @@
 
 
 	<Target Name="ErrorTarget" BeforeTargets="Compile">
-
+		<Error Text="MelonloaderDll has to be set if UseDirectLink is set (This can be done automatically running pmftool update-dlls)" Condition="'$(UseDirectLink)' == 'true' And '$(MelonloaderDll)' == ''"></Error>
 		<Error Text="ProxyDllsFolder has to be set if UseDirectLink is set (This can be done automatically running pmftool update-dlls)" Condition="'$(UseDirectLink)' == 'true' And '$(ProxyDllsFolder)' == '../Dlls/'" />
 	</Target>
 </Project>

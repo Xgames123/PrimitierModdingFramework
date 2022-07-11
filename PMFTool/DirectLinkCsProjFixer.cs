@@ -31,11 +31,14 @@ public static class DirectLinkCsProjFixer
 		}
 
 		var proxyDllDir = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "Managed"));
+		var melonloaderDll = new FileInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "MelonLoader.dll"));
 
 		bool hasChangedDoc = false;
 		if (SetElement(xmlDocument, "UseDirectLink", "true"))
 			hasChangedDoc = true;
 		if(SetElement(xmlDocument, "ProxyDllsFolder", proxyDllDir.FullName))
+			hasChangedDoc = true;
+		if (SetElement(xmlDocument, "MelonloaderDll", melonloaderDll.FullName))
 			hasChangedDoc = true;
 
 		if (hasChangedDoc == false)

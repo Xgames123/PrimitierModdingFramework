@@ -1,34 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-	<!--This import should not be in your projects. This file is used for sharing property's between the different PMF projects -->
-	<Import Project="../PMF.Shared.targets" />
-
-	<PropertyGroup>
-		<TargetFramework>net472</TargetFramework>
-		<RootNamespace>DemoMod</RootNamespace>
-
-		<Title>PMF Demo mod</Title>
-		<Description>A demo mod for PMF</Description>
-
-		<!--This is commented out because it is already set by PMF.Shared.targets-->
-		<!--<Authors>XGames105</Authors>-->
-		<!--<Version>1.0.0</Version>-->
-	</PropertyGroup>
-
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Assets\Textures\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.5.0" />
-	</ItemGroup>
-
-
-	<ItemGroup>
-	  
-	  <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj" />
-	</ItemGroup>
-
-	
+  <!--This import should not be in your projects. This file is used for sharing property's between the different PMF projects -->
+  <Import Project="../PMF.Shared.targets" />
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>DemoMod</RootNamespace>
+    <Title>PMF Demo mod</Title>
+    <Description>A demo mod for PMF</Description>
+    <!--This is commented out because it is already set by PMF.Shared.targets-->
+    <!--<Authors>XGames105</Authors>-->
+    <!--<Version>1.0.0</Version>-->
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Textures\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="XGames105.PMF.Msbuild" Version="0.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj" />
+  </ItemGroup>
+  <PropertyGroup>
+    <UseDirectLink>true</UseDirectLink>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProxyDllsFolder>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed</ProxyDllsFolder>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MelonloaderDll>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\MelonLoader.dll</MelonloaderDll>
+  </PropertyGroup>
 </Project>
