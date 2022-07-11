@@ -38,6 +38,29 @@ namespace PMFTool.Commands
 
 			if (config.DirectDllLink)
 			{
+				
+				var dllDirectory = new DirectoryInfo(config.DllPath);
+
+				if (Directory.Exists(dllDirectory.FullName))
+				{
+					if (noprompts)
+					{
+						ConsoleWriter.WriteLineWarning("There still exist a old Dlls folder run 'pmftool update-dlls' whiteout the --noprompts flag to delete it");
+					}
+					else
+					{
+						if (ConsoleWriter.AskForYesNo($"There still exist a old Dlls folder whould you like to delete it? \n Here is the full path: {dllDirectory.FullName}"))
+						{
+							dllDirectory.Delete(true);
+						}
+					}
+
+				}
+
+				
+				
+
+				ConsoleWriter.WriteLineStatus("Fixing .csproj file");
 				DirectLinkCsProjFixer.Fix(csprojFilePath, config);
 				return;
 			}

@@ -52,7 +52,8 @@ public static class DirectLinkCsProjFixer
 			ConsoleWriter.WriteLineError("Could not save modified .csproj file", e);
 			return;
 		}
-		
+		ConsoleWriter.WriteLineStatus("Saved new .csproj file");
+
 	}
 
 	private static bool SetElement(XmlDocument document, string elementName, string innerText)
