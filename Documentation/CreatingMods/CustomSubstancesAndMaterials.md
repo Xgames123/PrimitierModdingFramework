@@ -31,13 +31,23 @@ Call ```CustomSubstanceSystem.GetSubstanceByName("YOUR_SUBSTANCE")``` to get the
 
 
 ## Substance values descriptions
-**If any of this is wrong please create an issue**
-
 SubstanceParameters.Param has a couple of misleading names.
-* stiffness: this is the damage the object does to another object. (Maybe this is wrong I haven't tested it allot)
-* strength: this is the health of the object.
-* density: Mass through =m/v relationship (This value goes from 0 to 1)
 
+Thanks to GracefulBoy for finding most of this
+
+**If some one finds out more about this please message me**
+* strength = health
+* stiffness = damage
+* density = mass per volume unit
+* isflammable = is flammable
+* isedible = is food
+* kindlingpoint = ???
+* collisionsound = the sound on hit (available sounds can be found in the resource dump by calling ResourceXmlDumper.DumpAllToFile();)
+* displayname = the name
+* material = the material (how it looks)
+* combustionspeed = how fast it burns (warning: high values, even as high as 100, will cause the object to instantly vaporize and generate a LOT of heat)
+* combustionheat = probably means how much heat the material makes
+* heatcapacity = ???
 
 ## Custom substance builders
 Custom substance builders are not required to create custom substances but it can help to organize your substances into differed classes
