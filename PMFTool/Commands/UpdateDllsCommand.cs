@@ -49,7 +49,7 @@ namespace PMFTool.Commands
 					}
 					else
 					{
-						if (ConsoleWriter.AskForYesNo($"There still exist a old Dlls folder whould you like to delete it? \n Here is the full path: {dllDirectory.FullName}"))
+						if (ConsoleWriter.AskForYesNo($"There still exist a old Dlls folder whould you like to delete it?\nHere is the full path: {dllDirectory.FullName}"))
 						{
 							dllDirectory.Delete(true);
 						}
