@@ -1,30 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-	<!--This import should not be in your projects. This file is used for sharing property's between the different PMF projects -->
-	<Import Project="../PMF.Shared.targets" />
+  <!--This import should not be in your projects. This file is used for sharing property's between the different PMF projects -->
+  <Import Project="../PMF.Shared.targets" />
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>PrimitierModdingFrameworkV$(PMFVersion)</AssemblyName>
+    <PackageId>XGames105.PMF</PackageId>
+    <Title>PrimitierModdingFramework</Title>
+    <Description>A modding library for Primitier that uses MellonLoader</Description>
+    <RootNamespace>PrimitierModdingFramework</RootNamespace>
+    <PackageTags>$(PMFTags)</PackageTags>
+  </PropertyGroup>
 	
-	<PropertyGroup>
-		<TargetFramework>net472</TargetFramework>
-		
-		<AssemblyName>PrimitierModdingFrameworkV$(PMFVersion)</AssemblyName>
-		<PackageId>XGames105.PMF</PackageId>
-		<Title>PrimitierModdingFramework</Title>
-		<Description>A modding library for Primitier that uses MellonLoader</Description>
-		
-		<RootNamespace>PrimitierModdingFramework</RootNamespace>
-		<PackageTags>$(PMFTags)</PackageTags>
-	</PropertyGroup>
-	
-	<PropertyGroup>
-		<AddMelonAttributes>false</AddMelonAttributes>
-		<UsePMFTool>false</UsePMFTool>
-		
-		
-	</PropertyGroup>
-	
-	<ItemGroup>
+  <PropertyGroup>
+    <AddMelonAttributes>false</AddMelonAttributes>
+    <UsePMFTool>false</UsePMFTool>
+	<AutoGenerateModJson>false</AutoGenerateModJson>
+  </PropertyGroup>
+  <ItemGroup>
 	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.5.0" />
-	</ItemGroup>
+  </ItemGroup>
 
-	
+
+  <PropertyGroup>
+	<UseDirectLink>true</UseDirectLink>
+	  
+    <ProxyDllsFolder>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\Managed</ProxyDllsFolder>
+	<MelonloaderDll>D:\Program Files (x86)\Steam\steamapps\common\Primitier\MelonLoader\MelonLoader.dll</MelonloaderDll>
+  </PropertyGroup>
+
 </Project>

@@ -1,0 +1,9 @@
+; configuration file from pmf tool
+
+; OPTIONAL relative path to the working directory to pull the files from when packing a mod in debug mode
+DebugBinPath=bin/Debug/net472
+; OPTIONAL relative path to the working directory to pull the files from when packing a mod in release mode
+ReleaseBinPath=bin/Release/net472
+DllPath = ../Dlls
+
+DirectDllLink=true
