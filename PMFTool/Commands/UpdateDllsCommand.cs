@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using Cocona;
 
 namespace PMFTool.Commands
@@ -21,7 +22,7 @@ namespace PMFTool.Commands
 
 
 
-			var projectPath = Validator.ValidateProjectPath(path);
+			var projectPath = Validator.ValidateProjectPath(path, out string csprojFilePath);
 			if (projectPath == null)
 			{
 				return;
@@ -33,6 +34,15 @@ namespace PMFTool.Commands
 				return;
 			}
 
+			DirectLinkCsProjFixer.LogWarning(config);
+
+			if (config.DirectDllLink)
+			{
+				DirectLinkCsProjFixer.Fix(csprojFilePath, config);
+				return;
+			}
+
+			
 			if (string.IsNullOrWhiteSpace(config.DllPath))
 			{
 				ConsoleWriter.WriteLineError("No dll path found. You can give one by creating a .pmftoolconfig or passing it as an argument into this command");
@@ -97,6 +107,8 @@ namespace PMFTool.Commands
 			var melonloaderDll = new FileInfo(Path.Combine(Path.GetDirectoryName(config.PrimitierPath), "MelonLoader", "MelonLoader.dll"));
 			melonloaderDll.CopyTo(Path.Combine(dllDir.FullName, "MelonLoader.dll"), true);
 
+
+			DirectLinkCsProjFixer.LogWarning(config);
 		}
 
 

@@ -39,7 +39,7 @@ namespace PMFTool.Commands
 			bool detach=false)
 		{
 
-			var projectPath = Validator.ValidateProjectPath(path);
+			var projectPath = Validator.ValidateProjectPath(path, out _);
 			if (projectPath == null)
 			{
 				return;
@@ -51,11 +51,15 @@ namespace PMFTool.Commands
 				return;
 			}
 
+			DirectLinkCsProjFixer.LogWarning(config);
+
 			string? binPath = Validator.ValidateBinPath(config, projectPath, mode);
 			if (binPath == null)
 			{ 
 				return; 
 			}
+
+			
 
 			if (!nobuild)
 			{
@@ -194,6 +198,8 @@ namespace PMFTool.Commands
 				ConsoleWriter.WriteLineError("Can not start primitier");
 				return;
 			}
+
+			DirectLinkCsProjFixer.LogWarning(config);
 
 			if (detach)
 			{

@@ -17,6 +17,13 @@ namespace PMFTool
 			Console.GetCursorPosition();
 		}
 
+		public static void WriteLineWarning(string value)
+		{
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine("WARNING: " + value);
+			Console.ForegroundColor = ConsoleColor.White;
+		}
+
 
 		public static void WriteLineStatus(string value)
 		{

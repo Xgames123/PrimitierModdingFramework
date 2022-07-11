@@ -1,7 +1,9 @@
 <Project>
-
+	
 
 	<PropertyGroup>
+		<UseDirectLink Condition="'$(UseDirectLink)' == ''">false</UseDirectLink>
+		
 		<ProxyDllsFolder Condition="'$(ProxyDllsFolder)' == ''">../Dlls</ProxyDllsFolder>
 		<EntryPointClass Condition="'$(EntryPointClass)' == ''">$(RootNamespace).Mod</EntryPointClass>
 		<UsePMFTool Condition="'$(UsePMFTool)' == ''">true</UsePMFTool>
@@ -14,7 +16,8 @@
 		<PMFMsBuildNugetPackagePath>$([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName($(MSBuildThisFileDirectory)))))))</PMFMsBuildNugetPackagePath>
 	</PropertyGroup>
 
-	<UsingTask TaskName="PMF.Msbuild.WriteModJson" AssemblyFile="$(PMFMsBuildNugetPackagePath)\lib\net472\PMF.MsBuild.dll" />	
+	<UsingTask TaskName="PMF.Msbuild.WriteModJson" AssemblyFile="$(PMFMsBuildNugetPackagePath)\lib\net472\PMF.MsBuild.dll" />
+
 
 
 	<PropertyGroup Condition="!$(ProxyDllsFolder.EndsWith('/'))">
@@ -44,7 +47,7 @@
 	</ItemGroup>
 
 
-	<Target Condition="'$(UsePMFTool)' == 'true'" Name="UpdateDlls" BeforeTargets="BeforeBuild">
+	<Target Condition="'$(UsePMFTool)' == 'true' And '$(UseDirectLink)' == 'false'" Name="UpdateDlls" BeforeTargets="BeforeBuild">
 		<Exec Command="PMFTool update-dlls --noprompts" ContinueOnError="True" ConsoleToMsBuild="True" WorkingDirectory="$(MSBuildProjectDirectory)">
 			<Output TaskParameter="ExitCode" PropertyName="UpdateDllsExitcode"/>
 			<Output TaskParameter="ConsoleOutput" PropertyName="UpdateDllsOutput"/>
@@ -58,5 +61,10 @@
 		<WriteModJson Path="$(OutDir)/Mod.json" DisplayName="$(Title)" Authors="$(Authors)" Description="$(Description)" Version="$(Version)"/>
 		
 	</Target>
-	
+
+
+	<Target Name="ErrorTarget" BeforeTargets="Compile">
+
+		<Error Text="ProxyDllsFolder has to be set if UseDirectLink is set (This can be done automatically running pmftool update-dlls)" Condition="'$(UseDirectLink)' == 'true' And '$(ProxyDllsFolder)' == '../Dlls/'" />
+	</Target>
 </Project>

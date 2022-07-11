@@ -51,8 +51,9 @@ namespace PMFTool
 		}
 
 
-		public static string? ValidateProjectPath(string projectPath, bool log=true)
+		public static string? ValidateProjectPath(string projectPath, out string? csprojFilePath, bool log=true)
 		{
+			csprojFilePath = null;
 			if (string.IsNullOrWhiteSpace(projectPath))
 			{
 				projectPath = Environment.CurrentDirectory;
@@ -73,6 +74,7 @@ namespace PMFTool
 			{
 				if (file.Extension == ".csproj")
 				{
+					csprojFilePath = file.FullName;
 					foundcsproj = true;
 					break;
 				}

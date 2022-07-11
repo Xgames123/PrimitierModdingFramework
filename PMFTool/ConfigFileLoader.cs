@@ -20,6 +20,7 @@ namespace PMFTool
 		public string ReleaseBinPath = "";
 		public string DllPath = "";
 
+		public bool DirectDllLink = false;
 	}
 
 
@@ -37,8 +38,8 @@ namespace PMFTool
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in release mode
 ;ReleaseBinPath=bin/Release/net472
 
-; OPTIONAL relative path to the working directory where the dlls are stored. Used by 'PMFTool update-dlls'
-;DllPath=../Dlls
+; Link to the melon dlls without copying them
+DirectDllLink=true
 ";
 
 

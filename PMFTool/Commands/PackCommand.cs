@@ -30,7 +30,7 @@ namespace PMFTool.Commands
 			PackFormat format=PackFormat.Pmfm)
 		{
 
-			var projectPath = Validator.ValidateProjectPath(path);
+			var projectPath = Validator.ValidateProjectPath(path, out _);
 			if (projectPath == null)
 			{
 				return;
@@ -42,6 +42,7 @@ namespace PMFTool.Commands
 				return;
 			}
 
+			DirectLinkCsProjFixer.LogWarning(config);
 
 			string? binPath = Validator.ValidateBinPath(config, projectPath, RunMode.Release);
 			if (binPath == null)
@@ -132,6 +133,7 @@ namespace PMFTool.Commands
 
 			ConsoleWriter.WriteLineStatus("== Done ==");
 
+			DirectLinkCsProjFixer.LogWarning(config);
 		}
 
 
