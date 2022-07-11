@@ -2,11 +2,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!--This import should not be in your projects. This file is used for sharing property's between the different PMF projects -->
   <Import Project="../PMF.Shared.targets" />
+	
+		
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>DemoMod</RootNamespace>
     <Title>PMF Demo mod</Title>
     <Description>A demo mod for PMF</Description>
+	  
     <!--This is commented out because it is already set by PMF.Shared.targets-->
     <!--<Authors>XGames105</Authors>-->
     <!--<Version>1.0.0</Version>-->
@@ -23,7 +26,6 @@
     <ProjectReference Include="..\PrimitierModdingFramework\PrimitierModdingFramework.csproj" />
   </ItemGroup>
 	
-		
   <PropertyGroup>
     <UseDirectLink>true</UseDirectLink>
   </PropertyGroup>
