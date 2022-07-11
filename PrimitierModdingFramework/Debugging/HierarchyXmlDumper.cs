@@ -29,7 +29,8 @@ namespace PrimitierModdingFramework.Debugging
 			new MeshRendererDumper(),
 			new MeshFilterDumper(),
 			new TextMeshProComponentDumper(),
-			new CubeBaseComponetDumper());
+			new CubeBaseComponetDumper(),
+			new StartButtonComponentDumper());
 
 		/// <summary>
 		/// Dumps the provided scene to HierarchyXmlDumper.FilePath using a provided ComponentDumperList.

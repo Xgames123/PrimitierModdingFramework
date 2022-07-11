@@ -9,6 +9,15 @@ namespace PMFTool
 	public static class ConsoleWriter
 	{
 
+		public static void WriteCount(int value, int max)
+		{
+			Console.ResetColor();
+			Console.WriteLine(value+"/"+max);
+
+			Console.GetCursorPosition();
+		}
+
+
 		public static void WriteLineStatus(string value)
 		{
 			Console.ForegroundColor = ConsoleColor.Green;

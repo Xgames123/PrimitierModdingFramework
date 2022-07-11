@@ -19,8 +19,8 @@ namespace DemoMod
 
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
-			
-			
+			PMFLog.Message("test");
+
 			base.OnSceneWasLoaded(buildIndex, sceneName);
 	
 			var demoMenu = InGameDebugTool.CreateMenu("Demo", "MainMenu");
@@ -142,6 +142,7 @@ namespace DemoMod
 				HierarchyXmlDumper.DumpSceneToFile();
 			}
 
+			
 		}
 
 		public override void OnFixedUpdate()

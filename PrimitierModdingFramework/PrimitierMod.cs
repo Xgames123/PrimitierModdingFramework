@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using MelonLoader;
 using PrimitierModdingFramework.Debugging;
 using PrimitierModdingFramework.SubstanceModding;
+using TMPro;
+using UnityEngine;
 
 namespace PrimitierModdingFramework
 {
@@ -106,8 +108,53 @@ namespace PrimitierModdingFramework
 			var args = Environment.GetCommandLineArgs();
 			if (args.Contains("--pmf.flycam"))
 			{
-				PMFSystem.EnableSystem<InGameDebuggingSystem>();
-				FlyCam.Create();
+				
+			}
+			foreach (var arg in args)
+			{
+				if (arg == "--pmf.flycam")
+				{
+					PMFSystem.EnableSystem<InGameDebuggingSystem>();
+					FlyCam.Create();
+				}
+				if (arg.StartsWith("--pmf.start-slot:"))
+				{
+					if (int.TryParse(arg.Substring(17), out int slot))
+					{
+						try
+						{
+							if (PMFLog.IsEnabled)
+								PMFLog.Message("Loading save slot " + slot);
+
+							var loadingSequence = GameObject.FindObjectOfType<LoadingSequence>();
+
+							var destroyObject = new UnhollowerBaseLib.Il2CppReferenceArray<GameObject>(0);
+							var titleSpace = GameObject.Find("TitleSpace");
+							if (titleSpace != null)
+							{
+								destroyObject = new UnhollowerBaseLib.Il2CppReferenceArray<GameObject>(1);
+								destroyObject[0] = titleSpace;
+							}
+
+							var enableObjects = new UnhollowerBaseLib.Il2CppReferenceArray<GameObject>(0);
+							//TODO: enable the save and load buttons
+
+
+							loadingSequence.StartLoading(slot, GameObject.Find("InfoText").GetComponent<TextMeshPro>(), destroyObject, enableObjects);
+
+						}
+						catch(Exception e)
+						{
+							if (PMFLog.IsEnabled)
+								PMFLog.Error($"Could not start primitier in slot {slot} Exception:{e}");
+						}
+						
+
+					}
+
+
+				}
+
 			}
 
 		}
