@@ -19,7 +19,7 @@ namespace PMF.Msbuild
 		public string Description { private get; set; } = "";
 		public string Version { private get; set; } = "1.0";
 
-		private const string TemplateModJson = "{'DisplayName':'DISPLAY_NAME','Authors':'AUTHORS','Description':'DESCRIPTION','Version':'VERSION'}";
+		private const string TemplateModJson = "{\"DisplayName\":\"DISPLAY_NAME\",\"Authors\":\"AUTHORS\",\"Description\":\"DESCRIPTION\",\"Version\":\"VERSION\"}";
 
 		public override bool Execute()
 		{
