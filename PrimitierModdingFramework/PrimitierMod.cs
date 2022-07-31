@@ -17,10 +17,9 @@ namespace PrimitierModdingFramework
 	/// </summary>
 	public abstract class PrimitierMod : MelonMod
 	{
-		internal bool IsApplicationStarted { get; private set; } = false;
-
-		private bool RealyLateStartCalled = false;
-		private bool OnSceneWasLoadedCalled = false;
+		public bool IsApplicationStarted { get; private set; } = false;
+		public bool OnSceneWasLoadedCalled { get; private set; } = false;
+		public bool RealyLateStartCalled { get; private set; } = false;
 
 		/// <summary>
 		/// Runs when a Scene has Loaded and is passed the Scene's Build Index and Name.
@@ -28,7 +27,7 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnSceneWasLoaded(int buildIndex, string sceneName)
 		{
-			PMFSystem.FireEventOnSystems(PMFEventType.SceneLoad);
+			PMFSystem.FireEventOnSystems(this, PMFEventType.SceneLoad);
 			OnSceneWasLoadedCalled = true;
 			CustomSubstanceBuilder.BuildAll();
 		}
@@ -36,7 +35,7 @@ namespace PrimitierModdingFramework
 
 		public override void OnGUI()
 		{
-			PMFSystem.FireEventOnSystems(PMFEventType.GUI);
+			PMFSystem.FireEventOnSystems(this, PMFEventType.GUI);
 			base.OnGUI();
 		}
 
@@ -46,13 +45,12 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnApplicationStart()
 		{
-			PMFSystem.Startup(this);
+			PMFSystem.RegisterMod(this);
+			PMFSystem.FireEventOnSystems(this, PMFEventType.ApplicationStart);
 
-			PMFSystem.FireEventOnSystems(PMFEventType.ApplicationStart);
 			IsApplicationStarted = true;
 
 			HarmonyInstance.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
-
 		}
 
 		/// <summary>
@@ -61,7 +59,7 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnApplicationLateStart()
 		{
-			PMFSystem.FireEventOnSystems(PMFEventType.ApplicationLateStart);
+			PMFSystem.FireEventOnSystems(this, PMFEventType.ApplicationLateStart);
 		}
 
 		public override void OnFixedUpdate()
@@ -80,7 +78,7 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnUpdate()
 		{
-			PMFSystem.FireEventOnSystems(PMFEventType.Update);
+			PMFSystem.FireEventOnSystems(this, PMFEventType.Update);
 		}
 
 
@@ -92,7 +90,7 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public override void OnApplicationQuit()
 		{
-			PMFSystem.FireEventOnSystems(PMFEventType.ApplicationQuit);
+			PMFSystem.FireEventOnSystems(this, PMFEventType.ApplicationQuit);
 			IsApplicationStarted = false;
 		}
 
@@ -103,60 +101,8 @@ namespace PrimitierModdingFramework
 		/// </summary>
 		public virtual void OnRealyLateStart()
 		{
-			PMFSystem.FireEventOnSystems(PMFEventType.RealyLateStart);
-
-			var args = Environment.GetCommandLineArgs();
-			if (args.Contains("--pmf.flycam"))
-			{
-				
-			}
-			foreach (var arg in args)
-			{
-				if (arg == "--pmf.flycam")
-				{
-					PMFSystem.EnableSystem<InGameDebuggingSystem>();
-					FlyCam.Create();
-				}
-				if (arg.StartsWith("--pmf.start-slot:"))
-				{
-					if (int.TryParse(arg.Substring(17), out int slot))
-					{
-						try
-						{
-							if (PMFLog.IsEnabled)
-								PMFLog.Message("Loading save slot " + slot);
-
-							var loadingSequence = GameObject.FindObjectOfType<LoadingSequence>();
-
-							var destroyObject = new UnhollowerBaseLib.Il2CppReferenceArray<GameObject>(0);
-							var titleSpace = GameObject.Find("TitleSpace");
-							if (titleSpace != null)
-							{
-								destroyObject = new UnhollowerBaseLib.Il2CppReferenceArray<GameObject>(1);
-								destroyObject[0] = titleSpace;
-							}
-
-							var enableObjects = new UnhollowerBaseLib.Il2CppReferenceArray<GameObject>(0);
-							//TODO: enable the save and load buttons
-
-
-							loadingSequence.StartLoading(slot, GameObject.Find("InfoText").GetComponent<TextMeshPro>(), destroyObject, enableObjects);
-
-						}
-						catch(Exception e)
-						{
-							if (PMFLog.IsEnabled)
-								PMFLog.Error($"Could not start primitier in slot {slot} Exception:{e}");
-						}
-						
-
-					}
-
-
-				}
-
-			}
-
+			PMFSystem.FireEventOnSystems(this, PMFEventType.RealyLateStart);
+			PMFSystem.TryParseCommandlineArgs();
 		}
 
 	}

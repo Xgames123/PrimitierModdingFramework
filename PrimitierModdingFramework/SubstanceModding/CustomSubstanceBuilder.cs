@@ -29,6 +29,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <typeparam name="T"></typeparam>
 		public static void RegisterBuilder<T>() where T : CustomSubstanceBuilder, new()
 		{
+			if (BuilderExists<T>())
+				return;
+
 			s_customSubstanceBuilders.Add(new T());
 		}
 
@@ -38,10 +41,24 @@ namespace PrimitierModdingFramework.SubstanceModding
 		/// <param name="builderType"></param>
 		public static void RegisterBuilder(Type builderType)
 		{
-			var obj = Activator.CreateInstance(builderType);
+			if (BuilderExists(builderType))
+				return;
 
-			s_customSubstanceBuilders.Add((CustomSubstanceBuilder)obj);
+			var substanceBuilder = (CustomSubstanceBuilder)Activator.CreateInstance(builderType);
+		
+			s_customSubstanceBuilders.Add(substanceBuilder);
 		}
+
+		public static bool BuilderExists<T>() where T : CustomSubstanceBuilder
+		{
+			return s_customSubstanceBuilders.Any((builder) => builder is T);
+		}
+
+		public static bool BuilderExists(Type builderType)
+		{
+			return s_customSubstanceBuilders.Any((builder) => builder.GetType() == builderType);
+		}
+
 
 		internal static void BuildAll()
 		{
@@ -49,6 +66,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 
 			foreach (var builder in s_customSubstanceBuilders)
 			{
+				if (builder.HasBuild)
+					continue;
+
 				builder.Build();
 			}
 		}
