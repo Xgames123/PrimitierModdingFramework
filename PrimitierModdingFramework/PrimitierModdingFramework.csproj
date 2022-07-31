@@ -14,7 +14,6 @@
 	
   <PropertyGroup>
     <AddMelonAttributes>false</AddMelonAttributes>
-    <UsePMFTool>false</UsePMFTool>
 	<AutoGenerateModJson>false</AutoGenerateModJson>
   </PropertyGroup>
   <ItemGroup>
