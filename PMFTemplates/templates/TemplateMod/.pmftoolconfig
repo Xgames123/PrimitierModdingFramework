@@ -5,5 +5,4 @@ DebugBinPath=bin/Debug/net472
 ; OPTIONAL relative path to the working directory to pull the files from when packing a mod in release mode
 ReleaseBinPath=bin/Release/net472
 
-; OPTIONAL relative path to the working directory where the dlls are stored. Used by 'PMFTool update-dlls'
-DllPath=../Dlls
+DirectDllLink=true

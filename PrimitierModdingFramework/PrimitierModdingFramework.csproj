@@ -18,7 +18,7 @@
 	<AutoGenerateModJson>false</AutoGenerateModJson>
   </PropertyGroup>
   <ItemGroup>
-	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.5.0" />
+	  <PackageReference Include="XGames105.PMF.Msbuild" Version="0.5.1" />
   </ItemGroup>
 
 
