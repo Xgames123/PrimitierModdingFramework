@@ -3,6 +3,7 @@
 2) Check version number in PMF.Shared.targets
 3) Check PackageReference version numbers in PrimitierModdingFramework and DemoMod
 4) Check PackageReference version numbers in template project
+5) Update readme
 
 5) build all nuget packages
 6) merge dev into main

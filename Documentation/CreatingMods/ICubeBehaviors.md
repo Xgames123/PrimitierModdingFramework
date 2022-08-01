@@ -16,7 +16,7 @@
     PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly());
     ```
 
-4) (Optional) You can attach method too events from CubeBase
+4) (Optional) You can attach method to events from CubeBase
 In older versions the OnFragmentInitialized and OnCollideWithCube were part of ICustomCubeBehaviour but now they have to be created manually
 
 5) Use the custom cube behaviour on a substance

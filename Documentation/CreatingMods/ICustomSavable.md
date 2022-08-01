@@ -8,7 +8,7 @@ PMFHelper.AutoInject(System.Reflection.Assembly.GetExecutingAssembly());
 ```
 (make sure you add this after ```PMFSystem.EnableSystem<PMFHelper>();```)
 
-Than add ICustomSavable to your behaviour and implement the interface
+Than add ICustomSavable to your behaviour, implement the interface and add ```CustomSaveFileSystem.RequestLoad(this);``` inside your constructor
 ```cs
 public class SaveFileTestingObject : MonoBehaviour, ICustomCubeBehaviour, ICustomSavable
 {
@@ -17,7 +17,10 @@ public class SaveFileTestingObject : MonoBehaviour, ICustomCubeBehaviour, ICusto
         public Color32 overlayColor;
     }
 
-    public SaveFileTestingObject(System.IntPtr ptr) : base(ptr){}
+    public SaveFileTestingObject(System.IntPtr ptr) : base(ptr)
+    {
+        CustomSaveFileSystem.RequestLoad(this);
+    }
 
 
     public string Save()
