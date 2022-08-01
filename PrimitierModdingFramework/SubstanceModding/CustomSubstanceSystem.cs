@@ -14,7 +14,7 @@ namespace PrimitierModdingFramework.SubstanceModding
 	{
 		public static bool IsEnabled { get; private set; } = false;
 
-		private static Dictionary<string, Material> s_customMats = new Dictionary<string, Material>();
+		private static Dictionary<string, Dictionary<string, Material>> s_customMats = new Dictionary<string, Dictionary<string, Material>>();
 
 		internal static Dictionary<string, CustomSubstanceSettings> CustomSubstanceSettings = new Dictionary<string, CustomSubstanceSettings>();
 
@@ -25,6 +25,17 @@ namespace PrimitierModdingFramework.SubstanceModding
 		public override void OnSystemDisabled()
 		{
 			IsEnabled = false;
+		}
+
+		private static Dictionary<string, Material> GetCustomMatDict()
+		{
+			if (!s_customMats.TryGetValue(Mod.ModId, out var customMats))
+			{
+				var newDict = new Dictionary<string, Material>();
+				s_customMats.Add(Mod.ModId, newDict);
+				return newDict;
+			}
+			return customMats;
 		}
 
 
@@ -38,7 +49,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 			if (!IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
 
-			if(s_customMats.TryGetValue(name, out var outMat))
+
+			var customMats = GetCustomMatDict();
+			if (customMats.TryGetValue(name, out var outMat))
 			{
 				return outMat;
 			}
@@ -64,6 +77,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 
 			if (settings != null)
 			{
+				settings.NameKey = substance.displayNameKey;
+				settings.Index = SubstanceManager.instance.param.Count;
+				settings.ModId = Mod.ModId;
 				CustomSubstanceSettings.Add(substance.displayNameKey, settings);
 
 				PMFLocalizer.AddJpEntry(substance.displayNameKey, settings.JpName);
@@ -145,7 +161,9 @@ namespace PrimitierModdingFramework.SubstanceModding
 			if (!IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(CustomSubstanceSystem));
 
-			s_customMats.Add(material.name, material);
+			var customMats = GetCustomMatDict();
+
+			customMats.Add(material.name, material);
 		}
 
 

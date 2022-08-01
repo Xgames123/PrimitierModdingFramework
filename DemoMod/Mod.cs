@@ -138,7 +138,8 @@ namespace DemoMod
 
 			if (Input.GetKeyUp(KeyCode.Space))
 			{
-				HierarchyXmlDumper.DumpSceneToFile();
+				CustomSaveFileSystem.WriteSaveMetadata(2);
+				//HierarchyXmlDumper.DumpSceneToFile();
 			}
 
 			

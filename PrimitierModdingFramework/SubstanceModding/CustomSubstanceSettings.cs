@@ -11,6 +11,11 @@ namespace PrimitierModdingFramework.SubstanceModding
 	/// </summary>
 	public class CustomSubstanceSettings
 	{
+		internal string NameKey;
+		internal string ModId;
+		internal int Index;
+		
+
 		/// <summary>
 		/// Called when the substance is initialized so when the world loads or a new instance of your substance it created.
 		/// This is used to add components or do other things with the substance.

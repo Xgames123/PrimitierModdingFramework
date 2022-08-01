@@ -22,6 +22,11 @@ namespace PrimitierModdingFramework
 		public bool RealyLateStartCalled { get; private set; } = false;
 
 		/// <summary>
+		/// The Id of the mod (Author.Name_version)
+		/// </summary>
+		public string ModId { get { return $"{Info.Author}.{Info.Name}_{Info.Version}"; } }
+
+		/// <summary>
 		/// Runs when a Scene has Loaded and is passed the Scene's Build Index and Name.
 		/// When overriding call base.OnSceneWasLoaded() before you do anything.
 		/// </summary>
