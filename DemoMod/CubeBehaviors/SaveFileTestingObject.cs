@@ -19,7 +19,7 @@ namespace DemoMod.CubeBehaviors
 
 		public SaveFileTestingObject(System.IntPtr ptr) : base(ptr)
 		{
-
+			CustomSaveFileSystem.RequestLoad(this);
 		}
 
 		private void Start()

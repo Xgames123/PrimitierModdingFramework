@@ -48,7 +48,7 @@ namespace PrimitierModdingFramework
 
 			base.OnStart();
 			EnableSystem<PMFLog>();
-			
+			EnableSystem<CustomSaveFileSystem>();
 		}
 
 		public override void OnSceneLoad()

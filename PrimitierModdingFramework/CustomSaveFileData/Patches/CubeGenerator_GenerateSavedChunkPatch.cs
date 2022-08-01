@@ -1,15 +1,15 @@
 ﻿using HarmonyLib;
 using Il2CppSystem;
+using System.Reflection;
 using UnityEngine;
 
 namespace PrimitierModdingFramework.CustomSaveFileData.Patches
 {
-	[HarmonyPatch(nameof(CubeGenerator), nameof(CubeGenerator.GenerateSavedChunk))]
+	[HarmonyPatch(typeof(CubeGenerator), nameof(CubeGenerator.GenerateSavedChunk))]
 	public class CubeGenerator_GenerateSavedChunkPatch
 	{
 		public static void Postfix(Vector2Int chunkPos)
 		{
-			PMFLog.Message("loaded modded saved chunk");
 
 			var chunk = SaveAndLoad.chunkDict[chunkPos];
 			foreach (var group in chunk)
@@ -25,8 +25,11 @@ namespace PrimitierModdingFramework.CustomSaveFileData.Patches
 						{
 							for (int i = 0; i < cube.behaviors.Count; i++)
 							{
-								var behaviourName = cube.behaviors[i];
-								if(behaviourName == loadRequest.Savable.GetType().AssemblyQualifiedName)
+								var splitName = cube.behaviors[i].Split(',');
+								if (splitName.Length == 0)
+									continue;
+
+								if(splitName[0] == loadRequest.FullName)
 								{
 									var state = cube.states[i];
 

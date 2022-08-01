@@ -49,7 +49,13 @@ namespace PrimitierModdingFramework.Debugging
 
 		void FixedUpdate()
 		{
+			var cubeGen = CubeGenerator.instance;
+			if (cubeGen != null)
+			{
+				cubeGen.player.transform.position = transform.position;
+			}
 
+			
 			
 		}
 
