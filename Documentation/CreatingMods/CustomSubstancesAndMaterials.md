@@ -33,7 +33,7 @@ Call ```CustomSubstanceSystem.GetSubstanceByName("YOUR_SUBSTANCE")``` to get the
 ## Substance values descriptions
 SubstanceParameters.Param has a couple of misleading names.
 
-Thanks to GracefulBoy for finding most of this
+Thanks to GracefulGal and EnderReaper64 for finding most of this
 
 **If some one finds out more about this please message me**
 * strength = health
@@ -41,9 +41,9 @@ Thanks to GracefulBoy for finding most of this
 * density = mass per volume unit
 * isflammable = is flammable
 * isedible = is food
-* kindlingpoint = ???
+* kindlingpoint = the temperature it maxes out burning at
 * collisionsound = the sound on hit (available sounds can be found in the resource dump by calling ResourceXmlDumper.DumpAllToFile();)
-* displayname = the name
+* displayname = the name (in game is used for localization but pmf also uses it as an id)
 * material = the material (how it looks)
 * combustionspeed = how fast it burns (warning: high values, even as high as 100, will cause the object to instantly vaporize and generate a LOT of heat)
 * combustionheat = probably means how much heat the material makes
