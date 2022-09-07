@@ -34,6 +34,8 @@ Here is a [getting started video](https://youtu.be/U6nOnpO1fb4)
 
 ## Table of content
 
+* [Name Descriptions](./NameDescriptions.md)
+
 * [PMFTool](./PMFTool/PMFTool.md)
 
 * [MSBuild package](./PMF.Msbuild.md)
