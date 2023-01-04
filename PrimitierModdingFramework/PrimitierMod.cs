@@ -55,7 +55,10 @@ namespace PrimitierModdingFramework
 
 			IsApplicationStarted = true;
 
-			HarmonyInstance.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
+			var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+			HarmonyInstance.PatchAll(assembly);
+
+			PMFLog.Message("PMF: current pmf version: " + assembly.GetName().Version);
 		}
 
 		/// <summary>

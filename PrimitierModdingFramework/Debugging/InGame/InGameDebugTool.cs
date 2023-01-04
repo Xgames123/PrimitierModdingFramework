@@ -50,21 +50,33 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static void Create()
 		{
+			if (PMFLog.IsEnabled)
+				PMFLog.Message("InGameDebugMenu: Creating debug tool");
+
+
 			if (!InGameDebuggingSystem.IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
 
 			if (DebugTool != null)
 			{
+				if (PMFLog.IsEnabled)
+					PMFLog.Message("InGameDebugMenu: DebugTool field already assigned");
+				_Menus = DebugTool.transform.GetChild(0);
 				return;
 			}
 
 			var tool = GameObject.Find("InGameDebugTool");
 			if (tool != null)
 			{
+				if (PMFLog.IsEnabled)
+					PMFLog.Message("InGameDebugMenu: Found debug tool already in scene. Using that one");
 				DebugTool = tool.GetComponent<InGameDebugTool>();
+				_Menus = tool.transform.GetChild(0);
 				return;
 			}
 
+			if (PMFLog.IsEnabled)
+				PMFLog.Message("InGameDebugMenu: No debug tool found. Creating new a new one");
 
 			var gameObject = new GameObject();
 			gameObject.transform.parent = PMFHelper.SystemTransform;
@@ -141,12 +153,16 @@ namespace PrimitierModdingFramework.Debugging
 
 		public static InGameDebugMenu CreateMenu(string name, string parentMenuName, string title=null)
 		{
+			PMFLog.Message($"InGameDebugMenu: creating menu {name}");
+
 			if (!InGameDebuggingSystem.IsEnabled)
 				throw new PMFSystemNotEnabledException(typeof(InGameDebuggingSystem));
 
 			var existingMenu = GetMenu(name);
 			if (existingMenu != null)
 			{
+				if(PMFLog.IsEnabled)
+					PMFLog.Message($"InGameDebugMenu: Menu {name} already exists");
 				return existingMenu;
 			}
 
@@ -224,7 +240,7 @@ namespace PrimitierModdingFramework.Debugging
 			Pannel.transform.localScale = new Vector3(0.4f, 0.3f, 0.02f);
 			Pannel.transform.localPosition = new Vector3(0, 0, 0);
 			Pannel.GetComponent<MeshRenderer>().material.color = Color.black;
-
+			Destroy(Pannel.GetComponent<Collider>());
 
 			return Pannel;
 		}

@@ -51,6 +51,7 @@ namespace PrimitierModdingFramework.Debugging
 			button.transform.localPosition = new Vector3(0, -0.03f, 0);
 			button.GetComponent<MeshRenderer>().material.color = Color.grey;
 			button.AddComponent<InGameDebugToolShowButton>();
+			button.GetComponent<Collider>().isTrigger = true;
 
 			var textGameObject = new GameObject("ShowDebugToolButtonText");
 			textGameObject.transform.parent = PMFHelper.MenuWindowL;
